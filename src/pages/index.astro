@@ -1,0 +1,101 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import RoadMandala from "../components/RoadMandala.astro";
+---
+<BaseLayout title="ROAD Wealth®" description="ROAD Wealth — consultoria de investimentos e cuidado patrimonial com visão integrada.">
+  <section class="hero section section--sand" id="inicio">
+    <div class="eyebrow">ROAD WEALTH®</div>
+    <h1>Seu patrimônio, seu caminho, seu legado.</h1>
+    <p class="lead">Uma visão integrada para acompanhar as decisões que constroem, protegem e dão continuidade ao seu patrimônio.</p>
+    <div class="actions">
+      <a class="btn btn--primary" href="/a-road/">Conheça a ROAD</a>
+      <a class="btn btn--ghost" href="/patrimonio/">Como cuidamos do seu patrimônio</a>
+    </div>
+  </section>
+
+  <section class="section section--coffee">
+    <div class="story-split">
+      <p class="intro-quote">Cada patrimônio carrega uma história.</p>
+      <div class="section-intro">
+        <p class="on-dark">Com o tempo, investimentos, família, empresas, crédito, proteção e sucessão passam a fazer parte de uma mesma trajetória. A ROAD nasce para olhar essas decisões de forma conectada, com clareza, responsabilidade e perspectiva de longo prazo.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--sand" id="a-road">
+    <div class="road-teaser">
+      <div>
+        <div class="eyebrow">A ROAD</div>
+        <h2>Uma empresa construída para acompanhar patrimônio e decisões ao longo do tempo.</h2>
+        <p class="lead">A ROAD nasce de uma visão independente, próxima e responsável sobre investimentos e patrimônio — conectando decisões que precisam fazer sentido hoje e ao longo das próximas gerações.</p>
+        <div class="actions"><a class="btn btn--primary" href="/a-road/">Conheça a ROAD</a></div>
+      </div>
+      <div class="road-teaser-card">
+        <h3>Mais do que um nome.</h3>
+        <p>A origem da ROAD, a história por trás da marca e do símbolo, o significado de <em>Wealth</em>, os sócios e o funcionamento da Consultoria passam a ter um espaço próprio.</p>
+        <a class="text-btn" href="/a-road/#origem">Conheça a origem da marca →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white" id="patrimonio">
+    <div class="section-intro">
+      <div class="eyebrow">PATRIMÔNIO</div>
+      <h2>Como cuidamos do seu patrimônio</h2>
+      <p>Investir bem é fundamental. Mas patrimônio não termina nos investimentos. A ROAD conecta áreas de atuação que precisam conversar entre si.</p>
+    </div>
+    <div class="wealth-grid wealth-grid--visual">
+      <RoadMandala />
+      <div class="area-panel">
+        <div class="eyebrow">VISÃO ROAD</div>
+        <h3>Áreas de atuação que precisam conversar entre si.</h3>
+        <p>Investimentos, Legado, Estratégia e Decisões organizam temas diferentes do patrimônio, mas ganham valor quando são analisados de forma integrada.</p>
+        <div class="area-link-list">
+          <a href="/investimentos/">Investimentos <span>→</span></a>
+          <a href="/patrimonio/#legado">Legado <span>→</span></a>
+          <a href="/patrimonio/#estrategia">Estratégia <span>→</span></a>
+          <a href="/patrimonio/#decisoes">Decisões <span>→</span></a>
+        </div>
+        <div class="actions" style="margin-top:22px"><a class="btn btn--primary" href="/patrimonio/">Conheça a visão patrimonial</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--coffee" id="investimentos">
+    <div class="investments-layout">
+      <div>
+        <div class="eyebrow eyebrow--light">INVESTIMENTOS</div>
+        <h2>Uma estratégia antes de uma carteira.</h2>
+        <p class="on-dark">A atividade central da ROAD parte do cliente — não do produto. Objetivos, risco, liquidez e horizonte precedem a escolha dos instrumentos.</p><div class="actions" style="margin-top:18px"><a class="btn btn--sand" href="/investimentos/">Conheça Investimentos</a></div>
+      </div>
+      <div class="pillars">
+        <article><h3>Política de Investimentos</h3><p class="on-dark">Uma referência para orientar decisões, limites, alocação e acompanhamento ao longo do tempo.</p></article>
+        <article><h3>Diferentes instituições. Uma estratégia.</h3><p class="on-dark">Seu patrimônio pode estar em diferentes lugares. A análise considera o conjunto das posições, e não apenas uma conta isolada.</p></article>
+        <article><h3>Consolidação e acompanhamento</h3><p class="on-dark">Recomendações, revisões e rebalanceamentos passam a fazer parte de um processo contínuo.</p></article>
+        <article><h3>Uma evolução já consolidada em mercados mais maduros</h3><p class="on-dark">Modelos remunerados pelo aconselhamento ganharam espaço relevante em mercados financeiros maduros. No Brasil, a Consultoria de Investimentos também vem ampliando sua presença.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section knowledge-section" id="conhecimento">
+    <div class="knowledge-choice">
+      <div class="eyebrow">CONHECIMENTO</div>
+      <h2>Investir não precisa ser tão complicado.</h2>
+      <p>Se você quiser entender melhor os conceitos, produtos, riscos, regras e tributos que fazem parte dos investimentos, a ROAD reúne conteúdo para descomplicar o caminho.</p>
+      <div class="actions"><a class="btn btn--primary" href="/conhecimento/">Quero entender melhor</a></div>
+    </div>
+  </section>
+
+  <section class="section section--coffee cta-final" id="contato">
+    <div class="eyebrow eyebrow--light">CONTATO</div>
+    <h2>Uma conversa pode ser o primeiro passo.</h2>
+    <p class="lead on-dark">Escolha o canal que fizer mais sentido para você.</p>
+    <div class="actions"><button class="btn btn--sand js-placeholder" data-message="O número oficial de WhatsApp será inserido antes da publicação." type="button">WhatsApp</button><a class="btn btn--outline-light" href="mailto:contato@roadwealth.com.br">E-mail</a></div>
+    <div style="margin-top:24px;color:rgba(243,236,227,.82);font-size:15px;line-height:1.65"><strong style="font-family:Montserrat,Arial,sans-serif;color:var(--sand)">ROAD Wealth®</strong><br/>Rua Pater Josef Stefan, 1249<br/>Colônia Vitória · Entre Rios · Guarapuava/PR<br/><a href="mailto:contato@roadwealth.com.br" style="color:inherit">contato@roadwealth.com.br</a></div>
+    <div class="socials" style="margin-top:20px">
+      <a aria-label="Instagram da ROAD Wealth — @road.wealth" class="social-link" href="https://www.instagram.com/road.wealth/" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" class="social-icon" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect height="18" rx="5" stroke="currentColor" stroke-width="1.8" width="18" x="3" y="3"></rect><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"></circle><circle cx="17.4" cy="6.7" fill="currentColor" r="1.1"></circle></svg><span>@road.wealth</span></a>
+      <button class="social-link js-placeholder" data-message="A URL oficial do LinkedIn será inserida antes da publicação." type="button">LinkedIn</button>
+    </div>
+  </section>
+
+</BaseLayout>

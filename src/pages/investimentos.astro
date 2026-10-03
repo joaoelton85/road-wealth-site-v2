@@ -1,0 +1,51 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import InstitutionPlatforms from "../components/InstitutionPlatforms.astro";
+import "../styles/investimentos.css";
+---
+<BaseLayout title="Investimentos | ROAD Wealth®" description="Consultoria de investimentos ROAD Wealth: política de investimentos, consolidação, acompanhamento e acesso multiplaforma." active="investimentos">
+  <section class="hero section section--sand page-hero" id="inicio">
+    <div class="eyebrow">INVESTIMENTOS</div>
+    <h1>Uma estratégia antes de uma carteira.</h1>
+    <p class="lead">A atividade central da ROAD parte do cliente — não do produto. Objetivos, risco, liquidez e horizonte orientam a Política de Investimentos e o acompanhamento ao longo do tempo.</p>
+  </section>
+
+  <section class="section section--coffee">
+    <div class="investments-layout">
+      <div>
+        <div class="eyebrow eyebrow--light">COMO PENSAMOS</div>
+        <h2>Seu patrimônio pode estar em diferentes lugares. Sua estratégia não precisa estar.</h2>
+        <p class="on-dark">A ROAD analisa o conjunto das posições, organiza critérios de alocação e acompanha decisões financeiras de forma consolidada.</p>
+      </div>
+      <div class="pillars">
+        <article><h3>Política de Investimentos</h3><p class="on-dark">Objetivos, perfil, horizonte, liquidez e limites de risco formam a referência para as decisões.</p></article>
+        <article><h3>Consolidação</h3><p class="on-dark">Contas mantidas em diferentes instituições passam a ser observadas dentro de uma única estratégia.</p></article>
+        <article><h3>Acompanhamento</h3><p class="on-dark">Recomendações, revisões e rebalanceamentos passam a fazer parte de um processo contínuo.</p></article>
+        <article><h3>Independência</h3><p class="on-dark">A lógica de análise parte do que faz sentido para o patrimônio, e não da necessidade de concentrar os recursos em uma única plataforma.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--sand institutions-section" id="instituicoes">
+    <div class="section-intro">
+      <div class="eyebrow">ESTRUTURA MULTIPLATAFORMA</div>
+      <h2>Diferentes instituições. Uma estratégia.</h2>
+      <p>Os recursos permanecem custodiados nas instituições escolhidas pelo cliente. A ROAD organiza a análise e o acompanhamento de forma consolidada.</p>
+    </div>
+    <InstitutionPlatforms />
+  </section>
+
+  <section class="section section--white">
+    <div class="grid-2 investment-principles">
+      <article class="card card--white"><div class="eyebrow">ALVO</div><h3>Decisões coerentes com o patrimônio.</h3><p>Alocação, risco, liquidez e diversificação são avaliados em conjunto, dentro da realidade de cada família.</p></article>
+      <article class="card card--white"><div class="eyebrow">PROCESSO</div><h3>Acompanhamento contínuo.</h3><p>A estratégia é revisada ao longo do tempo conforme objetivos, mercado, liquidez e necessidades patrimoniais evoluem.</p></article>
+    </div>
+  </section>
+
+  <section class="section section--coffee cta-final" id="contato">
+    <div class="eyebrow eyebrow--light">CONTATO</div>
+    <h2>Uma conversa pode ser o primeiro passo.</h2>
+    <p class="lead on-dark">Escolha o canal que fizer mais sentido para você.</p>
+    <div class="actions"><button class="btn btn--sand js-placeholder" data-message="O número oficial de WhatsApp será inserido antes da publicação." type="button">WhatsApp</button><a class="btn btn--outline-light" href="mailto:contato@roadwealth.com.br">E-mail</a></div>
+  </section>
+</BaseLayout>

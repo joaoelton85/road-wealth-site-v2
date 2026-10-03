@@ -1,0 +1,45 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import MarketTicker from "../components/MarketTicker.astro";
+import MarketTools from "../components/MarketTools.astro";
+import "../styles/global.css";
+const { title = "ROAD Wealth®", description = "ROAD Wealth — consultoria de investimentos e cuidado patrimonial com visão integrada.", active = "", noindex = true } = Astro.props;
+---
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    <link rel="icon" href="/assets/favicon.ico" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@400;500;600&family=Questrial&display=swap" rel="stylesheet" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="site-top-stack" id="site-top-stack">
+      <Header active={active} />
+      <MarketTicker />
+    </div>
+    <main><slot /></main>
+    <Footer />
+    <MarketTools />
+    <script is:inline>
+      const stack=document.getElementById('site-top-stack');
+      const root=document.documentElement;
+      const syncStickyTop=()=>{
+        if(!stack) return;
+        root.style.setProperty('--sticky-top',`${Math.ceil(stack.getBoundingClientRect().height)}px`);
+      };
+      syncStickyTop();
+      if('ResizeObserver' in window && stack){
+        new ResizeObserver(syncStickyTop).observe(stack);
+      }
+      window.addEventListener('resize',syncStickyTop,{passive:true});
+    </script>
+  </body>
+</html>

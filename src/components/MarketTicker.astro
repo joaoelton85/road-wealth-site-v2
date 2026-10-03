@@ -1,0 +1,39 @@
+---
+const tickerConfig = {
+  symbols: [
+    { proName: "BMFBOVESPA:IBOV", title: "IBOV" },
+    { proName: "BMFBOVESPA:IFIX", title: "IFIX" },
+    { proName: "BMFBOVESPA:SMLL", title: "SMLL" },
+    { proName: "BMFBOVESPA:IVVB11", title: "IVVB11 (BRL)" },
+    { proName: "CMCMARKETS:GOLD", title: "Ouro (USD)" },
+    { proName: "FX_IDC:USDBRL", title: "USD/BRL" },
+    { proName: "FX_IDC:EURBRL", title: "EUR/BRL" },
+    { proName: "BMFBOVESPA:DI1F2030", title: "DI1F30 (%)" },
+    { proName: "BMFBOVESPA:DI1F2035", title: "DI1F35 (%)" },
+    { proName: "BITSTAMP:BTCUSD", title: "Bitcoin (USD)" },
+  ],
+  colorTheme: "dark",
+  locale: "br",
+  largeChartUrl: "",
+  isTransparent: true,
+  showSymbolLogo: true,
+  displayMode: "adaptive",
+};
+---
+<div class="market-ticker-shell" id="market-ticker-shell" aria-label="Cotações de mercado">
+  <div class="market-ticker-row">
+    <div class="market-ticker-viewport">
+      <div class="market-ticker-scale-frame">
+        <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container__widget">
+            <div class="ticker-placeholder" aria-hidden="true">
+              IBOV · IFIX · SMLL · IVVB11 (BRL) · Ouro (USD) · USD/BRL · EUR/BRL · DI1F30 (%) · DI1F35 (%) · Bitcoin (USD)
+            </div>
+          </div>
+          <script is:inline type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async set:html={JSON.stringify(tickerConfig)}></script>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="market-ticker-note">B3 · 15 min de atraso &nbsp;|&nbsp; Câmbio · ICE Data Services &nbsp;|&nbsp; Bitcoin · Bitstamp &nbsp;|&nbsp; via TradingView</div>
+</div>

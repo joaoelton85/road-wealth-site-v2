@@ -1,0 +1,51 @@
+---
+const base = 'https://www.meupatrimonio.com/rede/assets/orbit/';
+const nacionais = [
+  { name: 'C6 Bank', logo: base + 'c6-bank.png' },
+  { name: 'Itaú', logo: base + 't-group-2.png' },
+  { name: 'Bradesco', logo: base + 't-vector.png' },
+  { name: 'Ágora Investimentos', logo: base + 't-group.png' },
+  { name: 'Banco do Brasil', logo: base + 't-group-1.png' },
+  { name: 'Inter', logo: base + 'inter.png' },
+  { name: 'XP Investimentos', logo: base + 't-group-3.png' },
+  { name: 'BTG Pactual', logo: base + 't-vector-1.png' },
+  { name: 'Santander', logo: base + 't-vector-2.png' },
+  { name: 'Safra', logo: base + 't-desk.png' },
+  { name: 'Genial Investimentos', logo: base + 'genial.png' },
+];
+
+const internacionais = [
+  { name: 'Morgan Stanley', logo: base + 't-image-74.png' },
+  { name: 'J.P. Morgan', logo: base + 'jpmorgan.png' },
+  { name: 'Interactive Brokers', logo: base + 'interactive-brokers.png' },
+  { name: 'Avenue', logo: base + 'avenue.png' },
+  { name: 'Nomad', logo: base + 'nomad.png' },
+];
+---
+<div class="platforms-block" aria-label="Instituições disponíveis na estrutura multiplaforma">
+  <div class="platform-group">
+    <div class="platform-group-title"><span>PLATAFORMAS NACIONAIS</span><i aria-hidden="true"></i></div>
+    <div class="platform-grid">
+      {nacionais.map((item) => (
+        <div class="platform-logo-cell" title={item.name} aria-label={item.name}>
+          <img class="platform-logo" src={item.logo} alt={item.name} loading="lazy" referrerpolicy="no-referrer" onerror="this.hidden=true;this.nextElementSibling.hidden=false" />
+          <span class="platform-fallback" hidden>{item.name}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div class="platform-group platform-group--international">
+    <div class="platform-group-title"><span>PLATAFORMAS INTERNACIONAIS</span><i aria-hidden="true"></i></div>
+    <div class="platform-grid platform-grid--international">
+      {internacionais.map((item) => (
+        <div class="platform-logo-cell" title={item.name} aria-label={item.name}>
+          <img class="platform-logo" src={item.logo} alt={item.name} loading="lazy" referrerpolicy="no-referrer" onerror="this.hidden=true;this.nextElementSibling.hidden=false" />
+          <span class="platform-fallback" hidden>{item.name}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+
+</div>

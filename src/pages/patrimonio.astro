@@ -1,0 +1,98 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import RoadMandala from "../components/RoadMandala.astro";
+import "../styles/patrimonio.css";
+---
+<BaseLayout title="Patrimônio | ROAD Wealth®" description="Investimentos, Legado, Estratégia e Decisões em uma visão patrimonial integrada." active="patrimonio">
+  <section class="hero section section--sand page-hero" id="inicio">
+    <div class="eyebrow">PATRIMÔNIO</div>
+    <h1>Áreas de atuação. Uma visão integrada.</h1>
+    <p class="lead">Investimentos são parte central do patrimônio, mas não caminham sozinhos. A ROAD organiza sua atuação em frentes que se conectam: Investimentos, Legado, Estratégia e Decisões.</p>
+    <div class="actions"><a class="btn btn--primary" href="#areas">Conheça as áreas</a><a class="btn btn--ghost" href="#checkup-road">Fazer o Check-up ROAD</a></div>
+  </section>
+
+  <section class="section section--white" id="areas">
+    <div class="section-intro"><div class="eyebrow">PATRIMÔNIO</div><h2>Como cuidamos do seu patrimônio</h2><p>Cada área tem um papel próprio. O valor está em fazer com que elas conversem entre si, evitando decisões isoladas e criando uma visão mais consistente do patrimônio.</p></div>
+    <div class="wealth-grid wealth-grid--visual">
+      <RoadMandala />
+      <div class="area-panel">
+        <div class="eyebrow">ÁREAS DE ATUAÇÃO</div>
+        <h3>Uma visão que conecta capital, proteção, estrutura e decisões.</h3>
+        <p>Investimentos, Legado, Estratégia e Decisões possuem escopos próprios e podem ser acessados separadamente, sem perder a leitura do patrimônio como um todo.</p>
+        <div class="area-link-list">
+          <a href="/investimentos/">Investimentos <span>→</span></a>
+          <a href="#legado">Legado <span>→</span></a>
+          <a href="#estrategia">Estratégia <span>→</span></a>
+          <a href="#decisoes">Decisões <span>→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--sand">
+    <div class="section-intro"><div class="eyebrow">ÁREAS DE ATUAÇÃO</div><h2>O que cada área observa.</h2><p>A profundidade de cada trabalho depende da realidade de cada família. O objetivo desta estrutura é organizar temas que frequentemente aparecem separados.</p></div>
+    <div class="service-detail-grid">
+      <article class="service-detail" id="investimentos"><div class="eyebrow">INVESTIMENTOS</div><h3>Capital investido.</h3><p>Política de Investimentos, consolidação entre instituições, diversificação, risco, liquidez, exposição internacional, acompanhamento e rebalanceamento.</p></article>
+      <article class="service-detail" id="legado"><div class="eyebrow">LEGADO</div><h3>Proteção e continuidade.</h3><p>Sucessão, liquidez sucessória, previdência, proteção familiar, saúde e instrumentos que ajudam a preservar a continuidade patrimonial.</p></article>
+      <article class="service-detail" id="estrategia"><div class="eyebrow">ESTRATÉGIA</div><h3>Estrutura financeira e ativos.</h3><p>Crédito, financiamentos, garantias, endividamento, capital próprio versus financiamento e proteção dos principais ativos da família ou empresa.</p></article>
+      <article class="service-detail" id="decisoes"><div class="eyebrow">DECISÕES</div><h3>Situações patrimoniais complexas.</h3><p>Empresas, imóveis, agronegócio, operações relevantes e coordenação de especialistas quando uma decisão exige diferentes perspectivas.</p></article>
+    </div>
+  </section>
+
+  <section class="section checkup-section" id="checkup-road">
+    <div class="checkup-shell">
+      <div class="section-intro"><div class="eyebrow">CHECK-UP ROAD</div><h2>Depois de conhecer as áreas de atuação, faça uma leitura inicial do seu patrimônio.</h2><p>O Check-up ROAD percorre Investimentos, Legado, Estratégia e Decisões em uma sequência guiada. São 16 perguntas, sem solicitar valores de patrimônio, renda, nomes de instituições ou outros dados sensíveis.</p></div>
+      <div class="checkup-invite">
+        <div class="eyebrow">CHECK-UP ROAD</div><h4>Uma visão rápida das áreas de atuação da ROAD.</h4><p>O Check-up percorre <strong>Investimentos, Legado, Estratégia e Decisões</strong>. São quatro perguntas por área, organizadas em uma sequência única e simples.</p>
+        <div class="checkup-meta"><span>4 áreas</span><span>16 perguntas</span><span>cerca de 3 minutos</span></div><button class="btn btn--primary" id="open-checkup" type="button">Iniciar Check-up ROAD</button>
+      </div>
+      <div class="checkup" hidden id="checkup">
+        <div class="checkup-intro" id="checkup-intro">
+          <div class="checkup-head"><div><div class="eyebrow">ANTES DE COMEÇAR</div><h3>Você passará pelas áreas de atuação da ROAD.</h3></div><button class="text-btn" id="close-checkup" type="button">Fechar</button></div>
+          <div class="checkup-areas"><div class="checkup-area-card"><small>1 de 4</small><strong>Investimentos</strong></div><div class="checkup-area-card"><small>2 de 4</small><strong>Legado</strong></div><div class="checkup-area-card"><small>3 de 4</small><strong>Estratégia</strong></div><div class="checkup-area-card"><small>4 de 4</small><strong>Decisões</strong></div></div>
+          <p>Você não precisará informar valores de patrimônio, renda, nomes de instituições financeiras ou outros dados sensíveis. Suas respostas servem apenas para compor uma visão indicativa das áreas avaliadas.</p><button class="btn btn--primary" id="start-checkup" type="button">Começar por Investimentos</button>
+        </div>
+        <div class="checkup-flow" hidden id="checkup-flow">
+          <div class="checkup-head"><div><div class="eyebrow" id="checkup-area">INVESTIMENTOS</div><h4 id="checkup-step-title">1 de 4 — Investimentos</h4></div><button class="text-btn" id="close-checkup-flow" type="button">Fechar</button></div>
+          <div class="checkup-progress"><div class="progress-label"><span id="progress-copy">Área 1 de 4</span><span>4 perguntas</span></div><div class="progress-track"><div class="progress-bar" id="progress-bar"></div></div></div>
+          <div class="questions" id="questions"></div><div class="result" hidden id="result"></div><div class="checkup-nav"><button class="btn btn--outline-coffee" hidden id="prev-checkup" type="button">← Área anterior</button><button class="btn btn--primary" disabled id="next-checkup" type="button">Próxima área →</button></div>
+        </div>
+        <div class="checkup-final" hidden id="checkup-final">
+          <div class="checkup-head"><div><div class="eyebrow">RESULTADO</div><h3>Seu Check-up ROAD</h3></div><button class="text-btn" id="close-checkup-final" type="button">Fechar</button></div>
+          <p>O resultado mostra, de forma resumida, quais áreas parecem mais estruturadas e quais podem merecer atenção. Ele não substitui uma análise patrimonial individualizada.</p><div class="scoreboard"><div class="scoreboard-grid" id="scoreboard-grid"></div></div>
+          <div class="delivery-box"><h4>Quer guardar seu resultado?</h4><p>Ao concluir, você poderá receber o resumo do Check-up no canal que preferir.</p><div class="actions"><button class="btn btn--primary js-placeholder" data-message="O envio automático do Check-up por e-mail será conectado ao backend." type="button">Receber por e-mail</button><button class="btn btn--outline-coffee js-placeholder" data-message="O envio do resultado pelo WhatsApp será conectado ao canal oficial da ROAD." type="button">Receber pelo WhatsApp</button></div><p class="checkup-note">Ao informar seu contato, você autoriza o envio do resultado do Check-up e das comunicações diretamente relacionadas a ele.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--coffee cta-final" id="contato">
+    <div class="eyebrow eyebrow--light">CONTATO</div><h2>Uma conversa pode ser o primeiro passo.</h2><p class="lead on-dark">Escolha o canal que fizer mais sentido para você.</p><div class="actions"><button class="btn btn--sand js-placeholder" data-message="O número oficial de WhatsApp será inserido antes da publicação." type="button">WhatsApp</button><a class="btn btn--outline-light" href="mailto:contato@roadwealth.com.br">E-mail</a></div>
+    <div class="socials" style="margin-top:20px"><a aria-label="Instagram da ROAD Wealth — @road.wealth" class="social-link" href="https://www.instagram.com/road.wealth/" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" class="social-icon" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect height="18" rx="5" stroke="currentColor" stroke-width="1.8" width="18" x="3" y="3"></rect><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"></circle><circle cx="17.4" cy="6.7" fill="currentColor" r="1.1"></circle></svg><span>@road.wealth</span></a><button class="social-link js-placeholder" data-message="A URL oficial do LinkedIn será inserida antes da publicação." type="button">LinkedIn</button></div>
+  </section>
+
+  <script is:inline>
+    const areas={
+      investments:{kicker:'INVESTIMENTOS',title:'Uma estratégia antes de uma carteira.',body:'A ROAD parte dos objetivos, do perfil e da Política de Investimentos para analisar, consolidar e acompanhar as decisões financeiras do cliente — inclusive quando o patrimônio está distribuído entre diferentes instituições.',points:['Política de Investimentos','Consolidação de instituições','Diversificação e risco','Acompanhamento e rebalanceamento'],questions:['Sua carteira segue uma Política de Investimentos claramente definida?','Você conhece a concentração do seu patrimônio por instituição, emissor, classe de ativo e moeda?','Você sabe qual foi o retorno líquido e real dos seus investimentos nos últimos períodos?','Seus investimentos mantidos em diferentes instituições são analisados como uma única carteira?']},
+      legacy:{kicker:'LEGADO',title:'Patrimônio também é proteção e continuidade.',body:'Legado amplia o olhar para sucessão, liquidez, previdência, proteção familiar, saúde e continuidade patrimonial.',points:['Sucessão e continuidade','Liquidez sucessória','Proteção familiar e vida','Saúde e previdência'],questions:['Sua família tem uma estimativa dos tributos, custos e liquidez necessários em uma eventual sucessão patrimonial?','Existem instrumentos ou reservas especificamente pensados para garantir liquidez à família nesse momento?','A família possui instrumentos de proteção médica compatíveis com o padrão de atendimento desejado, inclusive em hospitais de referência no Brasil ou no exterior?','As estruturas de proteção e sucessão existentes foram revisadas recentemente e ainda refletem a realidade atual da família e do patrimônio?']},
+      strategy:{kicker:'ESTRATÉGIA',title:'Estrutura financeira e ativos também precisam de estratégia.',body:'Estratégia olha para crédito, financiamentos, garantias, endividamento, decisões entre capital próprio e financiamento e a proteção dos ativos relevantes para a família ou empresa.',points:['Crédito e financiamentos','Garantias e endividamento','Capital próprio x financiamento','Proteção de ativos'],questions:['Você conhece o custo efetivo das principais dívidas e financiamentos da família ou de suas empresas?','Antes de uma aquisição relevante, você compara o uso de recursos próprios com alternativas de financiamento?','Os principais imóveis, máquinas, equipamentos e outros ativos relevantes possuem proteção compatível com sua importância?','As garantias pessoais ou patrimoniais oferecidas em operações de crédito são conhecidas e consideradas na visão global do patrimônio?']},
+      decisions:{kicker:'DECISÕES',title:'Algumas decisões exigem uma visão mais ampla.',body:'Decisões organiza situações patrimoniais complexas e ajuda a coordenar análises financeiras e, quando necessário, o trabalho de especialistas habilitados.',points:['Empresas e participações','Imóveis e operações relevantes','Agronegócio e ativos reais','Coordenação de especialistas'],questions:['Decisões patrimoniais relevantes são avaliadas considerando seus efeitos sobre o patrimônio como um todo?','Antes de uma operação importante, você possui um processo claro para comparar alternativas, riscos e impactos?','Quando uma decisão envolve diferentes especialistas, existe alguém coordenando as análises para que elas conversem entre si?','Oportunidades especiais são avaliadas dentro de critérios definidos ou dependem principalmente da urgência do momento?']}
+    };
+    const answers={};const checkupOrder=['investments','legacy','strategy','decisions'];let checkupStep=0;
+    const qs=s=>document.querySelector(s),qsa=s=>[...document.querySelectorAll(s)];
+    const checkup=qs('#checkup'),questions=qs('#questions'),result=qs('#result'),scoreGrid=qs('#scoreboard-grid'),checkupArea=qs('#checkup-area');
+    function statusFor(key){const vals=areas[key].questions.map((_,i)=>answers[key+'-'+i]).filter(Boolean);if(vals.length<4)return 'Ainda não respondido';const n=vals.reduce((s,v)=>s+(v==='sim'?2:v==='parcial'?1:0),0);return n>=6?'Bem estruturado':n>=3?'Em desenvolvimento':'Merece atenção'}
+    function renderScore(){scoreGrid.innerHTML='';checkupOrder.forEach(k=>{const d=document.createElement('div');d.className='score-item';d.innerHTML=`<small>${areas[k].kicker}</small><strong>${statusFor(k)}</strong>`;scoreGrid.appendChild(d)})}
+    function currentComplete(){const key=checkupOrder[checkupStep];return areas[key].questions.every((_,i)=>answers[key+'-'+i])}
+    function renderCheckup(){const key=checkupOrder[checkupStep],a=areas[key];checkupArea.textContent=a.kicker;qs('#checkup-step-title').textContent=`${checkupStep+1} de 4 — ${a.kicker.charAt(0)+a.kicker.slice(1).toLowerCase()}`;qs('#progress-copy').textContent=`Área ${checkupStep+1} de 4`;qs('#progress-bar').style.width=`${(checkupStep+1)*25}%`;questions.innerHTML='';a.questions.forEach((q,i)=>{const answerKey=key+'-'+i;const row=document.createElement('div');row.className='question';row.innerHTML=`<p>${q}</p><div class="answers"><button type="button" data-key="${answerKey}" data-value="sim">Sim</button><button type="button" data-key="${answerKey}" data-value="parcial">Parcialmente</button><button type="button" data-key="${answerKey}" data-value="nao">Não / não sei</button></div>`;questions.appendChild(row)});qsa('.answers button').forEach(b=>{if(answers[b.dataset.key]===b.dataset.value)b.classList.add('selected');b.addEventListener('click',()=>{answers[b.dataset.key]=b.dataset.value;qsa(`button[data-key="${b.dataset.key}"]`).forEach(x=>x.classList.toggle('selected',x===b));renderStepResult();updateCheckupNav()})});qs('#prev-checkup').hidden=checkupStep===0;qs('#next-checkup').textContent=checkupStep===3?'Ver resultado →':'Próxima área →';renderStepResult();updateCheckupNav()}
+    function renderStepResult(){const key=checkupOrder[checkupStep];if(!currentComplete()){result.hidden=true;return}const st=statusFor(key);result.hidden=false;result.innerHTML=st==='Bem estruturado'?'<strong>Esta área parece relativamente bem estruturada.</strong><br>O resultado final considerará a integração com as demais áreas.':st==='Em desenvolvimento'?'<strong>Há elementos estruturados e pontos que ainda merecem revisão.</strong><br>O resultado final mostrará esta área em conjunto com as demais.':'<strong>Existem pontos relevantes que merecem atenção.</strong><br>O resultado final ajudará a visualizar onde podem estar as prioridades.'}
+    function updateCheckupNav(){qs('#next-checkup').disabled=!currentComplete()}
+    function openCheckup(){checkup.hidden=false;qs('#checkup-intro').hidden=false;qs('#checkup-flow').hidden=true;qs('#checkup-final').hidden=true;checkup.scrollIntoView({behavior:'smooth',block:'start'})}
+    function closeCheckup(){checkup.hidden=true}
+    qs('#open-checkup')?.addEventListener('click',openCheckup);qs('#close-checkup')?.addEventListener('click',closeCheckup);qs('#close-checkup-flow')?.addEventListener('click',closeCheckup);qs('#close-checkup-final')?.addEventListener('click',closeCheckup);
+    qs('#start-checkup')?.addEventListener('click',()=>{checkupStep=0;qs('#checkup-intro').hidden=true;qs('#checkup-flow').hidden=false;renderCheckup();qs('#checkup-flow').scrollIntoView({behavior:'smooth',block:'start'})});
+    qs('#prev-checkup')?.addEventListener('click',()=>{if(checkupStep>0){checkupStep--;renderCheckup();}});
+    qs('#next-checkup')?.addEventListener('click',()=>{if(!currentComplete())return;if(checkupStep<3){checkupStep++;renderCheckup();qs('#checkup-flow').scrollIntoView({behavior:'smooth',block:'start'})}else{qs('#checkup-flow').hidden=true;qs('#checkup-final').hidden=false;renderScore();qs('#checkup-final').scrollIntoView({behavior:'smooth',block:'start'})}});
+    renderScore();
+  </script>
+</BaseLayout>

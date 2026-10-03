@@ -1,0 +1,87 @@
+<button class="utility-tab" id="utility-tab" type="button">Mercados &amp; Ferramentas</button>
+<button class="mobile-utility" id="mobile-utility" type="button">Mercados &amp; Ferramentas</button>
+<div class="utility-overlay" id="utility-overlay"></div>
+<aside aria-hidden="true" class="utility-panel" id="utility-panel">
+  <div class="utility-head">
+    <div>
+      <div class="eyebrow">MERCADOS &amp; FERRAMENTAS</div>
+      <strong>Acompanhe. Compare. Entenda.</strong>
+    </div>
+    <button aria-label="Fechar" class="utility-close" id="utility-close" type="button">×</button>
+  </div>
+  <div class="utility-body">
+    <section class="utility-section">
+      <p class="utility-intro">Indicadores, taxas, calculadoras e referências úteis reunidos em um único ambiente.</p>
+    </section>
+
+    <section class="utility-section">
+      <h3>Mercados</h3>
+      <p class="utility-muted">A faixa superior reúne referências de Brasil, juros, moedas, cripto e ouro: IBOV, IFIX, SMLL, IVVB11, Ouro, USD/BRL, EUR/BRL, DI1F30, DI1F35 e Bitcoin.</p>
+      <div class="utility-links">
+        <a class="utility-link" href="https://br.investing.com/indices/us-spx-500" rel="noopener noreferrer" target="_blank"><span><strong>S&amp;P 500</strong><small>Cotação e histórico no Investing.com</small></span><span>↗</span></a>
+        <a class="utility-link" href="https://br.investing.com/indices/nq-100" rel="noopener noreferrer" target="_blank"><span><strong>Nasdaq 100</strong><small>Cotação e histórico no Investing.com</small></span><span>↗</span></a>
+        <a class="utility-link" href="https://br.tradingview.com/symbols/BMFBOVESPA-DI11%21/?contract=DI1F2030" rel="noopener noreferrer" target="_blank"><span><strong>DI Jan/30</strong><small>Contrato DI1F2030 — referência de taxa % a.a.</small></span><span>↗</span></a>
+        <a class="utility-link" href="https://br.tradingview.com/symbols/BMFBOVESPA-DI11%21/?contract=DI1F2035" rel="noopener noreferrer" target="_blank"><span><strong>DI Jan/35</strong><small>Contrato DI1F2035 — referência de taxa % a.a.</small></span><span>↗</span></a>
+        <a class="utility-link" href="https://br.tradingview.com/markets/" rel="noopener noreferrer" target="_blank"><span><strong>TradingView</strong><small>Gráficos, índices, moedas, cripto e futuros</small></span><span>↗</span></a>
+        <a class="utility-link" href="https://br.investing.com/" rel="noopener noreferrer" target="_blank"><span><strong>Investing.com</strong><small>Mercados, calendário econômico e referências globais</small></span><span>↗</span></a>
+      </div>
+      <p class="market-source-note">Faixa superior: dados B3 com 15 minutos de atraso; câmbio via ICE Data Services; Bitcoin via Bitstamp; exibição por TradingView. S&amp;P 500 e Nasdaq 100 permanecem como links de referência no Investing.com.</p>
+    </section>
+
+    <section class="utility-section">
+      <h3>Calculadoras úteis</h3>
+      <div class="utility-links">
+        <a class="utility-link" href="https://www3.bcb.gov.br/CALCIDADAO/publico/exibirFormCorrecaoValores.do?method=exibirFormCorrecaoValores" rel="noopener noreferrer" target="_blank"><span><strong>Calculadora do Cidadão — BCB</strong><small>Correção de valores e referências oficiais</small></span><span>↗</span></a>
+        <button class="utility-link js-placeholder" data-message="As calculadoras próprias da ROAD serão incorporadas após a definição final das metodologias e fontes." type="button"><span><strong>Calculadoras ROAD</strong><small>Ganho nominal x real, juros compostos e comparações simples</small></span><span>→</span></button>
+      </div>
+    </section>
+
+    <section class="utility-section">
+      <h3>Taxas e referências</h3>
+      <div class="utility-links">
+        <a class="utility-link" href="https://www.anbima.com.br/pt_br/informar/ferramenta/precos-e-indices/taxas-titulos-publicos.htm" rel="noopener noreferrer" target="_blank"><span><strong>ANBIMA — Títulos Públicos</strong><small>Taxas referenciais e indicativas</small></span><span>↗</span></a>
+        <a class="utility-link" href="https://www.tesourodireto.com.br/produtos/dados-sobre-titulos/rendimento-dos-titulos" rel="noopener noreferrer" target="_blank"><span><strong>Tesouro Direto</strong><small>Preços, taxas e referências</small></span><span>↗</span></a>
+        <a class="utility-link" href="https://www.tesourodireto.com.br/sv/produtos/dados-sobre-titulos/historico-de-precos-e-taxas" rel="noopener noreferrer" target="_blank"><span><strong>Histórico do Tesouro</strong><small>Histórico de preços e taxas</small></span><span>↗</span></a>
+      </div>
+    </section>
+  </div>
+</aside>
+
+<a class="floating-contact" id="floating-contact-btn" href="/contato/" aria-label="Fale com a ROAD">
+  <svg class="floating-contact-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M5.2 17.4 4 21l3.9-1.15A8.7 8.7 0 1 0 5.2 17.4Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M8.2 10.1h7.6M8.2 13.6h5.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+  </svg>
+  <span class="floating-contact-tooltip">Fale com a ROAD</span>
+</a>
+
+<div class="modal" hidden id="modal">
+  <div aria-labelledby="modal-title" aria-modal="true" class="modal-card" role="dialog">
+    <div class="eyebrow">EM DESENVOLVIMENTO</div>
+    <h3 id="modal-title">Recurso em preparação</h3>
+    <p id="modal-message"></p>
+    <div class="modal-actions"><button class="btn btn--primary" id="modal-close" type="button">Fechar</button></div>
+  </div>
+</div>
+
+<script is:inline>
+  const utilityPanel=document.getElementById('utility-panel');
+  const utilityOverlay=document.getElementById('utility-overlay');
+  const utilityTab=document.getElementById('utility-tab');
+  const mobileUtility=document.getElementById('mobile-utility');
+  const utilityClose=document.getElementById('utility-close');
+  const openUtility=()=>{utilityPanel?.classList.add('open');utilityOverlay?.classList.add('open');utilityPanel?.setAttribute('aria-hidden','false')};
+  const closeUtility=()=>{utilityPanel?.classList.remove('open');utilityOverlay?.classList.remove('open');utilityPanel?.setAttribute('aria-hidden','true')};
+  utilityTab?.addEventListener('click',openUtility);
+  mobileUtility?.addEventListener('click',openUtility);
+  utilityClose?.addEventListener('click',closeUtility);
+  utilityOverlay?.addEventListener('click',closeUtility);
+
+  const modal=document.getElementById('modal');
+  const modalMsg=document.getElementById('modal-message');
+  const modalClose=document.getElementById('modal-close');
+  const showModal=(msg)=>{if(modalMsg) modalMsg.textContent=msg;if(modal) modal.hidden=false};
+  modalClose?.addEventListener('click',()=>{if(modal) modal.hidden=true});
+  modal?.addEventListener('click',e=>{if(e.target===modal) modal.hidden=true});
+  document.querySelectorAll('.js-placeholder').forEach(b=>b.addEventListener('click',()=>showModal(b.dataset.message||'Recurso em preparação.')));
+</script>
