@@ -22,9 +22,7 @@ const tickerConfig = {
 ---
 <div class="market-ticker-shell" id="market-ticker-shell" aria-label="Cotações de mercado">
   <div class="market-ticker-row">
-    <div class="ticker-placeholder" aria-hidden="true">
-      <span>Mercados</span><i></i><span>Carregando cotações…</span>
-    </div>
+    <div class="ticker-placeholder" aria-hidden="true"><span>Mercados</span></div>
     <div class="market-ticker-viewport" aria-hidden="true">
       <div class="market-ticker-scale-frame">
         <div class="tradingview-widget-container">
@@ -44,27 +42,44 @@ const tickerConfig = {
     const root=document.getElementById('market-ticker-shell');
     if(!root || root.dataset.tickerInit==='1') return;
     root.dataset.tickerInit='1';
-    const host=root.querySelector('.tradingview-widget-container__widget');
-    if(!host) return;
 
-    let revealTimer;
+    const container=root.querySelector('.tradingview-widget-container');
+    if(!container) return;
+
+    let ready=false;
+    let settleTimer=0;
+    let pollTimer=0;
+    const observer=new MutationObserver(scan);
+
+    const reveal=()=>{
+      if(ready) return;
+      ready=true;
+      window.clearTimeout(settleTimer);
+      window.clearInterval(pollTimer);
+      observer.disconnect();
+      requestAnimationFrame(()=>requestAnimationFrame(()=>root.classList.add('is-ticker-ready')));
+    };
+
     const arm=(iframe)=>{
       if(!(iframe instanceof HTMLIFrameElement) || iframe.dataset.roadTickerArmed==='1') return;
       iframe.dataset.roadTickerArmed='1';
-      const reveal=()=>{
-        clearTimeout(revealTimer);
-        revealTimer=window.setTimeout(()=>{
-          requestAnimationFrame(()=>requestAnimationFrame(()=>root.classList.add('is-ticker-ready')));
-        },900);
+      const settle=()=>{
+        window.clearTimeout(settleTimer);
+        settleTimer=window.setTimeout(reveal,900);
       };
-      iframe.addEventListener('load',reveal,{once:true});
+      iframe.addEventListener('load',settle,{once:true});
       window.setTimeout(()=>{
-        if(!root.classList.contains('is-ticker-ready')) reveal();
+        if(!ready && iframe.isConnected) settle();
       },4200);
     };
 
-    host.querySelectorAll('iframe').forEach(arm);
-    const observer=new MutationObserver(()=>host.querySelectorAll('iframe').forEach(arm));
-    observer.observe(host,{childList:true,subtree:true});
+    function scan(){
+      container.querySelectorAll('iframe').forEach(arm);
+    }
+
+    scan();
+    observer.observe(container,{childList:true,subtree:true});
+    pollTimer=window.setInterval(scan,250);
+    window.setTimeout(()=>window.clearInterval(pollTimer),10000);
   })();
 </script>

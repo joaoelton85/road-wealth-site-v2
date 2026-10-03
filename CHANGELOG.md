@@ -1,5 +1,17 @@
 # CHANGELOG — ROAD Wealth
 
+## V16 — 03/10/2026
+
+- Removida a faixa física de fontes/atraso sob o ticker; a informação agora é sobreposta, transparente e fora do fluxo da página.
+- Revisada a detecção de prontidão da TradingView com observação de todo o container, varredura inicial, polling temporário e fallback controlado, evitando o estado permanente de carregamento.
+- Placeholder do ticker simplificado para um estado neutro, sem a mensagem “Carregando cotações…”.
+- Faixa Café da Home revisada com centralização vertical efetiva, margens normalizadas e tipografia explicitamente padronizada.
+- Adicionadas chamadas editoriais para Mercados & Ferramentas, Check-up ROAD e Conhecimento.
+- Botão da chamada de Mercados abre diretamente o painel lateral existente.
+- Página “Onde estamos” passa a incluir o bloco “Conheça Entre Rios”, com vídeo do YouTube em carregamento sob demanda.
+- Adicionadas diretivas de tema claro e `theme-color` para preservar a paleta Areia em navegadores Android.
+- Rodapé alterado de Café para preto, com textos e marca em Areia.
+
 ## V15 — 03/10/2026
 
 - Padronização dos títulos grandes (`h1`, `h2` e chamada editorial) em Questrial, mesma escala, peso e altura de linha.

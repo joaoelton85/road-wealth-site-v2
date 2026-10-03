@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import RoadMandala from "../components/RoadMandala.astro";
+import RoadCallout from "../components/RoadCallout.astro";
 ---
 <BaseLayout title="ROAD Wealth®" description="ROAD Wealth — consultoria de investimentos e cuidado patrimonial com visão integrada.">
   <section class="hero section section--sand" id="inicio">
@@ -13,7 +14,7 @@ import RoadMandala from "../components/RoadMandala.astro";
     </div>
   </section>
 
-  <section class="section section--coffee">
+  <section class="section section--coffee home-story">
     <div class="story-split">
       <p class="intro-quote">Cada patrimônio carrega uma história.</p>
       <div class="section-intro">
@@ -38,6 +39,15 @@ import RoadMandala from "../components/RoadMandala.astro";
     </div>
   </section>
 
+  <RoadCallout
+    eyebrow="MERCADOS & FERRAMENTAS"
+    title="Informação para acompanhar decisões."
+    text="Indicadores, taxas, calculadoras e referências úteis reunidos em um único ambiente."
+    label="Abrir Mercados & Ferramentas"
+    tone="petrol"
+    action="markets"
+  />
+
   <section class="section section--white" id="patrimonio">
     <div class="section-intro">
       <div class="eyebrow">PATRIMÔNIO</div>
@@ -61,6 +71,15 @@ import RoadMandala from "../components/RoadMandala.astro";
     </div>
   </section>
 
+  <RoadCallout
+    eyebrow="CHECK-UP ROAD"
+    title="Como está organizado o seu patrimônio?"
+    text="Uma leitura inicial em 16 perguntas, cerca de 3 minutos e sem solicitar valores de patrimônio ou outros dados sensíveis."
+    href="/patrimonio/#checkup-road"
+    label="Fazer o Check-up ROAD"
+    tone="sand"
+  />
+
   <section class="section section--coffee" id="investimentos">
     <div class="investments-layout">
       <div>
@@ -77,14 +96,14 @@ import RoadMandala from "../components/RoadMandala.astro";
     </div>
   </section>
 
-  <section class="section knowledge-section" id="conhecimento">
-    <div class="knowledge-choice">
-      <div class="eyebrow">CONHECIMENTO</div>
-      <h2>Investir não precisa ser tão complicado.</h2>
-      <p>Se você quiser entender melhor os conceitos, produtos, riscos, regras e tributos que fazem parte dos investimentos, a ROAD reúne conteúdo para descomplicar o caminho.</p>
-      <div class="actions"><a class="btn btn--primary" href="/conhecimento/">Quero entender melhor</a></div>
-    </div>
-  </section>
+  <RoadCallout
+    eyebrow="CONHECIMENTO"
+    title="Investir não precisa ser tão complicado."
+    text="Conceitos, referências, glossário e ferramentas para compreender melhor as decisões que fazem parte dos investimentos."
+    href="/conhecimento/"
+    label="Explore Conhecimento"
+    tone="sand"
+  />
 
   <section class="section section--coffee cta-final" id="contato">
     <div class="eyebrow eyebrow--light">CONTATO</div>

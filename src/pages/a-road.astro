@@ -133,6 +133,18 @@ import "../styles/a-road.css";
         </figure>
       </div>
 
+      <div class="presence-video">
+        <div class="presence-video-copy">
+          <div class="eyebrow eyebrow--light">CONHEÇA ENTRE RIOS</div>
+          <h3>Uma comunidade onde tradição, cultura e desenvolvimento caminham juntos.</h3>
+          <p class="on-dark">Um breve olhar sobre Entre Rios e a região que abriga a sede da ROAD.</p>
+        </div>
+        <button class="youtube-lite" type="button" data-youtube-lite="F-2JRohFQdk" aria-label="Reproduzir vídeo sobre Entre Rios">
+          <img src="https://i.ytimg.com/vi/F-2JRohFQdk/hqdefault.jpg" alt="Vídeo sobre Entre Rios" loading="lazy" decoding="async" />
+          <span class="youtube-lite-play" aria-hidden="true">▶</span>
+        </button>
+      </div>
+
       <div class="presence-bottom">
         <div class="presence-map-wrap">
           <div class="eyebrow eyebrow--light">LOCALIZAÇÃO</div>
@@ -202,5 +214,21 @@ import "../styles/a-road.css";
     window.addEventListener('popstate',()=>showChapter(location.hash,{scroll:true}));
     showChapter(location.hash);
     if(location.hash) requestAnimationFrame(()=>window.scrollTo({top:0,behavior:'auto'}));
+
+    document.querySelectorAll('[data-youtube-lite]').forEach(button=>{
+      button.addEventListener('click',()=>{
+        const videoId=button.dataset.youtubeLite;
+        if(!videoId) return;
+        const iframe=document.createElement('iframe');
+        iframe.className='youtube-lite-frame';
+        iframe.src=`https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?autoplay=1&rel=0`;
+        iframe.title='Vídeo sobre Entre Rios';
+        iframe.loading='lazy';
+        iframe.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.referrerPolicy='strict-origin-when-cross-origin';
+        iframe.allowFullscreen=true;
+        button.replaceWith(iframe);
+      },{once:true});
+    });
   </script>
 </BaseLayout>

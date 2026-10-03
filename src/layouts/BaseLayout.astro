@@ -4,6 +4,7 @@ import Footer from "../components/Footer.astro";
 import MarketTicker from "../components/MarketTicker.astro";
 import MarketTools from "../components/MarketTools.astro";
 import "../styles/global.css";
+import "../styles/v16.css";
 const { title = "ROAD Wealth®", description = "ROAD Wealth — consultoria de investimentos e cuidado patrimonial com visão integrada.", active = "", noindex = true } = Astro.props;
 ---
 <!doctype html>
@@ -11,6 +12,8 @@ const { title = "ROAD Wealth®", description = "ROAD Wealth — consultoria de i
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="only light" />
+    <meta name="theme-color" content="#F3ECE3" />
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex,nofollow" />}
     <link rel="icon" href="/assets/favicon.ico" />
@@ -42,6 +45,33 @@ const { title = "ROAD Wealth®", description = "ROAD Wealth — consultoria de i
         new ResizeObserver(syncStickyTop).observe(stack);
       }
       window.addEventListener('resize',syncStickyTop,{passive:true});
+
+      const tickerNote=document.querySelector('.market-ticker-note');
+      const main=document.querySelector('main');
+      let tickerToneFrame=0;
+      const syncTickerNoteTone=()=>{
+        if(!tickerNote || !main) return;
+        const y=Math.ceil(stack?.getBoundingClientRect().height || 0)+8;
+        const x=Math.max(12,window.innerWidth-40);
+        const layer=document.elementsFromPoint(x,y);
+        const surface=layer.map(el=>el.closest?.('.section,.road-callout')).find(Boolean)
+          || [...main.querySelectorAll('.section,.road-callout')].find(el=>!el.hidden && getComputedStyle(el).display!=='none');
+        const dark=surface?.matches('.section--coffee,.section--petrol,.section--olive,.road-callout--petrol') ?? false;
+        tickerNote.classList.toggle('is-on-dark',dark);
+      };
+      const requestTickerNoteTone=()=>{
+        if(tickerToneFrame) return;
+        tickerToneFrame=requestAnimationFrame(()=>{
+          tickerToneFrame=0;
+          syncTickerNoteTone();
+        });
+      };
+      syncTickerNoteTone();
+      window.addEventListener('scroll',requestTickerNoteTone,{passive:true});
+      window.addEventListener('resize',requestTickerNoteTone,{passive:true});
+      if(main && 'MutationObserver' in window){
+        new MutationObserver(requestTickerNoteTone).observe(main,{subtree:true,attributes:true,attributeFilter:['hidden','class']});
+      }
     </script>
   </body>
 </html>

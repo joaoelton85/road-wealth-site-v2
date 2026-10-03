@@ -1,0 +1,25 @@
+---
+const {
+  eyebrow,
+  title,
+  text,
+  href = "#",
+  label = "Saiba mais",
+  tone = "sand",
+  action = "link",
+} = Astro.props;
+---
+<section class:list={["road-callout", `road-callout--${tone}`]}>
+  <div class="road-callout-copy">
+    <div class="eyebrow">{eyebrow}</div>
+    <h3>{title}</h3>
+    <p>{text}</p>
+  </div>
+  <div class="road-callout-action">
+    {action === "markets" ? (
+      <button class="btn road-callout-button js-open-market-tools" type="button">{label}</button>
+    ) : (
+      <a class="btn road-callout-button" href={href}>{label}</a>
+    )}
+  </div>
+</section>

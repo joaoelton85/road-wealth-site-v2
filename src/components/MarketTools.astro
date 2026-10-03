@@ -76,6 +76,13 @@
   mobileUtility?.addEventListener('click',openUtility);
   utilityClose?.addEventListener('click',closeUtility);
   utilityOverlay?.addEventListener('click',closeUtility);
+  document.addEventListener('click',event=>{
+    const trigger=event.target instanceof Element ? event.target.closest('.js-open-market-tools') : null;
+    if(trigger){
+      event.preventDefault();
+      openUtility();
+    }
+  });
 
   const modal=document.getElementById('modal');
   const modalMsg=document.getElementById('modal-message');
