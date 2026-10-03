@@ -1,5 +1,7 @@
 # ROAD Wealth — V14
 
+Build inicial do repositório limpo.
+
 Versão completa para carregamento no GitHub.
 
 Esta versão parte integralmente da V12 (a V13 apresentou problema de build e foi descartada como base). Nenhuma mudança foi feita na barra de indicadores: a implementação da V12 já estava correta — tema escuro nativo do TradingView (`colorTheme: dark`, `isTransparent: true`), sem truques de CSS por cima.
