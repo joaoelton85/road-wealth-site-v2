@@ -1,32 +1,40 @@
-# ROAD Wealth — V14
+# ROAD Wealth — V15
 
-Build inicial do repositório limpo.
+Versão completa do site institucional ROAD Wealth.
 
-Versão completa para carregamento no GitHub.
+## Principais ajustes da V15
 
-Esta versão parte integralmente da V12 (a V13 apresentou problema de build e foi descartada como base). Nenhuma mudança foi feita na barra de indicadores: a implementação da V12 já estava correta — tema escuro nativo do TradingView (`colorTheme: dark`, `isTransparent: true`), sem truques de CSS por cima.
+- tipografia e alinhamentos dos grandes títulos;
+- cabeçalho e rodapé refinados;
+- texto de “Onde estamos” uniformizado;
+- segunda linha das plataformas nacionais centralizada;
+- ticker TradingView protegido contra estados intermediários de carregamento;
+- linha de fontes/atraso fora da faixa preta, sobre fundo Areia;
+- comportamento responsivo revisado.
 
-## Rotas principais
+## Estrutura para GitHub
 
-- `/` — Home
-- `/a-road/` — A ROAD
-- `/investimentos/` — Investimentos e plataformas
-- `/patrimonio/` — áreas de atuação + Check-up ROAD
-- `/conhecimento/` — Conhecimento
-- `/contato/` — Contato
+O conteúdo deste projeto deve permanecer diretamente na raiz do repositório:
 
-## Publicação
+- `src/`
+- `public/`
+- `package.json`
+- `astro.config.mjs`
+- `wrangler.jsonc`
 
-Envie **o conteúdo desta pasta** para a raiz do repositório GitHub `road-wealth-site` e faça commit com a mensagem `V14`.
+### Importante ao carregar um ZIP manualmente no GitHub
 
-Não envie a pasta externa como uma subpasta do repositório.
+No Windows, **extraia o arquivo ZIP para uma pasta normal antes do upload**. Não arraste arquivos diretamente de dentro da visualização de pasta compactada do Windows. Depois de extrair, selecione o conteúdo da pasta (`src`, `public` e arquivos da raiz) e carregue tudo junto.
 
-O projeto permanece com `noindex,nofollow` enquanto estiver em revisão.
+## Build
 
-## Escopo da V14
+```bash
+npm install
+npm run build
+```
 
-- Base: V12 (código-fonte idêntico), não a V13.
-- Barra de indicadores: TradingView em tema escuro nativo (`dark` / `isTransparent: true` / `adaptive`), sem filtro de inversão de cor.
-- Escala compacta mantida: 0,76 no desktop e 0,74 no mobile.
-- Centralização óptica vertical da prévia V8 mantida.
-- DI1F30 e DI1F35, unidades seletivas e faixa inferior de fontes/delay mantidos.
+Deploy configurado no Cloudflare Workers com:
+
+```bash
+npx wrangler deploy
+```

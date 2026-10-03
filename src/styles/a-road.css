@@ -49,8 +49,8 @@
 
 /* Presença */
 .presence-copy-wide{max-width:1180px;margin-top:18px}
-.presence-copy-wide p{font-size:15.8px;line-height:1.6;max-width:1120px}
-.presence-copy-wide .lead{font-size:17px;max-width:1120px}
+.presence-copy-wide p,.presence-copy-wide .lead{font-family:"Inter",Arial,sans-serif;font-size:16px;line-height:1.6;max-width:1120px;font-weight:400}
+.presence-copy-wide .lead{margin-bottom:14px}
 .presence-photos{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px;max-width:900px}
 .presence-photo{margin:0;background:transparent}
 .presence-photo img{display:block;width:100%;height:220px;object-fit:cover;border-radius:10px;background:rgba(255,255,255,.05)}

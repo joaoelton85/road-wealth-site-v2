@@ -5,16 +5,18 @@ const { active = "" } = Astro.props;
   <a aria-label="ROAD Wealth — início" class="brand" href="/">
     <img alt="ROAD Wealth®" src="/assets/road-logo-cafe.svg" />
   </a>
-  <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menu">
+  <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Abrir menu">
     <svg class="nav-toggle-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
       <path d="M5 7h14M5 12h14M5 17h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
     </svg>
   </button>
   <nav class="nav" id="nav" aria-label="Navegação principal">
-    <a class:list={[active === "a-road" && "is-active"]} href="/a-road/">A ROAD</a>
-    <a class:list={[active === "investimentos" && "is-active"]} href="/investimentos/">Investimentos</a>
-    <a class:list={[active === "patrimonio" && "is-active"]} href="/patrimonio/">Patrimônio</a>
-    <a class:list={[active === "conhecimento" && "is-active"]} href="/conhecimento/">Conhecimento</a>
+    <div class="nav-main">
+      <a class:list={[active === "a-road" && "is-active"]} href="/a-road/">A ROAD</a>
+      <a class:list={[active === "investimentos" && "is-active"]} href="/investimentos/">Investimentos</a>
+      <a class:list={[active === "patrimonio" && "is-active"]} href="/patrimonio/">Patrimônio</a>
+      <a class:list={[active === "conhecimento" && "is-active"]} href="/conhecimento/">Conhecimento</a>
+    </div>
     <a class:list={[active === "contato" && "is-active", "nav-cta"]} href="/contato/">Converse com a ROAD</a>
   </nav>
 </header>

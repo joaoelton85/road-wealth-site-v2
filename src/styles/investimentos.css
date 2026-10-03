@@ -3,7 +3,10 @@
 .platform-group{display:grid;gap:18px}
 .platform-group-title{display:flex;align-items:center;gap:16px;font-family:"Montserrat",Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--coffee)}
 .platform-group-title i{display:block;height:1px;background:rgba(72,58,47,.22);flex:1}
-.platform-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:18px 24px;align-items:center}
+.platform-grid{display:grid;gap:18px 24px;align-items:center}
+.platform-grid--national{grid-template-columns:repeat(12,minmax(0,1fr))}
+.platform-grid--national .platform-logo-cell{grid-column:span 2}
+.platform-grid--national .platform-logo-cell:nth-child(7){grid-column:2 / span 2}
 .platform-grid--international{grid-template-columns:repeat(5,minmax(0,1fr))}
 .platform-logo-cell{min-height:72px;display:grid;place-items:center;padding:8px 10px;overflow:hidden;background:transparent}
 .platform-logo{display:block;max-width:154px;max-height:46px;width:auto;height:auto;object-fit:contain;transition:transform .18s ease,opacity .18s ease}
@@ -11,5 +14,11 @@
 .platform-fallback{font-family:"Inter",Arial,sans-serif;color:var(--coffee);font-size:12px;font-weight:600;text-align:center;line-height:1.2}
 .platform-note{display:none}
 .investment-principles{align-items:stretch}
-@media(max-width:1000px){.platform-grid,.platform-grid--international{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:680px){.platform-grid,.platform-grid--international{grid-template-columns:repeat(2,1fr);gap:12px}.platform-logo-cell{min-height:62px}.platform-logo{max-width:128px;max-height:38px}}
+@media(max-width:1000px){
+  .platform-grid,.platform-grid--international,.platform-grid--national{grid-template-columns:repeat(3,1fr)}
+  .platform-grid--national .platform-logo-cell,.platform-grid--national .platform-logo-cell:nth-child(7){grid-column:auto}
+}
+@media(max-width:680px){
+  .platform-grid,.platform-grid--international,.platform-grid--national{grid-template-columns:repeat(2,1fr);gap:12px}
+  .platform-logo-cell{min-height:62px}.platform-logo{max-width:128px;max-height:38px}
+}
