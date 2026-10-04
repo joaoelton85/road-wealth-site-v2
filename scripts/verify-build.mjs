@@ -4,8 +4,8 @@ const checks = [
   {
     file: "dist/index.html",
     required: [
-      'road-build" content="19.0.0"',
-      'data-road-build="19.0.0"',
+      'road-build" content="20.0.0"',
+      'data-road-build="20.0.0"',
       "Informação para acompanhar decisões.",
       "CHECK-UP ROAD",
       "Investir não precisa ser tão complicado.",
@@ -16,10 +16,13 @@ const checks = [
       "MERCADOS",
       "TradingView",
       "Brent",
+    ],
+    forbidden: [
+      "S&P 500",
+      "Nasdaq 100",
       "Soja",
       "Milho",
       "Trigo",
-      "Nasdaq 100",
     ],
     minimumOccurrences: [
       ["road-callout-panel", 3],
@@ -28,7 +31,7 @@ const checks = [
   {
     file: "dist/a-road/index.html",
     required: [
-      'road-build" content="19.0.0"',
+      'road-build" content="20.0.0"',
       "F-2JRohFQdk",
       "youtube-lite",
       "Uma leitura inicial do patrimônio em poucos minutos.",
@@ -100,4 +103,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log("ROAD build verification OK — V19.0.0");
+console.log("ROAD build verification OK — V20.0.0");
