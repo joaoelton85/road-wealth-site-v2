@@ -4,20 +4,22 @@ const checks = [
   {
     file: "dist/index.html",
     required: [
-      'road-build" content="20.0.0"',
-      'data-road-build="20.0.0"',
+      'road-build" content="21.0.0"',
+      'data-road-build="21.0.0"',
       "Informação para acompanhar decisões.",
       "CHECK-UP ROAD",
-      "Investir não precisa ser tão complicado.",
+      "CALCULADORA DE IR 2026",
+      "Quanto ainda pode fazer sentido aportar ou destinar este ano?",
       "road-callout-panel",
       "Entre em contato",
       "market-ticker-label",
-      "market-ticker-brand",
+      "market-ticker-mobile",
+      "Indicadores e cotações",
       "MERCADOS",
-      "TradingView",
       "Brent",
     ],
     forbidden: [
+      "market-ticker-brand",
       "S&P 500",
       "Nasdaq 100",
       "Soja",
@@ -29,9 +31,27 @@ const checks = [
     ],
   },
   {
+    file: "dist/calculadora-ir/index.html",
+    required: [
+      'road-build" content="21.0.0"',
+      "Calculadora de IR 2026",
+      "Rendimentos tributáveis do titular",
+      "Número de dependentes",
+      "Pessoas com despesa de educação",
+      "Despesas médicas dedutíveis não reembolsadas",
+      "PGBL já aportado em 2026",
+      "Criança e Adolescente",
+      "Fundo da Pessoa Idosa",
+      "Cultura",
+      "Esporte",
+      "R$ 17.640,00",
+      "12%",
+    ],
+  },
+  {
     file: "dist/a-road/index.html",
     required: [
-      'road-build" content="20.0.0"',
+      'road-build" content="21.0.0"',
       "F-2JRohFQdk",
       "youtube-lite",
       "Uma leitura inicial do patrimônio em poucos minutos.",
@@ -85,7 +105,7 @@ for (const check of checks) {
 
   for (const token of check.forbidden || []) {
     if (html.includes(token)) {
-      failures.push(`${check.file}: conteúdo que deveria ter sido removido ainda existe -> ${token}`);
+      failures.push(`${check.file}: conteúdo que deveria estar ausente -> ${token}`);
     }
   }
 
@@ -103,4 +123,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log("ROAD build verification OK — V20.0.0");
+console.log("ROAD build verification OK — V21.0.0");
