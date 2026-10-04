@@ -1,0 +1,113 @@
+/* Calculadora de IR 2026 — protótipo ROAD */
+.ir-hero{padding-bottom:32px}
+.ir-badges{display:flex;gap:8px;flex-wrap:wrap}
+.ir-badges span{
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:7px 10px;
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:11px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.ir-section{padding-top:34px;padding-bottom:50px}
+.ir-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(360px,.85fr);
+  gap:34px;
+  align-items:start;
+}
+.ir-form{display:grid;gap:16px}
+.ir-form-group{
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:20px;
+  background:#fff;
+}
+.ir-fields{display:grid;gap:16px}
+.ir-fields--2{grid-template-columns:1fr 1fr}
+.ir-form label{
+  display:grid;
+  gap:6px;
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:13px;
+}
+.ir-form label small{
+  font-family:"Inter",Arial,sans-serif;
+  font-size:11px;
+  line-height:1.4;
+  color:var(--muted);
+}
+.ir-form input{
+  width:100%;
+  min-height:44px;
+  border:1px solid rgba(72,58,47,.24);
+  border-radius:12px;
+  padding:10px 12px;
+  background:#fff;
+  color:var(--coffee);
+  outline:none;
+}
+.ir-form input:focus{border-color:var(--coffee);box-shadow:0 0 0 3px rgba(72,58,47,.08)}
+.ir-checkbox{
+  grid-template-columns:auto 1fr;
+  align-items:start;
+  column-gap:10px!important;
+}
+.ir-checkbox input{width:18px;height:18px;min-height:0;margin-top:2px}
+.ir-checkbox small{grid-column:2}
+.ir-form-actions{display:flex;gap:10px;flex-wrap:wrap}
+.ir-result{
+  position:sticky;
+  top:calc(var(--sticky-top) + 18px);
+  border-radius:20px;
+  padding:24px;
+  background:var(--sand);
+  border:1px solid var(--line);
+  box-shadow:0 16px 40px rgba(36,31,27,.08);
+}
+.ir-result h2{font-size:34px;margin-bottom:12px}
+.ir-result>p{margin:0;color:var(--muted)}
+.ir-result-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:20px;
+}
+.ir-result-grid>div,
+.ir-result-lines span{
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:13px;
+  background:#fff;
+}
+.ir-result-grid small,
+.ir-result-lines small{display:block;color:var(--muted);font-size:11px;margin-bottom:4px}
+.ir-result-grid strong,
+.ir-result-lines strong{font-family:"Montserrat",Arial,sans-serif;font-size:16px;font-weight:500}
+.ir-result-block{margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+.ir-result-lines{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.ir-result-lines span{display:block}
+.ir-note{font-size:12px;line-height:1.5;color:var(--muted);margin:12px 0 0}
+.ir-alert{margin-top:18px;padding:14px;border-radius:14px;background:rgba(67,114,107,.10);border:1px solid rgba(67,114,107,.28)}
+.ir-alert strong,.ir-alert span{display:block}
+.ir-alert span{font-size:12px;margin-top:4px}
+.ir-methodology{padding-top:40px;padding-bottom:46px}
+.ir-method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.ir-method-grid article{border-top:1px solid rgba(243,236,227,.20);padding-top:16px}
+.ir-method-grid p{margin:0}
+.ir-disclaimer{margin:28px 0 0;padding-top:18px;border-top:1px solid rgba(243,236,227,.20);font-size:12px;line-height:1.6;color:rgba(243,236,227,.72)}
+.ir-source-links{display:flex;gap:14px;flex-wrap:wrap;margin-top:15px;font-size:12px}
+.ir-source-links a{color:var(--sand);text-underline-offset:4px}
+
+@media(max-width:1000px){
+  .ir-layout{grid-template-columns:1fr}
+  .ir-result{position:static}
+}
+@media(max-width:680px){
+  .ir-fields--2,.ir-result-grid,.ir-result-lines,.ir-method-grid{grid-template-columns:1fr}
+  .ir-form-group{padding:17px}
+  .ir-result{padding:20px}
+  .ir-result h2{font-size:30px}
+  .ir-form-actions .btn{width:100%}
+}
