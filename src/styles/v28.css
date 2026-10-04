@@ -1,0 +1,86 @@
+/* ROAD Wealth V28 — compatibilidade Android e acabamento do ticker mobile. */
+
+:root{
+  color-scheme:light only;
+}
+
+@media(max-width:680px){
+  html,
+  body{
+    color-scheme:light only!important;
+    background-color:var(--sand)!important;
+    background-image:linear-gradient(var(--sand),var(--sand))!important;
+  }
+
+  .site-top-stack,
+  .site-header,
+  .section--sand,
+  .knowledge-section,
+  .nav,
+  .modal-card{
+    color-scheme:light only!important;
+    background-color:var(--sand)!important;
+    background-image:linear-gradient(var(--sand),var(--sand))!important;
+    color:var(--coffee)!important;
+  }
+
+  .site-header{
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+  }
+
+  img,
+  svg{
+    forced-color-adjust:none;
+  }
+
+  .section--coffee,
+  .section--petrol,
+  .section--olive,
+  .footer,
+  .road-callout--petrol{
+    background-image:none!important;
+  }
+
+  .market-ticker-shell,
+  .market-ticker-mobile-live,
+  .market-ticker-mobile-label,
+  .market-ticker-mobile-window,
+  .market-ticker-mobile-viewport,
+  .market-ticker-mobile-widget,
+  .market-ticker-mobile-widget .tradingview-widget-container__widget{
+    background:#090909!important;
+    background-image:none!important;
+  }
+
+  .market-ticker-mobile-window{
+    height:54px;
+    overflow:hidden;
+  }
+
+  .market-ticker-mobile-viewport{
+    inset:-1px;
+    width:calc(100% + 2px);
+    height:56px;
+    overflow:hidden;
+    border:0!important;
+    outline:0!important;
+    box-shadow:none!important;
+  }
+
+  .market-ticker-mobile-widget,
+  .market-ticker-mobile-widget .tradingview-widget-container__widget,
+  .market-ticker-mobile-widget iframe{
+    border:0!important;
+    outline:0!important;
+    box-shadow:none!important;
+  }
+
+  .market-ticker-mobile-widget iframe{
+    width:calc(100% + 2px)!important;
+    height:56px!important;
+    min-height:56px!important;
+    margin:-1px!important;
+    background:transparent!important;
+  }
+}
