@@ -1,5 +1,13 @@
 # CHANGELOG — ROAD Wealth
 
+## V20 — 04/10/2026
+
+- Removidos da faixa de mercados os tickers de S&P 500, Nasdaq 100, Soja, Milho e Trigo por não estarem renderizando de forma confiável no widget atual.
+- Mantidos IBOV, IFIX, SMLL, IVVB11, USD/BRL, EUR/BRL, Ouro, Brent, DI Jan/30, DI Jan/35 e Bitcoin.
+- Painel Mercados & Ferramentas revisado para refletir somente a lista efetivamente exibida.
+- Marcador técnico atualizado para `ROAD_BUILD=20.0.0`.
+- Verificação automática do build passa a impedir a reintrodução acidental dos cinco indicadores removidos.
+
 ## V19 — 04/10/2026
 
 - Barra de mercados reorganizada em três zonas: identificação `MERCADOS`, área de cotações e espaço dedicado à marca TradingView.
