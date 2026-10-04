@@ -1,5 +1,15 @@
 # CHANGELOG — ROAD Wealth
 
+## V28 — 04/10/2026
+
+- Revisão específica de compatibilidade mobile/Android, sem alteração do conteúdo institucional.
+- Reforçado o esquema claro da ROAD no mobile com `color-scheme: light only`, meta adicional de esquema claro e superfícies Areia protegidas contra conversão automática de tema.
+- Ticker mobile preserva `displayMode: regular`, mantendo preço e variações completas.
+- Ticker mobile volta a usar transparência sobre fundo preto controlado pela ROAD, evitando cartões claros e reduzindo a moldura visual do widget.
+- Adicionado recorte de 1 px e remoção explícita de `border`, `outline` e `box-shadow` no iframe/viewport do ticker para ocultar bordas externas no Android.
+- Desktop permanece inalterado.
+- Marcador técnico atualizado para `ROAD_BUILD=28.0.0`.
+
 ## V27 — 04/10/2026
 
 - Correção concentrada exclusivamente no painel de indicadores mobile.
