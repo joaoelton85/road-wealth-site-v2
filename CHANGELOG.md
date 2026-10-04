@@ -1,5 +1,17 @@
 # CHANGELOG — ROAD Wealth
 
+## V18 — 04/10/2026
+
+- Recalibrado o ticker no mobile após a inclusão da identificação fixa `MERCADOS`: altura de 30 px restaurada, área do rótulo reduzida e geometria da fita preservada.
+- Os três callouts da Home foram transformados em banners editoriais claramente delimitados, com painel interno e hierarquia visual própria.
+- Removidos do bloco do vídeo em `Onde estamos` o título `CONHEÇA ENTRE RIOS`, o texto explicativo adicional e a barra/divisor introduzidos na V16.
+- O vídeo permanece em carregamento sob demanda e sem alteração dos textos originais da seção.
+- Fundo estrutural de `html/body` alterado para preto, enquanto `main` mantém o fundo Areia, evitando faixa clara após o rodapé.
+- Rodapé passa a preencher também a `safe-area-inset-bottom` em dispositivos móveis.
+- Meta viewport passa a usar `viewport-fit=cover` para permitir o preenchimento correto da área inferior em aparelhos compatíveis.
+- Marcador técnico atualizado para `ROAD_BUILD=18.0.0`.
+- Verificação automática do build reforçada para exigir três banners e impedir a volta dos textos removidos do vídeo.
+
 ## V17 — 04/10/2026
 
 - Versão de reconciliação após auditoria do histórico V15/V16 e do artefato efetivamente servido em produção.
