@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import RoadCallout from "../components/RoadCallout.astro";
 import "../styles/a-road.css";
 ---
 <BaseLayout title="A ROAD | ROAD Wealth®" description="Conheça o propósito, a história, a marca, os sócios e a forma de trabalhar da ROAD Wealth." active="a-road">
@@ -177,6 +178,15 @@ import "../styles/a-road.css";
       </form>
     </section>
   </div>
+
+  <RoadCallout
+    eyebrow="CHECK-UP ROAD"
+    title="Uma leitura inicial do patrimônio em poucos minutos."
+    text="16 perguntas para observar Investimentos, Legado, Estratégia e Decisões sem solicitar valores de patrimônio."
+    href="/patrimonio/#checkup-road"
+    label="Fazer o Check-up ROAD"
+    tone="sand"
+  />
 
   <script is:inline>
     const chapterLinks=[...document.querySelectorAll('[data-chapter-link]')];
