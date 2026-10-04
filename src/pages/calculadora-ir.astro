@@ -1,0 +1,323 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import "../styles/calculadora-ir.css";
+---
+<BaseLayout
+  title="Calculadora de IR 2026 | ROAD Wealth®"
+  description="Protótipo ROAD para estimativa de IRPF 2026, PGBL e incentivos fiscais."
+>
+  <section class="section section--sand page-hero ir-hero">
+    <div class="eyebrow">CALCULADORA DE IR 2026</div>
+    <h1>Quanto ainda pode fazer sentido aportar ou destinar em 2026?</h1>
+    <p class="lead">Uma estimativa para comparar deduções legais e desconto simplificado, avaliar espaço fiscal para PGBL e visualizar capacidade para incentivos.</p>
+    <div class="ir-badges">
+      <span>Ano-calendário 2026</span>
+      <span>Exercício 2027</span>
+      <span>Protótipo ROAD</span>
+    </div>
+  </section>
+
+  <section class="section section--white ir-section">
+    <div class="ir-layout">
+      <form class="ir-form" id="ir-form">
+        <div class="ir-form-group">
+          <div class="eyebrow">1 · RENDIMENTOS</div>
+          <div class="ir-fields ir-fields--2">
+            <label>
+              Rendimentos tributáveis do titular
+              <input inputmode="decimal" name="incomeHolder" placeholder="R$ 0,00" autocomplete="off" />
+              <small>Salários, pró-labore, aluguéis e demais rendimentos sujeitos ao ajuste anual.</small>
+            </label>
+            <label>
+              Rendimentos tributáveis dos dependentes
+              <input inputmode="decimal" name="incomeDependents" placeholder="R$ 0,00" autocomplete="off" />
+              <small>Se um dependente for incluído, seus rendimentos tributáveis também devem entrar na declaração.</small>
+            </label>
+            <label>
+              Previdência oficial (INSS/RPPS)
+              <input inputmode="decimal" name="officialPension" placeholder="R$ 0,00" autocomplete="off" />
+            </label>
+            <label>
+              IR já retido / recolhido
+              <input inputmode="decimal" name="withheldTax" placeholder="R$ 0,00" autocomplete="off" />
+              <small>IRRF, carnê-leão e recolhimentos que possam compor o ajuste.</small>
+            </label>
+          </div>
+        </div>
+
+        <div class="ir-form-group">
+          <div class="eyebrow">2 · FAMÍLIA E DEDUÇÕES</div>
+          <div class="ir-fields ir-fields--2">
+            <label>
+              Número de dependentes
+              <input inputmode="numeric" name="dependents" type="number" min="0" step="1" value="0" />
+            </label>
+            <label>
+              Pessoas com despesa de educação
+              <input inputmode="numeric" name="students" type="number" min="0" step="1" value="0" />
+              <small>Inclua titular e dependentes com despesas de instrução dedutíveis.</small>
+            </label>
+            <label>
+              Despesas de educação no ano
+              <input inputmode="decimal" name="education" placeholder="R$ 0,00" autocomplete="off" />
+            </label>
+            <label>
+              Despesas médicas dedutíveis não reembolsadas
+              <input inputmode="decimal" name="medical" placeholder="R$ 0,00" autocomplete="off" />
+              <small>Sem teto legal próprio, desde que a despesa seja elegível, comprovada e não reembolsada.</small>
+            </label>
+            <label>
+              Pensão alimentícia dedutível
+              <input inputmode="decimal" name="alimony" placeholder="R$ 0,00" autocomplete="off" />
+            </label>
+            <label>
+              Rendimentos totais no ano <span class="optional">(opcional)</span>
+              <input inputmode="decimal" name="totalIncome" placeholder="R$ 0,00" autocomplete="off" />
+              <small>Use para o alerta de tributação mínima de altas rendas; pode incluir rendimentos além dos sujeitos ao ajuste.</small>
+            </label>
+          </div>
+        </div>
+
+        <div class="ir-form-group">
+          <div class="eyebrow">3 · PREVIDÊNCIA</div>
+          <div class="ir-fields ir-fields--2">
+            <label>
+              PGBL já aportado em 2026
+              <input inputmode="decimal" name="pgbl" placeholder="R$ 0,00" autocomplete="off" />
+            </label>
+            <label class="ir-checkbox">
+              <input type="checkbox" name="pgblEligible" checked />
+              <span>Considerar elegibilidade à dedução de PGBL</span>
+              <small>Em regra, a dedução depende de contribuição ao RGPS/RPPS, com exceções previstas para aposentados e pensionistas.</small>
+            </label>
+          </div>
+        </div>
+
+        <div class="ir-form-group">
+          <div class="eyebrow">4 · INCENTIVOS JÁ REALIZADOS</div>
+          <div class="ir-fields ir-fields--2">
+            <label>
+              Criança e Adolescente / COMDICA — Fundo dos Direitos
+              <input inputmode="decimal" name="childFund" placeholder="R$ 0,00" autocomplete="off" />
+            </label>
+            <label>
+              Fundo da Pessoa Idosa
+              <input inputmode="decimal" name="elderlyFund" placeholder="R$ 0,00" autocomplete="off" />
+            </label>
+            <label>
+              Cultura
+              <input inputmode="decimal" name="culture" placeholder="R$ 0,00" autocomplete="off" />
+            </label>
+            <label>
+              Esporte
+              <input inputmode="decimal" name="sport" placeholder="R$ 0,00" autocomplete="off" />
+            </label>
+          </div>
+        </div>
+
+        <div class="ir-form-actions">
+          <button class="btn btn--primary" type="submit">Calcular estimativa</button>
+          <button class="btn btn--outline-coffee" id="ir-reset" type="button">Limpar</button>
+        </div>
+      </form>
+
+      <aside class="ir-result" id="ir-result" aria-live="polite">
+        <div class="eyebrow">ESTIMATIVA</div>
+        <h2>Preencha os dados para simular.</h2>
+        <p>O resultado compara os dois regimes de dedução e separa o efeito do PGBL das destinações incentivadas.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section--coffee ir-methodology">
+    <div class="eyebrow eyebrow--light">COMO A CONTA É FEITA</div>
+    <div class="ir-method-grid">
+      <article>
+        <h3>Deduções legais x simplificado</h3>
+        <p class="on-dark">O protótipo calcula os dois caminhos e indica o menor imposto estimado. Em 2026, a dedução por dependente é de R$ 2.275,08, educação é limitada a R$ 3.561,50 por pessoa e o desconto simplificado a R$ 17.640,00.</p>
+      </article>
+      <article>
+        <h3>PGBL</h3>
+        <p class="on-dark">A contribuição dedutível é limitada a 12% dos rendimentos tributáveis computados na base da declaração, quando atendidas as condições legais.</p>
+      </article>
+      <article>
+        <h3>Incentivos</h3>
+        <p class="on-dark">As destinações reduzem diretamente o imposto devido, sujeitas aos limites globais e individuais e à elegibilidade do fundo ou projeto.</p>
+      </article>
+    </div>
+    <p class="ir-disclaimer">Ferramenta educacional e estimativa preliminar. Não substitui a declaração oficial, análise contábil ou tributária individual. Situações como atividade rural, exterior, ganho de capital, RRA, livro-caixa e tributação mínima de altas rendas podem exigir cálculo específico.</p>
+    <div class="ir-source-links">
+      <a href="https://www.gov.br/receitafederal/pt-br/assuntos/meu-imposto-de-renda/tabelas/2026" target="_blank" rel="noopener noreferrer">Tabela oficial 2026 — Receita Federal ↗</a>
+      <a href="https://www.gov.br/receitafederal/pt-br/assuntos/meu-imposto-de-renda/preenchimento/manual-mir/pagamentos-ou-doacoes/despesas-dedutiveis" target="_blank" rel="noopener noreferrer">Deduções — Receita Federal ↗</a>
+      <a href="https://www.gov.br/receitafederal/pt-br/assuntos/meu-imposto-de-renda/preenchimento/manual-mir/pagamentos-ou-doacoes/deducoes-incentivadas" target="_blank" rel="noopener noreferrer">Incentivos — Receita Federal ↗</a>
+    </div>
+  </section>
+
+  <script is:inline>
+    (()=>{
+      const form=document.getElementById('ir-form');
+      const result=document.getElementById('ir-result');
+      const reset=document.getElementById('ir-reset');
+      if(!form || !result) return;
+
+      const DEPENDENT=2275.08;
+      const EDUCATION_PER_PERSON=3561.50;
+      const SIMPLIFIED_CAP=17640;
+      const PGBL_RATE=.12;
+
+      const money=new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'});
+      const parseMoney=value=>{
+        const raw=String(value||'').trim().replace(/[^\d,.-]/g,'');
+        if(!raw) return 0;
+        let normalized;
+        if(raw.includes(',')){
+          normalized=raw.replace(/\./g,'').replace(',','.');
+        }else if(/^\d{1,3}(\.\d{3})+$/.test(raw)){
+          normalized=raw.replace(/\./g,'');
+        }else{
+          normalized=raw;
+        }
+        const n=Number(normalized);
+        return Number.isFinite(n)?Math.max(0,n):0;
+      };
+      const num=name=>parseMoney(new FormData(form).get(name));
+      const count=name=>Math.max(0,Math.floor(Number(new FormData(form).get(name)||0)));
+
+      const taxByTable=base=>{
+        const b=Math.max(0,base);
+        if(b<=29145.60) return 0;
+        if(b<=33919.80) return Math.max(0,b*.075-2185.92);
+        if(b<=45012.60) return Math.max(0,b*.15-4729.91);
+        if(b<=55976.16) return Math.max(0,b*.225-8105.85);
+        return Math.max(0,b*.275-10904.66);
+      };
+
+      const annualReduction=(gross,tableTax)=>{
+        if(gross<=60000) return Math.min(tableTax,2694.15);
+        if(gross<=88200){
+          const r=Math.max(0,8429.73-(.095575*gross));
+          return Math.min(tableTax,r);
+        }
+        return 0;
+      };
+
+      const finalTax=(base,gross)=>{
+        const table=taxByTable(base);
+        return Math.max(0,table-annualReduction(gross,table));
+      };
+
+      const compute=(pgblContribution)=>{
+        const data=new FormData(form);
+        const holder=parseMoney(data.get('incomeHolder'));
+        const dependentIncome=parseMoney(data.get('incomeDependents'));
+        const gross=holder+dependentIncome;
+        const official=parseMoney(data.get('officialPension'));
+        const dependents=Math.max(0,Math.floor(Number(data.get('dependents')||0)));
+        const students=Math.max(0,Math.floor(Number(data.get('students')||0)));
+        const education=parseMoney(data.get('education'));
+        const medical=parseMoney(data.get('medical'));
+        const alimony=parseMoney(data.get('alimony'));
+        const eligible=data.get('pgblEligible')==='on';
+
+        const educationDeduction=Math.min(education,students*EDUCATION_PER_PERSON);
+        const dependentDeduction=dependents*DEPENDENT;
+        const pgblLimit=gross*PGBL_RATE;
+        const pgblDeduction=eligible?Math.min(pgblContribution,pgblLimit):0;
+
+        const legalDeductions=official+dependentDeduction+educationDeduction+medical+alimony+pgblDeduction;
+        const simplifiedDeduction=Math.min(gross*.20,SIMPLIFIED_CAP);
+
+        const legalBase=Math.max(0,gross-legalDeductions);
+        const simplifiedBase=Math.max(0,gross-simplifiedDeduction);
+        const legalTax=finalTax(legalBase,gross);
+        const simplifiedTax=finalTax(simplifiedBase,gross);
+
+        const regime=legalTax<=simplifiedTax?'Deduções legais':'Desconto simplificado';
+        const tax=Math.min(legalTax,simplifiedTax);
+
+        return {
+          gross,official,dependents,students,educationDeduction,dependentDeduction,
+          medical,alimony,eligible,pgblLimit,pgblDeduction,legalDeductions,
+          simplifiedDeduction,legalBase,simplifiedBase,legalTax,simplifiedTax,regime,tax
+        };
+      };
+
+      const render=()=>{
+        const data=new FormData(form);
+        const pgbl=parseMoney(data.get('pgbl'));
+        const current=compute(pgbl);
+        if(current.gross<=0){
+          result.innerHTML='<div class="eyebrow">ESTIMATIVA</div><h2>Informe ao menos os rendimentos tributáveis.</h2><p>Depois disso a calculadora consegue comparar os regimes e estimar o espaço de planejamento.</p>';
+          return;
+        }
+
+        const pgblRoom=current.eligible?Math.max(0,current.pgblLimit-pgbl):0;
+        const optimized=compute(pgbl+pgblRoom);
+        const pgblSavings=Math.max(0,current.tax-optimized.tax);
+
+        const child=parseMoney(data.get('childFund'));
+        const elderly=parseMoney(data.get('elderlyFund'));
+        const culture=parseMoney(data.get('culture'));
+        const sport=parseMoney(data.get('sport'));
+        const incentivesEntered=child+elderly+culture+sport;
+        const planningTax=optimized.tax;
+        const limit6=planningTax*.06;
+        const limit7=planningTax*.07;
+        const chosenGlobalLimit=sport>0?limit7:limit6;
+        const deductibleIncentives=Math.min(incentivesEntered,chosenGlobalLimit);
+        const taxAfterIncentives=Math.max(0,planningTax-deductibleIncentives);
+        const withheld=parseMoney(data.get('withheldTax'));
+        const balance=taxAfterIncentives-withheld;
+        const totalIncome=parseMoney(data.get('totalIncome'));
+
+        const highIncomeAlert=(totalIncome>600000 || (!totalIncome && current.gross>600000))
+          ? '<div class="ir-alert"><strong>Atenção à tributação mínima de altas rendas.</strong><span>Com rendimentos anuais acima de R$ 600 mil, pode existir uma camada adicional de cálculo que este protótipo ainda não incorpora.</span></div>'
+          : '';
+
+        const balanceLabel=balance>0?'Saldo estimado no cenário planejado':'Restituição estimada no cenário planejado';
+        const balanceValue=Math.abs(balance);
+
+        result.innerHTML=`
+          <div class="eyebrow">RESULTADO PRELIMINAR</div>
+          <h2>${current.regime} aparece como o regime mais vantajoso agora.</h2>
+          <div class="ir-result-grid">
+            <div><small>IR estimado atual</small><strong>${money.format(current.tax)}</strong></div>
+            <div><small>Deduções legais</small><strong>${money.format(current.legalDeductions)}</strong></div>
+            <div><small>Desconto simplificado</small><strong>${money.format(current.simplifiedDeduction)}</strong></div>
+            <div><small>${balanceLabel}</small><strong>${money.format(balanceValue)}</strong></div>
+          </div>
+
+          <div class="ir-result-block">
+            <div class="eyebrow">PGBL</div>
+            <div class="ir-result-lines">
+              <span><small>Limite estimado de 12%</small><strong>${money.format(current.pgblLimit)}</strong></span>
+              <span><small>Já informado</small><strong>${money.format(pgbl)}</strong></span>
+              <span><small>Espaço adicional estimado</small><strong>${money.format(pgblRoom)}</strong></span>
+              <span><small>Economia potencial de IR com esse espaço</small><strong>${money.format(pgblSavings)}</strong></span>
+            </div>
+            ${!current.eligible?'<p class="ir-note">A dedução de PGBL foi desativada porque a condição de elegibilidade não foi marcada.</p>':''}
+          </div>
+
+          <div class="ir-result-block">
+            <div class="eyebrow">INCENTIVOS</div>
+            <div class="ir-result-lines">
+              <span><small>IR estimado após eventual uso do espaço PGBL</small><strong>${money.format(planningTax)}</strong></span>
+              <span><small>Referência global de 6%</small><strong>${money.format(limit6)}</strong></span>
+              <span><small>Referência de até 7% com esporte elegível</small><strong>${money.format(limit7)}</strong></span>
+              <span><small>Destinações informadas</small><strong>${money.format(incentivesEntered)}</strong></span>
+            </div>
+            <p class="ir-note">Os limites efetivos dependem do tipo de incentivo, momento da destinação e elegibilidade do fundo ou projeto. O protótipo usa o teto global apenas como referência de planejamento.</p>
+          </div>
+
+          ${highIncomeAlert}
+        `;
+      };
+
+      form.addEventListener('submit',event=>{event.preventDefault();render()});
+      reset?.addEventListener('click',()=>{
+        form.reset();
+        result.innerHTML='<div class="eyebrow">ESTIMATIVA</div><h2>Preencha os dados para simular.</h2><p>O resultado compara os dois regimes de dedução e separa o efeito do PGBL das destinações incentivadas.</p>';
+      });
+    })();
+  </script>
+</BaseLayout>

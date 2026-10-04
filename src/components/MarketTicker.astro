@@ -19,7 +19,7 @@ const tickerSymbols = [
   aria-label="Cotações de mercado"
   data-ticker-symbols={JSON.stringify(tickerSymbols)}
 >
-  <div class="market-ticker-row">
+  <div class="market-ticker-row market-ticker-row--desktop">
     <div class="market-ticker-label" aria-hidden="true">MERCADOS</div>
 
     <div class="market-ticker-track">
@@ -32,17 +32,13 @@ const tickerSymbols = [
         </div>
       </div>
     </div>
-
-    <a
-      class="market-ticker-brand"
-      href="https://br.tradingview.com/markets/"
-      target="_blank"
-      rel="noopener noreferrer nofollow"
-      aria-label="Abrir TradingView"
-    >
-      <span>TradingView</span>
-    </a>
   </div>
+
+  <button class="market-ticker-mobile js-open-market-tools" type="button" aria-label="Abrir Mercados e Ferramentas">
+    <span class="market-ticker-mobile-label">MERCADOS</span>
+    <span class="market-ticker-mobile-copy">Indicadores e cotações</span>
+    <span class="market-ticker-mobile-action">Ver →</span>
+  </button>
 
   <div class="market-ticker-note" aria-label="Fontes e atraso das cotações">
     <span class="market-ticker-note-full">Dados e atrasos conforme o mercado e a fonte &nbsp;|&nbsp; B3 · 15 min de atraso &nbsp;|&nbsp; via TradingView</span>
@@ -55,6 +51,9 @@ const tickerSymbols = [
     const root=document.getElementById('market-ticker-shell');
     if(!root || root.dataset.tickerInit==='1') return;
     root.dataset.tickerInit='1';
+
+    // No mobile retrato a ROAD usa uma faixa própria e não carrega o iframe da TradingView.
+    if(window.matchMedia('(max-width: 680px)').matches) return;
 
     const container=root.querySelector('.tradingview-widget-container');
     if(!container) return;
@@ -73,7 +72,7 @@ const tickerSymbols = [
       largeChartUrl:'',
       isTransparent:true,
       showSymbolLogo:true,
-      displayMode:window.matchMedia('(max-width: 680px)').matches ? 'compact' : 'adaptive',
+      displayMode:'adaptive',
     };
 
     let ready=false;
