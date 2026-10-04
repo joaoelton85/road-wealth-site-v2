@@ -1,0 +1,154 @@
+/* ROAD Wealth V18 — mobile, banners e encerramento visual. */
+
+/* O documento termina em preto; o conteúdo principal mantém sua própria superfície Areia. */
+html,
+body{
+  background:#090909;
+}
+main{
+  background:var(--sand);
+}
+.footer{
+  background:#090909;
+  color:var(--sand);
+  border-top:1px solid rgba(243,236,227,.16);
+  padding-bottom:calc(10px + env(safe-area-inset-bottom, 0px));
+}
+
+/* Banners editoriais: bloco interno claramente destacado, sem aparência de anúncio genérico. */
+.road-callout{
+  display:block;
+  padding:18px max(26px,calc((100vw - var(--max))/2));
+  border:0;
+  background:var(--sand);
+}
+.road-callout-panel{
+  position:relative;
+  width:100%;
+  min-height:142px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:center;
+  gap:42px;
+  padding:26px 30px 26px 34px;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 12px 34px rgba(36,31,27,.08);
+}
+.road-callout-panel::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:4px;
+  background:currentColor;
+  opacity:.55;
+}
+.road-callout-copy{max-width:920px}
+.road-callout .eyebrow{margin-bottom:7px}
+.road-callout h3{
+  font-family:"Questrial","Montserrat",Arial,sans-serif;
+  font-size:clamp(29px,2.4vw,38px);
+  line-height:1.12;
+  letter-spacing:-.02em;
+  margin:0 0 8px;
+  font-weight:400;
+}
+.road-callout p{
+  font-family:"Inter",Arial,sans-serif;
+  font-size:15.5px;
+  line-height:1.55;
+  margin:0;
+  max-width:820px;
+}
+.road-callout-action{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+}
+.road-callout-button{white-space:nowrap}
+
+.road-callout--petrol{color:var(--sand)}
+.road-callout--petrol .road-callout-panel{
+  background:var(--petrol);
+  border:1px solid rgba(243,236,227,.12);
+}
+.road-callout--petrol .road-callout-panel::before{background:var(--sand)}
+.road-callout--petrol p{color:rgba(243,236,227,.82)}
+.road-callout--petrol .road-callout-button{background:var(--sand);color:var(--coffee)}
+
+.road-callout--sand{color:var(--coffee)}
+.road-callout--sand .road-callout-panel{
+  background:#fff;
+  border:1px solid rgba(72,58,47,.16);
+}
+.road-callout--sand .road-callout-panel::before{background:var(--coffee)}
+.road-callout--sand .road-callout-button{background:var(--coffee);color:var(--sand)}
+
+/* Onde estamos: o vídeo entra sozinho, sem título adicional, comentário ou barra separadora. */
+.presence-video{
+  margin-top:24px;
+  padding-top:0;
+  border-top:0;
+  max-width:900px;
+  display:block;
+}
+.presence-video .youtube-lite,
+.presence-video .youtube-lite-frame{
+  width:100%;
+}
+
+/* Mobile ticker: restaura a altura estável anterior e reduz o espaço fixo de MERCADOS. */
+@media(max-width:680px){
+  .market-ticker-row{
+    height:30px;
+    align-items:stretch;
+  }
+  .market-ticker-track{
+    height:30px;
+  }
+  .market-ticker-label{
+    flex:0 0 58px;
+    padding:0 5px;
+    font-size:6.9px;
+    letter-spacing:.075em;
+  }
+  .market-ticker-scale-frame{
+    top:-3px;
+    width:135.14%;
+    height:52px;
+    transform:scale(.74);
+    transform-origin:left top;
+  }
+  .market-ticker-track .market-ticker-viewport{
+    height:30px;
+  }
+  .footer{
+    padding-bottom:calc(14px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+@media(max-width:1000px){
+  .road-callout{
+    padding-top:14px;
+    padding-bottom:14px;
+  }
+  .road-callout-panel{
+    grid-template-columns:1fr;
+    gap:18px;
+    min-height:0;
+  }
+  .road-callout-action{justify-content:flex-start}
+}
+
+@media(max-width:680px){
+  .road-callout{padding:12px 14px}
+  .road-callout-panel{
+    padding:22px 20px 22px 23px;
+    border-radius:16px;
+  }
+  .road-callout h3{font-size:clamp(27px,8vw,34px)}
+  .road-callout p{font-size:15px}
+  .road-callout-button{white-space:normal}
+}
