@@ -1,5 +1,15 @@
 # CHANGELOG — ROAD Wealth
 
+## V25 — 04/10/2026
+
+- Removido do mobile o Web Component da TradingView introduzido nas V23/V24, que podia permanecer preso no placeholder de carregamento.
+- Mobile passa a usar o mesmo embed legado da TradingView já empregado no desktop, reduzindo a quantidade de integrações diferentes no mesmo componente.
+- Modo mobile configurado como `regular`, sem `scale()`, mantendo mais espaço por indicador e uma única linha.
+- Estados de prontidão de desktop e mobile passam a ser independentes.
+- Adicionado timeout de 9 segundos: em falha de rede/provedor, o placeholder troca para `Cotações temporariamente indisponíveis` em vez de carregar indefinidamente.
+- `MERCADOS` permanece fixo à esquerda e a lista de indicadores da V24 foi preservada.
+- Marcador técnico atualizado para `ROAD_BUILD=25.0.0`.
+
 ## V24 — 04/10/2026
 
 - Ticker mobile passa a carregar o Web Component da TradingView pelo embed oficial estático `type="module"`.

@@ -11,8 +11,6 @@ const tickerSymbols = [
   { proName: "BMFBOVESPA:DI1F2035", title: "DI Jan/35" },
   { proName: "BITSTAMP:BTCUSD", title: "Bitcoin (USD)" },
 ];
-
-const mobileSymbols = tickerSymbols.map(({ proName }) => proName).join(",");
 ---
 <div
   class="market-ticker-shell"
@@ -22,12 +20,11 @@ const mobileSymbols = tickerSymbols.map(({ proName }) => proName).join(",");
 >
   <div class="market-ticker-row market-ticker-row--desktop">
     <div class="market-ticker-label" aria-hidden="true">MERCADOS</div>
-
     <div class="market-ticker-track">
-      <div class="ticker-placeholder" aria-hidden="true"></div>
+      <div class="ticker-placeholder market-ticker-placeholder--desktop">Carregando cotações…</div>
       <div class="market-ticker-viewport" aria-hidden="true">
         <div class="market-ticker-scale-frame">
-          <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container" data-road-ticker="desktop">
             <div class="tradingview-widget-container__widget"></div>
           </div>
         </div>
@@ -38,21 +35,14 @@ const mobileSymbols = tickerSymbols.map(({ proName }) => proName).join(",");
   <div class="market-ticker-mobile-live" aria-label="Indicadores de mercado">
     <div class="market-ticker-mobile-label" aria-hidden="true">MERCADOS</div>
     <div class="market-ticker-mobile-window">
-      <div class="market-ticker-mobile-widget">
-        <tv-ticker-tape
-          symbols={mobileSymbols}
-          direction="horizontal"
-          theme="dark"
-          transparent
-          hide-chart
-        >
-          <div class="market-ticker-mobile-placeholder">Carregando cotações…</div>
-        </tv-ticker-tape>
+      <div class="ticker-placeholder market-ticker-mobile-placeholder">Carregando cotações…</div>
+      <div class="market-ticker-mobile-viewport" aria-hidden="true">
+        <div class="tradingview-widget-container market-ticker-mobile-widget" data-road-ticker="mobile">
+          <div class="tradingview-widget-container__widget"></div>
+        </div>
       </div>
     </div>
   </div>
-
-  <script is:inline type="module" src="https://www.tradingview-widget.com/w/en/tv-ticker-tape.js"></script>
 
   <div class="market-ticker-note" aria-label="Fontes e atraso das cotações">
     <span class="market-ticker-note-full">Dados e atrasos conforme o mercado e a fonte &nbsp;|&nbsp; B3 · 15 min de atraso &nbsp;|&nbsp; via TradingView</span>
@@ -63,13 +53,8 @@ const mobileSymbols = tickerSymbols.map(({ proName }) => proName).join(",");
 <script is:inline>
   (()=>{
     const root=document.getElementById('market-ticker-shell');
-    if(!root || root.dataset.tickerInit==='1') return;
-    root.dataset.tickerInit='1';
-
-    if(window.matchMedia('(max-width: 680px)').matches) return;
-
-    const container=root.querySelector('.tradingview-widget-container');
-    if(!container) return;
+    if(!root || root.dataset.tickerController==='1') return;
+    root.dataset.tickerController='1';
 
     let symbols=[];
     try{
@@ -78,57 +63,98 @@ const mobileSymbols = tickerSymbols.map(({ proName }) => proName).join(",");
       symbols=[];
     }
 
-    const config={
-      symbols,
-      colorTheme:'dark',
-      locale:'br',
-      largeChartUrl:'',
-      isTransparent:true,
-      showSymbolLogo:true,
-      displayMode:'adaptive',
+    const media=window.matchMedia('(max-width: 680px)');
+    const states={
+      desktop:{
+        host:root.querySelector('[data-road-ticker="desktop"]'),
+        placeholder:root.querySelector('.market-ticker-placeholder--desktop'),
+        started:false,
+        ready:false,
+        timer:0,
+        observer:null,
+      },
+      mobile:{
+        host:root.querySelector('[data-road-ticker="mobile"]'),
+        placeholder:root.querySelector('.market-ticker-mobile-placeholder'),
+        started:false,
+        ready:false,
+        timer:0,
+        observer:null,
+      },
     };
 
-    let ready=false;
-    let settleTimer=0;
-    let pollTimer=0;
-    const observer=new MutationObserver(scan);
-
-    const reveal=()=>{
-      if(ready) return;
-      ready=true;
-      window.clearTimeout(settleTimer);
-      window.clearInterval(pollTimer);
-      observer.disconnect();
-      requestAnimationFrame(()=>requestAnimationFrame(()=>root.classList.add('is-ticker-ready')));
+    const setReady=(mode)=>{
+      const state=states[mode];
+      if(!state || state.ready) return;
+      state.ready=true;
+      window.clearTimeout(state.timer);
+      state.observer?.disconnect();
+      root.classList.remove(`is-${mode}-ticker-error`);
+      requestAnimationFrame(()=>requestAnimationFrame(()=>{
+        root.classList.add(`is-${mode}-ticker-ready`);
+      }));
     };
 
-    const arm=(iframe)=>{
-      if(!(iframe instanceof HTMLIFrameElement) || iframe.dataset.roadTickerArmed==='1') return;
-      iframe.dataset.roadTickerArmed='1';
-      const settle=()=>{
-        window.clearTimeout(settleTimer);
-        settleTimer=window.setTimeout(reveal,650);
+    const setError=(mode)=>{
+      const state=states[mode];
+      if(!state || state.ready) return;
+      state.observer?.disconnect();
+      root.classList.add(`is-${mode}-ticker-error`);
+      if(state.placeholder){
+        state.placeholder.textContent='Cotações temporariamente indisponíveis';
+      }
+    };
+
+    const init=(mode)=>{
+      const state=states[mode];
+      if(!state?.host || state.started) return;
+      state.started=true;
+
+      const scan=()=>{
+        const iframe=state.host.querySelector('iframe');
+        if(!(iframe instanceof HTMLIFrameElement) || iframe.dataset.roadTickerArmed==='1') return;
+        iframe.dataset.roadTickerArmed='1';
+
+        const reveal=()=>window.setTimeout(()=>setReady(mode),250);
+        iframe.addEventListener('load',reveal,{once:true});
+
+        window.setTimeout(()=>{
+          if(!state.ready && iframe.isConnected) setReady(mode);
+        },2200);
       };
-      iframe.addEventListener('load',settle,{once:true});
-      window.setTimeout(()=>{
-        if(!ready && iframe.isConnected) settle();
-      },4200);
+
+      state.observer=new MutationObserver(scan);
+      state.observer.observe(state.host,{childList:true,subtree:true});
+
+      const config={
+        symbols,
+        colorTheme:'dark',
+        locale:'br',
+        largeChartUrl:'',
+        isTransparent:true,
+        showSymbolLogo:true,
+        displayMode:mode==='mobile' ? 'regular' : 'adaptive',
+      };
+
+      const embed=document.createElement('script');
+      embed.type='text/javascript';
+      embed.src='https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js';
+      embed.async=true;
+      embed.textContent=JSON.stringify(config);
+      embed.addEventListener('error',()=>setError(mode),{once:true});
+      state.host.appendChild(embed);
+
+      scan();
+      state.timer=window.setTimeout(()=>setError(mode),9000);
     };
 
-    function scan(){
-      container.querySelectorAll('iframe').forEach(arm);
+    const sync=()=>init(media.matches ? 'mobile' : 'desktop');
+
+    sync();
+    if(typeof media.addEventListener==='function'){
+      media.addEventListener('change',sync);
+    }else if(typeof media.addListener==='function'){
+      media.addListener(sync);
     }
-
-    observer.observe(container,{childList:true,subtree:true});
-    pollTimer=window.setInterval(scan,250);
-    window.setTimeout(()=>window.clearInterval(pollTimer),10000);
-
-    const embed=document.createElement('script');
-    embed.type='text/javascript';
-    embed.src='https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js';
-    embed.async=true;
-    embed.textContent=JSON.stringify(config);
-    container.appendChild(embed);
-    scan();
   })();
 </script>

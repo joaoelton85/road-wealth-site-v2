@@ -1,19 +1,18 @@
-# ROAD Wealth — V24
+# ROAD Wealth — V25
 
-Revisão focada exclusivamente na faixa de mercados no mobile.
+Revisão focada em tornar a faixa de mercados confiável no mobile.
 
-## Principais ajustes da V24
+## Principais ajustes da V25
 
-- o ticker mobile continua em uma única linha;
-- o Web Component da TradingView passa a ser carregado pelo embed oficial estático `type="module"`, em vez de importação dinâmica;
-- removido o modo `compact`, permitindo que cada ticker use uma área horizontal maior;
-- o gráfico interno do ticker é ocultado para privilegiar símbolo, cotação e variação;
-- a altura disponível no mobile foi ampliada para 54 px, evitando compressão vertical;
-- `MERCADOS` permanece fixo à esquerda;
-- desktop permanece inalterado;
-- todos os refinamentos da Calculadora de IR da V23 são preservados;
-- proteção contra publicação de assets antigos continua ativa;
-- marcador técnico atualizado para `24.0.0`.
+- removido do mobile o Web Component da TradingView que podia permanecer indefinidamente em “Carregando…”;
+- desktop e mobile passam a usar a mesma integração legada da TradingView, carregada por `s3.tradingview.com`;
+- no mobile, o ticker usa modo `regular`, preservando mais espaço por indicador sem aplicar `scale()` ao conteúdo;
+- `MERCADOS` permanece fixo à esquerda e a faixa continua em uma única linha;
+- cada modo possui estado de prontidão independente, evitando interferência ao alternar entre mobile e desktop;
+- se o provedor não responder, após 9 segundos o texto muda para “Cotações temporariamente indisponíveis”, eliminando o carregamento infinito;
+- desktop mantém a configuração `adaptive`;
+- demais recursos da V24 são preservados;
+- marcador técnico atualizado para `25.0.0`.
 
 ## Build e deploy
 

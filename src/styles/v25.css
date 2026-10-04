@@ -1,0 +1,104 @@
+/* ROAD Wealth V25 — ticker mobile no mesmo embed legado estável do desktop. */
+
+@media(min-width:681px){
+  .market-ticker-shell.is-desktop-ticker-ready .market-ticker-viewport{
+    opacity:1;
+    visibility:visible;
+  }
+
+  .market-ticker-shell.is-desktop-ticker-ready .market-ticker-placeholder--desktop{
+    opacity:0;
+    visibility:hidden;
+  }
+
+  .market-ticker-shell.is-desktop-ticker-error .market-ticker-placeholder--desktop{
+    color:rgba(243,236,227,.58);
+  }
+}
+
+@media(max-width:680px){
+  .market-ticker-mobile-live{
+    grid-template-columns:64px minmax(0,1fr);
+    min-height:54px;
+  }
+
+  .market-ticker-mobile-label{
+    padding:0 6px;
+    font-size:7px;
+    letter-spacing:.08em;
+  }
+
+  .market-ticker-mobile-window{
+    position:relative;
+    min-width:0;
+    height:54px;
+    overflow:hidden;
+    background:#090909;
+  }
+
+  .market-ticker-mobile-viewport{
+    position:absolute;
+    inset:0;
+    height:54px;
+    overflow:hidden;
+    background:#090909;
+    opacity:0;
+    visibility:hidden;
+    transition:opacity .14s ease;
+  }
+
+  .market-ticker-shell.is-mobile-ticker-ready .market-ticker-mobile-viewport{
+    opacity:1;
+    visibility:visible;
+  }
+
+  .market-ticker-mobile-widget,
+  .market-ticker-mobile-widget .tradingview-widget-container__widget,
+  .market-ticker-mobile-widget iframe{
+    display:block;
+    width:100%!important;
+    height:54px!important;
+    min-height:54px!important;
+    border:0!important;
+    background:#090909!important;
+  }
+
+  .market-ticker-mobile-widget{
+    position:relative;
+    min-width:0;
+    overflow:hidden;
+  }
+
+  .market-ticker-mobile-placeholder{
+    position:absolute;
+    inset:0;
+    z-index:2;
+    min-height:54px;
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    padding:0 14px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-family:"Inter",Arial,sans-serif;
+    font-size:10px;
+    line-height:1;
+    letter-spacing:0;
+    text-transform:none;
+    color:rgba(243,236,227,.70);
+    background:#090909;
+    transition:opacity .12s ease;
+  }
+
+  .market-ticker-shell.is-mobile-ticker-ready .market-ticker-mobile-placeholder{
+    opacity:0;
+    visibility:hidden;
+  }
+
+  .market-ticker-shell.is-mobile-ticker-error .market-ticker-mobile-placeholder{
+    color:rgba(243,236,227,.58);
+  }
+
+  .market-ticker-note{display:none}
+}
