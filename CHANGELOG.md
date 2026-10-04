@@ -1,5 +1,13 @@
 # CHANGELOG — ROAD Wealth
 
+## V22 — 04/10/2026
+
+- Adicionado `dist/__road-build.json` com versão, commit SHA e identificador único do build.
+- O marcador é gerado depois do Astro e antes da validação/deploy, forçando uma alteração inequívoca no conjunto de static assets a cada publicação.
+- A validação automática passa a exigir o marcador `ROAD_BUILD=22.0.0` também no arquivo de build.
+- Preservados integralmente os recursos da V21: Calculadora de IR 2026, banner de chamada e faixa mobile própria de Mercados.
+- Objetivo desta versão: contornar publicação de assets antigos apesar de um build novo e validado.
+
 ## V21 — 04/10/2026
 
 - Mobile retrato deixa de carregar o ticker tape da TradingView; a faixa superior passa a ser própria da ROAD, em uma única linha, com chamada para Mercados & Ferramentas.
