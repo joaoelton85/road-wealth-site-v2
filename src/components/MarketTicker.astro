@@ -7,11 +7,12 @@ const tickerSymbols = [
   { proName: "FX_IDC:USDBRL", title: "USD/BRL" },
   { proName: "FX_IDC:EURBRL", title: "EUR/BRL" },
   { proName: "CMCMARKETS:GOLD", title: "Ouro (USD)" },
-  { proName: "ICEEUR:BRN1!", title: "Brent" },
   { proName: "BMFBOVESPA:DI1F2030", title: "DI Jan/30" },
   { proName: "BMFBOVESPA:DI1F2035", title: "DI Jan/35" },
   { proName: "BITSTAMP:BTCUSD", title: "Bitcoin (USD)" },
 ];
+
+const mobileSymbols = tickerSymbols.map(({ proName }) => proName).join(",");
 ---
 <div
   class="market-ticker-shell"
@@ -34,11 +35,20 @@ const tickerSymbols = [
     </div>
   </div>
 
-  <button class="market-ticker-mobile js-open-market-tools" type="button" aria-label="Abrir Mercados e Ferramentas">
-    <span class="market-ticker-mobile-label">MERCADOS</span>
-    <span class="market-ticker-mobile-copy">Indicadores e cotações</span>
-    <span class="market-ticker-mobile-action">Ver →</span>
-  </button>
+  <div class="market-ticker-mobile-live" aria-label="Indicadores de mercado">
+    <div class="market-ticker-mobile-label" aria-hidden="true">MERCADOS</div>
+    <div class="market-ticker-mobile-widget">
+      <tv-ticker-tape
+        symbols={mobileSymbols}
+        direction="horizontal"
+        item-size="compact"
+        theme="dark"
+        transparent
+      >
+        <div class="market-ticker-mobile-placeholder">IBOV · IFIX · SMLL · IVVB11 · USD/BRL · EUR/BRL · Ouro · DI30 · DI35 · Bitcoin</div>
+      </tv-ticker-tape>
+    </div>
+  </div>
 
   <div class="market-ticker-note" aria-label="Fontes e atraso das cotações">
     <span class="market-ticker-note-full">Dados e atrasos conforme o mercado e a fonte &nbsp;|&nbsp; B3 · 15 min de atraso &nbsp;|&nbsp; via TradingView</span>
@@ -52,8 +62,12 @@ const tickerSymbols = [
     if(!root || root.dataset.tickerInit==='1') return;
     root.dataset.tickerInit='1';
 
-    // No mobile retrato a ROAD usa uma faixa própria e não carrega o iframe da TradingView.
-    if(window.matchMedia('(max-width: 680px)').matches) return;
+    if(window.matchMedia('(max-width: 680px)').matches){
+      import('https://www.tradingview-widget.com/w/en/tv-ticker-tape.js').catch(()=>{
+        root.classList.add('is-mobile-ticker-fallback');
+      });
+      return;
+    }
 
     const container=root.querySelector('.tradingview-widget-container');
     if(!container) return;
