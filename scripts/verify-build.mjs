@@ -4,21 +4,31 @@ const checks = [
   {
     file: "dist/index.html",
     required: [
-      'road-build" content="17.0.0"',
-      'data-road-build="17.0.0"',
+      'road-build" content="18.0.0"',
+      'data-road-build="18.0.0"',
       "Informação para acompanhar decisões.",
       "CHECK-UP ROAD",
       "Investir não precisa ser tão complicado.",
+      "road-callout-panel",
       "Entre em contato",
+      "market-ticker-label",
       "MERCADOS",
+    ],
+    minimumOccurrences: [
+      ["road-callout-panel", 3],
     ],
   },
   {
     file: "dist/a-road/index.html",
     required: [
-      'road-build" content="17.0.0"',
-      "CONHEÇA ENTRE RIOS",
+      'road-build" content="18.0.0"',
       "F-2JRohFQdk",
+      "youtube-lite",
+    ],
+    forbidden: [
+      "CONHEÇA ENTRE RIOS",
+      "Uma comunidade onde tradição, cultura e desenvolvimento caminham juntos.",
+      "Um breve olhar sobre Entre Rios e a região que abriga a sede da ROAD.",
     ],
   },
 ];
@@ -32,9 +42,23 @@ for (const check of checks) {
   }
 
   const html = readFileSync(check.file, "utf8");
-  for (const token of check.required) {
+
+  for (const token of check.required || []) {
     if (!html.includes(token)) {
       failures.push(`${check.file}: conteúdo obrigatório ausente -> ${token}`);
+    }
+  }
+
+  for (const token of check.forbidden || []) {
+    if (html.includes(token)) {
+      failures.push(`${check.file}: conteúdo que deveria ter sido removido ainda existe -> ${token}`);
+    }
+  }
+
+  for (const [token, minimum] of check.minimumOccurrences || []) {
+    const occurrences = html.split(token).length - 1;
+    if (occurrences < minimum) {
+      failures.push(`${check.file}: ${token} aparece ${occurrences} vez(es); mínimo esperado: ${minimum}`);
     }
   }
 }
@@ -45,4 +69,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log("ROAD build verification OK — V17.0.0");
+console.log("ROAD build verification OK — V18.0.0");
