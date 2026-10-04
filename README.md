@@ -1,21 +1,19 @@
-# ROAD Wealth — V23
+# ROAD Wealth — V24
 
-Revisão focada em recuperar os indicadores ao vivo no mobile e refinar a experiência da Calculadora de IR 2026.
+Revisão focada exclusivamente na faixa de mercados no mobile.
 
-## Principais ajustes da V23
+## Principais ajustes da V24
 
-- Brent removido da faixa de mercados e do painel Mercados & Ferramentas por não retornar dados úteis no widget atual;
-- desktop preserva o ticker TradingView já utilizado, agora somente com os símbolos funcionais;
-- mobile retrato volta a exibir cotações ao vivo, mas deixa de usar o iframe antigo: passa a usar o novo Web Component horizontal compacto da TradingView;
-- a identificação `MERCADOS` continua fixa à esquerda e não há uma segunda marca TradingView criada pela ROAD;
-- a Calculadora de IR formata campos monetários em BRL ao sair do campo, inclusive transformando valores inteiros em formato `R$ 0,00`;
-- campos da calculadora passam a ficar alinhados em uma coluna principal e as explicações ficam em uma coluna lateral, empilhadas na mesma ordem; no mobile, ajuda e campo voltam a uma única coluna;
-- o cálculo dos incentivos deixa de presumir que o usuário completará o espaço adicional de PGBL;
-- eventual aporte adicional de PGBL permanece apenas como cenário potencial, separado dos limites de incentivos;
-- tipografia da seção metodológica foi alinhada ao padrão editorial do restante do site;
-- o resumo lateral da calculadora foi preservado;
-- proteção contra assets antigos criada na V22 permanece ativa;
-- marcador técnico atualizado para `23.0.0`.
+- o ticker mobile continua em uma única linha;
+- o Web Component da TradingView passa a ser carregado pelo embed oficial estático `type="module"`, em vez de importação dinâmica;
+- removido o modo `compact`, permitindo que cada ticker use uma área horizontal maior;
+- o gráfico interno do ticker é ocultado para privilegiar símbolo, cotação e variação;
+- a altura disponível no mobile foi ampliada para 54 px, evitando compressão vertical;
+- `MERCADOS` permanece fixo à esquerda;
+- desktop permanece inalterado;
+- todos os refinamentos da Calculadora de IR da V23 são preservados;
+- proteção contra publicação de assets antigos continua ativa;
+- marcador técnico atualizado para `24.0.0`.
 
 ## Build e deploy
 
