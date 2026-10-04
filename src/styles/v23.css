@@ -1,0 +1,71 @@
+/* ROAD Wealth V23 — ticker mobile ao vivo com Web Component TradingView. */
+
+.market-ticker-mobile-live{
+  display:none;
+}
+
+@media(max-width:680px){
+  .market-ticker-row--desktop{
+    display:none;
+  }
+
+  .market-ticker-mobile{
+    display:none!important;
+  }
+
+  .market-ticker-mobile-live{
+    display:grid;
+    grid-template-columns:58px minmax(0,1fr);
+    align-items:stretch;
+    min-height:42px;
+    background:#090909;
+    color:var(--sand);
+  }
+
+  .market-ticker-mobile-label{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0 5px;
+    border-right:1px solid rgba(243,236,227,.18);
+    background:#090909;
+    font-family:"Montserrat",Arial,sans-serif;
+    font-size:6.9px;
+    line-height:1;
+    letter-spacing:.075em;
+    white-space:nowrap;
+  }
+
+  .market-ticker-mobile-widget{
+    min-width:0;
+    min-height:42px;
+    background:#090909;
+    color-scheme:dark;
+    --tv-widget-background-color:#090909;
+    --tv-widget-text-color:#F3ECE3;
+    --tv-widget-price-text-color:#F3ECE3;
+    --tv-widget-font-family:"Inter",Arial,sans-serif;
+  }
+
+  .market-ticker-mobile-widget tv-ticker-tape{
+    display:block;
+    width:100%;
+    min-height:42px;
+  }
+
+  .market-ticker-mobile-placeholder{
+    min-height:42px;
+    display:flex;
+    align-items:center;
+    padding:0 10px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    font-family:"Inter",Arial,sans-serif;
+    font-size:9px;
+    color:rgba(243,236,227,.72);
+    background:#090909;
+  }
+
+  .market-ticker-note{display:none}
+}

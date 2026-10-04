@@ -1,5 +1,19 @@
 # CHANGELOG — ROAD Wealth
 
+## V23 — 04/10/2026
+
+- Brent removido da faixa de mercados e do painel Mercados & Ferramentas.
+- Mobile retrato volta a mostrar indicadores ao vivo usando o Web Component horizontal compacto da TradingView, em vez do iframe antigo que vinha deformando o conteúdo.
+- `MERCADOS` permanece fixo à esquerda, sem marca TradingView externa duplicada.
+- Campos monetários da Calculadora de IR passam a ser formatados em BRL ao perder foco, incluindo casas decimais `,00`.
+- Campos e textos de ajuda da calculadora foram reorganizados em duas colunas alinhadas no desktop e uma coluna no mobile.
+- Limites de incentivos passam a usar apenas o cenário efetivamente informado; espaço adicional de PGBL não é mais presumido como aporte.
+- Potencial de PGBL continua sendo mostrado separadamente como simulação.
+- Tipografia da metodologia da Calculadora de IR alinhada ao padrão Questrial / Montserrat / Inter do restante do site.
+- Resumo lateral preservado.
+- Proteção de static assets da V22 preservada.
+- Marcador técnico atualizado para `ROAD_BUILD=23.0.0`.
+
 ## V22 — 04/10/2026
 
 - Adicionado `dist/__road-build.json` com versão, commit SHA e identificador único do build.
