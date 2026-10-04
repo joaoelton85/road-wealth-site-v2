@@ -1,5 +1,18 @@
 # CHANGELOG — ROAD Wealth
 
+## V21 — 04/10/2026
+
+- Mobile retrato deixa de carregar o ticker tape da TradingView; a faixa superior passa a ser própria da ROAD, em uma única linha, com chamada para Mercados & Ferramentas.
+- Desktop preserva o ticker da TradingView com os indicadores funcionais.
+- Removida a reserva externa `TradingView` criada na V19, eliminando duplicidade de marca e disputa de espaço.
+- Criado protótipo da Calculadora de IR 2026 em `/calculadora-ir/`, voltado ao ano-calendário 2026 / exercício 2027.
+- Entradas da calculadora incluem rendimentos do titular e dependentes, previdência oficial, IR retido, dependentes, educação, despesas médicas, pensão, PGBL e incentivos.
+- Resultado compara deduções legais e desconto simplificado e estima limite/espaço de PGBL e referências para incentivos.
+- Home recebe banner específico para a Calculadora de IR; o painel Mercados & Ferramentas também passa a apontar para ela.
+- Build passa a apagar `dist` antes de gerar a versão, evitando publicação de arquivos antigos.
+- `wrangler.jsonc` passa a executar `npm run build` antes de deploy manual via Wrangler.
+- Marcador técnico atualizado para `ROAD_BUILD=21.0.0` e validação automática ampliada.
+
 ## V20 — 04/10/2026
 
 - Removidos da faixa de mercados os tickers de S&P 500, Nasdaq 100, Soja, Milho e Trigo por não estarem renderizando de forma confiável no widget atual.
