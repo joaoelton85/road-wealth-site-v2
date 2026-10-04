@@ -64,6 +64,7 @@ import "../styles/calculadora-ir.css";
             <label>
               Despesas médicas dedutíveis não reembolsadas
               <input inputmode="decimal" name="medical" placeholder="R$ 0,00" autocomplete="off" />
+              <small>Sem teto legal próprio, desde que a despesa seja elegível, comprovada e não reembolsada.</small>
             </label>
             <label>
               Pensão alimentícia dedutível
@@ -96,7 +97,7 @@ import "../styles/calculadora-ir.css";
           <div class="eyebrow">4 · INCENTIVOS JÁ REALIZADOS</div>
           <div class="ir-fields ir-fields--2">
             <label>
-              Criança e Adolescente / Fundo vinculado ao Conselho
+              Criança e Adolescente / COMDICA — Fundo dos Direitos
               <input inputmode="decimal" name="childFund" placeholder="R$ 0,00" autocomplete="off" />
             </label>
             <label>
@@ -133,7 +134,7 @@ import "../styles/calculadora-ir.css";
     <div class="ir-method-grid">
       <article>
         <h3>Deduções legais x simplificado</h3>
-        <p class="on-dark">O protótipo calcula os dois caminhos e indica o menor imposto estimado. O desconto simplificado substitui as deduções legais.</p>
+        <p class="on-dark">O protótipo calcula os dois caminhos e indica o menor imposto estimado. Em 2026, a dedução por dependente é de R$ 2.275,08, educação é limitada a R$ 3.561,50 por pessoa e o desconto simplificado a R$ 17.640,00.</p>
       </article>
       <article>
         <h3>PGBL</h3>
@@ -168,9 +169,14 @@ import "../styles/calculadora-ir.css";
       const parseMoney=value=>{
         const raw=String(value||'').trim().replace(/[^\d,.-]/g,'');
         if(!raw) return 0;
-        const normalized=raw.includes(',')
-          ? raw.replace(/\./g,'').replace(',','.')
-          : raw;
+        let normalized;
+        if(raw.includes(',')){
+          normalized=raw.replace(/\./g,'').replace(',','.');
+        }else if(/^\d{1,3}(\.\d{3})+$/.test(raw)){
+          normalized=raw.replace(/\./g,'');
+        }else{
+          normalized=raw;
+        }
         const n=Number(normalized);
         return Number.isFinite(n)?Math.max(0,n):0;
       };
@@ -268,7 +274,7 @@ import "../styles/calculadora-ir.css";
           ? '<div class="ir-alert"><strong>Atenção à tributação mínima de altas rendas.</strong><span>Com rendimentos anuais acima de R$ 600 mil, pode existir uma camada adicional de cálculo que este protótipo ainda não incorpora.</span></div>'
           : '';
 
-        const balanceLabel=balance>0?'Saldo estimado a pagar':'Restituição estimada';
+        const balanceLabel=balance>0?'Saldo estimado no cenário planejado':'Restituição estimada no cenário planejado';
         const balanceValue=Math.abs(balance);
 
         result.innerHTML=`
