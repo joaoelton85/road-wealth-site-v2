@@ -131,9 +131,9 @@ const tickerSymbols = [
         colorTheme:'dark',
         locale:'br',
         largeChartUrl:'',
-        isTransparent:true,
+        isTransparent:mode==='mobile' ? false : true,
         showSymbolLogo:true,
-        displayMode:mode==='mobile' ? 'regular' : 'adaptive',
+        displayMode:mode==='mobile' ? 'compact' : 'adaptive',
       };
 
       const embed=document.createElement('script');
