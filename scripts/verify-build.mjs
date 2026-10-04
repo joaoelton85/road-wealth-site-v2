@@ -4,15 +4,22 @@ const checks = [
   {
     file: "dist/index.html",
     required: [
-      'road-build" content="18.0.0"',
-      'data-road-build="18.0.0"',
+      'road-build" content="19.0.0"',
+      'data-road-build="19.0.0"',
       "Informação para acompanhar decisões.",
       "CHECK-UP ROAD",
       "Investir não precisa ser tão complicado.",
       "road-callout-panel",
       "Entre em contato",
       "market-ticker-label",
+      "market-ticker-brand",
       "MERCADOS",
+      "TradingView",
+      "Brent",
+      "Soja",
+      "Milho",
+      "Trigo",
+      "Nasdaq 100",
     ],
     minimumOccurrences: [
       ["road-callout-panel", 3],
@@ -21,14 +28,38 @@ const checks = [
   {
     file: "dist/a-road/index.html",
     required: [
-      'road-build" content="18.0.0"',
+      'road-build" content="19.0.0"',
       "F-2JRohFQdk",
       "youtube-lite",
+      "Uma leitura inicial do patrimônio em poucos minutos.",
+      "road-callout-panel",
     ],
     forbidden: [
       "CONHEÇA ENTRE RIOS",
       "Uma comunidade onde tradição, cultura e desenvolvimento caminham juntos.",
       "Um breve olhar sobre Entre Rios e a região que abriga a sede da ROAD.",
+    ],
+  },
+  {
+    file: "dist/investimentos/index.html",
+    required: [
+      "Mercado é contexto. Estratégia é decisão.",
+      "road-callout-panel",
+    ],
+  },
+  {
+    file: "dist/patrimonio/index.html",
+    required: [
+      "Entender melhor também faz parte de decidir melhor.",
+      "road-callout-panel",
+      "CHECK-UP ROAD",
+    ],
+  },
+  {
+    file: "dist/conhecimento/index.html",
+    required: [
+      "Da teoria para a leitura do mercado.",
+      "road-callout-panel",
     ],
   },
 ];
@@ -69,4 +100,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log("ROAD build verification OK — V18.0.0");
+console.log("ROAD build verification OK — V19.0.0");

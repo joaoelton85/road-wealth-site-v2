@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import RoadMandala from "../components/RoadMandala.astro";
+import RoadCallout from "../components/RoadCallout.astro";
 import "../styles/patrimonio.css";
 ---
 <BaseLayout title="Patrimônio | ROAD Wealth®" description="Investimentos, Legado, Estratégia e Decisões em uma visão patrimonial integrada." active="patrimonio">
@@ -38,6 +39,15 @@ import "../styles/patrimonio.css";
       <article class="service-detail" id="decisoes"><div class="eyebrow">DECISÕES</div><h3>Situações patrimoniais complexas.</h3><p>Empresas, imóveis, agronegócio, operações relevantes e coordenação de especialistas quando uma decisão exige diferentes perspectivas.</p></article>
     </div>
   </section>
+
+  <RoadCallout
+    eyebrow="CONHECIMENTO"
+    title="Entender melhor também faz parte de decidir melhor."
+    text="Conceitos, referências e ferramentas para compreender as decisões que cercam investimentos e patrimônio."
+    href="/conhecimento/"
+    label="Explorar Conhecimento"
+    tone="sand"
+  />
 
   <section class="section checkup-section" id="checkup-road">
     <div class="checkup-shell">

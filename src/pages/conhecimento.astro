@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import RoadCallout from "../components/RoadCallout.astro";
 ---
 <BaseLayout title="Conhecimento | ROAD Wealth®" description="Conteúdos e referências para compreender melhor investimentos, riscos, regras e ferramentas." active="conhecimento">
   <section class="section section--sand page-hero knowledge-page">
@@ -26,4 +27,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </article>
     </div>
   </section>
+
+  <RoadCallout
+    eyebrow="MERCADOS & FERRAMENTAS"
+    title="Da teoria para a leitura do mercado."
+    text="Acompanhe indicadores e referências úteis sem transformar o site em uma plataforma de trading."
+    label="Abrir Mercados & Ferramentas"
+    tone="petrol"
+    action="markets"
+  />
 </BaseLayout>
