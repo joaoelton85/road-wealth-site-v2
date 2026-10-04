@@ -1,11 +1,11 @@
 {
   "name": "road-wealth-site",
   "private": true,
-  "version": "21.0.0",
+  "version": "22.0.0",
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "npm run clean && astro build && node scripts/verify-build.mjs",
+    "build": "npm run clean && astro build && node scripts/write-build-marker.mjs && node scripts/verify-build.mjs",
     "preview": "astro preview",
     "deploy": "wrangler deploy",
     "clean": "node scripts/clean-dist.mjs"
