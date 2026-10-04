@@ -22,12 +22,15 @@ const tickerConfig = {
 ---
 <div class="market-ticker-shell" id="market-ticker-shell" aria-label="Cotações de mercado">
   <div class="market-ticker-row">
-    <div class="ticker-placeholder" aria-hidden="true"><span>Mercados</span></div>
-    <div class="market-ticker-viewport" aria-hidden="true">
-      <div class="market-ticker-scale-frame">
-        <div class="tradingview-widget-container">
-          <div class="tradingview-widget-container__widget"></div>
-          <script is:inline type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async set:html={JSON.stringify(tickerConfig)}></script>
+    <div class="market-ticker-label" aria-hidden="true">MERCADOS</div>
+    <div class="market-ticker-track">
+      <div class="ticker-placeholder" aria-hidden="true"></div>
+      <div class="market-ticker-viewport" aria-hidden="true">
+        <div class="market-ticker-scale-frame">
+          <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <script is:inline type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async set:html={JSON.stringify(tickerConfig)}></script>
+          </div>
         </div>
       </div>
     </div>
