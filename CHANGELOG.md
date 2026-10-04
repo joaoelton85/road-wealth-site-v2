@@ -1,5 +1,13 @@
 # CHANGELOG — ROAD Wealth
 
+## V27 — 04/10/2026
+
+- Correção concentrada exclusivamente no painel de indicadores mobile.
+- Mobile volta ao modo `regular` do ticker legado, recuperando a faixa contínua em uma única linha e a exibição completa de preço e variações.
+- Mantido o fundo escuro não transparente introduzido na V26, evitando o retorno dos cartões brancos.
+- Preservados `MERCADOS` fixo à esquerda, lista de indicadores, fallback de carregamento e comportamento do desktop.
+- Marcador técnico atualizado para `ROAD_BUILD=27.0.0`.
+
 ## V26 — 04/10/2026
 
 - Ajuste visual do ticker mobile após a V25.
