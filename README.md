@@ -13,3 +13,5 @@ Revisão visual da faixa de mercados no mobile.
 - desktop permanece inalterado;
 - fallback de indisponibilidade da V25 foi preservado;
 - marcador técnico atualizado para `26.0.0`.
+
+Configuração final consolidada em um único estado de build da V26.
