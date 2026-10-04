@@ -1,5 +1,17 @@
 # CHANGELOG — ROAD Wealth
 
+## V17 — 04/10/2026
+
+- Versão de reconciliação após auditoria do histórico V15/V16 e do artefato efetivamente servido em produção.
+- Criada uma identificação permanente `MERCADOS` à esquerda do ticker, separada da área carregada pela TradingView.
+- Mantidos DI1F30 e DI1F35 entre os indicadores da faixa superior.
+- CTA do cabeçalho alterado de `Converse com a ROAD` para `Entre em contato`.
+- Removido o tratamento em cápsula/círculo do CTA de contato.
+- Removido o botão circular flutuante de contato.
+- Preservados os três callouts editoriais da Home e o vídeo `Conheça Entre Rios`.
+- Adicionado marcador técnico `ROAD_BUILD=17.0.0` ao HTML por meio de meta tag e atributo no body.
+- O script de build passa a executar uma verificação de integridade do HTML gerado, bloqueando o deploy se banners, vídeo, identificação de versão, contato ou ticker não estiverem presentes.
+
 ## V16 — 03/10/2026
 
 - Removida a faixa física de fontes/atraso sob o ticker; a informação agora é sobreposta, transparente e fora do fluxo da página.
