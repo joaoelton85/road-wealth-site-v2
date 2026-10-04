@@ -37,18 +37,22 @@ const mobileSymbols = tickerSymbols.map(({ proName }) => proName).join(",");
 
   <div class="market-ticker-mobile-live" aria-label="Indicadores de mercado">
     <div class="market-ticker-mobile-label" aria-hidden="true">MERCADOS</div>
-    <div class="market-ticker-mobile-widget">
-      <tv-ticker-tape
-        symbols={mobileSymbols}
-        direction="horizontal"
-        item-size="compact"
-        theme="dark"
-        transparent
-      >
-        <div class="market-ticker-mobile-placeholder">IBOV · IFIX · SMLL · IVVB11 · USD/BRL · EUR/BRL · Ouro · DI30 · DI35 · Bitcoin</div>
-      </tv-ticker-tape>
+    <div class="market-ticker-mobile-window">
+      <div class="market-ticker-mobile-widget">
+        <tv-ticker-tape
+          symbols={mobileSymbols}
+          direction="horizontal"
+          theme="dark"
+          transparent
+          hide-chart
+        >
+          <div class="market-ticker-mobile-placeholder">Carregando cotações…</div>
+        </tv-ticker-tape>
+      </div>
     </div>
   </div>
+
+  <script is:inline type="module" src="https://www.tradingview-widget.com/w/en/tv-ticker-tape.js"></script>
 
   <div class="market-ticker-note" aria-label="Fontes e atraso das cotações">
     <span class="market-ticker-note-full">Dados e atrasos conforme o mercado e a fonte &nbsp;|&nbsp; B3 · 15 min de atraso &nbsp;|&nbsp; via TradingView</span>
@@ -62,12 +66,7 @@ const mobileSymbols = tickerSymbols.map(({ proName }) => proName).join(",");
     if(!root || root.dataset.tickerInit==='1') return;
     root.dataset.tickerInit='1';
 
-    if(window.matchMedia('(max-width: 680px)').matches){
-      import('https://www.tradingview-widget.com/w/en/tv-ticker-tape.js').catch(()=>{
-        root.classList.add('is-mobile-ticker-fallback');
-      });
-      return;
-    }
+    if(window.matchMedia('(max-width: 680px)').matches) return;
 
     const container=root.querySelector('.tradingview-widget-container');
     if(!container) return;

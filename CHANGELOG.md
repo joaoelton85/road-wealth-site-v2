@@ -1,5 +1,15 @@
 # CHANGELOG — ROAD Wealth
 
+## V24 — 04/10/2026
+
+- Ticker mobile passa a carregar o Web Component da TradingView pelo embed oficial estático `type="module"`.
+- Removido `item-size="compact"`, dando mais espaço horizontal a cada indicador.
+- Adicionado `hide-chart` para priorizar nome, valor e variação na faixa.
+- Altura disponível do ticker mobile ampliada para 54 px, sem dividir o conteúdo em duas linhas.
+- `MERCADOS` continua fixo à esquerda; desktop não foi alterado.
+- Refinamentos da Calculadora de IR da V23 e proteção de assets da V22 foram preservados.
+- Marcador técnico atualizado para `ROAD_BUILD=24.0.0`.
+
 ## V23 — 04/10/2026
 
 - Brent removido da faixa de mercados e do painel Mercados & Ferramentas.
