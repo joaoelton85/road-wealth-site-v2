@@ -1,5 +1,17 @@
 # CHANGELOG — ROAD Wealth
 
+## V19 — 04/10/2026
+
+- Barra de mercados reorganizada em três zonas: identificação `MERCADOS`, área de cotações e espaço dedicado à marca TradingView.
+- No mobile retrato, removida a transformação `scale()` do iframe; o widget usa `compact` nativo e recorte vertical para evitar deformação de textos e números.
+- Adicionados S&P 500, Nasdaq 100, Brent, Soja, Milho e Trigo à faixa, mantendo IBOV, IFIX, SMLL, IVVB11, câmbio, ouro, DI e Bitcoin.
+- Conteúdo do painel Mercados & Ferramentas atualizado para refletir as novas referências e links.
+- Banners editoriais passam a aparecer também de forma contextual nas páginas A ROAD, Investimentos, Patrimônio e Conhecimento, um convite por página.
+- CTA dos banners ocupa a largura do painel no mobile para melhorar leitura e ação sem recorrer a pop-ups ou animações.
+- Preservados o vídeo de Entre Rios sem texto adicional e o encerramento preto/safe area do rodapé.
+- Marcador técnico atualizado para `ROAD_BUILD=19.0.0`.
+- Validação automática do build passa a conferir indicadores adicionais, área TradingView e banners contextuais das páginas internas.
+
 ## V18 — 04/10/2026
 
 - Recalibrado o ticker no mobile após a inclusão da identificação fixa `MERCADOS`: altura de 30 px restaurada, área do rótulo reduzida e geometria da fita preservada.
