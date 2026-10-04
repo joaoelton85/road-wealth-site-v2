@@ -1,11 +1,11 @@
 {
   "name": "road-wealth-site",
   "private": true,
-  "version": "16.0.0",
+  "version": "17.0.0",
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/verify-build.mjs",
     "preview": "astro preview",
     "deploy": "npm run build && wrangler deploy"
   },

@@ -1,16 +1,17 @@
-# ROAD Wealth — V16
+# ROAD Wealth — V17
 
-Versão completa do site institucional ROAD Wealth, consolidando os refinamentos visuais e de interação posteriores à V15.
+Versão de reconciliação do site institucional ROAD Wealth, construída sobre o código consolidado da V16 no repositório limpo `road-wealth-site-v2`.
 
-## Principais ajustes da V16
+## Principais ajustes da V17
 
-- ticker TradingView com inicialização mais robusta e sem estado permanente de “Carregando”;
-- informação de fontes/atraso sem faixa própria, apenas como texto sobre o fundo natural da página;
-- faixa Café da Home com centralização vertical e tipografia revisadas;
-- três chamadas editoriais na Home para Mercados & Ferramentas, Check-up ROAD e Conhecimento;
-- bloco “Conheça Entre Rios” com vídeo do YouTube carregado somente após interação;
-- proteção de tema claro para preservar a cor Areia em navegadores Android;
-- rodapé alterado para preto + Areia, reforçando o encerramento visual do site.
+- identificação `MERCADOS` permanece visível no ticker também depois do carregamento da TradingView;
+- a fita de indicadores passa a ocupar somente o espaço à direita dessa identificação;
+- CTA principal de contato alterado para `Entre em contato`, sem cápsula/círculo;
+- botão flutuante circular de contato removido;
+- preservados os três callouts editoriais da Home: Mercados & Ferramentas, Check-up ROAD e Conhecimento;
+- preservado o bloco `Conheça Entre Rios` com vídeo sob demanda;
+- adicionada identificação técnica `17.0.0` ao HTML publicado;
+- o build agora valida automaticamente a presença dos elementos críticos antes do deploy.
 
 ## Build
 
@@ -18,5 +19,7 @@ Versão completa do site institucional ROAD Wealth, consolidando os refinamentos
 npm install
 npm run build
 ```
+
+O comando de build executa o Astro e, em seguida, `scripts/verify-build.mjs`. O deploy só deve prosseguir quando essa verificação terminar com sucesso.
 
 Deploy configurado no Cloudflare Workers com `npx wrangler deploy`.
