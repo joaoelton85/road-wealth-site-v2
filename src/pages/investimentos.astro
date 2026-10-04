@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import InstitutionPlatforms from "../components/InstitutionPlatforms.astro";
+import RoadCallout from "../components/RoadCallout.astro";
 import "../styles/investimentos.css";
 ---
 <BaseLayout title="Investimentos | ROAD Wealth®" description="Consultoria de investimentos ROAD Wealth: política de investimentos, consolidação, acompanhamento e acesso multiplaforma." active="investimentos">
@@ -41,6 +42,15 @@ import "../styles/investimentos.css";
       <article class="card card--white"><div class="eyebrow">PROCESSO</div><h3>Acompanhamento contínuo.</h3><p>A estratégia é revisada ao longo do tempo conforme objetivos, mercado, liquidez e necessidades patrimoniais evoluem.</p></article>
     </div>
   </section>
+
+  <RoadCallout
+    eyebrow="MERCADOS & FERRAMENTAS"
+    title="Mercado é contexto. Estratégia é decisão."
+    text="Acompanhe Brasil, exterior, juros, moedas, ouro, energia e commodities agrícolas em uma leitura rápida."
+    label="Abrir Mercados & Ferramentas"
+    tone="petrol"
+    action="markets"
+  />
 
   <section class="section section--coffee cta-final" id="contato">
     <div class="eyebrow eyebrow--light">CONTATO</div>
