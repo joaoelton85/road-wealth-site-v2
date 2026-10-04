@@ -1,17 +1,16 @@
-# ROAD Wealth — V17
+# ROAD Wealth — V18
 
-Versão de reconciliação do site institucional ROAD Wealth, construída sobre o código consolidado da V16 no repositório limpo `road-wealth-site-v2`.
+Revisão focada em experiência mobile e clareza visual dos elementos de convite do site.
 
-## Principais ajustes da V17
+## Principais ajustes da V18
 
-- identificação `MERCADOS` permanece visível no ticker também depois do carregamento da TradingView;
-- a fita de indicadores passa a ocupar somente o espaço à direita dessa identificação;
-- CTA principal de contato alterado para `Entre em contato`, sem cápsula/círculo;
-- botão flutuante circular de contato removido;
-- preservados os três callouts editoriais da Home: Mercados & Ferramentas, Check-up ROAD e Conhecimento;
-- preservado o bloco `Conheça Entre Rios` com vídeo sob demanda;
-- adicionada identificação técnica `17.0.0` ao HTML publicado;
-- o build agora valida automaticamente a presença dos elementos críticos antes do deploy.
+- ticker mobile recalibrado após a inclusão da área fixa `MERCADOS`, restaurando a altura estável da faixa e reduzindo o espaço reservado ao rótulo;
+- os três convites da Home passam a ter aparência inequívoca de banners editoriais, com painel interno, contorno, profundidade sutil e CTA destacado;
+- o vídeo de Entre Rios permanece integrado em `Onde estamos`, mas sem qualquer título, comentário ou divisor adicional criado para o vídeo;
+- o documento passa a terminar estruturalmente em preto, com o conteúdo principal mantendo fundo próprio;
+- o rodapé incorpora a safe area inferior do aparelho para evitar qualquer faixa Areia após o encerramento no mobile;
+- marcador técnico atualizado para `18.0.0`;
+- verificação automática do build reforçada para exigir os três banners e impedir a volta dos textos removidos do vídeo.
 
 ## Build
 
@@ -20,6 +19,6 @@ npm install
 npm run build
 ```
 
-O comando de build executa o Astro e, em seguida, `scripts/verify-build.mjs`. O deploy só deve prosseguir quando essa verificação terminar com sucesso.
+O build executa o Astro e, em seguida, `scripts/verify-build.mjs`. O deploy só deve prosseguir quando a verificação terminar com sucesso.
 
 Deploy configurado no Cloudflare Workers com `npx wrangler deploy`.
