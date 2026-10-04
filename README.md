@@ -1,18 +1,21 @@
-# ROAD Wealth — V22
+# ROAD Wealth — V23
 
-Revisão corretiva do pipeline de publicação de assets estáticos.
+Revisão focada em recuperar os indicadores ao vivo no mobile e refinar a experiência da Calculadora de IR 2026.
 
-## Ajuste principal
+## Principais ajustes da V23
 
-A V21 foi gerada corretamente no GitHub/Workers Builds, mas a própria Version URL continuou exibindo conteúdo antigo. Esse padrão é compatível com um problema conhecido de upload/deduplicação de Workers Static Assets, no qual um novo deploy pode reutilizar assets antigos mesmo quando o build produziu arquivos diferentes.
-
-A V22 adiciona uma proteção específica:
-
-- o diretório `dist` continua sendo apagado antes de cada build;
-- após o Astro gerar os arquivos, o build cria `dist/__road-build.json`;
-- esse arquivo contém versão, commit SHA e Build UUID/timestamp, tornando cada coleção de assets inequivocamente diferente;
-- a verificação automática exige o marcador `22.0.0` antes de permitir o deploy;
-- todo o conteúdo funcional da V21 é preservado: Calculadora de IR 2026, banner, ticker mobile próprio, vídeo e demais ajustes.
+- Brent removido da faixa de mercados e do painel Mercados & Ferramentas por não retornar dados úteis no widget atual;
+- desktop preserva o ticker TradingView já utilizado, agora somente com os símbolos funcionais;
+- mobile retrato volta a exibir cotações ao vivo, mas deixa de usar o iframe antigo: passa a usar o novo Web Component horizontal compacto da TradingView;
+- a identificação `MERCADOS` continua fixa à esquerda e não há uma segunda marca TradingView criada pela ROAD;
+- a Calculadora de IR formata campos monetários em BRL ao sair do campo, inclusive transformando valores inteiros em formato `R$ 0,00`;
+- campos da calculadora passam a ficar alinhados em uma coluna principal e as explicações ficam em uma coluna lateral, empilhadas na mesma ordem; no mobile, ajuda e campo voltam a uma única coluna;
+- o cálculo dos incentivos deixa de presumir que o usuário completará o espaço adicional de PGBL;
+- eventual aporte adicional de PGBL permanece apenas como cenário potencial, separado dos limites de incentivos;
+- tipografia da seção metodológica foi alinhada ao padrão editorial do restante do site;
+- o resumo lateral da calculadora foi preservado;
+- proteção contra assets antigos criada na V22 permanece ativa;
+- marcador técnico atualizado para `23.0.0`.
 
 ## Build e deploy
 
