@@ -4,14 +4,14 @@ const checks = [
   {
     file: "dist/__road-build.json",
     required: [
-      '"roadBuild": "23.0.0"',
+      '"roadBuild": "24.0.0"',
     ],
   },
   {
     file: "dist/index.html",
     required: [
-      'road-build" content="23.0.0"',
-      'data-road-build="23.0.0"',
+      'road-build" content="24.0.0"',
+      'data-road-build="24.0.0"',
       "Informação para acompanhar decisões.",
       "CHECK-UP ROAD",
       "CALCULADORA DE IR 2026",
@@ -22,10 +22,11 @@ const checks = [
       "market-ticker-mobile-live",
       "tv-ticker-tape",
       'direction="horizontal"',
-      'item-size="compact"',
       "MERCADOS",
       "DI Jan/30",
       "DI Jan/35",
+      "hide-chart",
+      "https://www.tradingview-widget.com/w/en/tv-ticker-tape.js",
     ],
     forbidden: [
       "market-ticker-brand",
@@ -43,7 +44,7 @@ const checks = [
   {
     file: "dist/calculadora-ir/index.html",
     required: [
-      'road-build" content="23.0.0"',
+      'road-build" content="24.0.0"',
       "Calculadora de IR 2026",
       "Rendimentos tributáveis do titular",
       "Número de dependentes",
@@ -67,7 +68,7 @@ const checks = [
   {
     file: "dist/a-road/index.html",
     required: [
-      'road-build" content="23.0.0"',
+      'road-build" content="24.0.0"',
       "F-2JRohFQdk",
       "youtube-lite",
       "Uma leitura inicial do patrimônio em poucos minutos.",
@@ -139,4 +140,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log("ROAD build verification OK — V23.0.0");
+console.log("ROAD build verification OK — V24.0.0");
