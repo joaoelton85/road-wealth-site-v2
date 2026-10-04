@@ -1,5 +1,14 @@
 # CHANGELOG — ROAD Wealth
 
+## V26 — 04/10/2026
+
+- Ajuste visual do ticker mobile após a V25.
+- Modo mobile alterado de `regular` para `compact`, reduzindo tipografia e dimensões internas dos indicadores.
+- `isTransparent` passa a ser `false` no mobile para preservar o fundo escuro do próprio widget e impedir o surgimento de cartões brancos.
+- Tema `dark`, linha única, lista de indicadores e identificação fixa `MERCADOS` foram preservados.
+- Desktop permanece inalterado.
+- Marcador técnico atualizado para `ROAD_BUILD=26.0.0`.
+
 ## V25 — 04/10/2026
 
 - Removido do mobile o Web Component da TradingView introduzido nas V23/V24, que podia permanecer preso no placeholder de carregamento.
