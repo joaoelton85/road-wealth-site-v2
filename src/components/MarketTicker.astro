@@ -72,6 +72,7 @@ const tickerSymbols = [
         ready:false,
         timer:0,
         observer:null,
+        fallbackAttempted:false,
       },
       mobile:{
         host:root.querySelector('[data-road-ticker="mobile"]'),
@@ -80,6 +81,7 @@ const tickerSymbols = [
         ready:false,
         timer:0,
         observer:null,
+        fallbackAttempted:false,
       },
     };
 
@@ -105,7 +107,22 @@ const tickerSymbols = [
       }
     };
 
-    const init=(mode)=>{
+    const retryCompact=(mode)=>{
+      const state=states[mode];
+      if(mode!=='mobile' || !state || state.ready || state.fallbackAttempted) return false;
+
+      state.fallbackAttempted=true;
+      window.clearTimeout(state.timer);
+      state.observer?.disconnect();
+      state.started=false;
+      state.host.innerHTML='<div class="tradingview-widget-container__widget"></div>';
+      if(state.placeholder) state.placeholder.textContent='Carregando cotações…';
+      root.classList.remove('is-mobile-ticker-ready','is-mobile-ticker-error');
+      init('mobile','compact');
+      return true;
+    };
+
+    const init=(mode,mobileDisplayMode='regular')=>{
       const state=states[mode];
       if(!state?.host || state.started) return;
       state.started=true;
@@ -118,9 +135,11 @@ const tickerSymbols = [
         const reveal=()=>window.setTimeout(()=>setReady(mode),250);
         iframe.addEventListener('load',reveal,{once:true});
 
-        window.setTimeout(()=>{
-          if(!state.ready && iframe.isConnected) setReady(mode);
-        },2200);
+        if(mode==='desktop'){
+          window.setTimeout(()=>{
+            if(!state.ready && iframe.isConnected) setReady(mode);
+          },2200);
+        }
       };
 
       state.observer=new MutationObserver(scan);
@@ -133,7 +152,7 @@ const tickerSymbols = [
         largeChartUrl:'',
         isTransparent:mode==='mobile' ? false : true,
         showSymbolLogo:true,
-        displayMode:mode==='mobile' ? 'compact' : 'adaptive',
+        displayMode:mode==='mobile' ? mobileDisplayMode : 'adaptive',
       };
 
       const embed=document.createElement('script');
@@ -141,11 +160,16 @@ const tickerSymbols = [
       embed.src='https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js';
       embed.async=true;
       embed.textContent=JSON.stringify(config);
-      embed.addEventListener('error',()=>setError(mode),{once:true});
+      embed.addEventListener('error',()=>{
+        if(!retryCompact(mode)) setError(mode);
+      },{once:true});
       state.host.appendChild(embed);
 
       scan();
-      state.timer=window.setTimeout(()=>setError(mode),9000);
+      const timeout=mode==='mobile' && mobileDisplayMode==='regular' ? 6500 : 9000;
+      state.timer=window.setTimeout(()=>{
+        if(!retryCompact(mode)) setError(mode);
+      },timeout);
     };
 
     const sync=()=>init(media.matches ? 'mobile' : 'desktop');

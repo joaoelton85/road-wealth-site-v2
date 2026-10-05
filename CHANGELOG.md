@@ -1,5 +1,15 @@
 # CHANGELOG — ROAD Wealth
 
+## V29 — 04/10/2026
+
+- Correção do ticker mobile baseada na V26, sem reutilizar o estado instável da V27/V28.
+- Mobile tenta o modo `regular` para manter símbolo, valor e variação em uma única linha.
+- Preservado `isTransparent: false` no mobile para manter o fundo escuro.
+- O painel mobile deixa de ser marcado como pronto apenas pela existência do iframe; aguarda o carregamento efetivo.
+- Se o modo `regular` falhar, o componente tenta automaticamente `compact` antes de declarar indisponibilidade.
+- Desktop e demais áreas do site permanecem inalterados.
+- Marcador técnico atualizado para `ROAD_BUILD=29.0.0`.
+
 ## V26 — 04/10/2026
 
 - Ajuste visual do ticker mobile após a V25.

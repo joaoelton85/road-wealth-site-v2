@@ -1,17 +1,14 @@
-# ROAD Wealth — V26
+# ROAD Wealth — V29
 
-Revisão visual da faixa de mercados no mobile.
+Correção controlada da faixa de mercados no mobile, partindo da V26.
 
-## Principais ajustes da V26
+## Principais ajustes da V29
 
-- preservado o carregamento estável introduzido na V25;
-- mobile passa do modo `regular` para `compact`, reduzindo a tipografia e o espaço interno de cada indicador;
-- o tema escuro permanece forçado;
-- transparência do widget é desativada no mobile para evitar cartões/fundo branco;
-- `MERCADOS` continua fixo à esquerda;
-- a faixa segue em uma única linha;
+- preservado o embed legado e o carregamento estável da V26;
+- o mobile tenta primeiro o modo `regular`, para manter ticker, valor e variação na mesma linha;
+- fundo escuro do widget continua forçado com `isTransparent: false` no mobile;
+- removida a liberação prematura do painel mobile antes do evento real de carregamento do iframe;
+- se o modo `regular` não carregar, há fallback automático para `compact`, evitando painel vazio;
+- `MERCADOS` permanece fixo à esquerda;
 - desktop permanece inalterado;
-- fallback de indisponibilidade da V25 foi preservado;
-- marcador técnico atualizado para `26.0.0`.
-
-Configuração final consolidada em um único estado de build da V26.
+- marcador técnico atualizado para `29.0.0`.
