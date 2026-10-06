@@ -4,19 +4,23 @@ const checks = [
   {
     file: "dist/__road-build.json",
     required: [
-      '"roadBuild": "30.0.0"',
+      '"roadBuild": "31.0.0"',
     ],
   },
   {
     file: "dist/index.html",
     required: [
-      'road-build" content="30.0.0"',
-      'data-road-build="30.0.0"',
+      'road-build" content="31.0.0"',
+      'data-road-build="31.0.0"',
       "CHECK-UP ROAD",
       "CALCULADORA DE IR 2026",
       "Quanto ainda pode fazer sentido aportar ou destinar este ano?",
       "road-highlights",
+      "road-highlights--desktop",
+      "road-highlights--mobile",
+      "road-highlights-mobile__label",
       "road-highlights__slide",
+      "DESTAQUE",
       "Fazer Check-up",
       "Simular agora",
       "Entre em contato",
@@ -51,7 +55,7 @@ const checks = [
   {
     file: "dist/calculadora-ir/index.html",
     required: [
-      'road-build" content="30.0.0"',
+      'road-build" content="31.0.0"',
       "Calculadora de IR 2026",
       "Rendimentos tributáveis do titular",
       "Número de dependentes",
@@ -75,7 +79,7 @@ const checks = [
   {
     file: "dist/a-road/index.html",
     required: [
-      'road-build" content="30.0.0"',
+      'road-build" content="31.0.0"',
       "F-2JRohFQdk",
       "youtube-lite",
       "Uma leitura inicial do patrimônio em poucos minutos.",
@@ -147,4 +151,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log("ROAD build verification OK — V30.0.0");
+console.log("ROAD build verification OK — V31.0.0");
