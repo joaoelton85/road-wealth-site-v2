@@ -28,6 +28,7 @@ const checks = [
       "Entre em contato",
       "market-ticker-label",
       "market-ticker-row--unified",
+      "market-ticker-brand",
       'data-road-ticker="unified"',
       "MERCADOS",
       "DI Jan/30",
@@ -38,7 +39,6 @@ const checks = [
       "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js",
     ],
     forbidden: [
-      "market-ticker-brand",
       "retryCompact",
       "Cotações temporariamente indisponíveis",
       "market-ticker-mobile-live",
