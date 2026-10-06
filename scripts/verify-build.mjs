@@ -21,7 +21,7 @@ const checks = [
       "Simule seu IR 2026",
       "Explore Mercados & Ferramentas",
       "hero--road-photo",
-      "photo-1697529291604-6f56bca13bea",
+      "Monaco-Cathedrale-ND-Immaculee.jpg",
       "Entre em contato",
       "market-ticker-label",
       "market-ticker-mobile-live",
