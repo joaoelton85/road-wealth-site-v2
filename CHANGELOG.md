@@ -1,5 +1,14 @@
 # CHANGELOG — ROAD Wealth
 
+## V39 — 06/10/2026
+
+- Correção focada no carregamento do Ticker Tape mobile do TradingView.
+- O Web Component mobile passa a tentar primeiro o host `widgets.tradingview-widget.com`, utilizado pela geração atual dos widgets.
+- Se essa origem não registrar o componente, o site tenta automaticamente a origem alternativa `www.tradingview-widget.com`.
+- Se ambas falharem, o layout permanece estável com a mensagem `Carregando cotações…`.
+- Desktop, Destaques, Hero e alternância cromática da Home permanecem inalterados.
+- Marcador técnico atualizado para `ROAD_BUILD=39.0.0`.
+
 ## V38 — 06/10/2026
 
 - Ticker mobile separado novamente do desktop, usando o Ticker Tape horizontal compacto atual do TradingView para evitar a deformação em duas linhas do widget legado adaptativo.
