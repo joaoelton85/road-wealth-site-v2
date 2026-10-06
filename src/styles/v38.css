@@ -1,0 +1,232 @@
+/* ROAD Wealth V38 — ticker mobile dedicado, topo refinado e nova alternância da Home. */
+
+/* MERCADOS e DESTAQUE permanecem um mesmo sistema visual e ficam centralizados. */
+.market-ticker-label,
+.market-ticker-mobile-label,
+.road-highlights__label{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+/* Desktop: preserva o widget legado que já estava estável. */
+@media(min-width:681px){
+  .market-ticker-row--desktop{
+    display:flex!important;
+  }
+
+  .market-ticker-mobile-live{
+    display:none!important;
+  }
+
+  .market-ticker-shell.is-desktop-ticker-ready .market-ticker-viewport{
+    opacity:1;
+    visibility:visible;
+  }
+
+  .market-ticker-shell.is-desktop-ticker-ready .market-ticker-placeholder--desktop{
+    opacity:0;
+    visibility:hidden;
+  }
+}
+
+/* Mobile: widget horizontal compacto próprio, sem adaptive/compact legado e sem segundo logo. */
+@media(max-width:680px){
+  .market-ticker-row--desktop{
+    display:none!important;
+  }
+
+  .market-ticker-mobile-live{
+    display:grid!important;
+    grid-template-columns:var(--road-top-label-w) minmax(0,1fr);
+    width:100%;
+    min-height:34px;
+    height:34px;
+    overflow:hidden;
+    background:#090909;
+  }
+
+  .market-ticker-mobile-label{
+    width:var(--road-top-label-w);
+    min-width:var(--road-top-label-w);
+    height:34px;
+    padding:0 7px;
+    box-sizing:border-box;
+    border-right:1px solid rgba(243,236,227,.12);
+    background:#090909;
+    color:rgba(243,236,227,.86);
+    font-family:"Montserrat",Arial,sans-serif;
+    font-size:var(--road-top-label-font);
+    font-weight:var(--road-top-label-weight);
+    line-height:1;
+    letter-spacing:var(--road-top-label-spacing);
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+
+  .market-ticker-mobile-window{
+    position:relative;
+    min-width:0;
+    width:100%;
+    height:34px;
+    overflow:hidden;
+    background:#090909;
+  }
+
+  .market-ticker-mobile-widget{
+    display:block;
+    width:100%;
+    height:34px;
+    min-height:34px;
+    overflow:hidden;
+    background:#090909;
+  }
+
+  .market-ticker-mobile-placeholder{
+    height:34px;
+    min-height:34px;
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    padding:0 12px;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    background:#090909;
+    color:rgba(243,236,227,.72);
+    font-family:"Inter",Arial,sans-serif;
+    font-size:10px;
+    line-height:1;
+  }
+}
+
+/* Destaque: palavra centralizada; bolinhas permanecem no banner, ao lado do rótulo. */
+.road-highlights__label{
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center;
+  padding-left:10px!important;
+  padding-right:10px!important;
+}
+
+.road-highlights__pager{
+  left:12px;
+}
+
+.road-highlights__slide{
+  padding-left:50px;
+}
+
+/* A legenda técnica continua sem fundo ou faixa própria. */
+.road-market-note{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+
+/* Inversão cromática após o Hero. O Hero permanece intacto. */
+.home-story.section--sand{
+  background:var(--sand);
+  color:var(--coffee);
+}
+
+.home-story .section-intro p{
+  color:var(--coffee);
+}
+
+.home-a-road.section--coffee{
+  background:var(--coffee);
+  color:var(--sand);
+}
+
+.home-a-road .lead,
+.home-a-road .road-teaser-card p{
+  color:rgba(243,236,227,.82);
+}
+
+.home-a-road .road-teaser-card{
+  border-top-color:rgba(243,236,227,.22);
+}
+
+.home-a-road .text-btn{
+  color:var(--sand);
+}
+
+.road-callout--coffee{
+  background:var(--coffee);
+  color:var(--sand);
+}
+
+.road-callout--coffee .road-callout-panel{
+  background:rgba(243,236,227,.035);
+  border:1px solid rgba(243,236,227,.16);
+  box-shadow:none;
+}
+
+.road-callout--coffee .road-callout-panel::before{
+  background:var(--sand);
+}
+
+.road-callout--coffee p{
+  color:rgba(243,236,227,.82);
+}
+
+.road-callout--coffee .road-callout-button{
+  background:var(--sand);
+  color:var(--coffee);
+}
+
+.home-investments.section--sand{
+  background:var(--sand);
+  color:var(--coffee);
+}
+
+.home-investments .pillars article{
+  border-top-color:rgba(72,58,47,.18);
+}
+
+.home-investments .pillars article:first-child{
+  border-top:0;
+}
+
+.home-contact.section--coffee{
+  background:var(--coffee);
+  color:var(--sand);
+  border-top-color:rgba(243,236,227,.18);
+}
+
+.home-contact.section--coffee .lead,
+.home-contact.section--coffee a,
+.home-contact.section--coffee .social-link{
+  color:var(--sand);
+}
+
+.home-contact.section--coffee .social-link{
+  border-color:rgba(243,236,227,.32);
+}
+
+.home-contact.section--coffee .btn--outline-light{
+  border-color:rgba(243,236,227,.48);
+  color:var(--sand);
+}
+
+@media(max-width:680px){
+  .road-highlights__pager{
+    left:9px;
+  }
+
+  .road-highlights__slide{
+    padding-left:43px;
+  }
+}
+
+@media(max-width:380px){
+  .road-highlights__pager{
+    left:8px;
+  }
+
+  .road-highlights__slide{
+    padding-left:40px;
+  }
+}
