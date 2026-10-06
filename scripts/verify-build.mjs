@@ -4,23 +4,29 @@ const checks = [
   {
     file: "dist/__road-build.json",
     required: [
-      '"roadBuild": "34.0.0"',
+      '"roadBuild": "35.0.0"',
     ],
   },
   {
     file: "dist/index.html",
     required: [
-      'road-build" content="34.0.0"',
-      'data-road-build="34.0.0"',
+      'road-build" content="35.0.0"',
+      'data-road-build="35.0.0"',
       "CHECK-UP ROAD",
       "road-highlights",
       "road-highlights__slide",
       "DESTAQUE",
-      "Faça seu Check-up ROAD",
-      "Simule seu IR 2026",
-      "Explore Mercados &amp; Ferramentas",
+      "Como está seu planejamento financeiro?",
+      "Faça um teste rápido e receba seu diagnóstico.",
+      "Planeje melhor seu IR.",
+      "Acompanhe mercados, juros, câmbio e ferramentas para suas decisões.",
       "hero--road-photo",
-      "Monaco-Cathedrale-ND-Immaculee.jpg",
+      "road-hero-caminho-v35.webp",
+      "road-market-note",
+      "highlight-checkup-v35.svg",
+      "highlight-ir-v35.svg",
+      "highlight-markets-v35.svg",
+      "home-contact",
       "Entre em contato",
       "market-ticker-label",
       "market-ticker-mobile-live",
@@ -53,7 +59,7 @@ const checks = [
   {
     file: "dist/calculadora-ir/index.html",
     required: [
-      'road-build" content="34.0.0"',
+      'road-build" content="35.0.0"',
       "Calculadora de IR 2026",
       "Rendimentos tributáveis do titular",
       "Número de dependentes",
@@ -77,7 +83,7 @@ const checks = [
   {
     file: "dist/a-road/index.html",
     required: [
-      'road-build" content="34.0.0"',
+      'road-build" content="35.0.0"',
       "F-2JRohFQdk",
       "youtube-lite",
       "Uma leitura inicial do patrimônio em poucos minutos.",
@@ -149,4 +155,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log("ROAD build verification OK — V34.0.0");
+console.log("ROAD build verification OK — V35.0.0");
