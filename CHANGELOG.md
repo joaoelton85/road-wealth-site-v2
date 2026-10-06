@@ -1,5 +1,19 @@
 # CHANGELOG — ROAD Wealth
 
+## V37 — 06/10/2026
+
+- Ticker simplificado para um único embed do TradingView em desktop e mobile, eliminando o modo `compact` e a possibilidade de voltar à composição em duas linhas.
+- Em falha ou demora do TradingView, o painel mantém a geometria e permanece em `Carregando cotações…`.
+- Criada reserva mínima à direita da barra apenas para o símbolo do TradingView; os indicadores terminam antes dela e não passam por trás da marca.
+- MERCADOS e DESTAQUE permanecem com exatamente a mesma largura, fonte, peso, espaçamento e alinhamento.
+- As três bolinhas passam a ficar dentro da área do banner imediatamente ao lado de DESTAQUE, e não sob a palavra nem em coluna independente.
+- O banner de Destaques deixa o fundo Areia e passa a usar Café com gradiente discreto, sem fotografias ou ilustrações.
+- A nota `B3 · 15 min de atraso | via TradingView` fica sem faixa, fundo ou borda, sobreposta discretamente abaixo do banner.
+- O conteúdo do Hero sobe no desktop.
+- O lema do Hero passa a três linhas: `Seu patrimônio,` / `seu caminho,` / `seu legado.`
+- Foto do Hero, Contato em Areia e demais páginas permanecem inalterados.
+- Marcador técnico atualizado para `ROAD_BUILD=37.0.0`.
+
 ## V36 — 06/10/2026
 
 - MERCADOS e DESTAQUE passam a usar exatamente a mesma largura de coluna, tamanho de fonte, peso, espaçamento entre letras, line-height e alinhamento horizontal.
