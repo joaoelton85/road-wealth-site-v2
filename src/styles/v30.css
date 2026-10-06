@@ -15,9 +15,7 @@
 }
 
 .road-highlights__inner{
-  max-width:var(--max);
   min-height:64px;
-  margin:0 auto;
   display:grid;
   grid-template-columns:126px minmax(0,1fr) auto;
   align-items:stretch;
