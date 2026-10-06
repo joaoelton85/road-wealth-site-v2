@@ -4,13 +4,19 @@ import RoadMandala from "../components/RoadMandala.astro";
 import RoadCallout from "../components/RoadCallout.astro";
 ---
 <BaseLayout title="ROAD Wealth®" description="ROAD Wealth — consultoria de investimentos e cuidado patrimonial com visão integrada.">
-  <section class="hero section section--sand" id="inicio">
-    <div class="eyebrow">ROAD WEALTH®</div>
-    <h1>Seu patrimônio, seu caminho, seu legado.</h1>
-    <p class="lead">Uma visão integrada para acompanhar as decisões que constroem, protegem e dão continuidade ao seu patrimônio.</p>
-    <div class="actions">
-      <a class="btn btn--primary" href="/a-road/">Conheça a ROAD</a>
-      <a class="btn btn--ghost" href="/patrimonio/">Como cuidamos do seu patrimônio</a>
+  <section class="hero hero--road-photo section" id="inicio">
+    <div class="hero-road-photo__media" aria-hidden="true">
+      <img src="/assets/road-hero-monaco.webp" alt="" width="1672" height="941" fetchpriority="high" decoding="async" />
+    </div>
+    <div class="hero-road-photo__veil" aria-hidden="true"></div>
+    <div class="hero-road-photo__content">
+      <div class="eyebrow eyebrow--light">ROAD WEALTH®</div>
+      <h1>Seu patrimônio, seu caminho, seu legado.</h1>
+      <p class="lead">Uma visão integrada para acompanhar as decisões que constroem, protegem e dão continuidade ao seu patrimônio.</p>
+      <div class="actions">
+        <a class="btn btn--sand" href="/a-road/">Conheça a ROAD</a>
+        <a class="btn btn--outline-light" href="/patrimonio/">Como cuidamos do seu patrimônio</a>
+      </div>
     </div>
   </section>
 
