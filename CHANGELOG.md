@@ -1,5 +1,21 @@
 # CHANGELOG — ROAD Wealth
 
+## V40 — 06/10/2026
+
+- Home reorganizada para explicar com clareza o que a ROAD faz logo na primeira navegação.
+- Lema passa a `Seu patrimônio, / seu legado, / seu caminho.`, reforçando a conexão final com o nome ROAD.
+- Hero passa a declarar: `Consultoria de Investimentos e planejamento patrimonial para famílias e negócios com patrimônio no Brasil e no exterior.`
+- Novo bloco de posicionamento destaca proximidade, clareza, cuidado, transparência e relacionamento de longo prazo.
+- Novo processo de planejamento em cinco etapas: Entender, Organizar, Planejar, Implementar e Acompanhar.
+- Investimentos, Legado, Estratégia e Decisões ganham definições mais claras; Estratégia passa a representar o plano financeiro e Decisões as escolhas patrimoniais relevantes ao longo do caminho.
+- Plataformas nacionais e internacionais passam a aparecer na Home para tornar evidente a estrutura multiplaforma.
+- Página A ROAD passa a operar como narrativa guiada em carrossel editorial com rotação de 15 segundos: Consultoria → Por que Wealth? → Origem da Marca → Quem somos → Propósito → Onde estamos → Faça parte da ROAD.
+- Removida a aba História.
+- Os quatro quadros de Como funciona a Consultoria recebem Café mais profundo para ganhar destaque sobre fundo claro.
+- O painel de Destaques recebe Café mais escuro, criando transição visual entre o ticker preto e o Hero.
+- Fundos claros e escuros foram redistribuídos para evitar concentração excessiva de Café.
+- Marcador técnico atualizado para `ROAD_BUILD=40.0.0`.
+
 ## V39 — 06/10/2026
 
 - Correção focada no carregamento do Ticker Tape mobile do TradingView.
