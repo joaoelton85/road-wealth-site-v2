@@ -4,14 +4,14 @@ const checks = [
   {
     file: "dist/__road-build.json",
     required: [
-      '"roadBuild": "39.0.0"',
+      '"roadBuild": "40.0.0"',
     ],
   },
   {
     file: "dist/index.html",
     required: [
-      'road-build" content="39.0.0"',
-      'data-road-build="39.0.0"',
+      'road-build" content="40.0.0"',
+      'data-road-build="40.0.0"',
       "CHECK-UP ROAD",
       "road-highlights",
       "road-highlights__slide",
@@ -23,6 +23,14 @@ const checks = [
       "Acompanhe mercados, juros, câmbio e ferramentas para suas decisões.",
       "hero--road-photo",
       "road-hero-caminho-v35.webp",
+      "Consultoria de Investimentos e planejamento patrimonial para famílias e negócios com patrimônio no Brasil e no exterior.",
+      "Proximidade para entender. Clareza para planejar. Cuidado para acompanhar.",
+      "PLANEJAMENTO FINANCEIRO",
+      "Um processo contínuo, não um documento isolado.",
+      "Quatro áreas. Uma leitura integrada do patrimônio.",
+      "Seu patrimônio pode estar onde fizer sentido para você.",
+      "platforms-block",
+      "Conheça a empresa por trás do caminho.",
       "road-market-note",
       "home-contact",
       "Entre em contato",
@@ -64,7 +72,7 @@ const checks = [
   {
     file: "dist/calculadora-ir/index.html",
     required: [
-      'road-build" content="39.0.0"',
+      'road-build" content="40.0.0"',
       "Calculadora de IR 2026",
       "Rendimentos tributáveis do titular",
       "Número de dependentes",
@@ -88,13 +96,26 @@ const checks = [
   {
     file: "dist/a-road/index.html",
     required: [
-      'road-build" content="39.0.0"',
+      'road-build" content="40.0.0"',
       "F-2JRohFQdk",
       "youtube-lite",
       "Uma leitura inicial do patrimônio em poucos minutos.",
       "road-callout-panel",
+      "data-road-story-carousel",
+      "Consultoria",
+      "Por que Wealth?",
+      "Origem da Marca",
+      "Quem somos",
+      "Propósito",
+      "Onde estamos",
+      "Faça parte da ROAD",
+      "roadCarouselProgress",
+      "15000",
+      "Diferentes instituições. Uma estratégia.",
     ],
     forbidden: [
+      "História",
+      "NOSSA HISTÓRIA",
       "CONHEÇA ENTRE RIOS",
       "Uma comunidade onde tradição, cultura e desenvolvimento caminham juntos.",
       "Um breve olhar sobre Entre Rios e a região que abriga a sede da ROAD.",
@@ -113,6 +134,8 @@ const checks = [
       "Entender melhor também faz parte de decidir melhor.",
       "road-callout-panel",
       "CHECK-UP ROAD",
+      "Objetivos transformados em um plano.",
+      "Escolhas que podem mudar o percurso.",
     ],
   },
   {
@@ -160,4 +183,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log("ROAD build verification OK — V39.0.0");
+console.log("ROAD build verification OK — V40.0.0");
