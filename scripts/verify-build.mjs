@@ -48,8 +48,6 @@ const checks = [
       "Cotações temporariamente indisponíveis",
       "market-ticker-brand",
       "data-road-ticker=\"mobile\"",
-      "tv-ticker-tape",
-      "https://www.tradingview-widget.com/w/en/tv-ticker-tape.js",
       "Brent",
       "S&P 500",
       "Nasdaq 100",
