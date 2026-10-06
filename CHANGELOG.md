@@ -1,5 +1,19 @@
 # CHANGELOG — ROAD Wealth
 
+## V42 — 06/10/2026
+
+- Publicado o Glossário ROAD em página própria dentro de Conhecimento.
+- Primeira versão com 153 verbetes em ordem alfabética, busca textual, filtro por tema e navegação A–Z.
+- Cada verbete usa linguagem didática com duas camadas: `O que é` e `Por que isso importa`.
+- Termos relacionados são conectados por `Veja também`, evitando definições isoladas quando os conceitos pertencem ao mesmo assunto.
+- Produtos de renda fixa bancária e privada exibem, quando aplicável, emissor/estrutura e indicação simplificada de cobertura do FGC.
+- Incluídos os indicadores e tickers citados no site: IBOV, IFIX, SMLL, IVVB11, USD, EUR, USD/BRL, EUR/BRL, Bitcoin, Ouro e contratos DI Jan/30 e DI Jan/35.
+- Incluídos conceitos de renda fixa, crédito privado, FIDC, estruturas subordinadas, fundos, estratégias de ações, câmbio, bancos, previdência, tributação, custos e modelos de remuneração.
+- Letra Financeira diferencia emissões com e sem subordinação e menciona, de forma didática, estruturas de Nível II e Capital Complementar, sem transformar o glossário em material regulatório.
+- Conteúdo contra-checado com B3, ANBIMA, Banco Central, Portal do Investidor/CVM, FGC, SUSEP e fontes primárias de produtos.
+- Página Conhecimento passa a apontar diretamente para o Glossário ROAD.
+- Marcador técnico atualizado para `ROAD_BUILD=42.0.0`.
+
 ## V41 — 06/10/2026
 
 - Revisão pontual da linguagem pública para separar posicionamento interno de comunicação externa.
