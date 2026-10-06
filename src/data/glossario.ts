@@ -92,6 +92,21 @@ export const glossaryItems: GlossaryItem[] = [
     ]
   },
   {
+    "term": "B3",
+    "definition": "É a principal infraestrutura do mercado de capitais brasileiro, onde são negociados e registrados diversos ativos e contratos.",
+    "why": "É na B3 que aparecem referências como Ibovespa, IFIX, SMLL e os contratos futuros de DI mostrados no site.",
+    "tags": [
+      "Mercado",
+      "Bolsa"
+    ],
+    "related": [
+      "IBOV",
+      "IFIX",
+      "SMLL",
+      "DI Futuro"
+    ]
+  },
+  {
     "term": "BDR",
     "definition": "É um certificado negociado no Brasil que representa valores mobiliários emitidos no exterior, como ações ou ETFs estrangeiros.",
     "why": "Permite exposição a ativos internacionais por meio da infraestrutura do mercado brasileiro.",
@@ -430,7 +445,8 @@ export const glossaryItems: GlossaryItem[] = [
       "CRI",
       "Crédito privado",
       "Risco de crédito",
-      "Securitização"
+      "Securitização",
+      "Securitizadora"
     ]
   },
   {
@@ -489,7 +505,8 @@ export const glossaryItems: GlossaryItem[] = [
       "CRA",
       "Crédito privado",
       "Risco de crédito",
-      "Securitização"
+      "Securitização",
+      "Securitizadora"
     ]
   },
   {
@@ -977,6 +994,7 @@ export const glossaryItems: GlossaryItem[] = [
     ],
     "related": [
       "Ação",
+      "Unit",
       "Benchmark",
       "SMLL"
     ]
@@ -1147,6 +1165,7 @@ export const glossaryItems: GlossaryItem[] = [
     "related": [
       "ETF",
       "Ticker",
+      "S&P 500",
       "Exposição cambial",
       "USD"
     ]
@@ -1194,14 +1213,14 @@ export const glossaryItems: GlossaryItem[] = [
   },
   {
     "term": "LC",
-    "definition": "Letra de Câmbio. Apesar do nome, não é investimento em moeda estrangeira. É um título de renda fixa emitido por sociedades de crédito, financiamento e investimento.",
+    "definition": "Letra de Câmbio. Apesar do nome, não é investimento em moeda estrangeira. É um título de renda fixa emitido por financeiras para captar recursos.",
     "why": "Funciona como instrumento de captação da instituição emissora e pode contar com cobertura do FGC dentro das regras vigentes.",
     "tags": [
       "Renda fixa",
       "Bancário"
     ],
     "fgc": "SIM",
-    "issuer": "Sociedade de crédito, financiamento e investimento",
+    "issuer": "Financeira autorizada a emitir LC",
     "related": [
       "CDB",
       "FGC",
@@ -1243,7 +1262,7 @@ export const glossaryItems: GlossaryItem[] = [
   {
     "term": "Letra Financeira",
     "definition": "É um título de renda fixa emitido por instituições financeiras, geralmente usado para captação de prazo mais longo. Pode existir com ou sem cláusula de subordinação, conforme a emissão.",
-    "why": "Não conta com garantia do FGC. Em Letras Financeiras subordinadas usadas no capital regulatório podem existir estruturas de Nível II e de Capital Complementar: em uma situação extrema, a prioridade de pagamento é diferente e deve ser lida nas condições da emissão.",
+    "why": "Não conta com garantia do FGC. Algumas emissões subordinadas são usadas como parte da estrutura de proteção de capital da instituição e podem ser classificadas, entre outras formas, como Nível II ou Capital Complementar; isso muda a prioridade de pagamento em uma situação extrema.",
     "tags": [
       "Renda fixa",
       "Bancário"
@@ -1384,7 +1403,7 @@ export const glossaryItems: GlossaryItem[] = [
   {
     "term": "Opção",
     "definition": "É um derivativo que dá ao comprador um direito relacionado à compra ou venda de um ativo em condições definidas, enquanto o vendedor assume uma obrigação correspondente.",
-    "why": "Pode ser usada para proteção ou estratégias específicas, mas exige atenção ao prazo, preço de exercício e risco.",
+    "why": "Pode ser usada para proteção ou estratégias específicas, mas exige atenção às condições do contrato, ao prazo e ao risco envolvido.",
     "tags": [
       "Mercado",
       "Derivativos"
@@ -1667,6 +1686,20 @@ export const glossaryItems: GlossaryItem[] = [
     ]
   },
   {
+    "term": "S&P 500",
+    "definition": "É um dos principais índices do mercado de ações dos Estados Unidos e acompanha aproximadamente 500 grandes empresas listadas naquele mercado.",
+    "why": "É a referência acompanhada pelo IVVB11 e por diversos fundos e ETFs internacionais.",
+    "tags": [
+      "Mercados & índices",
+      "Exterior"
+    ],
+    "related": [
+      "IVVB11",
+      "ETF",
+      "Benchmark"
+    ]
+  },
+  {
     "term": "SAC",
     "definition": "Sistema de Amortização Constante. É um modelo de financiamento em que a amortização do principal é constante e as parcelas tendem a diminuir ao longo do tempo.",
     "why": "Pode ter comportamento diferente da Tabela Price, principalmente na evolução das parcelas e do saldo devedor.",
@@ -1720,6 +1753,20 @@ export const glossaryItems: GlossaryItem[] = [
     ]
   },
   {
+    "term": "Securitizadora",
+    "definition": "É uma empresa que estrutura operações transformando direitos de recebimento em títulos que podem ser adquiridos por investidores.",
+    "why": "É comum encontrar securitizadoras em operações de CRI e CRA.",
+    "tags": [
+      "Crédito estruturado",
+      "Crédito privado"
+    ],
+    "related": [
+      "Securitização",
+      "CRI",
+      "CRA"
+    ]
+  },
+  {
     "term": "Selic",
     "definition": "É a taxa básica de juros da economia brasileira e uma referência central para crédito, renda fixa e política monetária.",
     "why": "Mudanças na Selic influenciam o custo do dinheiro e a atratividade relativa de diversos investimentos.",
@@ -1748,6 +1795,19 @@ export const glossaryItems: GlossaryItem[] = [
     ]
   },
   {
+    "term": "Small caps",
+    "definition": "Expressão usada para empresas de menor valor de mercado quando comparadas às maiores companhias listadas em bolsa.",
+    "why": "No Brasil, o SMLL é uma das referências para acompanhar esse grupo de empresas.",
+    "tags": [
+      "Bolsa",
+      "Mercados & índices"
+    ],
+    "related": [
+      "SMLL",
+      "Ação"
+    ]
+  },
+  {
     "term": "SMLL",
     "definition": "Índice Small Cap da B3. Acompanha uma carteira teórica de ações e units de empresas de menor capitalização que atendem aos critérios do índice.",
     "why": "É uma referência para observar o comportamento das small caps brasileiras.",
@@ -1756,6 +1816,7 @@ export const glossaryItems: GlossaryItem[] = [
       "Bolsa"
     ],
     "related": [
+      "Small caps",
       "IBOV",
       "Benchmark",
       "Ação"
@@ -1998,6 +2059,20 @@ export const glossaryItems: GlossaryItem[] = [
       "Tesouro Direto",
       "Marcação a mercado",
       "IMA-B"
+    ]
+  },
+  {
+    "term": "Unit",
+    "definition": "É um certificado negociado em bolsa que reúne, em uma única unidade, mais de uma classe de valores mobiliários de uma mesma companhia.",
+    "why": "Alguns índices da B3 podem incluir units junto com ações, conforme suas metodologias.",
+    "tags": [
+      "Bolsa",
+      "Mercado"
+    ],
+    "related": [
+      "Ação",
+      "IBOV",
+      "SMLL"
     ]
   },
   {
