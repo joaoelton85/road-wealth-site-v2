@@ -1,5 +1,18 @@
 # CHANGELOG — ROAD Wealth
 
+## V35 — 06/10/2026
+
+- Hero da Home atualizado para a composição aprovada com caminho claramente visível conduzindo à igreja, preservando o destaque sutil de luz sobre a construção e recortes responsivos.
+- MERCADOS e DESTAQUE passam a compartilhar o mesmo eixo esquerdo e a mesma largura de identificação, reforçando a uniformidade do topo.
+- A palavra DESTAQUE ganha maior presença visual e os indicadores de alternância passam a ficar integrados ao próprio bloco Café, sem caixa separada à direita.
+- O primeiro destaque passa a convidar: `Como está seu planejamento financeiro? Faça um teste rápido e receba seu diagnóstico.`
+- Destaques recebem fundos editoriais discretos por assunto: caminho/diagnóstico no Check-up, referência ao Leão e documentos no IR e terminal/gráficos em Mercados & Ferramentas.
+- A faixa de Destaques passa a integrar o topo fixo junto ao painel de indicadores.
+- A nota `B3 · 15 min de atraso | via TradingView` passa para imediatamente abaixo do bloco de Destaques, eliminando o conflito visual com o ticker.
+- O bloco Contato da Home passa de Café para Areia, recuperando a alternância visual entre as seções.
+- A lógica e os símbolos do ticker permanecem inalterados.
+- Marcador técnico atualizado para `ROAD_BUILD=35.0.0`.
+
 ## V34 — 06/10/2026
 
 - Correção técnica final do verificador de build, sem qualquer alteração visual.
