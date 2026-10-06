@@ -3,6 +3,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import MarketTicker from "../components/MarketTicker.astro";
 import MarketTools from "../components/MarketTools.astro";
+import RoadHighlights from "../components/RoadHighlights.astro";
 import "../styles/global.css";
 import "../styles/v16.css";
 import "../styles/v17.css";
@@ -12,7 +13,8 @@ import "../styles/v21.css";
 import "../styles/v23.css";
 import "../styles/v24.css";
 import "../styles/v25.css";
-const BUILD_VERSION = "29.0.0";
+import "../styles/v30.css";
+const BUILD_VERSION = "30.0.0";
 const { title = "ROAD Wealth®", description = "ROAD Wealth — consultoria de investimentos e cuidado patrimonial com visão integrada.", active = "", noindex = true } = Astro.props;
 ---
 <!doctype html>
@@ -39,7 +41,10 @@ const { title = "ROAD Wealth®", description = "ROAD Wealth — consultoria de i
       <Header active={active} />
       <MarketTicker />
     </div>
-    <main><slot /></main>
+    <main>
+      <RoadHighlights />
+      <slot />
+    </main>
     <Footer />
     <MarketTools />
     <script is:inline>
