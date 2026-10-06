@@ -56,30 +56,73 @@
 </div>
 
 <script is:inline>
-  const utilityPanel=document.getElementById('utility-panel');
-  const utilityOverlay=document.getElementById('utility-overlay');
-  const utilityTab=document.getElementById('utility-tab');
-  const mobileUtility=document.getElementById('mobile-utility');
-  const utilityClose=document.getElementById('utility-close');
-  const openUtility=()=>{utilityPanel?.classList.add('open');utilityOverlay?.classList.add('open');utilityPanel?.setAttribute('aria-hidden','false')};
-  const closeUtility=()=>{utilityPanel?.classList.remove('open');utilityOverlay?.classList.remove('open');utilityPanel?.setAttribute('aria-hidden','true')};
-  utilityTab?.addEventListener('click',openUtility);
-  mobileUtility?.addEventListener('click',openUtility);
-  utilityClose?.addEventListener('click',closeUtility);
-  utilityOverlay?.addEventListener('click',closeUtility);
-  document.addEventListener('click',event=>{
-    const trigger=event.target instanceof Element ? event.target.closest('.js-open-market-tools') : null;
-    if(trigger){
-      event.preventDefault();
-      openUtility();
-    }
-  });
+  (()=>{
+    if(window.__roadMarketToolsBound) return;
+    window.__roadMarketToolsBound=true;
 
-  const modal=document.getElementById('modal');
-  const modalMsg=document.getElementById('modal-message');
-  const modalClose=document.getElementById('modal-close');
-  const showModal=(msg)=>{if(modalMsg) modalMsg.textContent=msg;if(modal) modal.hidden=false};
-  modalClose?.addEventListener('click',()=>{if(modal) modal.hidden=true});
-  modal?.addEventListener('click',e=>{if(e.target===modal) modal.hidden=true});
-  document.querySelectorAll('.js-placeholder').forEach(b=>b.addEventListener('click',()=>showModal(b.dataset.message||'Recurso em preparação.')));
+    const openUtility=()=>{
+      const panel=document.getElementById('utility-panel');
+      const overlay=document.getElementById('utility-overlay');
+      panel?.classList.add('open');
+      overlay?.classList.add('open');
+      panel?.setAttribute('aria-hidden','false');
+    };
+
+    const closeUtility=()=>{
+      const panel=document.getElementById('utility-panel');
+      const overlay=document.getElementById('utility-overlay');
+      panel?.classList.remove('open');
+      overlay?.classList.remove('open');
+      panel?.setAttribute('aria-hidden','true');
+    };
+
+    const showModal=message=>{
+      const modal=document.getElementById('modal');
+      const modalMsg=document.getElementById('modal-message');
+      if(modalMsg) modalMsg.textContent=message;
+      if(modal) modal.hidden=false;
+    };
+
+    const closeModal=()=>{
+      const modal=document.getElementById('modal');
+      if(modal) modal.hidden=true;
+    };
+
+    document.addEventListener('click',event=>{
+      const target=event.target instanceof Element ? event.target : null;
+      if(!target) return;
+
+      if(target.closest('#utility-tab,#mobile-utility,.js-open-market-tools')){
+        event.preventDefault();
+        openUtility();
+        return;
+      }
+
+      if(target.closest('#utility-close') || target.matches('#utility-overlay')){
+        closeUtility();
+        return;
+      }
+
+      const placeholder=target.closest('.js-placeholder');
+      if(placeholder){
+        event.preventDefault();
+        showModal(placeholder.getAttribute('data-message') || 'Recurso em preparação.');
+        return;
+      }
+
+      if(target.closest('#modal-close')){
+        closeModal();
+        return;
+      }
+
+      const modal=document.getElementById('modal');
+      if(target===modal) closeModal();
+    });
+
+    document.addEventListener('keydown',event=>{
+      if(event.key!=='Escape') return;
+      closeUtility();
+      closeModal();
+    });
+  })();
 </script>
