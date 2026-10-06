@@ -92,3 +92,169 @@
   .presence-photo img{height:auto;aspect-ratio:16/10}.presence-photo figcaption small{margin-top:4px}
   .map-card--square{width:min(100%,300px)}.presence-bottom{max-width:none}
 }
+
+
+/* V40 — A ROAD como narrativa guiada, com contraste equilibrado. */
+.road-story-carousel{
+  position:relative;
+  background:var(--sand);
+}
+
+.page-nav-wrap{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:center;
+  gap:18px;
+}
+
+.road-carousel-status{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex:0 0 auto;
+  color:rgba(243,236,227,.64);
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:9px;
+  letter-spacing:.08em;
+  white-space:nowrap;
+}
+
+.road-carousel-track{
+  position:relative;
+  width:76px;
+  height:1px;
+  overflow:hidden;
+  background:rgba(243,236,227,.18);
+}
+
+.road-carousel-track span{
+  position:absolute;
+  inset:0 auto 0 0;
+  width:0;
+  background:var(--sand);
+}
+
+@keyframes roadCarouselProgress{
+  from{width:0}
+  to{width:100%}
+}
+
+.chapter-section{
+  min-height:clamp(420px,54vh,680px);
+}
+
+.chapter-section h1{
+  max-width:980px;
+  margin-bottom:18px;
+}
+
+.chapter-support{
+  max-width:920px;
+  margin:0;
+  font-size:15.5px;
+  line-height:1.58;
+  color:rgba(72,58,47,.74);
+}
+
+/* Consultoria: fundo claro para respirar; as quatro etapas recebem Café profundo. */
+.chapter-section--consultoria{
+  background:var(--sand);
+  color:var(--coffee);
+}
+
+.chapter-section--consultoria .consult-flow{
+  margin-top:30px;
+}
+
+.chapter-section--consultoria .flow-box{
+  min-height:156px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  padding:18px;
+  background:#3A3028;
+  color:var(--sand);
+  border:1px solid rgba(36,31,27,.12);
+  box-shadow:0 10px 24px rgba(36,31,27,.08);
+}
+
+.chapter-section--consultoria .flow-box span{
+  background:var(--sand);
+  color:#3A3028;
+}
+
+.chapter-section--consultoria .flow-box strong{
+  font-size:15px;
+}
+
+.chapter-section--consultoria .flow-box small{
+  margin-top:6px;
+  color:rgba(243,236,227,.76);
+  line-height:1.45;
+}
+
+/* Quem somos permanece leve, evitando uma sequência excessiva de blocos escuros. */
+#socios .team-card{
+  border-top-color:rgba(72,58,47,.18);
+}
+
+/* Onde estamos agora vive sobre fundo claro. */
+.presence-photo--light figcaption{
+  color:var(--coffee);
+}
+
+.presence-photo--light figcaption small{
+  color:rgba(72,58,47,.56);
+}
+
+.presence-bottom--light{
+  border-top-color:rgba(72,58,47,.16);
+}
+
+.presence-address--light{
+  border-top-color:rgba(72,58,47,.16);
+  color:rgba(72,58,47,.78);
+}
+
+.presence-address--light>strong{
+  color:var(--coffee);
+}
+
+#presenca .map-card{
+  border-color:rgba(72,58,47,.18);
+}
+
+@media(max-width:900px){
+  .page-nav-wrap{
+    grid-template-columns:1fr;
+    gap:0;
+    padding-bottom:7px;
+  }
+
+  .road-carousel-status{
+    justify-content:flex-end;
+    padding-top:4px;
+  }
+
+  .road-carousel-track{
+    width:64px;
+  }
+}
+
+@media(max-width:760px){
+  .chapter-section{
+    min-height:0;
+  }
+
+  .chapter-section--consultoria .flow-box{
+    min-height:0;
+  }
+
+  .road-carousel-status{
+    font-size:8.5px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .road-carousel-track span{animation:none!important}
+}
