@@ -1,68 +1,31 @@
----
-const { variant = "desktop" } = Astro.props;
-const mobile = variant === "mobile";
----
-<div class:list={["road-highlights", mobile ? "road-highlights--mobile" : "road-highlights--desktop"]} aria-label="Destaque" data-road-highlights>
-  {mobile ? (
-    <div class="road-highlights-mobile__stage">
-      <a class="road-highlights-mobile__slide is-active" data-highlight-slide aria-hidden="false" href="/patrimonio/#checkup-road">
-        <span class="road-highlights-mobile__label">DESTAQUE</span>
-        <strong>CHECK-UP ROAD <span aria-hidden="true">→</span></strong>
+<section class="road-highlights" aria-label="Destaques" data-road-highlights>
+  <div class="road-highlights__inner">
+    <div class="road-highlights__label" aria-hidden="true">DESTAQUE</div>
+
+    <div class="road-highlights__stage">
+      <a class="road-highlights__slide is-active" data-highlight-slide aria-hidden="false" href="/patrimonio/#checkup-road">
+        <span>Faça seu Check-up ROAD</span>
+        <span class="road-highlights__arrow" aria-hidden="true">→</span>
       </a>
-      <a class="road-highlights-mobile__slide" data-highlight-slide aria-hidden="true" href="/calculadora-ir/">
-        <span class="road-highlights-mobile__label">DESTAQUE</span>
-        <strong>CALCULADORA DE IR <span aria-hidden="true">→</span></strong>
+
+      <a class="road-highlights__slide" data-highlight-slide aria-hidden="true" href="/calculadora-ir/">
+        <span>Simule seu IR 2026</span>
+        <span class="road-highlights__arrow" aria-hidden="true">→</span>
       </a>
-      <button class="road-highlights-mobile__slide js-open-market-tools" data-highlight-slide aria-hidden="true" type="button">
-        <span class="road-highlights-mobile__label">DESTAQUE</span>
-        <strong>MERCADOS &amp; FERRAMENTAS <span aria-hidden="true">→</span></strong>
+
+      <button class="road-highlights__slide js-open-market-tools" data-highlight-slide aria-hidden="true" type="button">
+        <span>Explore Mercados &amp; Ferramentas</span>
+        <span class="road-highlights__arrow" aria-hidden="true">→</span>
       </button>
     </div>
-  ) : (
-    <div class="road-highlights__inner">
-      <div class="road-highlights__label" aria-hidden="true">DESTAQUE</div>
 
-      <div class="road-highlights__stage">
-        <article class="road-highlights__slide is-active" data-highlight-slide aria-hidden="false">
-          <div class="road-highlights__copy">
-            <span class="road-highlights__kicker">CHECK-UP ROAD</span>
-            <strong class="road-highlights__title">Como está organizado o seu patrimônio?</strong>
-            <span class="road-highlights__text">Uma leitura inicial em 16 perguntas, cerca de 3 minutos.</span>
-          </div>
-          <a class="road-highlights__cta" href="/patrimonio/#checkup-road">Fazer Check-up <span aria-hidden="true">→</span></a>
-        </article>
-
-        <article class="road-highlights__slide" data-highlight-slide aria-hidden="true">
-          <div class="road-highlights__copy">
-            <span class="road-highlights__kicker">CALCULADORA DE IR 2026</span>
-            <strong class="road-highlights__title">Quanto ainda pode fazer sentido aportar ou destinar este ano?</strong>
-            <span class="road-highlights__text">Compare deduções, PGBL e referências para incentivos fiscais.</span>
-          </div>
-          <a class="road-highlights__cta" href="/calculadora-ir/">Simular agora <span aria-hidden="true">→</span></a>
-        </article>
-
-        <article class="road-highlights__slide" data-highlight-slide aria-hidden="true">
-          <div class="road-highlights__copy">
-            <span class="road-highlights__kicker">MERCADOS &amp; FERRAMENTAS</span>
-            <strong class="road-highlights__title">Indicadores, taxas e referências em um único ambiente.</strong>
-            <span class="road-highlights__text">Acompanhe mercados e acesse ferramentas úteis para suas decisões.</span>
-          </div>
-          <button class="road-highlights__cta js-open-market-tools" type="button">Acessar <span aria-hidden="true">→</span></button>
-        </article>
-      </div>
-
-      <div class="road-highlights__controls" aria-label="Navegar pelos destaques">
-        <button class="road-highlights__arrow" type="button" data-highlight-prev aria-label="Destaque anterior">‹</button>
-        <div class="road-highlights__dots" aria-hidden="true">
-          <span class="is-active" data-highlight-dot></span>
-          <span data-highlight-dot></span>
-          <span data-highlight-dot></span>
-        </div>
-        <button class="road-highlights__arrow" type="button" data-highlight-next aria-label="Próximo destaque">›</button>
-      </div>
+    <div class="road-highlights__dots" aria-label="Escolher destaque">
+      <button class="is-active" data-highlight-dot type="button" aria-label="Mostrar Check-up ROAD"></button>
+      <button data-highlight-dot type="button" aria-label="Mostrar Calculadora de IR 2026"></button>
+      <button data-highlight-dot type="button" aria-label="Mostrar Mercados & Ferramentas"></button>
     </div>
-  )}
-</div>
+  </div>
+</section>
 
 <script is:inline>
   (()=>{
@@ -73,8 +36,6 @@ const mobile = variant === "mobile";
 
       const slides=[...root.querySelectorAll('[data-highlight-slide]')];
       const dots=[...root.querySelectorAll('[data-highlight-dot]')];
-      const prev=root.querySelector('[data-highlight-prev]');
-      const next=root.querySelector('[data-highlight-next]');
       const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
       let index=0;
       let timer=0;
@@ -88,11 +49,11 @@ const mobile = variant === "mobile";
           slide.classList.toggle('is-active',active);
           slide.setAttribute('aria-hidden',active ? 'false' : 'true');
           if(slide instanceof HTMLElement) slide.tabIndex=active ? 0 : -1;
-          slide.querySelectorAll('a,button').forEach(el=>{
-            if(el instanceof HTMLElement) el.tabIndex=active ? 0 : -1;
-          });
         });
-        dots.forEach((dot,i)=>dot.classList.toggle('is-active',i===index));
+        dots.forEach((dot,i)=>{
+          dot.classList.toggle('is-active',i===index);
+          dot.setAttribute('aria-current',i===index ? 'true' : 'false');
+        });
       };
 
       const stop=()=>{
@@ -106,8 +67,10 @@ const mobile = variant === "mobile";
         timer=window.setInterval(()=>render(index+1),7000);
       };
 
-      prev?.addEventListener('click',()=>{render(index-1);start()});
-      next?.addEventListener('click',()=>{render(index+1);start()});
+      dots.forEach((dot,i)=>dot.addEventListener('click',()=>{
+        render(i);
+        start();
+      }));
 
       root.addEventListener('mouseenter',()=>{paused=true;stop()});
       root.addEventListener('mouseleave',()=>{paused=false;start()});
