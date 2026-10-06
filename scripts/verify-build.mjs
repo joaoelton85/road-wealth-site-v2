@@ -2,16 +2,52 @@ import { existsSync, readFileSync } from "node:fs";
 
 const checks = [
   {
+    file: "src/layouts/BaseLayout.astro",
+    required: [
+      'import { ClientRouter } from "astro:transitions";',
+      'transition:animate="none"',
+      '<ClientRouter fallback="swap" />',
+      'transition:persist="road-site-top"',
+      "astro:after-swap",
+      "astro:page-load",
+      "__roadPersistentShellBound",
+    ],
+  },
+  {
+    file: "src/components/MarketTicker.astro",
+    required: [
+      "displayMode:'regular'",
+    ],
+    forbidden: [
+      "displayMode:'adaptive'",
+    ],
+  },
+  {
+    file: "src/components/Header.astro",
+    required: [
+      'data-road-nav="a-road"',
+      'data-road-nav="conhecimento"',
+      "__roadHeaderBound",
+    ],
+  },
+  {
+    file: "src/components/MarketTools.astro",
+    required: [
+      "__roadMarketToolsBound",
+      ".js-placeholder",
+    ],
+  },
+  {
     file: "dist/__road-build.json",
     required: [
-      '"roadBuild": "42.0.0"',
+      '"roadBuild": "43.0.0"',
     ],
   },
   {
     file: "dist/index.html",
     required: [
-      'road-build" content="42.0.0"',
-      'data-road-build="42.0.0"',
+      'road-build" content="43.0.0"',
+      'data-road-build="43.0.0"',
       "CHECK-UP ROAD",
       "road-highlights",
       "road-highlights__slide",
@@ -48,7 +84,7 @@ const checks = [
       "DI Jan/30",
       "DI Jan/35",
       "Carregando cotações…",
-      "displayMode:'adaptive'",
+      "displayMode:'regular'",
       "isTransparent:true",
       "https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js",
       "https://www.tradingview-widget.com/w/en/tv-ticker-tape.js",
@@ -74,7 +110,7 @@ const checks = [
   {
     file: "dist/calculadora-ir/index.html",
     required: [
-      'road-build" content="42.0.0"',
+      'road-build" content="43.0.0"',
       "Calculadora de IR 2026",
       "Rendimentos tributáveis do titular",
       "Número de dependentes",
@@ -98,7 +134,7 @@ const checks = [
   {
     file: "dist/a-road/index.html",
     required: [
-      'road-build" content="42.0.0"',
+      'road-build" content="43.0.0"',
       "F-2JRohFQdk",
       "youtube-lite",
       "Uma leitura inicial do patrimônio em poucos minutos.",
@@ -153,7 +189,7 @@ const checks = [
   {
     file: "dist/glossario/index.html",
     required: [
-      'road-build" content="42.0.0"',
+      'road-build" content="43.0.0"',
       "GLOSSÁRIO ROAD",
       "Finanças não precisam parecer uma língua estrangeira.",
       "153 verbetes",
@@ -216,4 +252,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log("ROAD build verification OK — V42.0.0");
+console.log("ROAD build verification OK — V43.0.0");
