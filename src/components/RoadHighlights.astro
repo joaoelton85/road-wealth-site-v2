@@ -1,0 +1,110 @@
+<section class="road-highlights" aria-label="Destaques ROAD" data-road-highlights>
+  <div class="road-highlights__inner">
+    <div class="road-highlights__label" aria-hidden="true">
+      <span>DESTAQUES</span>
+      <strong>ROAD</strong>
+    </div>
+
+    <div class="road-highlights__stage">
+      <article class="road-highlights__slide is-active" data-highlight-slide aria-hidden="false">
+        <div class="road-highlights__copy">
+          <span class="road-highlights__kicker">CHECK-UP ROAD</span>
+          <strong class="road-highlights__title">Como está organizado o seu patrimônio?</strong>
+          <span class="road-highlights__text">Uma leitura inicial em 16 perguntas, cerca de 3 minutos.</span>
+        </div>
+        <a class="road-highlights__cta" href="/patrimonio/#checkup-road">Fazer Check-up <span aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="road-highlights__slide" data-highlight-slide aria-hidden="true">
+        <div class="road-highlights__copy">
+          <span class="road-highlights__kicker">CALCULADORA DE IR 2026</span>
+          <strong class="road-highlights__title">Quanto ainda pode fazer sentido aportar ou destinar este ano?</strong>
+          <span class="road-highlights__text">Compare deduções, PGBL e referências para incentivos fiscais.</span>
+        </div>
+        <a class="road-highlights__cta" href="/calculadora-ir/">Simular agora <span aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="road-highlights__slide" data-highlight-slide aria-hidden="true">
+        <div class="road-highlights__copy">
+          <span class="road-highlights__kicker">MERCADOS &amp; FERRAMENTAS</span>
+          <strong class="road-highlights__title">Indicadores, taxas e referências em um único ambiente.</strong>
+          <span class="road-highlights__text">Acompanhe mercados e acesse ferramentas úteis para suas decisões.</span>
+        </div>
+        <button class="road-highlights__cta js-open-market-tools" type="button">Acessar <span aria-hidden="true">→</span></button>
+      </article>
+    </div>
+
+    <div class="road-highlights__controls" aria-label="Navegar pelos destaques">
+      <button class="road-highlights__arrow" type="button" data-highlight-prev aria-label="Destaque anterior">‹</button>
+      <div class="road-highlights__dots" aria-hidden="true">
+        <span class="is-active" data-highlight-dot></span>
+        <span data-highlight-dot></span>
+        <span data-highlight-dot></span>
+      </div>
+      <button class="road-highlights__arrow" type="button" data-highlight-next aria-label="Próximo destaque">›</button>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (()=>{
+    const roots=document.querySelectorAll('[data-road-highlights]');
+    roots.forEach(root=>{
+      if(!(root instanceof HTMLElement) || root.dataset.highlightsReady==='1') return;
+      root.dataset.highlightsReady='1';
+
+      const slides=[...root.querySelectorAll('[data-highlight-slide]')];
+      const dots=[...root.querySelectorAll('[data-highlight-dot]')];
+      const prev=root.querySelector('[data-highlight-prev]');
+      const next=root.querySelector('[data-highlight-next]');
+      const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+      let index=0;
+      let timer=0;
+      let paused=false;
+
+      const render=(target)=>{
+        if(!slides.length) return;
+        index=(target+slides.length)%slides.length;
+        slides.forEach((slide,i)=>{
+          const active=i===index;
+          slide.classList.toggle('is-active',active);
+          slide.setAttribute('aria-hidden',active ? 'false' : 'true');
+          slide.querySelectorAll('a,button').forEach(el=>{
+            if(el instanceof HTMLElement) el.tabIndex=active ? 0 : -1;
+          });
+        });
+        dots.forEach((dot,i)=>dot.classList.toggle('is-active',i===index));
+      };
+
+      const stop=()=>{
+        if(timer) window.clearInterval(timer);
+        timer=0;
+      };
+
+      const start=()=>{
+        stop();
+        if(paused || reduced.matches || slides.length<2) return;
+        timer=window.setInterval(()=>render(index+1),7000);
+      };
+
+      prev?.addEventListener('click',()=>{render(index-1);start()});
+      next?.addEventListener('click',()=>{render(index+1);start()});
+
+      root.addEventListener('mouseenter',()=>{paused=true;stop()});
+      root.addEventListener('mouseleave',()=>{paused=false;start()});
+      root.addEventListener('focusin',()=>{paused=true;stop()});
+      root.addEventListener('focusout',event=>{
+        if(event.relatedTarget instanceof Node && root.contains(event.relatedTarget)) return;
+        paused=false;
+        start();
+      });
+
+      const onReducedChange=()=>start();
+      if(typeof reduced.addEventListener==='function') reduced.addEventListener('change',onReducedChange);
+      else if(typeof reduced.addListener==='function') reduced.addListener(onReducedChange);
+
+      render(0);
+      start();
+    });
+  })();
+</script>
