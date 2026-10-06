@@ -4,6 +4,7 @@ import Footer from "../components/Footer.astro";
 import MarketTicker from "../components/MarketTicker.astro";
 import MarketTools from "../components/MarketTools.astro";
 import RoadHighlights from "../components/RoadHighlights.astro";
+import { ClientRouter } from "astro:transitions";
 import "../styles/global.css";
 import "../styles/v16.css";
 import "../styles/v17.css";
@@ -25,7 +26,7 @@ const BUILD_VERSION = "42.0.0";
 const { title = "ROAD Wealth®", description = "ROAD Wealth — consultoria de investimentos e cuidado patrimonial com visão integrada.", active = "", noindex = true } = Astro.props;
 ---
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" transition:animate="none">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -43,9 +44,10 @@ const { title = "ROAD Wealth®", description = "ROAD Wealth — consultoria de i
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@400;500;600&family=Questrial&display=swap" rel="stylesheet" />
     <title>{title}</title>
+    <ClientRouter fallback="swap" />
   </head>
   <body data-road-build={BUILD_VERSION}>
-    <div class="site-top-stack" id="site-top-stack">
+    <div class="site-top-stack" id="site-top-stack" transition:persist="road-site-top">
       <Header active={active} />
       <MarketTicker />
       <RoadHighlights />
@@ -59,44 +61,101 @@ const { title = "ROAD Wealth®", description = "ROAD Wealth — consultoria de i
     <Footer />
     <MarketTools />
     <script is:inline>
-      const stack=document.getElementById('site-top-stack');
-      const root=document.documentElement;
-      const syncStickyTop=()=>{
-        if(!stack) return;
-        root.style.setProperty('--sticky-top',`${Math.ceil(stack.getBoundingClientRect().height)}px`);
-      };
-      syncStickyTop();
-      if('ResizeObserver' in window && stack){
-        new ResizeObserver(syncStickyTop).observe(stack);
-      }
-      window.addEventListener('resize',syncStickyTop,{passive:true});
+      (()=>{
+        if(window.__roadPersistentShellBound) return;
+        window.__roadPersistentShellBound=true;
 
-      const tickerNote=document.querySelector('.market-ticker-note');
-      const main=document.querySelector('main');
-      let tickerToneFrame=0;
-      const syncTickerNoteTone=()=>{
-        if(!tickerNote || !main) return;
-        const y=Math.ceil(stack?.getBoundingClientRect().height || 0)+8;
-        const x=Math.max(12,window.innerWidth-40);
-        const layer=document.elementsFromPoint(x,y);
-        const surface=layer.map(el=>el.closest?.('.section,.road-callout')).find(Boolean)
-          || [...main.querySelectorAll('.section,.road-callout')].find(el=>!el.hidden && getComputedStyle(el).display!=='none');
-        const dark=surface?.matches('.section--coffee,.section--petrol,.section--olive,.road-callout--petrol,.hero--road-photo') ?? false;
-        tickerNote.classList.toggle('is-on-dark',dark);
-      };
-      const requestTickerNoteTone=()=>{
-        if(tickerToneFrame) return;
-        tickerToneFrame=requestAnimationFrame(()=>{
-          tickerToneFrame=0;
-          syncTickerNoteTone();
-        });
-      };
-      syncTickerNoteTone();
-      window.addEventListener('scroll',requestTickerNoteTone,{passive:true});
-      window.addEventListener('resize',requestTickerNoteTone,{passive:true});
-      if(main && 'MutationObserver' in window){
-        new MutationObserver(requestTickerNoteTone).observe(main,{subtree:true,attributes:true,attributeFilter:['hidden','class']});
-      }
+        const root=document.documentElement;
+        let stackObserver=null;
+        let observedStack=null;
+        let mainObserver=null;
+        let tickerToneFrame=0;
+
+        const getStack=()=>document.getElementById('site-top-stack');
+
+        const syncStickyTop=()=>{
+          const stack=getStack();
+          if(!stack) return;
+          root.style.setProperty('--sticky-top',`${Math.ceil(stack.getBoundingClientRect().height)}px`);
+        };
+
+        const ensureStackObserver=()=>{
+          const stack=getStack();
+          if(!stack || !('ResizeObserver' in window) || stack===observedStack) return;
+          stackObserver?.disconnect();
+          stackObserver=new ResizeObserver(syncStickyTop);
+          stackObserver.observe(stack);
+          observedStack=stack;
+        };
+
+        const syncNavigationState=()=>{
+          const path=location.pathname.replace(/\/+$/,'/') || '/';
+          let active='';
+          if(path.startsWith('/a-road/')) active='a-road';
+          else if(path.startsWith('/investimentos/')) active='investimentos';
+          else if(path.startsWith('/patrimonio/')) active='patrimonio';
+          else if(path.startsWith('/conhecimento/') || path.startsWith('/glossario/') || path.startsWith('/calculadora-ir/')) active='conhecimento';
+          else if(path.startsWith('/contato/')) active='contato';
+
+          document.querySelectorAll('[data-road-nav]').forEach(link=>{
+            link.classList.toggle('is-active',link.getAttribute('data-road-nav')===active);
+          });
+
+          const nav=document.getElementById('nav');
+          const toggle=document.getElementById('nav-toggle');
+          nav?.classList.remove('open');
+          toggle?.setAttribute('aria-expanded','false');
+        };
+
+        const syncTickerNoteTone=()=>{
+          const stack=getStack();
+          const tickerNote=document.querySelector('.market-ticker-note');
+          const main=document.querySelector('main');
+          if(!tickerNote || !main) return;
+          const y=Math.ceil(stack?.getBoundingClientRect().height || 0)+8;
+          const x=Math.max(12,window.innerWidth-40);
+          const layer=document.elementsFromPoint(x,y);
+          const surface=layer.map(el=>el.closest?.('.section,.road-callout')).find(Boolean)
+            || [...main.querySelectorAll('.section,.road-callout')].find(el=>!el.hidden && getComputedStyle(el).display!=='none');
+          const dark=surface?.matches('.section--coffee,.section--petrol,.section--olive,.road-callout--petrol,.hero--road-photo') ?? false;
+          tickerNote.classList.toggle('is-on-dark',dark);
+        };
+
+        const requestTickerNoteTone=()=>{
+          if(tickerToneFrame) return;
+          tickerToneFrame=requestAnimationFrame(()=>{
+            tickerToneFrame=0;
+            syncTickerNoteTone();
+          });
+        };
+
+        const observeCurrentMain=()=>{
+          mainObserver?.disconnect();
+          const main=document.querySelector('main');
+          if(main && 'MutationObserver' in window){
+            mainObserver=new MutationObserver(requestTickerNoteTone);
+            mainObserver.observe(main,{subtree:true,attributes:true,attributeFilter:['hidden','class']});
+          }
+        };
+
+        const refreshShell=()=>{
+          ensureStackObserver();
+          syncStickyTop();
+          syncNavigationState();
+          observeCurrentMain();
+          requestTickerNoteTone();
+        };
+
+        window.addEventListener('resize',()=>{
+          syncStickyTop();
+          requestTickerNoteTone();
+        },{passive:true});
+        window.addEventListener('scroll',requestTickerNoteTone,{passive:true});
+        document.addEventListener('astro:after-swap',refreshShell);
+        document.addEventListener('astro:page-load',refreshShell);
+
+        refreshShell();
+      })();
     </script>
   </body>
 </html>
