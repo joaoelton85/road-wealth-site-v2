@@ -16,7 +16,8 @@ import "../styles/v25.css";
 import "../styles/v30.css";
 import "../styles/v31.css";
 import "../styles/v32.css";
-const BUILD_VERSION = "34.0.0";
+import "../styles/v35.css";
+const BUILD_VERSION = "35.0.0";
 const { title = "ROAD Wealth®", description = "ROAD Wealth — consultoria de investimentos e cuidado patrimonial com visão integrada.", active = "", noindex = true } = Astro.props;
 ---
 <!doctype html>
@@ -32,7 +33,7 @@ const { title = "ROAD Wealth®", description = "ROAD Wealth — consultoria de i
     <link rel="icon" href="/assets/favicon.ico" />
     <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
     <link rel="preconnect" href="https://s3.tradingview.com" crossorigin />
-    <link rel="preconnect" href="https://upload.wikimedia.org" crossorigin />
+    
     <link rel="dns-prefetch" href="https://s3.tradingview.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -43,9 +44,13 @@ const { title = "ROAD Wealth®", description = "ROAD Wealth — consultoria de i
     <div class="site-top-stack" id="site-top-stack">
       <Header active={active} />
       <MarketTicker />
+      <RoadHighlights />
+      <div class="market-ticker-note road-market-note" aria-label="Fontes e atraso das cotações">
+        <span class="market-ticker-note-full">Dados e atrasos conforme o mercado e a fonte &nbsp;|&nbsp; B3 · 15 min de atraso &nbsp;|&nbsp; via TradingView</span>
+        <span class="market-ticker-note-compact">B3 · 15 min de atraso &nbsp;|&nbsp; via TradingView</span>
+      </div>
     </div>
     <main>
-      <RoadHighlights />
       <slot />
     </main>
     <Footer />
