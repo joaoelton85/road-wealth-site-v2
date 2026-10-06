@@ -31,7 +31,7 @@
   }
 }
 
-/* Mobile: widget horizontal compacto próprio, sem adaptive/compact legado e sem segundo logo. */
+/* Mobile: widget horizontal compacto próprio. O Web Component define a própria altura; não o recortamos em 34px. */
 @media(max-width:680px){
   .market-ticker-row--desktop{
     display:none!important;
@@ -41,8 +41,8 @@
     display:grid!important;
     grid-template-columns:var(--road-top-label-w) minmax(0,1fr);
     width:100%;
-    min-height:34px;
-    height:34px;
+    min-height:44px;
+    height:auto;
     overflow:hidden;
     background:#090909;
   }
@@ -50,7 +50,8 @@
   .market-ticker-mobile-label{
     width:var(--road-top-label-w);
     min-width:var(--road-top-label-w);
-    height:34px;
+    min-height:44px;
+    height:auto;
     padding:0 7px;
     box-sizing:border-box;
     border-right:1px solid rgba(243,236,227,.12);
@@ -69,7 +70,8 @@
     position:relative;
     min-width:0;
     width:100%;
-    height:34px;
+    min-height:44px;
+    height:auto;
     overflow:hidden;
     background:#090909;
   }
@@ -77,15 +79,15 @@
   .market-ticker-mobile-widget{
     display:block;
     width:100%;
-    height:34px;
-    min-height:34px;
-    overflow:hidden;
+    height:auto;
+    min-height:44px;
+    overflow:visible;
     background:#090909;
   }
 
   .market-ticker-mobile-placeholder{
-    height:34px;
-    min-height:34px;
+    height:44px;
+    min-height:44px;
     display:flex;
     align-items:center;
     justify-content:flex-start;
