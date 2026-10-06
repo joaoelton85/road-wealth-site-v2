@@ -89,13 +89,14 @@ const { title = "ROAD Wealth®", description = "ROAD Wealth — consultoria de i
         };
 
         const syncNavigationState=()=>{
-          const path=location.pathname.replace(/\/+$/,'/') || '/';
+          const path=location.pathname.replace(/\/+$/,'') || '/';
+          const inSection=section=>path===`/${section}` || path.startsWith(`/${section}/`);
           let active='';
-          if(path.startsWith('/a-road/')) active='a-road';
-          else if(path.startsWith('/investimentos/')) active='investimentos';
-          else if(path.startsWith('/patrimonio/')) active='patrimonio';
-          else if(path.startsWith('/conhecimento/') || path.startsWith('/glossario/') || path.startsWith('/calculadora-ir/')) active='conhecimento';
-          else if(path.startsWith('/contato/')) active='contato';
+          if(inSection('a-road')) active='a-road';
+          else if(inSection('investimentos')) active='investimentos';
+          else if(inSection('patrimonio')) active='patrimonio';
+          else if(inSection('conhecimento') || inSection('glossario') || inSection('calculadora-ir')) active='conhecimento';
+          else if(inSection('contato')) active='contato';
 
           document.querySelectorAll('[data-road-nav]').forEach(link=>{
             link.classList.toggle('is-active',link.getAttribute('data-road-nav')===active);
