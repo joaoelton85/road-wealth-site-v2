@@ -206,6 +206,20 @@ export const glossaryItems: GlossaryItem[] = [
     ]
   },
   {
+    "term": "Cedente",
+    "definition": "É quem transfere um direito de receber para outra pessoa, empresa ou estrutura, como pode acontecer em um FIDC.",
+    "why": "Ajuda a entender de onde vieram os créditos que compõem uma carteira de recebíveis.",
+    "tags": [
+      "FIDC",
+      "Crédito estruturado"
+    ],
+    "related": [
+      "Direitos creditórios",
+      "FIDC",
+      "Sacado"
+    ]
+  },
+  {
     "term": "CET",
     "definition": "Custo Efetivo Total. É uma medida do custo completo de uma operação de crédito, incluindo juros e outros encargos obrigatórios previstos na contratação.",
     "why": "Duas propostas podem ter taxas de juros parecidas e CETs diferentes. Para comparar crédito, o CET costuma ser mais útil do que olhar apenas a taxa anunciada.",
@@ -258,6 +272,20 @@ export const glossaryItems: GlossaryItem[] = [
     ]
   },
   {
+    "term": "Concentração",
+    "definition": "É o quanto uma carteira depende de um mesmo investimento, emissor, setor, moeda ou tipo de risco.",
+    "why": "Concentrações elevadas podem fazer com que um único problema tenha impacto maior sobre o patrimônio.",
+    "tags": [
+      "Carteira",
+      "Risco"
+    ],
+    "related": [
+      "Diversificação",
+      "Risco de crédito",
+      "Alocação de ativos"
+    ]
+  },
+  {
     "term": "Consolidação de carteira",
     "definition": "É a reunião de investimentos mantidos em diferentes instituições em uma visão única.",
     "why": "Permite avaliar o patrimônio como um conjunto, identificando concentrações, riscos e sobreposições que podem não aparecer quando cada conta é analisada separadamente.",
@@ -297,6 +325,20 @@ export const glossaryItems: GlossaryItem[] = [
       "Conta corrente",
       "CDB",
       "Liquidez"
+    ]
+  },
+  {
+    "term": "Coobrigação",
+    "definition": "É uma situação em que, além do devedor principal, outra parte também assume responsabilidade pelo pagamento em determinadas condições.",
+    "why": "Pode oferecer uma fonte adicional de pagamento, mas a qualidade dessa obrigação também precisa ser analisada.",
+    "tags": [
+      "Crédito estruturado",
+      "Bancos & crédito"
+    ],
+    "related": [
+      "Garantia",
+      "Risco de crédito",
+      "FIDC"
     ]
   },
   {
@@ -1010,6 +1052,34 @@ export const glossaryItems: GlossaryItem[] = [
     ]
   },
   {
+    "term": "Imposto de Renda",
+    "definition": "É um tributo que pode incidir sobre rendimentos, ganhos e resgates conforme o tipo de investimento e as regras vigentes.",
+    "why": "O tratamento tributário varia entre produtos; por isso, comparar retornos líquidos pode ser mais útil do que olhar apenas a rentabilidade bruta.",
+    "tags": [
+      "Tributação"
+    ],
+    "related": [
+      "Ganho de capital",
+      "PGBL",
+      "VGBL",
+      "Come-cotas"
+    ]
+  },
+  {
+    "term": "Inadimplência",
+    "definition": "É o não pagamento de uma obrigação no prazo ou nas condições combinadas.",
+    "why": "Em investimentos de crédito, níveis maiores de inadimplência podem afetar a capacidade de pagamento e o valor dos ativos.",
+    "tags": [
+      "Crédito privado",
+      "Risco"
+    ],
+    "related": [
+      "Risco de crédito",
+      "FIDC",
+      "Direitos creditórios"
+    ]
+  },
+  {
     "term": "Inflação",
     "definition": "É o aumento generalizado dos preços de bens e serviços ao longo do tempo, reduzindo o poder de compra do dinheiro.",
     "why": "Por isso, um retorno positivo em reais pode ainda representar pouco ganho real se a inflação do período for elevada.",
@@ -1021,6 +1091,20 @@ export const glossaryItems: GlossaryItem[] = [
       "IPCA",
       "Rentabilidade real",
       "Juros reais"
+    ]
+  },
+  {
+    "term": "Instituição financeira",
+    "definition": "É uma organização autorizada a prestar determinados serviços financeiros, como receber depósitos, conceder crédito, custodiar ativos ou intermediar operações, conforme sua autorização.",
+    "why": "Bancos, financeiras, corretoras e outras instituições podem exercer papéis diferentes dentro de uma mesma relação financeira.",
+    "tags": [
+      "Bancos & crédito",
+      "Mercado"
+    ],
+    "related": [
+      "Custódia",
+      "CDB",
+      "Conta corrente"
     ]
   },
   {
@@ -1339,6 +1423,20 @@ export const glossaryItems: GlossaryItem[] = [
     ]
   },
   {
+    "term": "Portabilidade",
+    "definition": "É a transferência de um produto ou relacionamento financeiro entre instituições, conforme as regras aplicáveis, sem necessariamente encerrar a estratégia original.",
+    "why": "Pode existir em previdência e crédito, por exemplo, e deve ser avaliada considerando custos, condições e eventuais benefícios.",
+    "tags": [
+      "Bancos & crédito",
+      "Previdência"
+    ],
+    "related": [
+      "Portabilidade de crédito",
+      "PGBL",
+      "VGBL"
+    ]
+  },
+  {
     "term": "Portabilidade de crédito",
     "definition": "É a transferência de uma dívida de uma instituição para outra, normalmente buscando condições melhores.",
     "why": "Pode reduzir custo financeiro, mas é importante comparar o CET, o prazo e todas as condições da nova operação.",
@@ -1579,6 +1677,20 @@ export const glossaryItems: GlossaryItem[] = [
       "Tabela Price",
       "Amortização",
       "Financiamento"
+    ]
+  },
+  {
+    "term": "Sacado",
+    "definition": "Em operações com recebíveis, é quem deve pagar o crédito que foi cedido ou incluído na estrutura.",
+    "why": "A capacidade de pagamento dos sacados pode ser um dos principais riscos de um FIDC ou de outra operação baseada em recebíveis.",
+    "tags": [
+      "FIDC",
+      "Crédito estruturado"
+    ],
+    "related": [
+      "Cedente",
+      "Direitos creditórios",
+      "Inadimplência"
     ]
   },
   {
