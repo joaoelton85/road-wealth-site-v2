@@ -2,8 +2,9 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import RoadMandala from "../components/RoadMandala.astro";
 import RoadCallout from "../components/RoadCallout.astro";
+import InstitutionPlatforms from "../components/InstitutionPlatforms.astro";
 ---
-<BaseLayout title="ROAD Wealth®" description="ROAD Wealth — consultoria de investimentos e cuidado patrimonial com visão integrada.">
+<BaseLayout title="ROAD Wealth®" description="Consultoria de Investimentos e planejamento patrimonial para famílias e negócios com patrimônio no Brasil e no exterior.">
   <section class="hero hero--road-photo section" id="inicio">
     <div class="hero-road-photo__media" aria-hidden="true">
       <img
@@ -19,84 +20,92 @@ import RoadCallout from "../components/RoadCallout.astro";
     <div class="hero-road-photo__veil" aria-hidden="true"></div>
     <div class="hero-road-photo__content">
       <div class="eyebrow eyebrow--light">ROAD WEALTH®</div>
-      <h1><span>Seu patrimônio,</span><span>seu caminho,</span><span>seu legado.</span></h1>
-      <p class="lead">Uma visão integrada para acompanhar as decisões que constroem, protegem e dão continuidade ao seu patrimônio.</p>
+      <h1><span>Seu patrimônio,</span><span>seu legado,</span><span>seu caminho.</span></h1>
+      <p class="lead">Consultoria de Investimentos e planejamento patrimonial para famílias e negócios com patrimônio no Brasil e no exterior.</p>
       <div class="actions">
         <a class="btn btn--sand" href="/a-road/">Conheça a ROAD</a>
-        <a class="btn btn--outline-light" href="/patrimonio/">Como cuidamos do seu patrimônio</a>
+        <a class="btn btn--outline-light" href="#como-trabalhamos">Como trabalhamos</a>
       </div>
     </div>
   </section>
 
-  <section class="section section--sand home-story">
-    <div class="story-split">
-      <p class="intro-quote">Cada patrimônio carrega uma história.</p>
-      <div class="section-intro">
-        <p>Com o tempo, investimentos, família, empresas, crédito, proteção e sucessão passam a fazer parte de uma mesma trajetória. A ROAD nasce para olhar essas decisões de forma conectada, com clareza, responsabilidade e perspectiva de longo prazo.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--coffee home-a-road" id="a-road">
-    <div class="road-teaser">
+  <section class="section section--sand home-intro" id="como-trabalhamos">
+    <div class="home-intro-grid">
       <div>
-        <div class="eyebrow eyebrow--light">A ROAD</div>
-        <h2>Uma empresa construída para acompanhar patrimônio e decisões ao longo do tempo.</h2>
-        <p class="lead on-dark">A ROAD nasce de uma visão independente, próxima e responsável sobre investimentos e patrimônio — conectando decisões que precisam fazer sentido hoje e ao longo das próximas gerações.</p>
-        <div class="actions"><a class="btn btn--sand" href="/a-road/">Conheça a ROAD</a></div>
+        <div class="eyebrow">O QUE FAZEMOS</div>
+        <h2>Proximidade para entender. Clareza para planejar. Cuidado para acompanhar.</h2>
       </div>
-      <div class="road-teaser-card">
-        <h3>Mais do que um nome.</h3>
-        <p class="on-dark">A origem da ROAD, a história por trás da marca e do símbolo, o significado de <em>Wealth</em>, os sócios e o funcionamento da Consultoria passam a ter um espaço próprio.</p>
-        <a class="text-btn" href="/a-road/#origem">Conheça a origem da marca →</a>
+      <div class="home-intro-copy">
+        <p>Cada patrimônio tem uma história, objetivos e prioridades próprios. Por isso, nosso trabalho começa pela escuta e pelo entendimento da realidade de cada família ou negócio.</p>
+        <p>A partir daí, organizamos informações, construímos um planejamento e acompanhamos as decisões com transparência, responsabilidade e visão de longo prazo.</p>
+        <p class="home-trust-line">A confiança se constrói com proximidade, clareza e transparência em cada etapa.</p>
       </div>
     </div>
   </section>
 
-  <section class="section section--white" id="patrimonio">
+  <section class="section section--white home-planning" id="planejamento">
     <div class="section-intro">
-      <div class="eyebrow">PATRIMÔNIO</div>
-      <h2>Como cuidamos do seu patrimônio</h2>
-      <p>Investir bem é fundamental. Mas patrimônio não termina nos investimentos. A ROAD conecta áreas de atuação que precisam conversar entre si.</p>
+      <div class="eyebrow">PLANEJAMENTO FINANCEIRO</div>
+      <h2>Um processo contínuo, não um documento isolado.</h2>
+      <p>O planejamento organiza objetivos, patrimônio e decisões em uma sequência que pode ser revisada ao longo do tempo, conforme a vida, os negócios e os mercados mudam.</p>
+    </div>
+    <div class="planning-steps" aria-label="Etapas do planejamento ROAD">
+      <article><span>01</span><h3>Entender</h3><p>Objetivos, família, negócios, patrimônio, prioridades e momento de vida.</p></article>
+      <article><span>02</span><h3>Organizar</h3><p>Informações, posições, liquidez, compromissos e estruturas já existentes.</p></article>
+      <article><span>03</span><h3>Planejar</h3><p>Transformar objetivos em prioridades, critérios e uma estratégia coerente.</p></article>
+      <article><span>04</span><h3>Implementar</h3><p>Executar as decisões nas instituições e estruturas que fizerem sentido.</p></article>
+      <article><span>05</span><h3>Acompanhar</h3><p>Revisar investimentos, mudanças patrimoniais e novas decisões ao longo do caminho.</p></article>
+    </div>
+  </section>
+
+  <section class="section section--sand home-areas" id="patrimonio">
+    <div class="section-intro">
+      <div class="eyebrow">ÁREAS DE ATUAÇÃO</div>
+      <h2>Quatro áreas. Uma leitura integrada do patrimônio.</h2>
+      <p>Investimentos é o ponto de partida. As demais áreas ajudam a conectar proteção, planejamento e decisões relevantes para que o patrimônio seja observado como um todo.</p>
     </div>
     <div class="wealth-grid wealth-grid--visual">
       <RoadMandala />
-      <div class="area-panel">
-        <div class="eyebrow">VISÃO ROAD</div>
-        <h3>Áreas de atuação que precisam conversar entre si.</h3>
-        <p>Investimentos, Legado, Estratégia e Decisões organizam temas diferentes do patrimônio, mas ganham valor quando são analisados de forma integrada.</p>
-        <div class="area-link-list">
-          <a href="/investimentos/">Investimentos <span>→</span></a>
-          <a href="/patrimonio/#legado">Legado <span>→</span></a>
-          <a href="/patrimonio/#estrategia">Estratégia <span>→</span></a>
-          <a href="/patrimonio/#decisoes">Decisões <span>→</span></a>
-        </div>
-        <div class="actions" style="margin-top:22px"><a class="btn btn--primary" href="/patrimonio/">Conheça a visão patrimonial</a></div>
+      <div class="home-area-definitions">
+        <a class="home-area-definition" href="/investimentos/"><strong>Investimentos</strong><span>Como o patrimônio financeiro é investido.</span><small>Política de Investimentos, alocação, instituições, consolidação, acompanhamento e rebalanceamento.</small></a>
+        <a class="home-area-definition" href="/patrimonio/#legado"><strong>Legado</strong><span>Como o patrimônio é protegido e atravessa gerações.</span><small>Proteção familiar, sucessão, previdência, liquidez sucessória e continuidade patrimonial.</small></a>
+        <a class="home-area-definition" href="/patrimonio/#estrategia"><strong>Estratégia</strong><span>Como os objetivos se transformam em um plano.</span><small>Planejamento financeiro, liquidez, aposentadoria, crédito, exposição internacional e organização dos recursos ao longo do tempo.</small></a>
+        <a class="home-area-definition" href="/patrimonio/#decisoes"><strong>Decisões</strong><span>Como avaliar escolhas que podem mudar o percurso.</span><small>Imóveis, financiamentos, negócios, endividamento, grandes aquisições e outras decisões relevantes vistas dentro do patrimônio como um todo.</small></a>
       </div>
     </div>
+  </section>
+
+  <section class="section section--white home-institutions" id="instituicoes">
+    <div class="section-intro">
+      <div class="eyebrow">CONSULTORIA INDEPENDENTE</div>
+      <h2>Seu patrimônio pode estar onde fizer sentido para você.</h2>
+      <p>A ROAD acompanha investimentos mantidos em diferentes instituições, no Brasil e no exterior, organizando a análise de forma consolidada e orientada pelos objetivos do cliente.</p>
+    </div>
+    <InstitutionPlatforms />
+    <div class="actions home-institutions-action"><a class="btn btn--primary" href="/investimentos/">Entenda como funciona a Consultoria</a></div>
   </section>
 
   <RoadCallout
     eyebrow="CHECK-UP ROAD"
     title="Como está organizado o seu patrimônio?"
-    text="Uma leitura inicial em 16 perguntas, cerca de 3 minutos e sem solicitar valores de patrimônio ou outros dados sensíveis."
+    text="Uma leitura inicial em 16 perguntas para observar Investimentos, Legado, Estratégia e Decisões — sem solicitar valores de patrimônio ou outros dados sensíveis."
     href="/patrimonio/#checkup-road"
     label="Fazer o Check-up ROAD"
-    tone="coffee"
+    tone="sand"
   />
 
-  <section class="section section--sand home-investments" id="investimentos">
-    <div class="investments-layout">
+  <section class="section section--sand home-a-road" id="a-road">
+    <div class="road-teaser">
       <div>
-        <div class="eyebrow">INVESTIMENTOS</div>
-        <h2>Uma estratégia antes de uma carteira.</h2>
-        <p>A atividade central da ROAD parte do cliente — não do produto. Objetivos, risco, liquidez e horizonte precedem a escolha dos instrumentos.</p><div class="actions" style="margin-top:18px"><a class="btn btn--primary" href="/investimentos/">Conheça Investimentos</a></div>
+        <div class="eyebrow">A ROAD</div>
+        <h2>Conheça a empresa por trás do caminho.</h2>
+        <p class="lead">Consultoria, significado de <em>Wealth</em>, origem da marca, quem somos, propósito e onde estamos — uma leitura guiada para conhecer a ROAD de forma simples e direta.</p>
+        <div class="actions"><a class="btn btn--primary" href="/a-road/">Conheça a ROAD</a></div>
       </div>
-      <div class="pillars">
-        <article><h3>Política de Investimentos</h3><p>Uma referência para orientar decisões, limites, alocação e acompanhamento ao longo do tempo.</p></article>
-        <article><h3>Diferentes instituições. Uma estratégia.</h3><p>Seu patrimônio pode estar em diferentes lugares. A análise considera o conjunto das posições, e não apenas uma conta isolada.</p></article>
-        <article><h3>Consolidação e acompanhamento</h3><p>Recomendações, revisões e rebalanceamentos passam a fazer parte de um processo contínuo.</p></article>
-        <article><h3>Uma evolução já consolidada em mercados mais maduros</h3><p>Modelos remunerados pelo aconselhamento ganharam espaço relevante em mercados financeiros maduros. No Brasil, a Consultoria de Investimentos também vem ampliando sua presença.</p></article>
+      <div class="road-teaser-card">
+        <h3>Segura, sofisticada, próxima e transparente.</h3>
+        <p>Esses princípios orientam a forma como a ROAD se comunica, organiza seu trabalho e acompanha cada relação de longo prazo.</p>
+        <a class="text-btn" href="/a-road/#consultoria">Comece pela Consultoria →</a>
       </div>
     </div>
   </section>
@@ -112,5 +121,4 @@ import RoadCallout from "../components/RoadCallout.astro";
       <button class="social-link js-placeholder" data-message="A URL oficial do LinkedIn será inserida antes da publicação." type="button">LinkedIn</button>
     </div>
   </section>
-
 </BaseLayout>
