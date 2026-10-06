@@ -4,14 +4,14 @@ const checks = [
   {
     file: "dist/__road-build.json",
     required: [
-      '"roadBuild": "40.0.0"',
+      '"roadBuild": "41.0.0"',
     ],
   },
   {
     file: "dist/index.html",
     required: [
-      'road-build" content="40.0.0"',
-      'data-road-build="40.0.0"',
+      'road-build" content="41.0.0"',
+      'data-road-build="41.0.0"',
       "CHECK-UP ROAD",
       "road-highlights",
       "road-highlights__slide",
@@ -31,6 +31,8 @@ const checks = [
       "Seu patrimônio pode estar onde fizer sentido para você.",
       "platforms-block",
       "Conheça a empresa por trás do caminho.",
+      "Patrimônio também é relacionamento.",
+      "Entender objetivos, explicar decisões com clareza",
       "road-market-note",
       "home-contact",
       "Entre em contato",
@@ -72,7 +74,7 @@ const checks = [
   {
     file: "dist/calculadora-ir/index.html",
     required: [
-      'road-build" content="40.0.0"',
+      'road-build" content="41.0.0"',
       "Calculadora de IR 2026",
       "Rendimentos tributáveis do titular",
       "Número de dependentes",
@@ -96,7 +98,7 @@ const checks = [
   {
     file: "dist/a-road/index.html",
     required: [
-      'road-build" content="40.0.0"',
+      'road-build" content="41.0.0"',
       "F-2JRohFQdk",
       "youtube-lite",
       "Uma leitura inicial do patrimônio em poucos minutos.",
@@ -112,6 +114,7 @@ const checks = [
       "roadCarouselProgress",
       "15000",
       "Diferentes instituições. Uma estratégia.",
+      "Nosso trabalho começa por entender objetivos, explicar decisões com clareza",
     ],
     forbidden: [
       "História",
@@ -183,4 +186,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log("ROAD build verification OK — V40.0.0");
+console.log("ROAD build verification OK — V41.0.0");
