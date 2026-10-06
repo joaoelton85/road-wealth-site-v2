@@ -1,5 +1,16 @@
 # CHANGELOG — ROAD Wealth
 
+## V31 — 05/10/2026
+
+- Desktop e mobile passam a usar apresentações diferentes para a área de destaque.
+- No desktop, a faixa permanece abaixo dos indicadores, como na V30, com fundo Café e textos Areia.
+- No mobile, a faixa larga é removida do fluxo e o destaque passa a ocupar o espaço central já existente entre o logo da ROAD e o botão de menu, sem aumentar a altura do cabeçalho.
+- Somente o retângulo central de destaque recebe fundo Café; o restante do cabeçalho permanece Areia.
+- O rótulo passa a ser `DESTAQUE`, com tamanho e peso visual maiores, acompanhado pelo nome do recurso em rotação: Check-up ROAD, Calculadora de IR e Mercados & Ferramentas.
+- A ordem de prioridade e a rotação de 7 segundos da V30 foram preservadas.
+- A lógica do ticker da V29/V30 permanece inalterada.
+- Marcador técnico atualizado para `ROAD_BUILD=31.0.0`.
+
 ## V30 — 05/10/2026
 
 - Criada uma faixa editorial dinâmica de destaques logo abaixo do painel de mercados, visível em todo o site e independente da integração da TradingView.
