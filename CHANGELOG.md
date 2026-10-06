@@ -1,5 +1,16 @@
 # CHANGELOG — ROAD Wealth
 
+## V32 — 05/10/2026
+
+- Nova direção visual da Home, preservando a V31 como ponto de retorno.
+- Cabeçalho mobile volta ao arranjo institucional limpo, com logo à esquerda e menu à direita.
+- A área de destaque passa a ficar abaixo da faixa de mercados em desktop e mobile, em uma única peça: bloco Café com `DESTAQUE` e conteúdo Areia com borda Café sutil.
+- Textos promocionais passam a usar linguagem natural e tipografia do próprio site: `Faça seu Check-up ROAD`, `Simule seu IR 2026` e `Explore Mercados & Ferramentas`.
+- O hero da Home passa a usar fotografia real de Mônaco, carregada responsivamente a partir do Unsplash, com tratamento de contraste em Café e recorte distinto por largura de tela.
+- Lema, textos e CTAs permanecem HTML/CSS com as fontes oficiais do site; nenhum texto é incorporado à fotografia.
+- Mantida a lógica do ticker da V29–V31, sem alterações no carregamento das cotações.
+- Marcador técnico atualizado para `ROAD_BUILD=32.0.0`.
+
 ## V31 — 05/10/2026
 
 - Desktop e mobile passam a usar apresentações diferentes para a área de destaque.
