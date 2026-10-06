@@ -12,20 +12,35 @@ const { active = "" } = Astro.props;
   </button>
   <nav class="nav" id="nav" aria-label="Navegação principal">
     <div class="nav-main">
-      <a class:list={[active === "a-road" && "is-active"]} href="/a-road/">A ROAD</a>
-      <a class:list={[active === "investimentos" && "is-active"]} href="/investimentos/">Investimentos</a>
-      <a class:list={[active === "patrimonio" && "is-active"]} href="/patrimonio/">Patrimônio</a>
-      <a class:list={[active === "conhecimento" && "is-active"]} href="/conhecimento/">Conhecimento</a>
+      <a data-road-nav="a-road" class:list={[active === "a-road" && "is-active"]} href="/a-road/">A ROAD</a>
+      <a data-road-nav="investimentos" class:list={[active === "investimentos" && "is-active"]} href="/investimentos/">Investimentos</a>
+      <a data-road-nav="patrimonio" class:list={[active === "patrimonio" && "is-active"]} href="/patrimonio/">Patrimônio</a>
+      <a data-road-nav="conhecimento" class:list={[active === "conhecimento" && "is-active"]} href="/conhecimento/">Conhecimento</a>
     </div>
-    <a class:list={[active === "contato" && "is-active", "nav-cta"]} href="/contato/">Entre em contato</a>
+    <a data-road-nav="contato" class:list={[active === "contato" && "is-active", "nav-cta"]} href="/contato/">Entre em contato</a>
   </nav>
 </header>
 <script is:inline>
-  const nav=document.getElementById('nav');
-  const toggle=document.getElementById('nav-toggle');
-  toggle?.addEventListener('click',()=>{
-    const open=nav?.classList.toggle('open') ?? false;
-    toggle.setAttribute('aria-expanded',String(open));
-  });
-  document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>nav?.classList.remove('open')));
+  (()=>{
+    if(window.__roadHeaderBound) return;
+    window.__roadHeaderBound=true;
+
+    document.addEventListener('click',event=>{
+      const target=event.target instanceof Element ? event.target : null;
+      if(!target) return;
+
+      const toggle=target.closest('#nav-toggle');
+      if(toggle){
+        const nav=document.getElementById('nav');
+        const open=nav?.classList.toggle('open') ?? false;
+        toggle.setAttribute('aria-expanded',String(open));
+        return;
+      }
+
+      if(target.closest('#nav a')){
+        document.getElementById('nav')?.classList.remove('open');
+        document.getElementById('nav-toggle')?.setAttribute('aria-expanded','false');
+      }
+    });
+  })();
 </script>
