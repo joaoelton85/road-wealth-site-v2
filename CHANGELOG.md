@@ -1,5 +1,17 @@
 # CHANGELOG — ROAD Wealth
 
+## V38 — 06/10/2026
+
+- Ticker mobile separado novamente do desktop, usando o Ticker Tape horizontal compacto atual do TradingView para evitar a deformação em duas linhas do widget legado adaptativo.
+- Removido o logo TradingView adicional criado na V37; permanece apenas a identidade nativa/dinâmica do próprio widget.
+- Se o componente mobile não carregar, permanece a mensagem `Carregando cotações…`.
+- MERCADOS e DESTAQUE continuam com tipografia e largura uniformes; ambos passam a ficar centralizados em seus blocos.
+- DESTAQUE permanece sozinho no bloco da esquerda e as bolinhas continuam dentro do banner imediatamente ao lado.
+- Hero preservado com fundo Café, foto e lema em três linhas.
+- A alternância Café/Areia é invertida nas seções seguintes da Home: História passa a Areia, A ROAD a Café, Check-up a Café, Investimentos a Areia e Contato a Café.
+- A nota `B3 · 15 min de atraso | via TradingView` continua sem fundo, borda ou faixa própria.
+- Marcador técnico atualizado para `ROAD_BUILD=38.0.0`.
+
 ## V37 — 06/10/2026
 
 - Ticker simplificado para um único embed do TradingView em desktop e mobile, eliminando o modo `compact` e a possibilidade de voltar à composição em duas linhas.
