@@ -1242,8 +1242,8 @@ export const glossaryItems: GlossaryItem[] = [
   },
   {
     "term": "Letra Financeira",
-    "definition": "É um título de renda fixa emitido por instituições financeiras, geralmente usado para captação de prazo mais longo.",
-    "why": "Não conta com garantia do FGC. Algumas Letras Financeiras possuem cláusulas de subordinação e podem ser usadas na estrutura de capital regulatório da instituição, o que altera sua prioridade em situações extremas.",
+    "definition": "É um título de renda fixa emitido por instituições financeiras, geralmente usado para captação de prazo mais longo. Pode existir com ou sem cláusula de subordinação, conforme a emissão.",
+    "why": "Não conta com garantia do FGC. Em Letras Financeiras subordinadas usadas no capital regulatório podem existir estruturas de Nível II e de Capital Complementar: em uma situação extrema, a prioridade de pagamento é diferente e deve ser lida nas condições da emissão.",
     "tags": [
       "Renda fixa",
       "Bancário"
@@ -1410,8 +1410,8 @@ export const glossaryItems: GlossaryItem[] = [
   },
   {
     "term": "PGBL",
-    "definition": "Plano Gerador de Benefício Livre. É um plano de previdência complementar aberta com regras próprias de acumulação e tributação.",
-    "why": "Para quem atende às condições legais e usa as deduções completas do IR, contribuições podem ser dedutíveis até o limite previsto em lei; no resgate ou renda, o imposto incide sobre o valor tributável conforme as regras do plano.",
+    "definition": "Plano Gerador de Benefício Livre. É um plano de previdência complementar aberta voltado à acumulação de longo prazo.",
+    "why": "Quando atendidas as condições legais, as contribuições podem ser deduzidas até o limite aplicável na declaração completa. No resgate ou recebimento de renda, o Imposto de Renda incide sobre o valor total pago, conforme o regime tributário escolhido.",
     "tags": [
       "Previdência",
       "Tributação"
