@@ -1,0 +1,179 @@
+/* ROAD Wealth V36 — uniformização visual entre MERCADOS e DESTAQUE. */
+
+:root{
+  --road-top-label-w:124px;
+  --road-top-label-font:11.5px;
+  --road-top-label-weight:600;
+  --road-top-label-spacing:.095em;
+  --road-highlight-pager-w:58px;
+}
+
+/* Os dois rótulos passam a usar exatamente a mesma métrica tipográfica e eixo. */
+.market-ticker-label,
+.road-highlights__label{
+  width:var(--road-top-label-w);
+  min-width:var(--road-top-label-w);
+  padding:0 14px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:var(--road-top-label-font);
+  font-weight:var(--road-top-label-weight);
+  line-height:1;
+  letter-spacing:var(--road-top-label-spacing);
+  text-transform:uppercase;
+  white-space:nowrap;
+  box-sizing:border-box;
+}
+
+.market-ticker-label{
+  flex:0 0 var(--road-top-label-w);
+}
+
+.road-highlights__inner{
+  grid-template-columns:var(--road-top-label-w) var(--road-highlight-pager-w) minmax(0,1fr);
+}
+
+/* DESTAQUE fica sozinho no Café; a navegação passa para o Areia, integrada ao banner. */
+.road-highlights__label{
+  background:var(--coffee);
+  color:var(--sand);
+  border:0;
+}
+
+.road-highlights__pager{
+  min-width:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 10px;
+  background:var(--sand);
+  border:0;
+}
+
+.road-highlights__dots{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  padding:0;
+  margin:0;
+  border:0;
+  background:transparent;
+}
+
+.road-highlights__dots button{
+  width:5px;
+  height:5px;
+  flex:none;
+  padding:0;
+  border:0;
+  border-radius:50%;
+  background:rgba(72,58,47,.24);
+  cursor:pointer;
+}
+
+.road-highlights__dots button.is-active{
+  background:var(--coffee);
+  transform:scale(1.3);
+}
+
+.road-highlights__dots button:focus-visible{
+  outline:1px solid var(--coffee);
+  outline-offset:3px;
+}
+
+/* O conteúdo continua sendo um único banner por vez. */
+.road-highlights__stage{
+  min-width:0;
+  overflow:hidden;
+}
+
+.road-highlights__slide{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+.road-highlights__slide.is-active{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+}
+
+@media(max-width:1000px){
+  :root{
+    --road-top-label-w:108px;
+    --road-top-label-font:10.5px;
+    --road-highlight-pager-w:52px;
+  }
+
+  .market-ticker-label,
+  .road-highlights__label{
+    padding-left:12px;
+    padding-right:12px;
+  }
+}
+
+@media(max-width:680px){
+  :root{
+    --road-top-label-w:78px;
+    --road-top-label-font:10px;
+    --road-top-label-spacing:.065em;
+    --road-highlight-pager-w:42px;
+  }
+
+  .market-ticker-mobile-live{
+    grid-template-columns:var(--road-top-label-w) minmax(0,1fr);
+  }
+
+  .market-ticker-mobile-label,
+  .road-highlights__label{
+    width:var(--road-top-label-w);
+    min-width:var(--road-top-label-w);
+    padding:0 8px;
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    font-family:"Montserrat",Arial,sans-serif;
+    font-size:var(--road-top-label-font);
+    font-weight:var(--road-top-label-weight);
+    line-height:1;
+    letter-spacing:var(--road-top-label-spacing);
+    text-transform:uppercase;
+    white-space:nowrap;
+    box-sizing:border-box;
+  }
+
+  .road-highlights__inner{
+    grid-template-columns:var(--road-top-label-w) var(--road-highlight-pager-w) minmax(0,1fr);
+  }
+
+  .road-highlights__pager{
+    padding:0 6px;
+  }
+
+  .road-highlights__dots{
+    gap:4px;
+  }
+
+  .road-highlights__dots button{
+    width:4px;
+    height:4px;
+  }
+}
+
+@media(max-width:380px){
+  :root{
+    --road-top-label-w:74px;
+    --road-top-label-font:9.4px;
+    --road-highlight-pager-w:38px;
+  }
+
+  .market-ticker-mobile-label,
+  .road-highlights__label{
+    padding-left:7px;
+    padding-right:7px;
+  }
+}
