@@ -52,7 +52,27 @@ const mobileSymbols = tickerSymbols.map(({ proName }) => proName).join(",");
   </div>
 </div>
 
-<script is:inline type="module" src="https://www.tradingview-widget.com/w/en/tv-ticker-tape.js"></script>
+<script is:inline type="module">
+  (async()=>{
+    const sources=[
+      'https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js',
+      'https://www.tradingview-widget.com/w/en/tv-ticker-tape.js',
+    ];
+
+    for(const source of sources){
+      try{
+        await import(source);
+        await customElements.whenDefined('tv-ticker-tape');
+        document.documentElement.dataset.roadTvMobile='ready';
+        return;
+      }catch{
+        // Tenta a origem alternativa do próprio TradingView.
+      }
+    }
+
+    document.documentElement.dataset.roadTvMobile='pending';
+  })();
+</script>
 
 <script is:inline>
   (()=>{
