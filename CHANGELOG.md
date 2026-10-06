@@ -1,5 +1,16 @@
 # CHANGELOG — ROAD Wealth
 
+## V43 — 06/10/2026
+
+- A navegação interna passa a usar o ClientRouter do Astro 7, evitando recarregamentos completos entre páginas do próprio site.
+- O bloco superior (cabeçalho, Mercados, Destaque e nota da fonte) passa a usar persistência entre navegações internas.
+- As transições visuais padrão foram desativadas para que a troca de páginas aconteça abaixo do topo sem o efeito de “piscar” toda a estrutura.
+- O menu ativo agora é recalculado após cada navegação; Glossário e Calculadora de IR continuam vinculados visualmente a Conhecimento.
+- O ticker desktop deixa o modo adaptativo e passa ao modo regular, evitando que o TradingView alterne automaticamente para uma apresentação compacta de duas linhas conforme a largura calculada.
+- Mercados & Ferramentas e o menu mobile foram tornados compatíveis com a navegação persistente, com handlers únicos e delegados.
+- O conteúdo do Glossário e das demais páginas permanece inalterado.
+- Marcador técnico atualizado para `ROAD_BUILD=43.0.0`.
+
 ## V42 — 06/10/2026
 
 - Publicado o Glossário ROAD em página própria dentro de Conhecimento.
