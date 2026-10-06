@@ -1,5 +1,17 @@
 # CHANGELOG — ROAD Wealth
 
+## V30 — 05/10/2026
+
+- Criada uma faixa editorial dinâmica de destaques logo abaixo do painel de mercados, visível em todo o site e independente da integração da TradingView.
+- Ordem de prioridade dos destaques: Check-up ROAD, Calculadora de IR 2026 e Mercados & Ferramentas.
+- O primeiro destaque ao carregar a página passa a ser sempre o Check-up ROAD.
+- Rotação automática a cada 7 segundos, com navegação manual, pausa durante interação e respeito a `prefers-reduced-motion`.
+- No mobile, a faixa usa altura fixa e textos compactos para evitar deslocamentos de layout e excesso de ocupação antes do conteúdo principal.
+- A identificação `MERCADOS` do ticker recebeu maior peso e tamanho, aproximando-se visualmente das informações dos indicadores.
+- Removidas da Home as chamadas grandes redundantes de Mercados & Ferramentas e Calculadora de IR; o convite contextual ao Check-up ROAD foi preservado.
+- Mantida integralmente a lógica do ticker da V29, incluindo o modo `regular` com fallback seguro.
+- Marcador técnico atualizado para `ROAD_BUILD=30.0.0`.
+
 ## V29 — 04/10/2026
 
 - Correção do ticker mobile baseada na V26, sem reutilizar o estado instável da V27/V28.
