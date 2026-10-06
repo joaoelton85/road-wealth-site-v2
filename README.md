@@ -1,8 +1,8 @@
-# ROAD Wealth — V29
+# ROAD Wealth — V35
 
 Correção controlada da faixa de mercados no mobile, partindo da V26.
 
-## Principais ajustes da V29
+## Principais ajustes da V35
 
 - preservado o embed legado e o carregamento estável da V26;
 - o mobile tenta primeiro o modo `regular`, para manter ticker, valor e variação na mesma linha;
@@ -11,4 +11,4 @@ Correção controlada da faixa de mercados no mobile, partindo da V26.
 - se o modo `regular` não carregar, há fallback automático para `compact`, evitando painel vazio;
 - `MERCADOS` permanece fixo à esquerda;
 - desktop permanece inalterado;
-- marcador técnico atualizado para `29.0.0`.
+- marcador técnico atualizado para `35.0.0`.
