@@ -6,7 +6,7 @@
 - Cabeçalho mobile volta ao arranjo institucional limpo, com logo à esquerda e menu à direita.
 - A área de destaque passa a ficar abaixo da faixa de mercados em desktop e mobile, em uma única peça: bloco Café com `DESTAQUE` e conteúdo Areia com borda Café sutil.
 - Textos promocionais passam a usar linguagem natural e tipografia do próprio site: `Faça seu Check-up ROAD`, `Simule seu IR 2026` e `Explore Mercados & Ferramentas`.
-- O hero da Home passa a usar fotografia real de Mônaco, carregada responsivamente a partir do Unsplash, com tratamento de contraste em Café e recorte distinto por largura de tela.
+- O hero da Home passa a usar fotografia real da Catedral de Nossa Senhora Imaculada, em Mônaco, vista a partir do jardim da ruelle Sainte-Barbe; a imagem é de domínio público e recebe tratamento de contraste em Café, luz sutil sobre a construção e recorte responsivo.
 - Lema, textos e CTAs permanecem HTML/CSS com as fontes oficiais do site; nenhum texto é incorporado à fotografia.
 - Mantida a lógica do ticker da V29–V31, sem alterações no carregamento das cotações.
 - Marcador técnico atualizado para `ROAD_BUILD=32.0.0`.
