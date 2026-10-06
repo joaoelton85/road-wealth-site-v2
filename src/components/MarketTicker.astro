@@ -13,37 +13,34 @@ const tickerSymbols = [
 ];
 ---
 <div
-  class="market-ticker-shell"
+  class="market-ticker-shell market-ticker-shell--unified"
   id="market-ticker-shell"
   aria-label="Cotações de mercado"
   data-ticker-symbols={JSON.stringify(tickerSymbols)}
 >
-  <div class="market-ticker-row market-ticker-row--desktop">
+  <div class="market-ticker-row market-ticker-row--unified">
     <div class="market-ticker-label" aria-hidden="true">MERCADOS</div>
+
     <div class="market-ticker-track">
-      <div class="ticker-placeholder market-ticker-placeholder--desktop">Carregando cotações…</div>
+      <div class="ticker-placeholder market-ticker-placeholder--unified">Carregando cotações…</div>
       <div class="market-ticker-viewport" aria-hidden="true">
         <div class="market-ticker-scale-frame">
-          <div class="tradingview-widget-container" data-road-ticker="desktop">
+          <div class="tradingview-widget-container" data-road-ticker="unified">
             <div class="tradingview-widget-container__widget"></div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="market-ticker-mobile-live" aria-label="Indicadores de mercado">
-    <div class="market-ticker-mobile-label" aria-hidden="true">MERCADOS</div>
-    <div class="market-ticker-mobile-window">
-      <div class="ticker-placeholder market-ticker-mobile-placeholder">Carregando cotações…</div>
-      <div class="market-ticker-mobile-viewport" aria-hidden="true">
-        <div class="tradingview-widget-container market-ticker-mobile-widget" data-road-ticker="mobile">
-          <div class="tradingview-widget-container__widget"></div>
-        </div>
-      </div>
+    <div class="market-ticker-brand" aria-label="TradingView" title="TradingView">
+      <svg aria-hidden="true" viewBox="0 0 35 19" width="35" height="19" fill="none">
+        <g fill-rule="evenodd" clip-rule="evenodd">
+          <path class="market-ticker-brand__stroke" d="M2 0H0v10h6v9h21.4l.5-1.3 6-15 1-2.7H23.7l-.5 1.3-.2.6a5 5 0 0 0-7-.9V0H2Zm20 17h4l5.2-13 .8-2h-7l-1 2.5-.2.5-1.5 3.8-.3.7V17Zm-.8-10a3 3 0 0 0 .7-2.7A3 3 0 1 0 16.8 7h4.4ZM14 7V2H2v6h6v9h4V7h2Z"/>
+          <path class="market-ticker-brand__fill" d="M14 2H2v6h6v9h6V2Zm12 15h-7l6-15h7l-6 15Zm-7-9a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+        </g>
+      </svg>
     </div>
   </div>
-
 </div>
 
 <script is:inline>
@@ -52,6 +49,10 @@ const tickerSymbols = [
     if(!root || root.dataset.tickerController==='1') return;
     root.dataset.tickerController='1';
 
+    const host=root.querySelector('[data-road-ticker="unified"]');
+    const placeholder=root.querySelector('.market-ticker-placeholder--unified');
+    if(!(host instanceof HTMLElement)) return;
+
     let symbols=[];
     try{
       symbols=JSON.parse(root.dataset.tickerSymbols || '[]');
@@ -59,122 +60,41 @@ const tickerSymbols = [
       symbols=[];
     }
 
-    const media=window.matchMedia('(max-width: 680px)');
-    const states={
-      desktop:{
-        host:root.querySelector('[data-road-ticker="desktop"]'),
-        placeholder:root.querySelector('.market-ticker-placeholder--desktop'),
-        started:false,
-        ready:false,
-        timer:0,
-        observer:null,
-        fallbackAttempted:false,
-      },
-      mobile:{
-        host:root.querySelector('[data-road-ticker="mobile"]'),
-        placeholder:root.querySelector('.market-ticker-mobile-placeholder'),
-        started:false,
-        ready:false,
-        timer:0,
-        observer:null,
-        fallbackAttempted:false,
-      },
-    };
-
-    const setReady=(mode)=>{
-      const state=states[mode];
-      if(!state || state.ready) return;
-      state.ready=true;
-      window.clearTimeout(state.timer);
-      state.observer?.disconnect();
-      root.classList.remove(`is-${mode}-ticker-error`);
+    let ready=false;
+    const setReady=()=>{
+      if(ready) return;
+      ready=true;
       requestAnimationFrame(()=>requestAnimationFrame(()=>{
-        root.classList.add(`is-${mode}-ticker-ready`);
+        root.classList.add('is-unified-ticker-ready');
       }));
     };
 
-    const setError=(mode)=>{
-      const state=states[mode];
-      if(!state || state.ready) return;
-      state.observer?.disconnect();
-      root.classList.add(`is-${mode}-ticker-error`);
-      if(state.placeholder){
-        state.placeholder.textContent='Cotações temporariamente indisponíveis';
-      }
+    const observer=new MutationObserver(()=>{
+      const iframe=host.querySelector('iframe');
+      if(!(iframe instanceof HTMLIFrameElement) || iframe.dataset.roadTickerArmed==='1') return;
+      iframe.dataset.roadTickerArmed='1';
+      iframe.addEventListener('load',()=>window.setTimeout(setReady,250),{once:true});
+    });
+    observer.observe(host,{childList:true,subtree:true});
+
+    const config={
+      symbols,
+      colorTheme:'dark',
+      locale:'br',
+      largeChartUrl:'',
+      isTransparent:true,
+      showSymbolLogo:true,
+      displayMode:'adaptive',
     };
 
-    const retryCompact=(mode)=>{
-      const state=states[mode];
-      if(mode!=='mobile' || !state || state.ready || state.fallbackAttempted) return false;
-
-      state.fallbackAttempted=true;
-      window.clearTimeout(state.timer);
-      state.observer?.disconnect();
-      state.started=false;
-      state.host.innerHTML='<div class="tradingview-widget-container__widget"></div>';
-      if(state.placeholder) state.placeholder.textContent='Carregando cotações…';
-      root.classList.remove('is-mobile-ticker-ready','is-mobile-ticker-error');
-      init('mobile','compact');
-      return true;
-    };
-
-    const init=(mode,mobileDisplayMode='regular')=>{
-      const state=states[mode];
-      if(!state?.host || state.started) return;
-      state.started=true;
-
-      const scan=()=>{
-        const iframe=state.host.querySelector('iframe');
-        if(!(iframe instanceof HTMLIFrameElement) || iframe.dataset.roadTickerArmed==='1') return;
-        iframe.dataset.roadTickerArmed='1';
-
-        const reveal=()=>window.setTimeout(()=>setReady(mode),250);
-        iframe.addEventListener('load',reveal,{once:true});
-
-        if(mode==='desktop'){
-          window.setTimeout(()=>{
-            if(!state.ready && iframe.isConnected) setReady(mode);
-          },2200);
-        }
-      };
-
-      state.observer=new MutationObserver(scan);
-      state.observer.observe(state.host,{childList:true,subtree:true});
-
-      const config={
-        symbols,
-        colorTheme:'dark',
-        locale:'br',
-        largeChartUrl:'',
-        isTransparent:mode==='mobile' ? false : true,
-        showSymbolLogo:true,
-        displayMode:mode==='mobile' ? mobileDisplayMode : 'adaptive',
-      };
-
-      const embed=document.createElement('script');
-      embed.type='text/javascript';
-      embed.src='https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js';
-      embed.async=true;
-      embed.textContent=JSON.stringify(config);
-      embed.addEventListener('error',()=>{
-        if(!retryCompact(mode)) setError(mode);
-      },{once:true});
-      state.host.appendChild(embed);
-
-      scan();
-      const timeout=mode==='mobile' && mobileDisplayMode==='regular' ? 6500 : 9000;
-      state.timer=window.setTimeout(()=>{
-        if(!retryCompact(mode)) setError(mode);
-      },timeout);
-    };
-
-    const sync=()=>init(media.matches ? 'mobile' : 'desktop');
-
-    sync();
-    if(typeof media.addEventListener==='function'){
-      media.addEventListener('change',sync);
-    }else if(typeof media.addListener==='function'){
-      media.addListener(sync);
-    }
+    const embed=document.createElement('script');
+    embed.type='text/javascript';
+    embed.src='https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js';
+    embed.async=true;
+    embed.textContent=JSON.stringify(config);
+    embed.addEventListener('error',()=>{
+      if(placeholder) placeholder.textContent='Carregando cotações…';
+    },{once:true});
+    host.appendChild(embed);
   })();
 </script>
