@@ -383,7 +383,7 @@
   .hero-road-photo__media img{
     width:100%;
     height:100%;
-    object-position:43% 55%;
+    object-position:33% 55%;
     filter:saturate(.80) sepia(.04) contrast(.98) brightness(.83);
   }
 
@@ -413,7 +413,7 @@
   }
 
   .hero-road-photo__media img{
-    object-position:42% 55%;
+    object-position:32% 55%;
   }
 }
 
