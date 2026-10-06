@@ -4,14 +4,14 @@ const checks = [
   {
     file: "dist/__road-build.json",
     required: [
-      '"roadBuild": "36.0.0"',
+      '"roadBuild": "37.0.0"',
     ],
   },
   {
     file: "dist/index.html",
     required: [
-      'road-build" content="36.0.0"',
-      'data-road-build="36.0.0"',
+      'road-build" content="37.0.0"',
+      'data-road-build="37.0.0"',
       "CHECK-UP ROAD",
       "road-highlights",
       "road-highlights__slide",
@@ -27,20 +27,22 @@ const checks = [
       "home-contact",
       "Entre em contato",
       "market-ticker-label",
-      "market-ticker-mobile-live",
-      "market-ticker-mobile-viewport",
-      'data-road-ticker="mobile"',
+      "market-ticker-row--unified",
+      'data-road-ticker="unified"',
       "MERCADOS",
       "DI Jan/30",
       "DI Jan/35",
-      "Cotações temporariamente indisponíveis",
-      "displayMode:mode==='mobile' ? mobileDisplayMode : 'adaptive'",
-      "retryCompact",
-      "isTransparent:mode==='mobile' ? false : true",
+      "Carregando cotações…",
+      "displayMode:'adaptive'",
+      "isTransparent:true",
       "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js",
     ],
     forbidden: [
       "market-ticker-brand",
+      "retryCompact",
+      "Cotações temporariamente indisponíveis",
+      "market-ticker-mobile-live",
+      "data-road-ticker=\"mobile\"",
       "tv-ticker-tape",
       "https://www.tradingview-widget.com/w/en/tv-ticker-tape.js",
       "Brent",
@@ -57,7 +59,7 @@ const checks = [
   {
     file: "dist/calculadora-ir/index.html",
     required: [
-      'road-build" content="36.0.0"',
+      'road-build" content="37.0.0"',
       "Calculadora de IR 2026",
       "Rendimentos tributáveis do titular",
       "Número de dependentes",
@@ -81,7 +83,7 @@ const checks = [
   {
     file: "dist/a-road/index.html",
     required: [
-      'road-build" content="36.0.0"',
+      'road-build" content="37.0.0"',
       "F-2JRohFQdk",
       "youtube-lite",
       "Uma leitura inicial do patrimônio em poucos minutos.",
@@ -153,4 +155,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log("ROAD build verification OK — V36.0.0");
+console.log("ROAD build verification OK — V37.0.0");
