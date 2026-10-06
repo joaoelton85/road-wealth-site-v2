@@ -4,14 +4,14 @@ const checks = [
   {
     file: "dist/__road-build.json",
     required: [
-      '"roadBuild": "41.0.0"',
+      '"roadBuild": "42.0.0"',
     ],
   },
   {
     file: "dist/index.html",
     required: [
-      'road-build" content="41.0.0"',
-      'data-road-build="41.0.0"',
+      'road-build" content="42.0.0"',
+      'data-road-build="42.0.0"',
       "CHECK-UP ROAD",
       "road-highlights",
       "road-highlights__slide",
@@ -74,7 +74,7 @@ const checks = [
   {
     file: "dist/calculadora-ir/index.html",
     required: [
-      'road-build" content="41.0.0"',
+      'road-build" content="42.0.0"',
       "Calculadora de IR 2026",
       "Rendimentos tributáveis do titular",
       "Número de dependentes",
@@ -98,7 +98,7 @@ const checks = [
   {
     file: "dist/a-road/index.html",
     required: [
-      'road-build" content="41.0.0"',
+      'road-build" content="42.0.0"',
       "F-2JRohFQdk",
       "youtube-lite",
       "Uma leitura inicial do patrimônio em poucos minutos.",
@@ -146,6 +146,36 @@ const checks = [
     required: [
       "Da teoria para a leitura do mercado.",
       "road-callout-panel",
+      "Abrir Glossário ROAD",
+      "/glossario/",
+    ],
+  },
+  {
+    file: "dist/glossario/index.html",
+    required: [
+      'road-build" content="42.0.0"',
+      "GLOSSÁRIO ROAD",
+      "Finanças não precisam parecer uma língua estrangeira.",
+      "153 verbetes",
+      "Spread de câmbio",
+      "Spread de crédito",
+      "Letra Financeira",
+      "Cota sênior",
+      "Cota mezanino",
+      "Cota subordinada",
+      "Subordinação",
+      "IVVB11",
+      "SMLL",
+      "DI Jan/30 e DI Jan/35",
+      "IMA-B 5",
+      "IHFA",
+      "Commission-based",
+      "Fee-based",
+      "Fee-only",
+      "FGC: SIM",
+      "FGC: NÃO",
+      "FONTES DE REFERÊNCIA",
+      "data-glossary-entry",
     ],
   },
 ];
@@ -186,4 +216,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log("ROAD build verification OK — V41.0.0");
+console.log("ROAD build verification OK — V42.0.0");
