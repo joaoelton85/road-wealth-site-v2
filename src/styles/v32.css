@@ -175,15 +175,16 @@
   height:100%;
   object-fit:cover;
   object-position:center 52%;
-  filter:saturate(.88) contrast(.96) brightness(.88);
+  filter:saturate(.72) sepia(.10) contrast(.96) brightness(.80);
   transform:scale(1.002);
 }
 
 .hero-road-photo__veil{
   z-index:-2;
   background:
-    linear-gradient(90deg,rgba(36,31,27,.82) 0%,rgba(36,31,27,.64) 32%,rgba(36,31,27,.30) 55%,rgba(36,31,27,.08) 78%),
-    linear-gradient(0deg,rgba(36,31,27,.72) 0%,rgba(36,31,27,.30) 42%,rgba(36,31,27,.05) 72%);
+    radial-gradient(ellipse at 61% 31%,rgba(243,236,227,.18) 0%,rgba(243,236,227,.08) 14%,rgba(243,236,227,0) 34%),
+    linear-gradient(90deg,rgba(36,31,27,.84) 0%,rgba(36,31,27,.62) 31%,rgba(36,31,27,.28) 56%,rgba(36,31,27,.08) 80%),
+    linear-gradient(0deg,rgba(36,31,27,.76) 0%,rgba(36,31,27,.32) 43%,rgba(36,31,27,.04) 74%);
 }
 
 .hero-road-photo__content{
@@ -280,13 +281,14 @@
 
   .hero-road-photo__media img{
     object-position:50% center;
-    filter:saturate(.86) contrast(.96) brightness(.84);
+    filter:saturate(.70) sepia(.10) contrast(.96) brightness(.78);
   }
 
   .hero-road-photo__veil{
     background:
-      linear-gradient(90deg,rgba(36,31,27,.58) 0%,rgba(36,31,27,.36) 58%,rgba(36,31,27,.14) 100%),
-      linear-gradient(0deg,rgba(36,31,27,.86) 0%,rgba(36,31,27,.56) 38%,rgba(36,31,27,.12) 72%);
+      radial-gradient(ellipse at 58% 29%,rgba(243,236,227,.15) 0%,rgba(243,236,227,.06) 16%,rgba(243,236,227,0) 35%),
+      linear-gradient(90deg,rgba(36,31,27,.62) 0%,rgba(36,31,27,.38) 58%,rgba(36,31,27,.14) 100%),
+      linear-gradient(0deg,rgba(36,31,27,.88) 0%,rgba(36,31,27,.58) 38%,rgba(36,31,27,.12) 73%);
   }
 
   .hero-road-photo__content{
