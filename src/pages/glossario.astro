@@ -1,0 +1,207 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { glossaryItems } from "../data/glossario";
+import "../styles/glossario.css";
+
+const slugify = (value:string) =>
+  value.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase()
+    .replace(/&/g," e ").replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"");
+
+const initialOf = (value:string) =>
+  value.normalize("NFD").replace(/[\u0300-\u036f]/g,"").charAt(0).toUpperCase();
+
+const items = [...glossaryItems].sort((a,b)=>a.term.localeCompare(b.term,"pt-BR",{sensitivity:"base"}));
+const letters = [...new Set(items.map(item=>initialOf(item.term)))];
+const tags = [...new Set(items.flatMap(item=>item.tags))].sort((a,b)=>a.localeCompare(b,"pt-BR"));
+---
+<BaseLayout
+  title="Glossário ROAD | ROAD Wealth®"
+  description="Termos de investimentos, bancos, crédito, câmbio, previdência e patrimônio explicados de forma simples."
+  active="conhecimento"
+>
+  <section class="section section--sand glossary-hero">
+    <div class="eyebrow">GLOSSÁRIO ROAD</div>
+    <h1>Finanças não precisam parecer uma língua estrangeira.</h1>
+    <p class="lead">Termos usados em investimentos, bancos, crédito, câmbio, previdência e planejamento patrimonial explicados de forma simples e direta.</p>
+    <p class="glossary-hero-note">Esta primeira versão reúne <strong>{items.length} verbetes</strong>. Quando um conceito depende de outro, você encontra links para continuar a leitura sem precisar procurar sozinho.</p>
+  </section>
+
+  <section class="section section--white glossary-shell" id="glossario">
+    <div class="glossary-toolbar" aria-label="Ferramentas do glossário">
+      <label class="glossary-search">
+        <span>Buscar um termo</span>
+        <input id="glossary-search" type="search" placeholder="Ex.: spread, CDB, IVVB11, FGC..." autocomplete="off" />
+      </label>
+
+      <label class="glossary-filter">
+        <span>Filtrar por tema</span>
+        <select id="glossary-tag">
+          <option value="">Todos os temas</option>
+          {tags.map(tag=><option value={tag}>{tag}</option>)}
+        </select>
+      </label>
+
+      <div class="glossary-visible-count" aria-live="polite">
+        <strong id="glossary-count">{items.length}</strong>
+        <span>termos</span>
+      </div>
+    </div>
+
+    <nav class="glossary-az" aria-label="Índice alfabético">
+      {letters.map(letter=><a href={`#glossario-${letter}`}>{letter}</a>)}
+    </nav>
+
+    <div class="glossary-guide">
+      <div>
+        <strong>Como ler</strong>
+        <p>Abra o termo para ver uma explicação curta e por que ele importa na prática.</p>
+      </div>
+      <div>
+        <strong>FGC</strong>
+        <p>Nos produtos de renda fixa bancária ou privada em que isso é relevante, indicamos se há ou não cobertura do FGC. Os limites e condições sempre seguem as regras vigentes.</p>
+      </div>
+      <div>
+        <strong>Termos relacionados</strong>
+        <p>Use “Veja também” para navegar entre conceitos que fazem parte do mesmo assunto.</p>
+      </div>
+    </div>
+
+    <p class="glossary-no-results" id="glossary-no-results" hidden>Nenhum termo encontrado com esses filtros.</p>
+
+    <div class="glossary-groups">
+      {letters.map(letter=>{
+        const group=items.filter(item=>initialOf(item.term)===letter);
+        return (
+          <section class="glossary-letter-group" id={`glossario-${letter}`} data-glossary-group>
+            <div class="glossary-letter" aria-hidden="true">{letter}</div>
+            <div class="glossary-letter-items">
+              {group.map(item=>{
+                const searchText=[item.term,item.definition,item.why,item.issuer||"",...item.tags,...(item.related||[])].join(" ").toLocaleLowerCase("pt-BR");
+                return (
+                  <details
+                    class="glossary-entry"
+                    id={slugify(item.term)}
+                    data-glossary-entry
+                    data-search={searchText}
+                    data-tags={item.tags.join("|")}
+                  >
+                    <summary>
+                      <span class="glossary-term">{item.term}</span>
+                      <span class="glossary-summary-meta">
+                        {item.tags.slice(0,2).map(tag=><span class="glossary-tag">{tag}</span>)}
+                        {item.fgc && <span class:list={["glossary-fgc",item.fgc==="SIM"?"is-yes":"is-no"]}>FGC: {item.fgc}</span>}
+                      </span>
+                      <span class="glossary-plus" aria-hidden="true">+</span>
+                    </summary>
+                    <div class="glossary-entry-body">
+                      <div class="glossary-definition">
+                        <div class="eyebrow">O QUE É</div>
+                        <p>{item.definition}</p>
+                      </div>
+                      <div class="glossary-why">
+                        <div class="eyebrow">POR QUE ISSO IMPORTA</div>
+                        <p>{item.why}</p>
+                      </div>
+
+                      {(item.issuer || item.fgc) && (
+                        <div class="glossary-product-meta">
+                          {item.issuer && <span><small>Emissor / estrutura</small><strong>{item.issuer}</strong></span>}
+                          {item.fgc && <span><small>Cobertura FGC</small><strong>{item.fgc}</strong></span>}
+                        </div>
+                      )}
+
+                      {item.related?.length && (
+                        <div class="glossary-related">
+                          <span>Veja também</span>
+                          <div>
+                            {item.related.map(term=><a href={`#${slugify(term)}`} data-related-link>{term}</a>)}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </details>
+                );
+              })}
+            </div>
+          </section>
+        );
+      })}
+    </div>
+
+    <aside class="glossary-note">
+      <div class="eyebrow">UMA OBSERVAÇÃO IMPORTANTE</div>
+      <p>O glossário é educacional. Regras tributárias, coberturas, limites, prazos e características de produtos podem mudar e também variam conforme a emissão ou o contrato. Antes de investir ou contratar crédito, consulte as condições específicas.</p>
+    </aside>
+  </section>
+
+  <section class="section section--sand glossary-sources">
+    <div class="section-intro">
+      <div class="eyebrow">FONTES DE REFERÊNCIA</div>
+      <h2>Conceitos revisados a partir de fontes oficiais e primárias.</h2>
+      <p>Para a primeira versão, priorizamos definições e regras publicadas pelas instituições responsáveis por cada mercado.</p>
+    </div>
+    <div class="glossary-source-links">
+      <a href="https://www.b3.com.br/" target="_blank" rel="noopener noreferrer"><strong>B3</strong><span>Índices, contratos e produtos de mercado ↗</span></a>
+      <a href="https://www.anbima.com.br/" target="_blank" rel="noopener noreferrer"><strong>ANBIMA</strong><span>Índices e referências da indústria ↗</span></a>
+      <a href="https://www.bcb.gov.br/" target="_blank" rel="noopener noreferrer"><strong>Banco Central</strong><span>Instituições, juros e regulação bancária ↗</span></a>
+      <a href="https://www.gov.br/investidor/" target="_blank" rel="noopener noreferrer"><strong>Portal do Investidor / CVM</strong><span>Fundos, FIDCs e educação do investidor ↗</span></a>
+      <a href="https://www.fgc.org.br/" target="_blank" rel="noopener noreferrer"><strong>FGC</strong><span>Produtos e limites de garantia ↗</span></a>
+      <a href="https://www.gov.br/susep/" target="_blank" rel="noopener noreferrer"><strong>SUSEP</strong><span>Previdência aberta, PGBL e VGBL ↗</span></a>
+    </div>
+  </section>
+
+  <script is:inline>
+    (()=>{
+      const normalize=value=>String(value||'')
+        .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+        .toLocaleLowerCase('pt-BR');
+
+      const search=document.getElementById('glossary-search');
+      const tag=document.getElementById('glossary-tag');
+      const entries=[...document.querySelectorAll('[data-glossary-entry]')];
+      const groups=[...document.querySelectorAll('[data-glossary-group]')];
+      const count=document.getElementById('glossary-count');
+      const noResults=document.getElementById('glossary-no-results');
+
+      const apply=()=>{
+        const query=normalize(search?.value);
+        const selected=tag?.value||'';
+        let visible=0;
+
+        entries.forEach(entry=>{
+          const matchesText=!query || normalize(entry.dataset.search).includes(query);
+          const entryTags=(entry.dataset.tags||'').split('|');
+          const matchesTag=!selected || entryTags.includes(selected);
+          const show=matchesText && matchesTag;
+          entry.hidden=!show;
+          if(show) visible++;
+        });
+
+        groups.forEach(group=>{
+          const any=[...group.querySelectorAll('[data-glossary-entry]')].some(entry=>!entry.hidden);
+          group.hidden=!any;
+        });
+
+        if(count) count.textContent=String(visible);
+        if(noResults) noResults.hidden=visible!==0;
+      };
+
+      search?.addEventListener('input',apply);
+      tag?.addEventListener('change',apply);
+
+      document.querySelectorAll('[data-related-link]').forEach(link=>{
+        link.addEventListener('click',()=>{
+          const id=decodeURIComponent(link.getAttribute('href')||'').replace(/^#/,'');
+          const target=document.getElementById(id);
+          if(target instanceof HTMLDetailsElement){
+            if(search) search.value='';
+            if(tag) tag.value='';
+            apply();
+            target.open=true;
+            requestAnimationFrame(()=>target.scrollIntoView({behavior:'smooth',block:'center'}));
+          }
+        });
+      });
+    })();
+  </script>
+</BaseLayout>
