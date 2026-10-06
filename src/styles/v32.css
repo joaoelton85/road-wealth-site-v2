@@ -24,7 +24,7 @@
   align-items:stretch;
   padding:0;
   overflow:hidden;
-  border:1px solid rgba(72,58,47,.24);
+  border:1px solid rgba(72,58,47,.18);
   border-radius:10px;
   background:var(--sand);
 }
@@ -240,7 +240,7 @@
   .road-highlights__inner{
     min-height:46px;
     grid-template-columns:88px minmax(0,1fr) 34px;
-    border-color:rgba(72,58,47,.22);
+    border-color:rgba(72,58,47,.16);
     border-radius:8px;
   }
 
@@ -280,7 +280,7 @@
   }
 
   .hero-road-photo__media img{
-    object-position:50% center;
+    object-position:35% center;
     filter:saturate(.70) sepia(.10) contrast(.96) brightness(.78);
   }
 
