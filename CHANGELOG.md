@@ -1,5 +1,14 @@
 # CHANGELOG — ROAD Wealth
 
+## V41 — 06/10/2026
+
+- Revisão pontual da linguagem pública para separar posicionamento interno de comunicação externa.
+- Removida da Home a autoatribuição `Segura, sofisticada, próxima e transparente.`.
+- O teaser da ROAD passa a usar `Patrimônio também é relacionamento.`, demonstrando proximidade e cuidado por meio da forma de trabalhar.
+- O bloco Propósito em A ROAD deixa de listar atributos do Branding Book e passa a descrevê-los por ações: entender objetivos, explicar decisões com clareza e acompanhar mudanças ao longo do tempo.
+- O Branding Book permanece como guia interno de tom e posicionamento; o site manifesta esses princípios sem autoelogio.
+- Marcador técnico atualizado para `ROAD_BUILD=41.0.0`.
+
 ## V40 — 06/10/2026
 
 - Home reorganizada para explicar com clareza o que a ROAD faz logo na primeira navegação.
