@@ -18,7 +18,8 @@ import "../styles/v31.css";
 import "../styles/v32.css";
 import "../styles/v35.css";
 import "../styles/v36.css";
-const BUILD_VERSION = "36.0.0";
+import "../styles/v37.css";
+const BUILD_VERSION = "37.0.0";
 const { title = "ROAD Wealth®", description = "ROAD Wealth — consultoria de investimentos e cuidado patrimonial com visão integrada.", active = "", noindex = true } = Astro.props;
 ---
 <!doctype html>
@@ -47,8 +48,7 @@ const { title = "ROAD Wealth®", description = "ROAD Wealth — consultoria de i
       <MarketTicker />
       <RoadHighlights />
       <div class="market-ticker-note road-market-note" aria-label="Fontes e atraso das cotações">
-        <span class="market-ticker-note-full">Dados e atrasos conforme o mercado e a fonte &nbsp;|&nbsp; B3 · 15 min de atraso &nbsp;|&nbsp; via TradingView</span>
-        <span class="market-ticker-note-compact">B3 · 15 min de atraso &nbsp;|&nbsp; via TradingView</span>
+        B3 · 15 min de atraso &nbsp;|&nbsp; via TradingView
       </div>
     </div>
     <main>
@@ -79,7 +79,7 @@ const { title = "ROAD Wealth®", description = "ROAD Wealth — consultoria de i
         const layer=document.elementsFromPoint(x,y);
         const surface=layer.map(el=>el.closest?.('.section,.road-callout')).find(Boolean)
           || [...main.querySelectorAll('.section,.road-callout')].find(el=>!el.hidden && getComputedStyle(el).display!=='none');
-        const dark=surface?.matches('.section--coffee,.section--petrol,.section--olive,.road-callout--petrol') ?? false;
+        const dark=surface?.matches('.section--coffee,.section--petrol,.section--olive,.road-callout--petrol,.hero--road-photo') ?? false;
         tickerNote.classList.toggle('is-on-dark',dark);
       };
       const requestTickerNoteTone=()=>{
