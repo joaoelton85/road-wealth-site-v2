@@ -1,5 +1,12 @@
 # CHANGELOG — ROAD Wealth
 
+## V34 — 06/10/2026
+
+- Correção técnica final do verificador de build, sem qualquer alteração visual.
+- A validação da Home passa a procurar `Explore Mercados &amp; Ferramentas`, exatamente como o Astro serializa o caractere `&` no HTML final.
+- Mantidos integralmente a fotografia da Catedral de Mônaco, o novo hero, o bloco de Destaque, os textos visíveis e a lógica do ticker.
+- Marcador técnico atualizado para `ROAD_BUILD=34.0.0`.
+
 ## V33 — 06/10/2026
 
 - Correção técnica de publicação da V32, sem alteração visual adicional.
