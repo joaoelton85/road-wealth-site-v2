@@ -4,21 +4,21 @@ const checks = [
   {
     file: "dist/__road-build.json",
     required: [
-      '"roadBuild": "33.0.0"',
+      '"roadBuild": "34.0.0"',
     ],
   },
   {
     file: "dist/index.html",
     required: [
-      'road-build" content="33.0.0"',
-      'data-road-build="33.0.0"',
+      'road-build" content="34.0.0"',
+      'data-road-build="34.0.0"',
       "CHECK-UP ROAD",
       "road-highlights",
       "road-highlights__slide",
       "DESTAQUE",
       "Faça seu Check-up ROAD",
       "Simule seu IR 2026",
-      "Explore Mercados & Ferramentas",
+      "Explore Mercados &amp; Ferramentas",
       "hero--road-photo",
       "Monaco-Cathedrale-ND-Immaculee.jpg",
       "Entre em contato",
@@ -53,7 +53,7 @@ const checks = [
   {
     file: "dist/calculadora-ir/index.html",
     required: [
-      'road-build" content="33.0.0"',
+      'road-build" content="34.0.0"',
       "Calculadora de IR 2026",
       "Rendimentos tributáveis do titular",
       "Número de dependentes",
@@ -77,7 +77,7 @@ const checks = [
   {
     file: "dist/a-road/index.html",
     required: [
-      'road-build" content="33.0.0"',
+      'road-build" content="34.0.0"',
       "F-2JRohFQdk",
       "youtube-lite",
       "Uma leitura inicial do patrimônio em poucos minutos.",
@@ -149,4 +149,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log("ROAD build verification OK — V33.0.0");
+console.log("ROAD build verification OK — V34.0.0");
