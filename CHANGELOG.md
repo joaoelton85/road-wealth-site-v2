@@ -1,5 +1,13 @@
 # CHANGELOG — ROAD Wealth
 
+## V33 — 06/10/2026
+
+- Correção técnica de publicação da V32, sem alteração visual adicional.
+- Removida do verificador da Home a exigência obsoleta do texto `CALCULADORA DE IR 2026`, substituído na V32 pela chamada `Simule seu IR 2026`.
+- Mantida a validação da página própria da Calculadora de IR, onde o título `Calculadora de IR 2026` continua correto.
+- Preservados integralmente o novo bloco de Destaque, o hero fotográfico, a fotografia autêntica da Catedral de Mônaco e a lógica do ticker.
+- Marcador técnico atualizado para `ROAD_BUILD=33.0.0`.
+
 ## V32 — 05/10/2026
 
 - Nova direção visual da Home, preservando a V31 como ponto de retorno.
