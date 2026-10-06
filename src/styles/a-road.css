@@ -258,3 +258,13 @@
 @media(prefers-reduced-motion:reduce){
   .road-carousel-track span{animation:none!important}
 }
+
+
+.chapter-section:not([hidden]){
+  animation:roadChapterReveal .34s ease both;
+}
+
+@keyframes roadChapterReveal{
+  from{opacity:.72;transform:translateY(4px)}
+  to{opacity:1;transform:none}
+}
