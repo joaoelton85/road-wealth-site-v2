@@ -1,28 +1,29 @@
 <section class="road-highlights" aria-label="Destaques" data-road-highlights>
   <div class="road-highlights__inner">
-    <div class="road-highlights__label" aria-hidden="true">DESTAQUE</div>
-
-    <div class="road-highlights__stage">
-      <a class="road-highlights__slide is-active" data-highlight-slide aria-hidden="false" href="/patrimonio/#checkup-road">
-        <span>Faça seu Check-up ROAD</span>
-        <span class="road-highlights__arrow" aria-hidden="true">→</span>
-      </a>
-
-      <a class="road-highlights__slide" data-highlight-slide aria-hidden="true" href="/calculadora-ir/">
-        <span>Simule seu IR 2026</span>
-        <span class="road-highlights__arrow" aria-hidden="true">→</span>
-      </a>
-
-      <button class="road-highlights__slide js-open-market-tools" data-highlight-slide aria-hidden="true" type="button">
-        <span>Explore Mercados &amp; Ferramentas</span>
-        <span class="road-highlights__arrow" aria-hidden="true">→</span>
-      </button>
+    <div class="road-highlights__label">
+      <span class="road-highlights__label-text">DESTAQUE</span>
+      <div class="road-highlights__dots" aria-label="Escolher destaque">
+        <button class="is-active" data-highlight-dot type="button" aria-label="Mostrar Check-up ROAD"></button>
+        <button data-highlight-dot type="button" aria-label="Mostrar Calculadora de IR 2026"></button>
+        <button data-highlight-dot type="button" aria-label="Mostrar Mercados & Ferramentas"></button>
+      </div>
     </div>
 
-    <div class="road-highlights__dots" aria-label="Escolher destaque">
-      <button class="is-active" data-highlight-dot type="button" aria-label="Mostrar Check-up ROAD"></button>
-      <button data-highlight-dot type="button" aria-label="Mostrar Calculadora de IR 2026"></button>
-      <button data-highlight-dot type="button" aria-label="Mostrar Mercados & Ferramentas"></button>
+    <div class="road-highlights__stage">
+      <a class="road-highlights__slide is-active" data-highlight-slide data-highlight-kind="checkup" aria-hidden="false" href="/patrimonio/#checkup-road">
+        <span class="road-highlights__slide-copy">Como está seu planejamento financeiro? Faça um teste rápido e receba seu diagnóstico.</span>
+        <span class="road-highlights__arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="road-highlights__slide" data-highlight-slide data-highlight-kind="ir" aria-hidden="true" href="/calculadora-ir/">
+        <span class="road-highlights__slide-copy">Planeje melhor seu IR. Simule PGBL, deduções e incentivos fiscais.</span>
+        <span class="road-highlights__arrow" aria-hidden="true">→</span>
+      </a>
+
+      <button class="road-highlights__slide js-open-market-tools" data-highlight-slide data-highlight-kind="markets" aria-hidden="true" type="button">
+        <span class="road-highlights__slide-copy">Acompanhe mercados, juros, câmbio e ferramentas para suas decisões.</span>
+        <span class="road-highlights__arrow" aria-hidden="true">→</span>
+      </button>
     </div>
   </div>
 </section>
@@ -67,7 +68,9 @@
         timer=window.setInterval(()=>render(index+1),7000);
       };
 
-      dots.forEach((dot,i)=>dot.addEventListener('click',()=>{
+      dots.forEach((dot,i)=>dot.addEventListener('click',event=>{
+        event.preventDefault();
+        event.stopPropagation();
         render(i);
         start();
       }));
