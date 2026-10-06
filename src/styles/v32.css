@@ -279,7 +279,7 @@
   }
 
   .hero-road-photo__media img{
-    object-position:78% center;
+    object-position:50% center;
     filter:saturate(.86) contrast(.96) brightness(.84);
   }
 
