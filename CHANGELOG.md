@@ -1,5 +1,15 @@
 # CHANGELOG — ROAD Wealth
 
+## V36 — 06/10/2026
+
+- MERCADOS e DESTAQUE passam a usar exatamente a mesma largura de coluna, tamanho de fonte, peso, espaçamento entre letras, line-height e alinhamento horizontal.
+- DESTAQUE volta a ficar sozinho no bloco Café.
+- As bolinhas de alternância saem do bloco Café e passam para a área Areia imediatamente ao lado, integradas ao banner e sem caixa/borda própria.
+- Mantido o comportamento de um único destaque visível por vez, com rotação automática e navegação pelas bolinhas.
+- A direção editorial `Estratégia global para os seus objetivos` não foi incorporada ao site.
+- Demais elementos da V35 — hero, fundos editoriais, nota B3, Contato em Areia e ticker — permanecem inalterados.
+- Marcador técnico atualizado para `ROAD_BUILD=36.0.0`.
+
 ## V35 — 06/10/2026
 
 - Hero da Home atualizado para a composição aprovada com caminho claramente visível conduzindo à igreja, preservando o destaque sutil de luz sobre a construção e recortes responsivos.
