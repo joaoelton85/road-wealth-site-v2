@@ -1,5 +1,14 @@
 # CHANGELOG — ROAD Wealth
 
+## V49 — 07/10/2026
+
+- Reconstruída diretamente sobre a árvore da V44, última versão confirmada em produção no Cloudflare.
+- Reaplica em um único conjunto coerente as alterações convergidas entre V45 e V48: remoção dos banners intermediários; quarto Destaque para Conhecimento; logos monocromáticos e uniformes; maior largura editorial; números 01–05 destacados; tipografia institucional; refinamentos da Calculadora de IR; e Glossário com 160 verbetes.
+- O ticker e a infraestrutura funcional da V44 foram preservados.
+- As camadas `v45.css`, `v46.css`, `v47.css` e `v48.css` não são carregadas pela V49.
+- O verificador de build volta a ser curto e objetivo.
+- Marcador técnico atualizado para `ROAD_BUILD=49.0.0`.
+
 ## V48 — 07/10/2026
 
 - Revisão efetiva do escopo aprovado, partindo da `road-wealth-site-v2/main`.

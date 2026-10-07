@@ -1,0 +1,202 @@
+/* ROAD Wealth V49 — reconstrução sobre a V44 estável. */
+
+/* Home: melhor aproveitamento da largura editorial. */
+.home-planning > .section-intro,
+.home-areas > .section-intro,
+.home-institutions > .section-intro,
+.home-planning > .section-intro h2,
+.home-areas > .section-intro h2,
+.home-institutions > .section-intro h2,
+.home-planning > .section-intro p,
+.home-areas > .section-intro p,
+.home-institutions > .section-intro p{
+  width:100%;
+  max-width:none;
+}
+
+/* Planejamento: 01–05 como marcadores visuais fortes. */
+.planning-steps article,
+.planning-steps article:first-child,
+.planning-steps article:last-child{
+  min-height:200px;
+  padding:22px 20px 23px;
+}
+.planning-steps .planning-step-number{
+  display:block;
+  margin:0 0 16px;
+  color:var(--coffee);
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:38px;
+  font-weight:500;
+  line-height:.95;
+  letter-spacing:.01em;
+  font-variant-numeric:tabular-nums;
+  opacity:1;
+}
+
+/* Plataformas: logos monocromáticos com caixa óptica uniforme. */
+.home-institutions .platform-grid{
+  align-items:center;
+  gap:16px 22px;
+}
+.home-institutions .platform-logo-cell{
+  min-height:64px;
+  height:64px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:8px 12px;
+  overflow:hidden;
+}
+.home-institutions .platform-logo{
+  display:block;
+  width:min(100%,140px);
+  height:40px;
+  max-width:140px;
+  max-height:40px;
+  object-fit:contain;
+  filter:grayscale(1) saturate(0) brightness(.46) contrast(1.12)!important;
+  opacity:.84!important;
+}
+
+/* Destaque: mesma malha estrutural de MERCADOS. */
+.road-highlights__inner{
+  grid-template-columns:var(--road-top-label-w) minmax(0,1fr);
+}
+.road-highlights__label{
+  width:var(--road-top-label-w);
+  min-width:var(--road-top-label-w);
+  padding-left:14px!important;
+  padding-right:14px!important;
+}
+.road-highlights__label-text{
+  display:block;
+  width:100%;
+  text-align:center;
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:11.5px;
+  font-weight:600;
+  line-height:1;
+  letter-spacing:.095em;
+  text-transform:uppercase;
+}
+.road-highlights__stage{min-width:0}
+.road-highlights__slide{padding-right:30px}
+
+/* Contatos institucionais: mesma escala em Home, Contato e Onde estamos. */
+main .road-contact-info,
+main .contact-address,
+main .presence-address .contact-lines{
+  font-family:"Inter",Arial,sans-serif;
+  font-size:14.5px;
+  line-height:1.62;
+  font-weight:400;
+}
+main .road-contact-info{
+  margin-top:24px;
+  color:rgba(243,236,227,.82);
+}
+main .road-contact-info strong,
+main .contact-address > strong,
+main .presence-address > strong{
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:14px;
+  line-height:1.4;
+  font-weight:500;
+}
+main .road-contact-info p,
+main .contact-address p{
+  margin:7px 0 0;
+  font:inherit;
+}
+main .road-contact-info a,
+main .contact-address a,
+main .presence-address a{
+  font-family:"Inter",Arial,sans-serif;
+  font-size:inherit;
+  color:inherit;
+}
+main .road-contact-socials{margin-top:20px}
+.footer,.footer-links,.footer small{font-family:"Inter",Arial,sans-serif}
+
+/* Ritmo vertical: menos vazio sem perder a leitura boutique. */
+.page-hero{padding-bottom:28px}
+@media(min-width:681px){
+  .hero--road-photo{
+    min-height:clamp(440px,50vh,570px);
+    padding-top:clamp(46px,4.4vw,68px);
+    padding-bottom:clamp(34px,3vw,48px);
+  }
+  .home-intro,
+  .home-planning,
+  .home-areas,
+  .home-institutions,
+  .home-a-road,
+  .home-contact{
+    padding-top:42px;
+    padding-bottom:42px;
+  }
+}
+
+/* Calculadora: metadados simples e CTA consistente. */
+.ir-simulation-head{
+  margin:0 0 20px;
+  padding:0 0 15px;
+  background:transparent;
+  border:0;
+  border-bottom:1px solid var(--line);
+}
+.ir-simulation-head .eyebrow{margin-bottom:5px}
+.ir-simulation-head p{
+  margin:0;
+  font-family:"Inter",Arial,sans-serif;
+  font-size:12.5px;
+  line-height:1.45;
+  letter-spacing:.01em;
+  color:var(--muted);
+}
+.ir-result-contact{font-family:"Inter",Arial,sans-serif}
+.ir-result-contact a{
+  font-family:"Montserrat",Arial,sans-serif;
+  font-weight:500;
+}
+
+@media(max-width:1100px){
+  .planning-steps article,
+  .planning-steps article:first-child,
+  .planning-steps article:last-child{min-height:0}
+}
+@media(max-width:680px){
+  .road-highlights__label{
+    padding-left:8px!important;
+    padding-right:8px!important;
+  }
+  .road-highlights__label-text{
+    font-size:9.5px;
+    letter-spacing:.07em;
+  }
+  .road-highlights__slide{padding-right:12px}
+  .planning-steps .planning-step-number{
+    margin-bottom:10px;
+    font-size:30px;
+  }
+  .planning-steps article,
+  .planning-steps article:first-child,
+  .planning-steps article:last-child{
+    min-height:0;
+    padding:17px 0;
+  }
+  .home-institutions .platform-logo-cell{
+    height:58px;
+    min-height:58px;
+  }
+  .home-institutions .platform-logo{
+    width:min(100%,124px);
+    height:36px;
+    max-width:124px;
+    max-height:36px;
+  }
+  main .road-contact-info,
+  main .contact-address,
+  main .presence-address .contact-lines{font-size:14px}
+}
