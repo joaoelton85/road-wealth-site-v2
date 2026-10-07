@@ -3,7 +3,7 @@ import { existsSync, readFileSync } from "node:fs";
 const checks = [
   {
     file: "src/layouts/BaseLayout.astro",
-    required: ['import "../styles/v49.css";', 'const BUILD_VERSION = "49.0.0";'],
+    required: ['import "../styles/v49.css";', 'const BUILD_VERSION = "49.0.1";'],
   },
   {
     file: "src/components/MarketTicker.astro",
@@ -55,12 +55,12 @@ const checks = [
       '"term": "Diferimento / diferido"',
     ],
   },
-  { file: "dist/__road-build.json", required: ['"roadBuild": "49.0.0"'] },
+  { file: "dist/__road-build.json", required: ['"roadBuild": "49.0.1"'] },
   {
     file: "dist/index.html",
     required: [
-      'road-build" content="49.0.0"',
-      'data-road-build="49.0.0"',
+      'road-build" content="49.0.1"',
+      'data-road-build="49.0.1"',
       "DESTAQUE",
       "Conceitos, ferramentas e Glossário ROAD para entender melhor suas decisões.",
       "planning-step-number",
@@ -73,7 +73,7 @@ const checks = [
   {
     file: "dist/calculadora-ir/index.html",
     required: [
-      'road-build" content="49.0.0"',
+      'road-build" content="49.0.1"',
       "SIMULAÇÃO IRPF 2026",
       "Ficou em dúvida?",
       "Fale com a gente",
@@ -83,7 +83,7 @@ const checks = [
   {
     file: "dist/glossario/index.html",
     required: [
-      'road-build" content="49.0.0"',
+      'road-build" content="49.0.1"',
       "160 verbetes",
       "Pix",
       "Open Finance",
@@ -116,4 +116,4 @@ if (failures.length) {
   failures.forEach(failure => console.error(`- ${failure}`));
   process.exit(1);
 }
-console.log("ROAD build verification OK — V49.0.0");
+console.log("ROAD build verification OK — V49.0.1");
