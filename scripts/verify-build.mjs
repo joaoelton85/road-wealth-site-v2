@@ -38,16 +38,34 @@ const checks = [
     ],
   },
   {
+    file: "src/styles/v44.css",
+    required: [
+      ".site-header",
+      "z-index:12",
+      ".knowledge-page > .lead",
+      ".knowledge-page-item p",
+      "font-size:16.5px",
+      "line-height:1.55",
+    ],
+  },
+  {
+    file: "src/components/Footer.astro",
+    required: [
+      'href="/privacidade/#privacidade"',
+      'href="/privacidade/#cookies"',
+    ],
+  },
+  {
     file: "dist/__road-build.json",
     required: [
-      '"roadBuild": "43.0.0"',
+      '"roadBuild": "44.0.0"',
     ],
   },
   {
     file: "dist/index.html",
     required: [
-      'road-build" content="43.0.0"',
-      'data-road-build="43.0.0"',
+      'road-build" content="44.0.0"',
+      'data-road-build="44.0.0"',
       "CHECK-UP ROAD",
       "road-highlights",
       "road-highlights__slide",
@@ -72,6 +90,8 @@ const checks = [
       "road-market-note",
       "home-contact",
       "Entre em contato",
+      "/privacidade/#privacidade",
+      "/privacidade/#cookies",
       "market-ticker-label",
       "market-ticker-row--desktop",
       "market-ticker-mobile-live",
@@ -110,7 +130,7 @@ const checks = [
   {
     file: "dist/calculadora-ir/index.html",
     required: [
-      'road-build" content="43.0.0"',
+      'road-build" content="44.0.0"',
       "Calculadora de IR 2026",
       "Rendimentos tributáveis do titular",
       "Número de dependentes",
@@ -134,7 +154,7 @@ const checks = [
   {
     file: "dist/a-road/index.html",
     required: [
-      'road-build" content="43.0.0"',
+      'road-build" content="44.0.0"',
       "F-2JRohFQdk",
       "youtube-lite",
       "Uma leitura inicial do patrimônio em poucos minutos.",
@@ -180,16 +200,44 @@ const checks = [
   {
     file: "dist/conhecimento/index.html",
     required: [
+      'road-build" content="44.0.0"',
       "Da teoria para a leitura do mercado.",
       "road-callout-panel",
       "Abrir Glossário ROAD",
       "/glossario/",
+      "Informação ganha valor quando vem acompanhada de contexto.",
+      "ajudar a entender o que realmente merece atenção.",
+    ],
+    forbidden: [
+      "sem a obrigação de funcionar como portal diário de notícias",
+    ],
+  },
+  {
+    file: "dist/privacidade/index.html",
+    required: [
+      'road-build" content="44.0.0"',
+      "PRIVACIDADE E COOKIES",
+      "Clareza também se aplica aos seus dados.",
+      "ROAD WEALTH LTDA",
+      "Check-up ROAD e Calculadora de IR",
+      "processadas no próprio navegador",
+      "Faça parte da ROAD",
+      "ainda não está conectado a um sistema de envio",
+      "Cloudflare",
+      "TradingView",
+      "youtube-nocookie.com",
+      "Google Fonts",
+      "DIREITOS DO TITULAR",
+      "COOKIES E TECNOLOGIAS SEMELHANTES",
+      "cookies de publicidade comportamental",
+      "contato@roadwealth.com.br",
+      "CANAL DE PRIVACIDADE",
     ],
   },
   {
     file: "dist/glossario/index.html",
     required: [
-      'road-build" content="43.0.0"',
+      'road-build" content="44.0.0"',
       "GLOSSÁRIO ROAD",
       "Finanças não precisam parecer uma língua estrangeira.",
       "153 verbetes",
@@ -252,4 +300,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log("ROAD build verification OK — V43.0.0");
+console.log("ROAD build verification OK — V44.0.0");
