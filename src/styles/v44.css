@@ -1,0 +1,51 @@
+/* ROAD Wealth V44 — acabamento mobile, Conhecimento e links de privacidade. */
+
+/* Conhecimento: textos explicativos passam a seguir uma escala deliberada e consistente. */
+.knowledge-page > .lead{
+  font-family:"Inter",Arial,sans-serif;
+  font-size:17px;
+  line-height:1.55;
+  font-weight:400;
+}
+
+.knowledge-page-item p{
+  font-family:"Inter",Arial,sans-serif;
+  font-size:16.5px;
+  line-height:1.55;
+  font-weight:400;
+}
+
+/* Rodapé: links institucionais reais, sem ruído visual adicional. */
+.footer-links a{
+  color:inherit;
+  text-decoration:none;
+}
+
+.footer-links a:hover,
+.footer-links a:focus-visible{
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+
+/* Mobile/tablet: o cabeçalho e o menu aberto precisam ficar acima de Mercados e Destaque. */
+@media(max-width:1000px){
+  .site-header{
+    z-index:12;
+  }
+
+  .nav{
+    z-index:20;
+  }
+
+  .nav.open{
+    z-index:20;
+  }
+}
+
+@media(max-width:680px){
+  .knowledge-page > .lead,
+  .knowledge-page-item p{
+    font-size:16.5px;
+    line-height:1.55;
+  }
+}
