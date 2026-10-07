@@ -1,5 +1,19 @@
 # CHANGELOG — ROAD Wealth
 
+## V44 — 06/10/2026
+
+- Corrigida a hierarquia de camadas no mobile/tablet: o cabeçalho e o menu aberto passam a ficar acima das faixas Mercados e Destaque.
+- A página Conhecimento recebe padronização tipográfica dos textos explicativos, com Inter, escala consistente e line-height 1,55.
+- O texto de Perspectivas deixa de expor uma diretriz editorial interna e passa a falar diretamente com o cliente.
+- Publicada a página Privacidade e Cookies, com linguagem direta e aderente à configuração atual do site.
+- A política informa o tratamento local do Check-up ROAD e da Calculadora de IR, além de esclarecer que o formulário Faça parte da ROAD ainda não transmite dados enquanto não houver backend.
+- Serviços de terceiros atualmente presentes são descritos de forma específica: Cloudflare, TradingView, YouTube em modo youtube-nocookie e Google Fonts.
+- O site informa que, na configuração atual, a ROAD não utiliza por iniciativa própria cookies de publicidade comportamental nem ferramenta própria de analytics ou marketing.
+- O canal de privacidade passa a ser contato@roadwealth.com.br.
+- Os itens Política de Privacidade e Cookies no rodapé passam a ser links reais para a nova página.
+- Mantidos integralmente o topo persistente, ClientRouter e ticker regular da V43.
+- Marcador técnico atualizado para `ROAD_BUILD=44.0.0`.
+
 ## V43 — 06/10/2026
 
 - A navegação interna passa a usar o ClientRouter do Astro 7, evitando recarregamentos completos entre páginas do próprio site.
