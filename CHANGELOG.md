@@ -1,5 +1,14 @@
 # CHANGELOG — ROAD Wealth
 
+## V46 — 07/10/2026
+
+- Correção explícita dos três blocos apontados na Home: Planejamento Financeiro, Áreas de Atuação e Consultoria Independente passam a ocupar toda a largura editorial disponível, sem o limite residual de 1.240 px.
+- Os textos introdutórios desses três blocos deixam de herdar limites de largura que geravam quebras e palavras isoladas apesar de haver espaço horizontal disponível.
+- Etapas 01–05 do Planejamento recebem números ainda mais marcantes: 34 px no desktop, Café sólido e alinhamento numérico uniforme.
+- As cinco caixas de Planejamento passam a usar exatamente o mesmo padding lateral e vertical no desktop, eliminando diferenças entre primeira e última coluna.
+- Mantidas integralmente as demais alterações da V45.
+- Marcador técnico atualizado para `ROAD_BUILD=46.0.0`.
+
 ## V45 — 07/10/2026
 
 - Revisão geral de acabamento e consistência visual, sem alterar a operacionalização de e-mail ou WhatsApp.
