@@ -2160,4 +2160,97 @@ export const glossaryItems: GlossaryItem[] = [
       "Debênture"
     ]
   }
+  {
+    "term": "CBDC",
+    "definition": "Sigla de Central Bank Digital Currency, ou moeda digital de banco central. É uma representação digital de uma moeda oficial emitida ou garantida pela autoridade monetária.",
+    "why": "Ajuda a entender projetos como o Drex, que usam infraestrutura digital mantendo a referência na moeda oficial do país.",
+    "tags": [
+      "Ativos digitais",
+      "Sistema financeiro"
+    ],
+    "related": [
+      "Drex",
+      "Tokenização"
+    ]
+  },
+  {
+    "term": "Diferimento / diferido",
+    "definition": "Diferimento é o adiamento de um imposto, pagamento ou reconhecimento para um momento futuro. Quando algo é chamado de diferido, significa que esse efeito foi postergado.",
+    "why": "Em previdência e planejamento tributário, o termo aparece quando a tributação não ocorre no momento da contribuição ou contratação, mas em uma etapa posterior, conforme as regras aplicáveis.",
+    "tags": [
+      "Tributação",
+      "Previdência"
+    ],
+    "related": [
+      "PGBL",
+      "VGBL",
+      "Previdência privada"
+    ]
+  },
+  {
+    "term": "Drex",
+    "definition": "É a iniciativa do Banco Central para uma representação digital do real e para uma infraestrutura em que transações com ativos digitais possam ser liquidadas de forma integrada e padronizada.",
+    "why": "Pode ampliar o uso de ativos tokenizados e de transações programáveis dentro de um ambiente regulado. O acesso tende a ocorrer por meio de instituições financeiras autorizadas.",
+    "tags": [
+      "Ativos digitais",
+      "Sistema financeiro"
+    ],
+    "related": [
+      "CBDC",
+      "Tokenização",
+      "Pix"
+    ]
+  },
+  {
+    "term": "Open Finance",
+    "definition": "É o sistema financeiro aberto que permite ao cliente autorizar o compartilhamento de dados e o uso de determinados serviços entre instituições participantes.",
+    "why": "Com consentimento do cliente, informações de contas, crédito, investimentos, câmbio e outros produtos podem ser usadas para oferecer uma visão financeira mais integrada ou serviços mais personalizados.",
+    "tags": [
+      "Sistema financeiro",
+      "Bancos & crédito"
+    ],
+    "related": [
+      "Pix",
+      "Open Insurance"
+    ]
+  },
+  {
+    "term": "Open Insurance",
+    "definition": "É o Sistema de Seguros Aberto. Permite que consumidores autorizem o compartilhamento de dados e a realização de determinados serviços entre participantes do mercado de seguros, previdência complementar aberta e capitalização.",
+    "why": "Pode facilitar comparação, portabilidade, organização de informações e contratação de serviços, sempre conforme o consentimento e as regras aplicáveis.",
+    "tags": [
+      "Seguros",
+      "Previdência"
+    ],
+    "related": [
+      "Open Finance",
+      "Previdência privada"
+    ]
+  },
+  {
+    "term": "Pix",
+    "definition": "É o sistema de pagamentos instantâneos criado pelo Banco Central que permite transferências e pagamentos em poucos segundos, a qualquer hora do dia.",
+    "why": "Além das transferências tradicionais, o Pix ganhou serviços como pagamentos por aproximação, agendamentos e automações e também pode ser iniciado em jornadas do Open Finance.",
+    "tags": [
+      "Sistema financeiro",
+      "Pagamentos"
+    ],
+    "related": [
+      "Open Finance"
+    ]
+  },
+  {
+    "term": "Tokenização",
+    "definition": "É a representação digital de um ativo, direito ou obrigação por meio de registros eletrônicos que permitem identificar e movimentar essa representação em uma infraestrutura digital.",
+    "why": "Pode simplificar etapas de emissão, negociação, registro e liquidação de ativos, mas o risco continua dependendo do ativo representado e da estrutura jurídica utilizada.",
+    "tags": [
+      "Ativos digitais",
+      "Mercado"
+    ],
+    "related": [
+      "Drex",
+      "CBDC",
+      "Bitcoin"
+    ]
+  },
 ];
