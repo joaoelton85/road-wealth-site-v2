@@ -1,5 +1,10 @@
 # CHANGELOG — ROAD Wealth
 
+## V49.1 — 07/10/2026
+
+- Hotfix técnico sem alteração visual.
+- Corrige a vírgula ausente entre os verbetes `Yield` e `CBDC` no Glossário e marca a build como `49.0.1` para diferenciar inequivocamente o checkout corrigido no Cloudflare.
+
 ## V49 — 07/10/2026
 
 - Reconstruída diretamente sobre a árvore da V44, última versão confirmada em produção no Cloudflare.
