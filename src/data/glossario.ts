@@ -2159,7 +2159,7 @@ export const glossaryItems: GlossaryItem[] = [
       "Título público",
       "Debênture"
     ]
-  }
+  },
   {
     "term": "CBDC",
     "definition": "Sigla de Central Bank Digital Currency, ou moeda digital de banco central. É uma representação digital de uma moeda oficial emitida ou garantida pela autoridade monetária.",
