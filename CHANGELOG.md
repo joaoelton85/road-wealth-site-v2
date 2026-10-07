@@ -1,5 +1,19 @@
 # CHANGELOG — ROAD Wealth
 
+## V45 — 07/10/2026
+
+- Revisão geral de acabamento e consistência visual, sem alterar a operacionalização de e-mail ou WhatsApp.
+- Home com Hero mais compacto e transição mais curta para o conteúdo seguinte.
+- Textos editoriais passam a aproveitar melhor a largura útil; o bloco Consultoria Independente e outros conteúdos textuais deixam de ficar limitados a colunas excessivamente estreitas.
+- Etapas 01–05 do planejamento recebem números maiores, em Café, com presença visual mais clara.
+- Logos das plataformas nacionais e internacionais passam a receber tratamento monocromático em grafite/cinza escuro.
+- Banners intermediários do corpo das páginas foram removidos; Check-up, Calculadora, Mercados & Ferramentas e Conhecimento ficam concentrados na faixa Destaque do topo.
+- Informações de endereço, e-mail e contato passam a seguir uma escala tipográfica compartilhada entre Home, Contato e Onde estamos.
+- Calculadora de IR: removido o uso público da palavra “Protótipo”; os antigos badges viram cabeçalho da simulação no bloco branco; critérios recebem tipografia revisada; resultado passa a oferecer “Ficou em dúvida? Fale com a gente”, levando à página de Contato enquanto o WhatsApp empresarial não está operacional.
+- Glossário ampliado de 153 para 160 verbetes, com Pix, Open Finance, Open Insurance, Drex, CBDC, Tokenização e Diferimento / diferido.
+- Mantidos o topo persistente da V43 e os ajustes mobile/privacidade da V44.
+- Marcador técnico atualizado para `ROAD_BUILD=45.0.0`.
+
 ## V44 — 06/10/2026
 
 - Corrigida a hierarquia de camadas no mobile/tablet: o cabeçalho e o menu aberto passam a ficar acima das faixas Mercados e Destaque.
