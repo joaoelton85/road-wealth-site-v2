@@ -49,6 +49,79 @@ const checks = [
     ],
   },
   {
+    file: "src/styles/v45.css",
+    required: [
+      ".home-institutions .section-intro",
+      ".planning-steps span",
+      ".platform-logo",
+      ".road-contact-info",
+      ".hero--road-photo",
+      "font-size:25px",
+    ],
+  },
+  {
+    file: "src/data/glossario.ts",
+    required: [
+      '"term": "Pix"',
+      '"term": "Open Finance"',
+      '"term": "Open Insurance"',
+      '"term": "Drex"',
+      '"term": "CBDC"',
+      '"term": "Tokenização"',
+      '"term": "Diferimento / diferido"',
+    ],
+  },
+  {
+    file: "src/pages/calculadora-ir.astro",
+    required: [
+      "SIMULAÇÃO IRPF 2026",
+      "Ano-calendário 2026",
+      "Exercício 2027",
+      "Ficou em dúvida?",
+      "Fale com a gente →",
+      "A simulação calcula os dois caminhos",
+    ],
+    forbidden: [
+      "Protótipo",
+      "protótipo",
+    ],
+  },
+  {
+    file: "src/pages/index.astro",
+    forbidden: [
+      "RoadCallout",
+      "road-callout",
+    ],
+  },
+  {
+    file: "src/pages/a-road.astro",
+    forbidden: [
+      "RoadCallout",
+      "road-callout",
+    ],
+  },
+  {
+    file: "src/pages/investimentos.astro",
+    forbidden: [
+      "RoadCallout",
+      "road-callout",
+    ],
+  },
+  {
+    file: "src/pages/patrimonio.astro",
+    forbidden: [
+      "RoadCallout",
+      "road-callout",
+    ],
+  },
+  {
+    file: "src/pages/conhecimento.astro",
+    forbidden: [
+      "RoadCallout",
+      "road-callout",
+    ],
+  },
+  {
     file: "src/components/Footer.astro",
     required: [
       'href="/privacidade/#privacidade"',
@@ -58,14 +131,14 @@ const checks = [
   {
     file: "dist/__road-build.json",
     required: [
-      '"roadBuild": "44.0.0"',
+      '"roadBuild": "45.0.0"',
     ],
   },
   {
     file: "dist/index.html",
     required: [
-      'road-build" content="44.0.0"',
-      'data-road-build="44.0.0"',
+      'road-build" content="45.0.0"',
+      'data-road-build="45.0.0"',
       "CHECK-UP ROAD",
       "road-highlights",
       "road-highlights__slide",
@@ -75,6 +148,7 @@ const checks = [
       "Faça um teste rápido e receba seu diagnóstico.",
       "Planeje melhor seu IR.",
       "Acompanhe mercados, juros, câmbio e ferramentas para suas decisões.",
+      "Conceitos, ferramentas e Glossário ROAD para entender melhor suas decisões.",
       "hero--road-photo",
       "road-hero-caminho-v35.webp",
       "Consultoria de Investimentos e planejamento patrimonial para famílias e negócios com patrimônio no Brasil e no exterior.",
@@ -123,14 +197,11 @@ const checks = [
       "Milho",
       "Trigo",
     ],
-    minimumOccurrences: [
-      ["road-callout-panel", 1],
-    ],
   },
   {
     file: "dist/calculadora-ir/index.html",
     required: [
-      'road-build" content="44.0.0"',
+      'road-build" content="45.0.0"',
       "Calculadora de IR 2026",
       "Rendimentos tributáveis do titular",
       "Número de dependentes",
@@ -149,16 +220,21 @@ const checks = [
       "O espaço adicional de PGBL é apenas uma simulação potencial.",
       "IR usado como base dos incentivos",
       "Critérios da simulação",
+      "SIMULAÇÃO IRPF 2026",
+      "Ficou em dúvida?",
+      "Fale com a gente →",
+    ],
+    forbidden: [
+      "Protótipo",
+      "protótipo",
     ],
   },
   {
     file: "dist/a-road/index.html",
     required: [
-      'road-build" content="44.0.0"',
+      'road-build" content="45.0.0"',
       "F-2JRohFQdk",
       "youtube-lite",
-      "Uma leitura inicial do patrimônio em poucos minutos.",
-      "road-callout-panel",
       "data-road-story-carousel",
       "Consultoria",
       "Por que Wealth?",
@@ -173,6 +249,7 @@ const checks = [
       "Nosso trabalho começa por entender objetivos, explicar decisões com clareza",
     ],
     forbidden: [
+      "road-callout-panel",
       "História",
       "NOSSA HISTÓRIA",
       "CONHEÇA ENTRE RIOS",
@@ -183,39 +260,41 @@ const checks = [
   {
     file: "dist/investimentos/index.html",
     required: [
-      "Mercado é contexto. Estratégia é decisão.",
+      'road-build" content="45.0.0"',
+    ],
+    forbidden: [
       "road-callout-panel",
     ],
   },
   {
     file: "dist/patrimonio/index.html",
     required: [
-      "Entender melhor também faz parte de decidir melhor.",
-      "road-callout-panel",
       "CHECK-UP ROAD",
       "Objetivos transformados em um plano.",
       "Escolhas que podem mudar o percurso.",
+    ],
+    forbidden: [
+      "road-callout-panel",
     ],
   },
   {
     file: "dist/conhecimento/index.html",
     required: [
-      'road-build" content="44.0.0"',
-      "Da teoria para a leitura do mercado.",
-      "road-callout-panel",
+      'road-build" content="45.0.0"',
       "Abrir Glossário ROAD",
       "/glossario/",
       "Informação ganha valor quando vem acompanhada de contexto.",
       "ajudar a entender o que realmente merece atenção.",
     ],
     forbidden: [
+      "road-callout-panel",
       "sem a obrigação de funcionar como portal diário de notícias",
     ],
   },
   {
     file: "dist/privacidade/index.html",
     required: [
-      'road-build" content="44.0.0"',
+      'road-build" content="45.0.0"',
       "PRIVACIDADE E COOKIES",
       "Clareza também se aplica aos seus dados.",
       "ROAD WEALTH LTDA",
@@ -237,10 +316,15 @@ const checks = [
   {
     file: "dist/glossario/index.html",
     required: [
-      'road-build" content="44.0.0"',
+      'road-build" content="45.0.0"',
       "GLOSSÁRIO ROAD",
       "Finanças não precisam parecer uma língua estrangeira.",
-      "153 verbetes",
+      "160 verbetes",
+      "Pix",
+      "Open Finance",
+      "Open Insurance",
+      "Drex",
+      "Diferimento / diferido",
       "Spread de câmbio",
       "Spread de crédito",
       "Letra Financeira",
@@ -300,4 +384,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log("ROAD build verification OK — V44.0.0");
+console.log("ROAD build verification OK — V45.0.0");
