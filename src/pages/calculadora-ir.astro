@@ -4,20 +4,19 @@ import "../styles/calculadora-ir.css";
 ---
 <BaseLayout
   title="Calculadora de IR 2026 | ROAD Wealth®"
-  description="Protótipo ROAD para estimativa de IRPF 2026, PGBL e incentivos fiscais."
+  description="Ferramenta ROAD para estimativa de IRPF 2026, PGBL e incentivos fiscais."
 >
   <section class="section section--sand page-hero ir-hero">
     <div class="eyebrow">CALCULADORA DE IR 2026</div>
     <h1>Quanto ainda pode fazer sentido aportar ou destinar em 2026?</h1>
     <p class="lead">Uma estimativa para comparar deduções legais e desconto simplificado, avaliar espaço fiscal para PGBL e visualizar capacidade para incentivos.</p>
-    <div class="ir-badges">
-      <span>Ano-calendário 2026</span>
-      <span>Exercício 2027</span>
-      <span>Protótipo ROAD</span>
-    </div>
   </section>
 
   <section class="section section--white ir-section">
+    <div class="ir-simulation-head">
+      <div class="eyebrow">SIMULAÇÃO IRPF 2026</div>
+      <p>Ano-calendário 2026 <span aria-hidden="true">·</span> Exercício 2027 <span aria-hidden="true">·</span> ROAD</p>
+    </div>
     <div class="ir-layout">
       <form class="ir-form" id="ir-form">
         <div class="ir-form-group">
@@ -178,7 +177,7 @@ import "../styles/calculadora-ir.css";
     <div class="ir-method-grid">
       <article>
         <h3>Deduções legais x simplificado</h3>
-        <p class="on-dark">O protótipo calcula os dois caminhos e indica o menor imposto estimado. Em 2026, a dedução por dependente é de R$ 2.275,08, educação é limitada a R$ 3.561,50 por pessoa e o desconto simplificado a R$ 17.640,00.</p>
+        <p class="on-dark">A simulação calcula os dois caminhos e indica o menor imposto estimado. Em 2026, a dedução por dependente é de R$ 2.275,08, educação é limitada a R$ 3.561,50 por pessoa e o desconto simplificado a R$ 17.640,00.</p>
       </article>
       <article>
         <h3>PGBL</h3>
@@ -330,7 +329,7 @@ import "../styles/calculadora-ir.css";
         const totalIncome=parseMoney(data.get('totalIncome'));
 
         const highIncomeAlert=(totalIncome>600000 || (!totalIncome && current.gross>600000))
-          ? '<div class="ir-alert"><strong>Atenção à tributação mínima de altas rendas.</strong><span>Com rendimentos anuais acima de R$ 600 mil, pode existir uma camada adicional de cálculo que este protótipo ainda não incorpora.</span></div>'
+          ? '<div class="ir-alert"><strong>Atenção à tributação mínima de altas rendas.</strong><span>Com rendimentos anuais acima de R$ 600 mil, pode existir uma camada adicional de cálculo que esta simulação ainda não incorpora.</span></div>'
           : '';
 
         const balanceLabel=balance>0?'Saldo estimado a pagar':'Restituição estimada';
@@ -370,6 +369,10 @@ import "../styles/calculadora-ir.css";
           </div>
 
           ${highIncomeAlert}
+          <div class="ir-result-contact">
+            <span>Ficou em dúvida?</span>
+            <a href="/contato/">Fale com a gente →</a>
+          </div>
         `;
       };
 
