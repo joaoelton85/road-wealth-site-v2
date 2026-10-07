@@ -1,6 +1,6 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 
-const version = "49.0.1";
+const version = "50.0.0";
 const commit =
   process.env.WORKERS_CI_COMMIT_SHA ||
   process.env.GITHUB_SHA ||
