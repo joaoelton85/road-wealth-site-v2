@@ -51,23 +51,23 @@
 }
 
 /* Informações institucionais e contato compartilham a mesma escala tipográfica. */
-.road-contact-info,
-.contact-address,
-.presence-address .contact-lines{
+main .road-contact-info,
+main .contact-address,
+main .presence-address .contact-lines{
   font-family:"Inter",Arial,sans-serif;
   font-size:14.5px;
   line-height:1.65;
   font-weight:400;
 }
 
-.road-contact-info{
+main .road-contact-info{
   margin-top:24px;
   color:rgba(243,236,227,.82);
 }
 
-.road-contact-info strong,
-.contact-address>strong,
-.presence-address>strong{
+main .road-contact-info strong,
+main .contact-address>strong,
+main .presence-address>strong{
   font-family:"Montserrat",Arial,sans-serif;
   font-size:14px;
   line-height:1.4;
@@ -75,21 +75,21 @@
   color:var(--sand);
 }
 
-.road-contact-info p,
-.contact-address p{
+main .road-contact-info p,
+main .contact-address p{
   margin:7px 0 0;
   font:inherit;
 }
 
-.road-contact-info a,
-.contact-address a,
-.presence-address a{
+main .road-contact-info a,
+main .contact-address a,
+main .presence-address a{
   font-family:"Inter",Arial,sans-serif;
   font-size:inherit;
   color:inherit;
 }
 
-.road-contact-socials{
+main .road-contact-socials{
   margin-top:20px;
 }
 
@@ -129,9 +129,9 @@
     font-size:22px;
   }
 
-  .road-contact-info,
-  .contact-address,
-  .presence-address .contact-lines{
+  main .road-contact-info,
+  main .contact-address,
+  main .presence-address .contact-lines{
     font-size:14px;
   }
 }
