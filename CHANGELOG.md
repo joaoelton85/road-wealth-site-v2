@@ -1,5 +1,14 @@
 # CHANGELOG — ROAD Wealth
 
+## V47 — 07/10/2026
+
+- Publicação de consolidação da revisão visual discutida após a V46, mantendo como base exclusiva o repositório `road-wealth-site-v2`.
+- Criada a camada final `v47.css` para reafirmar no bundle publicado o tratamento monocromático dos logos, a hierarquia 01–05 do Planejamento, o alinhamento da faixa Destaque, a padronização de contatos e os refinamentos da Calculadora de IR.
+- O novo arquivo CSS força geração de asset diferente da V46, reduzindo o risco de reaproveitamento de bundle anterior na publicação.
+- Mantidas as remoções dos banners intermediários e a concentração dos acessos em Destaque.
+- Mantidos fora desta rodada o envio transacional de e-mails e o WhatsApp empresarial definitivo.
+- Marcador técnico atualizado para `ROAD_BUILD=47.0.0`.
+
 ## V46 — 07/10/2026
 
 - Correção explícita dos três blocos apontados na Home: Planejamento Financeiro, Áreas de Atuação e Consultoria Independente passam a ocupar toda a largura editorial disponível, sem o limite residual de 1.240 px.

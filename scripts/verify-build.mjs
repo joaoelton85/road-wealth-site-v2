@@ -2,6 +2,19 @@ import { existsSync, readFileSync } from "node:fs";
 
 const checks = [
   {
+    file: "src/styles/v47.css",
+    required: [
+      ".platform-logo",
+      ".planning-steps span",
+      ".road-highlights__inner",
+      ".road-contact-info",
+      ".ir-simulation-head",
+      ".ir-result-contact",
+      "font-size:34px",
+      "filter:grayscale(1)",
+    ],
+  },
+  {
     file: "src/styles/v46.css",
     required: [
       ".home-planning > .section-intro",
@@ -22,6 +35,8 @@ const checks = [
       "astro:after-swap",
       "astro:page-load",
       "__roadPersistentShellBound",
+      'import "../styles/v47.css";',
+      'const BUILD_VERSION = "47.0.0";',
     ],
   },
   {
@@ -142,14 +157,14 @@ const checks = [
   {
     file: "dist/__road-build.json",
     required: [
-      '"roadBuild": "46.0.0"',
+      '"roadBuild": "47.0.0"',
     ],
   },
   {
     file: "dist/index.html",
     required: [
-      'road-build" content="46.0.0"',
-      'data-road-build="46.0.0"',
+      'road-build" content="47.0.0"',
+      'data-road-build="47.0.0"',
       "CHECK-UP ROAD",
       "road-highlights",
       "road-highlights__slide",
@@ -212,7 +227,7 @@ const checks = [
   {
     file: "dist/calculadora-ir/index.html",
     required: [
-      'road-build" content="46.0.0"',
+      'road-build" content="47.0.0"',
       "Calculadora de IR 2026",
       "Rendimentos tributáveis do titular",
       "Número de dependentes",
@@ -243,7 +258,7 @@ const checks = [
   {
     file: "dist/a-road/index.html",
     required: [
-      'road-build" content="46.0.0"',
+      'road-build" content="47.0.0"',
       "F-2JRohFQdk",
       "youtube-lite",
       "data-road-story-carousel",
@@ -271,7 +286,7 @@ const checks = [
   {
     file: "dist/investimentos/index.html",
     required: [
-      'road-build" content="46.0.0"',
+      'road-build" content="47.0.0"',
     ],
     forbidden: [
       "road-callout-panel",
@@ -291,7 +306,7 @@ const checks = [
   {
     file: "dist/conhecimento/index.html",
     required: [
-      'road-build" content="46.0.0"',
+      'road-build" content="47.0.0"',
       "Abrir Glossário ROAD",
       "/glossario/",
       "Informação ganha valor quando vem acompanhada de contexto.",
@@ -305,7 +320,7 @@ const checks = [
   {
     file: "dist/privacidade/index.html",
     required: [
-      'road-build" content="46.0.0"',
+      'road-build" content="47.0.0"',
       "PRIVACIDADE E COOKIES",
       "Clareza também se aplica aos seus dados.",
       "ROAD WEALTH LTDA",
@@ -327,7 +342,7 @@ const checks = [
   {
     file: "dist/glossario/index.html",
     required: [
-      'road-build" content="46.0.0"',
+      'road-build" content="47.0.0"',
       "GLOSSÁRIO ROAD",
       "Finanças não precisam parecer uma língua estrangeira.",
       "160 verbetes",
@@ -395,4 +410,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log("ROAD build verification OK — V46.0.0");
+console.log("ROAD build verification OK — V47.0.0");

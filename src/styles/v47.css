@@ -1,0 +1,153 @@
+/* ROAD Wealth V47 — consolidação visual e novo asset de publicação. */
+
+/* Plataformas: tratamento monocromático uniforme em todas as grades. */
+.platform-logo{
+  filter:grayscale(1) saturate(0) brightness(.43) contrast(1.08)!important;
+  opacity:.90!important;
+  mix-blend-mode:multiply;
+}
+.platform-logo-cell{
+  align-items:center;
+  justify-items:center;
+}
+
+/* Destaques: mesma malha do topo, com leitura equilibrada em desktop e mobile. */
+.road-highlights__inner{
+  width:100%;
+  grid-template-columns:var(--road-top-label-w) minmax(0,1fr);
+}
+.road-highlights__label{
+  padding-left:12px!important;
+  padding-right:12px!important;
+}
+.road-highlights__stage{
+  min-width:0;
+}
+.road-highlights__slide{
+  padding-right:28px;
+}
+
+/* Home: blocos editoriais ocupam a largura útil sem limites residuais. */
+.home-planning > .section-intro,
+.home-areas > .section-intro,
+.home-institutions > .section-intro,
+.home-planning > .section-intro h2,
+.home-areas > .section-intro h2,
+.home-institutions > .section-intro h2,
+.home-planning > .section-intro p,
+.home-areas > .section-intro p,
+.home-institutions > .section-intro p{
+  width:100%;
+  max-width:none;
+}
+
+/* Planejamento: números 01–05 como marcadores visuais fortes e uniformes. */
+.planning-steps article,
+.planning-steps article:first-child,
+.planning-steps article:last-child{
+  min-height:205px;
+  padding:22px 20px 24px;
+}
+.planning-steps span{
+  display:block;
+  margin-bottom:17px;
+  color:var(--coffee);
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:34px;
+  font-weight:500;
+  line-height:1;
+  letter-spacing:.025em;
+  font-variant-numeric:tabular-nums;
+  opacity:1;
+}
+
+/* Contatos institucionais: mesma escala tipográfica em Home, Contato e Onde estamos. */
+main .road-contact-info,
+main .contact-address,
+main .presence-address .contact-lines{
+  font-family:"Inter",Arial,sans-serif;
+  font-size:14.5px;
+  line-height:1.65;
+  font-weight:400;
+}
+main .road-contact-info strong,
+main .contact-address>strong,
+main .presence-address>strong{
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:14px;
+  line-height:1.4;
+  font-weight:500;
+}
+.footer,
+.footer-links,
+.footer small{
+  font-family:"Inter",Arial,sans-serif;
+}
+
+/* Calculadora: cabeçalho simples e critérios/resultados dentro da hierarquia do site. */
+.ir-simulation-head{
+  margin-bottom:24px;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--line);
+}
+.ir-simulation-head p{
+  margin:0;
+  font-family:"Inter",Arial,sans-serif;
+  font-size:13px;
+  line-height:1.5;
+  color:var(--muted);
+}
+.ir-methodology,
+.ir-method-grid p,
+.ir-disclaimer,
+.ir-source-links{
+  font-family:"Inter",Arial,sans-serif;
+}
+.ir-result-contact{
+  font-family:"Inter",Arial,sans-serif;
+}
+
+/* Ritmo vertical: reduz vazios excessivos sem comprimir o conteúdo. */
+.page-hero{
+  padding-bottom:28px;
+}
+@media(min-width:681px){
+  .hero--road-photo{
+    min-height:clamp(470px,54vh,620px);
+    padding-top:clamp(52px,5vw,78px);
+    padding-bottom:clamp(38px,3.5vw,56px);
+  }
+}
+
+@media(max-width:1100px){
+  .planning-steps article,
+  .planning-steps article:first-child,
+  .planning-steps article:last-child{
+    min-height:0;
+  }
+}
+
+@media(max-width:680px){
+  .road-highlights__label{
+    padding-left:8px!important;
+    padding-right:8px!important;
+  }
+  .road-highlights__slide{
+    padding-right:11px;
+  }
+  .planning-steps span{
+    font-size:28px;
+    margin-bottom:11px;
+  }
+  .planning-steps article,
+  .planning-steps article:first-child,
+  .planning-steps article:last-child{
+    min-height:0;
+    padding:17px 0;
+  }
+  main .road-contact-info,
+  main .contact-address,
+  main .presence-address .contact-lines{
+    font-size:14px;
+  }
+}
