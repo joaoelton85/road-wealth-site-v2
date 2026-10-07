@@ -1,5 +1,11 @@
 # CHANGELOG — ROAD Wealth
 
+## V50.1 — 07/10/2026
+
+- Mantém as quatro bolinhas centralizadas na parte inferior da faixa Destaque.
+- Remove o padding inferior aplicado ao conteúdo dos slides, devolvendo o texto ao centro vertical e ao mesmo eixo óptico da palavra `DESTAQUE`.
+- Nenhuma outra área do site foi alterada.
+
 ## V49.1 — 07/10/2026
 
 - Hotfix técnico sem alteração visual.

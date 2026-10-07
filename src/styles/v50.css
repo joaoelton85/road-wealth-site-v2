@@ -274,7 +274,7 @@ main .presence-address > strong{
   gap:7px;
 }
 .road-highlights__slide{
-  padding:0 30px 16px 26px!important;
+  padding:0 30px 0 26px!important;
 }
 
 @media(max-width:680px){
@@ -291,6 +291,6 @@ main .presence-address > strong{
     gap:6px;
   }
   .road-highlights__slide{
-    padding:0 12px 14px 12px!important;
+    padding:0 12px!important;
   }
 }
