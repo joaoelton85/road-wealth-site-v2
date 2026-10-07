@@ -1,19 +1,16 @@
-# ROAD Wealth — V47
+# ROAD Wealth — V48
 
-Publicação de consolidação visual sobre a V46, no repositório oficial `road-wealth-site-v2`.
+Revisão efetiva do último escopo aprovado, sobre a base oficial `road-wealth-site-v2/main`.
 
-## Escopo consolidado
+## Ajustes desta versão
 
-- logos das instituições nacionais e internacionais em tratamento monocromático cinza/grafite;
-- banners intermediários removidos e acessos concentrados na faixa Destaque;
-- largura, padding e alinhamentos da faixa Destaque reforçados;
-- tipografia de endereço, e-mail e contatos padronizada;
-- Calculadora de IR com cabeçalho integrado, critérios revisados e CTA “Ficou em dúvida? Fale com a gente”;
-- etapas 01–05 do Planejamento com números maiores em Café e caixas uniformes;
-- Planejamento, Áreas de Atuação e Consultoria Independente aproveitando a largura editorial disponível;
-- ajustes responsivos correspondentes;
-- e-mail transacional e WhatsApp empresarial continuam fora desta rodada.
+- corrige a estrutura real da faixa DESTAQUE, incluindo a classe tipográfica esperada pelo CSS;
+- transforma os números 01–05 em elementos semânticos próprios e os torna visualmente mais marcantes;
+- consolida o uso da largura editorial em Planejamento, Áreas de Atuação e Consultoria Independente;
+- uniformiza a caixa óptica dos logos e aplica tratamento monocromático cinza/grafite;
+- reduz moderadamente os vazios do Hero e das seções da Home;
+- reafirma a escala tipográfica de endereço, e-mail e informações institucionais;
+- compacta o cabeçalho da Calculadora de IR, mantendo os metadados simples e o CTA após o resultado;
+- preserva integralmente o ticker, o envio de e-mails, DNS e o WhatsApp definitivo.
 
-## Publicação
-
-A V47 cria uma camada final `v47.css` e atualiza o marcador técnico para `ROAD_BUILD=47.0.0`, produzindo um novo conjunto de assets para evitar reaproveitamento da build anterior.
+A V47 permanece no histórico, mas sua camada redundante não é carregada pela V48.

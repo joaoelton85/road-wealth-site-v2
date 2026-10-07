@@ -1,5 +1,19 @@
 # CHANGELOG — ROAD Wealth
 
+## V48 — 07/10/2026
+
+- Revisão efetiva do escopo aprovado, partindo da `road-wealth-site-v2/main`.
+- A palavra DESTAQUE passa a usar a classe `road-highlights__label-text` esperada pelos estilos do topo, corrigindo a divergência entre componente e CSS.
+- Os marcadores 01–05 recebem classe própria `planning-step-number`, 38 px no desktop e 30 px no mobile, em Café sólido, evitando dependência do seletor genérico de `span`.
+- Planejamento, Áreas de Atuação e Consultoria Independente mantêm largura editorial integral com seletores explícitos.
+- Logos nacionais e internacionais passam a compartilhar caixa óptica de 140 × 40 px no desktop e tratamento monocromático grafite consistente.
+- Hero e seções principais da Home recebem redução moderada de altura e padding, preservando a sensação de espaço.
+- Tipografia institucional de contatos é reafirmada em Home, Contato e Onde estamos.
+- Calculadora de IR tem Hero/cabeçalho mais compactos, metadados simples, critérios com escala editorial revisada e CTA pós-resultado preservado.
+- A camada redundante `v47.css` deixa de ser carregada; V48 passa a ser a única camada final sobre V46.
+- Ticker, e-mail transacional, DNS e WhatsApp definitivo permanecem fora do escopo.
+- Marcador técnico atualizado para `ROAD_BUILD=48.0.0`.
+
 ## V47 — 07/10/2026
 
 - Publicação de consolidação da revisão visual discutida após a V46, mantendo como base exclusiva o repositório `road-wealth-site-v2`.
