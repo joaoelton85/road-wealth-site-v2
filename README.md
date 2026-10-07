@@ -1,4 +1,4 @@
-# ROAD Wealth — V45
+# ROAD Wealth — V46
 
 Correção controlada da faixa de mercados no mobile, partindo da V26.
 
