@@ -46,8 +46,8 @@
 
 /* Plataformas: assinatura monocromática para reduzir ruído entre marcas. */
 .platform-logo{
-  filter:grayscale(1) saturate(0) brightness(.43) contrast(1.08);
-  opacity:.9;
+  filter:grayscale(1) saturate(0) brightness(.43) contrast(1.08)!important;
+  opacity:.9!important;
 }
 
 /* Informações institucionais e contato compartilham a mesma escala tipográfica. */
