@@ -1,17 +1,21 @@
 /* Calculadora de IR 2026 — ROAD */
-.ir-hero{padding-bottom:32px}
-.ir-badges{display:flex;gap:8px;flex-wrap:wrap}
-.ir-badges span{
-  border:1px solid var(--line);
-  border-radius:999px;
-  padding:7px 10px;
-  font-family:"Montserrat",Arial,sans-serif;
-  font-size:11px;
-  letter-spacing:.06em;
-  text-transform:uppercase;
-}
+.ir-hero{padding-bottom:24px}
 
-.ir-section{padding-top:34px;padding-bottom:50px}
+.ir-section{padding-top:24px;padding-bottom:50px}
+.ir-simulation-head{
+  margin:0 0 24px;
+  padding:0 0 18px;
+  border-bottom:1px solid var(--line);
+}
+.ir-simulation-head .eyebrow{margin-bottom:6px}
+.ir-simulation-head p{
+  margin:0;
+  font-family:"Inter",Arial,sans-serif;
+  font-size:13px;
+  line-height:1.5;
+  color:var(--muted);
+  letter-spacing:.01em;
+}
 .ir-layout{
   display:grid;
   grid-template-columns:minmax(0,1.15fr) minmax(360px,.85fr);
@@ -163,6 +167,27 @@
   padding-top:18px;
   border-top:1px solid var(--line);
 }
+.ir-result-contact{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  margin-top:22px;
+  padding-top:18px;
+  border-top:1px solid var(--line);
+  font-family:"Inter",Arial,sans-serif;
+  font-size:13px;
+  line-height:1.45;
+}
+.ir-result-contact span{color:var(--muted)}
+.ir-result-contact a{
+  color:var(--coffee);
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:12.5px;
+  font-weight:500;
+  text-decoration:underline;
+  text-underline-offset:4px;
+}
 .ir-result-lines{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -218,23 +243,24 @@
 }
 .ir-method-grid h3{
   font-family:"Montserrat",Arial,sans-serif;
-  font-size:20px;
-  line-height:1.3;
-  font-weight:400;
+  font-size:18px;
+  line-height:1.35;
+  font-weight:500;
   margin:0 0 9px;
 }
 .ir-method-grid p{
   margin:0;
   font-family:"Inter",Arial,sans-serif;
-  font-size:15px;
-  line-height:1.55;
+  font-size:16px;
+  line-height:1.6;
+  font-weight:400;
 }
 .ir-disclaimer{
   margin:28px 0 0;
   padding-top:18px;
   border-top:1px solid rgba(243,236,227,.20);
   font-family:"Inter",Arial,sans-serif;
-  font-size:12px;
+  font-size:13px;
   line-height:1.6;
   color:rgba(243,236,227,.72);
 }
@@ -244,7 +270,7 @@
   flex-wrap:wrap;
   margin-top:15px;
   font-family:"Inter",Arial,sans-serif;
-  font-size:12px;
+  font-size:12.5px;
 }
 .ir-source-links a{
   color:var(--sand);
@@ -271,4 +297,5 @@
   .ir-result{padding:20px}
   .ir-result h2{font-size:30px}
   .ir-form-actions .btn{width:100%}
+  .ir-result-contact{align-items:flex-start;flex-direction:column;gap:5px}
 }
