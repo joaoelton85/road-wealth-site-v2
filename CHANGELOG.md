@@ -1,5 +1,15 @@
 # CHANGELOG — ROAD Wealth
 
+## V52.7 — Cabeçalho Café — rodapé compacto — 08/10/2026
+
+- Remove da Home o grande bloco “CONTATO”, evitando a repetição de informações já presentes no fechamento institucional.
+- Endereço, WhatsApp e e-mail passam a compor diretamente o rodapé, sem criar uma nova seção de contato.
+- Instagram permanece uma única vez no rodapé; o e-mail também deixa de ser repetido.
+- O rodapé principal e o disclaimer regulatório passam a usar a mesma superfície Café.
+- Mantidas a borda superior preta e a borda inferior Areia; o disclaimer é separado apenas por uma linha Areia discreta.
+- Cabeçalho Café, Destaques, bloco “A ROAD”, ticker e demais páginas permanecem inalterados.
+- Marcador técnico atualizado para `ROAD_BUILD=52.7.0`.
+
 ## V52.6 — Cabeçalho Café — 08/10/2026
 
 - Esta revisão passa a ser registrada como o perfil **Cabeçalho Café**.
