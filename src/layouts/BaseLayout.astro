@@ -31,7 +31,8 @@ import "../styles/v52-4.css";
 import "../styles/v52-5.css";
 import "../styles/v52-6.css";
 import "../styles/v52-7.css";
-const BUILD_VERSION = "52.8.0";
+import "../styles/v52-8.css";
+const BUILD_VERSION = "52.9.0";
 const { title = "ROAD Wealth®", description = "ROAD Wealth — planejamento patrimonial e acompanhamento de investimentos, escritório integrante da Rede Meu Patrimônio.", active = "", noindex = true } = Astro.props;
 ---
 <!doctype html>
@@ -58,12 +59,12 @@ const { title = "ROAD Wealth®", description = "ROAD Wealth — planejamento pat
   <body data-road-build={BUILD_VERSION}>
     <div class="site-top-stack" id="site-top-stack" transition:persist="road-site-top">
       <Header active={active} />
-      <MarketTicker />
-      <RoadHighlights />
       <div class="market-ticker-note road-market-note" aria-label="Fontes e atraso das cotações">
         B3 · 15 min de atraso &nbsp;|&nbsp; via TradingView
       </div>
+      <MarketTicker />
     </div>
+    <RoadHighlights />
     <main>
       <slot />
     </main>

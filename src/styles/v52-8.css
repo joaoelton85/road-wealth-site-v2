@@ -1,0 +1,51 @@
+/* ROAD Wealth V52.9 — Destaques fora do sticky; legenda B3 acima do ticker. */
+
+/* A parte fixa termina na barra de indicadores. */
+.site-top-stack{
+  background:var(--coffee)!important;
+}
+
+/* A legenda técnica passa a ocupar uma microfaixa imediatamente acima do ticker. */
+.site-top-stack .road-market-note{
+  position:relative!important;
+  inset:auto!important;
+  right:auto!important;
+  bottom:auto!important;
+  width:100%!important;
+  min-height:13px!important;
+  height:13px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  margin:0!important;
+  padding:0 max(26px,calc((100vw - var(--ticker-max))/2))!important;
+  background:var(--coffee)!important;
+  border:0!important;
+  box-shadow:none!important;
+  color:rgba(243,236,227,.62)!important;
+  font-size:7px!important;
+  line-height:1!important;
+  letter-spacing:.025em!important;
+  text-align:right!important;
+  text-shadow:none!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  pointer-events:none!important;
+  transform:none!important;
+}
+
+/* A classe dinâmica antiga não altera mais a leitura da legenda. */
+.site-top-stack .road-market-note.is-on-dark{
+  color:rgba(243,236,227,.62)!important;
+  text-shadow:none!important;
+}
+
+@media(max-width:680px){
+  .site-top-stack .road-market-note{
+    min-height:11px!important;
+    height:11px!important;
+    padding:0 8px!important;
+    font-size:6.2px!important;
+    display:flex!important;
+  }
+}

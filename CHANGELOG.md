@@ -1,5 +1,15 @@
 # CHANGELOG — ROAD Wealth
 
+## V52.9 — Cabeçalho Café — Destaques fora do topo fixo — 08/10/2026
+
+- O topo fixo passa a terminar na barra de indicadores: cabeçalho, legenda técnica e ticker permanecem sticky.
+- A faixa “Destaques” sai do bloco fixo e passa a rolar junto com a página, permitindo que sua transparência revele o Hero de forma natural.
+- A informação `B3 · 15 min de atraso | via TradingView` é movida para uma microfaixa imediatamente acima da barra de indicadores.
+- A legenda permanece discreta e passa a ser visível também no mobile.
+- A lógica, os símbolos e o carregamento do ticker não foram alterados.
+- Hero, rodapé e demais conteúdos da V52.8 permanecem inalterados.
+- Marcador técnico atualizado para `ROAD_BUILD=52.9.0`.
+
 ## V52.8 — Cabeçalho Café — Destaques translúcido — 08/10/2026
 
 - A faixa “Destaques” deixa de usar uma cópia estática da imagem do Hero como fundo.
