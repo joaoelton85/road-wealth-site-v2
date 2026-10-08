@@ -3,8 +3,12 @@ import { existsSync, readFileSync } from "node:fs";
 const checks = [
   {
     file: "src/layouts/BaseLayout.astro",
-    required: ['import "../styles/v52.css";', 'import "../styles/v52-1.css";
-import "../styles/v52-2.css";', 'const BUILD_VERSION = "52.2.0";'],
+    required: [
+      'import "../styles/v52.css";',
+      'import "../styles/v52-1.css";',
+      'import "../styles/v52-2.css";',
+      'const BUILD_VERSION = "52.2.0";',
+    ],
   },
   {
     file: "src/components/MarketTicker.astro",
