@@ -1,0 +1,162 @@
+/* ROAD Wealth V52.1 — chancela Coruja oficial + avisos regulatórios. */
+
+/* Abandona a composição extensa criada na V52.
+   Header e footer passam a usar exclusivamente os arquivos oficiais Coruja,
+   sem texto adicional, sem remontagem e sem alteração de cor. */
+.header-brand-group{
+  gap:14px!important;
+}
+.header-network-endorsement{
+  display:flex!important;
+  align-items:center!important;
+  padding-left:0!important;
+  border-left:0!important;
+}
+.header-network-endorsement img{
+  display:block!important;
+  width:120px!important;
+  max-width:120px!important;
+  height:auto!important;
+  object-fit:contain!important;
+  filter:none!important;
+  opacity:1!important;
+}
+.nav{
+  margin-left:clamp(30px,4vw,76px)!important;
+}
+
+.footer-brand-group{
+  gap:16px!important;
+}
+.footer-network-endorsement{
+  display:flex!important;
+  align-items:center!important;
+  padding-left:0!important;
+  border-left:0!important;
+}
+.footer-network-endorsement img{
+  display:block!important;
+  width:120px!important;
+  max-width:120px!important;
+  height:auto!important;
+  object-fit:contain!important;
+  filter:none!important;
+  opacity:1!important;
+}
+
+/* Disclaimer curto: uma faixa própria, com leitura controlada e alinhamento limpo. */
+.footer-regulatory-note{
+  grid-column:1 / -1;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:24px;
+  padding-top:8px;
+  border-top:1px solid rgba(243,236,227,.16);
+  color:rgba(243,236,227,.58);
+  font-size:9.5px;
+  line-height:1.45;
+}
+.footer-regulatory-note p{
+  margin:0;
+  max-width:980px;
+}
+.footer-regulatory-note a{
+  flex:none;
+  white-space:nowrap;
+  color:rgba(243,236,227,.72);
+  text-decoration:none;
+}
+.footer-regulatory-note a:hover{
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+
+/* Página de avisos legais: largura curta para evitar linhas excessivamente longas. */
+.legal-hero .lead{
+  max-width:840px;
+}
+.legal-shell{
+  display:flex;
+  justify-content:center;
+}
+.legal-content{
+  width:min(100%,980px);
+}
+.legal-block{
+  padding:28px 0;
+  border-top:1px solid var(--line);
+}
+.legal-block:first-child{
+  padding-top:0;
+  border-top:0;
+}
+.legal-block h2{
+  margin:7px 0 12px;
+  max-width:780px;
+  font-size:clamp(27px,3.2vw,39px);
+}
+.legal-block p{
+  margin:0;
+  max-width:860px;
+  font-size:15px;
+  line-height:1.68;
+}
+.legal-block--reference .text-btn{
+  display:inline-flex;
+  margin-top:14px;
+}
+
+@media(max-width:1180px){
+  .nav{
+    margin-left:22px!important;
+  }
+}
+@media(max-width:1000px){
+  .site-header{
+    gap:14px!important;
+  }
+  .header-brand-group{
+    gap:12px!important;
+    flex:1 1 auto;
+    min-width:0;
+  }
+  .header-network-endorsement{
+    display:flex!important;
+  }
+  .header-network-endorsement img{
+    width:120px!important;
+    max-width:120px!important;
+  }
+  .footer-regulatory-note{
+    flex-direction:column;
+    gap:5px;
+  }
+}
+@media(max-width:680px){
+  .header-brand-group{
+    gap:10px!important;
+  }
+  .header-network-endorsement img{
+    width:120px!important;
+    max-width:120px!important;
+  }
+  .footer-brand-group{
+    gap:12px!important;
+  }
+  .footer-network-endorsement img{
+    width:120px!important;
+    max-width:120px!important;
+  }
+  .footer-regulatory-note{
+    font-size:9px;
+    line-height:1.5;
+  }
+  .legal-block{
+    padding:22px 0;
+  }
+  .legal-block p{
+    font-size:14px;
+    line-height:1.62;
+  }
+}

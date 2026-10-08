@@ -1,5 +1,18 @@
 # CHANGELOG — ROAD Wealth
 
+## V52.1 — 08/10/2026
+
+- Abandona a composição de chancela extensa aplicada por iniciativa técnica na V52.
+- Cabeçalho e rodapé passam a utilizar exclusivamente as versões oficiais “Coruja Rede Meu Patrimônio”, verde sobre fundo claro e branca sobre fundo escuro.
+- A chancela da Rede permanece secundária à ROAD, sem “Faz parte da”, sem texto adicional, sem remontagem e sem alteração das cores oficiais.
+- A assinatura da Rede permanece visível também no cabeçalho responsivo quando o logo completo da ROAD é exibido.
+- Cria a página “Avisos legais e regulatórios”, com referência à Resolução CVM nº 19/2021 e linguagem informativa aprovada.
+- O rodapé recebe apenas uma versão curta do aviso, distribuída em faixa própria para preservar leitura e alinhamento.
+- A página Investimentos passa a remeter à nova área de avisos legais e regulatórios.
+- A Calculadora de IR recebe redação mais clara sobre o caráter exclusivamente informativo da simulação.
+- Ticker, Destaques, mandala, Check-up e demais conteúdos da V52 permanecem inalterados.
+- Marcador técnico atualizado para `ROAD_BUILD=52.1.0`.
+
 ## V52 — 08/10/2026
 
 - Consolida editorialmente a relação entre ROAD e Rede Meu Patrimônio, preservando a ROAD como marca e voz principal.
