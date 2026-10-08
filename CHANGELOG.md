@@ -1,5 +1,15 @@
 # CHANGELOG — ROAD Wealth
 
+## V52.5 — 08/10/2026
+
+- Cabeçalho passa para fundo Café, com logo ROAD em Areia e chancela Box da Rede Meu Patrimônio em branco.
+- Proporção e alinhamento dos logos permanecem os da V52.3.
+- Faixa “Destaques” mantém o arranjo atual e inverte apenas a paleta para fundo Areia e textos/elementos Café.
+- Corrigida a herança de cor antiga que deixava praticamente invisíveis os textos e o link do bloco “A ROAD” na Home.
+- O menu responsivo aberto continua com fundo Areia e texto Café.
+- Nenhum conteúdo, disclaimer, ticker, estrutura de página ou outro componente foi alterado.
+- Marcador técnico atualizado para `ROAD_BUILD=52.5.0`.
+
 ## V52.4 — 08/10/2026
 
 - Corrige o enquadramento da mensagem institucional da Rede na Home: largura total da malha editorial e tipografia compatível com a seção.

@@ -1,0 +1,62 @@
+/* ROAD Wealth V52.5 — teste cromático do topo + correção visual do teaser A ROAD. */
+
+.site-header{
+  background:rgba(72,58,47,.98)!important;
+  color:var(--sand)!important;
+}
+.site-header .nav{color:var(--sand)}
+.site-header .nav .nav-cta{
+  border-color:rgba(243,236,227,.42)!important;
+  color:var(--sand)!important;
+}
+.site-header .nav .nav-cta:hover,
+.site-header .nav .nav-cta.is-active{
+  background:var(--sand)!important;
+  color:var(--coffee)!important;
+}
+.site-header .nav-toggle{
+  color:var(--sand)!important;
+  border-color:rgba(243,236,227,.42)!important;
+}
+
+.road-highlights,
+.road-highlights__inner,
+.road-highlights__label,
+.road-highlights__stage{
+  background:var(--sand)!important;
+  color:var(--coffee)!important;
+}
+.road-highlights__inner{
+  box-shadow:inset 0 1px 0 rgba(72,58,47,.10),inset 0 -1px 0 rgba(72,58,47,.10)!important;
+}
+.road-highlights__stage{background-image:none!important}
+.road-highlights__label,
+.road-highlights__label-text,
+.road-highlights__slide,
+.road-highlights__slide-copy{color:var(--coffee)!important}
+.road-highlights__arrow{color:rgba(72,58,47,.62)!important}
+.road-highlights__slide:hover .road-highlights__arrow,
+.road-highlights__slide:focus-visible .road-highlights__arrow{color:var(--coffee)!important}
+.road-highlights__dots button{background:rgba(72,58,47,.26)!important}
+.road-highlights__dots button.is-active{background:var(--coffee)!important}
+.road-highlights__dots button:focus-visible{outline-color:var(--coffee)!important}
+
+.home-a-road.section--sand .lead,
+.home-a-road.section--sand .road-teaser-card p{
+  color:rgba(72,58,47,.80)!important;
+}
+.home-a-road.section--sand .text-btn{color:var(--coffee)!important}
+.home-a-road.section--sand .road-teaser-card{border-top-color:rgba(72,58,47,.18)!important}
+
+@media(max-width:1000px){
+  .site-header .nav{color:var(--coffee)!important}
+  .site-header .nav .nav-cta{
+    border-color:rgba(72,58,47,.28)!important;
+    color:var(--coffee)!important;
+  }
+  .site-header .nav .nav-cta:hover,
+  .site-header .nav .nav-cta.is-active{
+    background:var(--coffee)!important;
+    color:var(--sand)!important;
+  }
+}
