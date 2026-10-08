@@ -1,5 +1,19 @@
 # CHANGELOG — ROAD Wealth
 
+## V52 — 08/10/2026
+
+- Consolida editorialmente a relação entre ROAD e Rede Meu Patrimônio, preservando a ROAD como marca e voz principal.
+- Cabeçalho desktop passa a exibir ROAD e a assinatura oficial horizontal da Rede Meu Patrimônio lado a lado; no mobile, a assinatura da Rede permanece oculta para preservar legibilidade.
+- Rodapé remove o texto “Faz parte da” e mantém apenas as duas assinaturas oficiais, com a Rede em posição secundária.
+- “A ROAD” ganha o capítulo “A Rede”, explicando relacionamento ROAD, estrutura regulatória/tecnológica da Meu Patrimônio, consolidação, plataformas e Big Numbers da Rede.
+- Big Numbers utilizados: + R$ 1 bi de patrimônio sob consultoria, +500 famílias e NPS 95, identificados como dados divulgados pela Meu Patrimônio.
+- Página Investimentos passa a separar claramente o papel da ROAD no relacionamento e acompanhamento do papel da Meu Patrimônio na estrutura da Consultoria.
+- O bloco multiplaforma passa a explicar a estrutura institucional por trás das plataformas parceiras.
+- “Avisos legais e regulatórios” no rodapé passa a levar à seção explicativa de Investimentos.
+- Política de Privacidade passa a distinguir os dados coletados diretamente pelo site ROAD dos fluxos que possam ocorrer em plataformas e serviços da Meu Patrimônio.
+- Ticker, Destaques, Calculadora, Check-up e demais áreas funcionais permanecem inalterados.
+- Marcador técnico atualizado para `ROAD_BUILD=52.0.0`.
+
 ## V51 — 08/10/2026
 
 - Incorpora ao site o endosso institucional oficial da Rede Meu Patrimônio, conforme o Manual de Marca v1.0.

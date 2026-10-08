@@ -1,6 +1,6 @@
-# ROAD Wealth — V51
+# ROAD Wealth — V52
 
-Atualização institucional com incorporação da assinatura oficial da Rede Meu Patrimônio, preservando a ROAD como marca principal e utilizando a Rede exclusivamente como endosso secundário.
+Atualização institucional e editorial que explicita a relação entre ROAD e Rede Meu Patrimônio, preservando a ROAD como marca principal e atribuindo à Rede as camadas regulatória, tecnológica e institucional.
 
 Reconstrução controlada a partir da V44, última versão confirmada em produção no Cloudflare.
 

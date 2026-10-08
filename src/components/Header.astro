@@ -2,9 +2,14 @@
 const { active = "" } = Astro.props;
 ---
 <header class="site-header">
-  <a aria-label="ROAD Wealth — início" class="brand" href="/">
-    <img alt="ROAD Wealth®" src="/assets/road-logo-cafe.svg" />
-  </a>
+  <div class="header-brand-group">
+    <a aria-label="ROAD Wealth — início" class="brand" href="/">
+      <img alt="ROAD Wealth®" src="/assets/road-logo-cafe.svg" />
+    </a>
+    <div class="header-network-endorsement" aria-label="Rede Meu Patrimônio">
+      <img alt="Rede Meu Patrimônio" src="/assets/rede-meu-patrimonio-extensa.svg" />
+    </div>
+  </div>
   <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Abrir menu">
     <svg class="nav-toggle-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
       <path d="M5 7h14M5 12h14M5 17h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />

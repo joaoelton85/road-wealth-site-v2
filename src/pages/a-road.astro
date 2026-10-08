@@ -2,7 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import "../styles/a-road.css";
 ---
-<BaseLayout title="A ROAD | ROAD Wealth®" description="Conheça a Consultoria, o significado de Wealth, a origem da marca, quem somos, nosso propósito e onde estamos." active="a-road">
+<BaseLayout title="A ROAD | ROAD Wealth®" description="Conheça a ROAD, sua relação com a Rede Meu Patrimônio, a estrutura da Consultoria, a origem da marca, quem somos, nosso propósito e onde estamos." active="a-road">
   <div class="road-story-carousel" data-road-story-carousel>
     <div class="page-nav-wrap" id="a-road-nav-wrap">
       <nav class="section-nav" id="a-road-nav" aria-label="Conheça a ROAD">
@@ -10,12 +10,13 @@ import "../styles/a-road.css";
         <a href="#wealth" data-chapter-link="wealth">Por que Wealth?</a>
         <a href="#origem" data-chapter-link="origem">Origem da Marca</a>
         <a href="#socios" data-chapter-link="socios">Quem somos</a>
+        <a href="#rede" data-chapter-link="rede">A Rede</a>
         <a href="#proposito" data-chapter-link="proposito">Propósito</a>
         <a href="#presenca" data-chapter-link="presenca">Onde estamos</a>
         <a href="#faca-parte" data-chapter-link="faca-parte">Faça parte da ROAD</a>
       </nav>
       <div class="road-carousel-status" aria-hidden="true">
-        <span data-carousel-count>01 / 07</span>
+        <span data-carousel-count>01 / 08</span>
         <div class="road-carousel-track"><span data-carousel-progress></span></div>
       </div>
     </div>
@@ -25,7 +26,7 @@ import "../styles/a-road.css";
         <div class="chapter-heading chapter-heading--wide">
           <div class="eyebrow">COMO FUNCIONA A CONSULTORIA</div>
           <h1>Diferentes instituições. Uma estratégia.</h1>
-          <p class="lead">A ROAD atua por meio de Consultoria de Investimentos independente. O cliente mantém seus recursos nas instituições financeiras que escolher, enquanto a Consultoria organiza uma visão consolidada, orientada por objetivos, perfil, liquidez, risco e Política de Investimentos.</p>
+          <p class="lead">A ROAD é um escritório integrante da Rede Meu Patrimônio. O relacionamento e o acompanhamento de cada cliente são conduzidos de forma próxima pela ROAD, enquanto a atividade de Consultoria de Investimentos utiliza a estrutura regulatória, tecnológica e institucional da Meu Patrimônio.</p>
           <p class="chapter-support">A relação é construída com proximidade, transparência e acompanhamento contínuo — para que cada recomendação faça sentido dentro do patrimônio como um todo.</p>
         </div>
         <div class="consult-flow">
@@ -86,9 +87,51 @@ import "../styles/a-road.css";
           <article class="team-card"><div class="role">Sócio</div><h3>João Elton Rodrigues</h3><p>Atuação no mercado financeiro desde 2016, com trajetória dedicada ao relacionamento, à análise e ao acompanhamento patrimonial de famílias. Essa experiência levou à criação da ROAD Wealth® e à busca por uma forma mais próxima e integrada de acompanhar patrimônio e decisões.</p></article>
           <article class="team-card"><div class="role">Sócia</div><h3>Alícia Deimling</h3><p>Lidera e coordena as áreas administrativa, de marketing e de planejamento da ROAD, contribuindo para a organização da operação, o desenvolvimento da marca e a experiência de cada relacionamento.</p></article>
         </div>
-        <div class="road-network-endorsement" aria-label="Faz parte da Rede Meu Patrimônio">
-          <p>Faz parte da Rede Meu Patrimônio.</p>
+      </section>
+
+      <section class="section section--sand chapter-section road-network-chapter" id="rede" data-chapter="rede" hidden>
+        <div class="chapter-heading chapter-heading--wide">
+          <div class="eyebrow">REDE MEU PATRIMÔNIO</div>
+          <h2>Identidade própria. Estrutura compartilhada.</h2>
+          <p class="lead">A ROAD preserva sua marca, equipe e relacionamento com cada cliente e integra a Rede Meu Patrimônio, contando com uma estrutura maior para sustentar a atividade de Consultoria de Investimentos, a tecnologia e o relacionamento institucional com plataformas parceiras.</p>
+        </div>
+
+        <div class="road-network-grid">
+          <article>
+            <div class="eyebrow">ROAD</div>
+            <h3>Relacionamento e acompanhamento.</h3>
+            <p>A ROAD permanece como o ponto próximo de contato com cada família: entende objetivos, organiza prioridades, acompanha decisões e conecta o patrimônio ao longo do tempo.</p>
+          </article>
+          <article>
+            <div class="eyebrow">MEU PATRIMÔNIO</div>
+            <h3>Estrutura regulatória, tecnológica e institucional.</h3>
+            <p>A Meu Patrimônio sustenta a estrutura da Consultoria de Investimentos, disponibiliza tecnologia de consolidação e mantém o relacionamento institucional com as plataformas parceiras da Rede.</p>
+          </article>
+          <article>
+            <div class="eyebrow">CLIENTE</div>
+            <h3>Liberdade com uma visão integrada.</h3>
+            <p>Os recursos permanecem custodiados nas instituições escolhidas pelo cliente, enquanto posições e decisões podem ser acompanhadas dentro de uma visão consolidada.</p>
+          </article>
+        </div>
+
+        <div class="road-network-tech">
+          <div>
+            <div class="eyebrow">TECNOLOGIA E CONSOLIDAÇÃO</div>
+            <h3>Uma visão mais completa do patrimônio.</h3>
+            <p>A ROAD utiliza a infraestrutura tecnológica disponibilizada pela Meu Patrimônio para apoiar a consolidação e o acompanhamento de investimentos e informações patrimoniais, conectando diferentes instituições dentro de uma leitura única.</p>
+          </div>
           <img src="/assets/rede-meu-patrimonio-extensa.svg" alt="Rede Meu Patrimônio" />
+        </div>
+
+        <div class="road-network-numbers">
+          <div class="eyebrow">A REDE EM NÚMEROS</div>
+          <div class="road-network-stats" aria-label="Indicadores divulgados pela Meu Patrimônio">
+            <div><strong>+ R$ 1 bi</strong><span>de patrimônio sob consultoria</span></div>
+            <div><strong>+ 500</strong><span>famílias atendidas em todo o Brasil</span></div>
+            <div><strong>NPS 95</strong><span>de satisfação entre clientes</span></div>
+          </div>
+          <p class="road-network-source">Dados divulgados pela Meu Patrimônio. Consulta realizada em outubro de 2026.</p>
+          <a class="text-btn road-network-link" href="https://www.meupatrimonio.com/rede/" target="_blank" rel="noopener noreferrer">Conheça a Rede Meu Patrimônio ↗</a>
         </div>
       </section>
 
