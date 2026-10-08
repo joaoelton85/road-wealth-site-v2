@@ -1,5 +1,19 @@
 # CHANGELOG — ROAD Wealth
 
+## V52.10 — Cabeçalho Café — refinamento da Home e rodapé — 08/10/2026
+
+- Remove as setas decorativas do bloco “Destaques”.
+- Aumenta discretamente a transparência da faixa de Destaques, mantendo o Hero real visível por trás.
+- A linha Café vertical passa a pertencer somente à separação “DESTAQUE” / conteúdo; a divisão equivalente em Mercados é removida para não formar uma linha contínua até o ticker.
+- O bloco Planejamento Financeiro termina na borda inferior das etapas 1–5, sem espaço vazio adicional.
+- O bloco Áreas de atuação reduz o espaço inferior após a mandala/conteúdo.
+- “A ROAD” passa a usar o título “CONHEÇA MELHOR A ROAD”, com a frase explicativa em corpo editorial menor.
+- O disclaimer regulatório sai do rodapé e passa para uma faixa clara, fina, em texto Café imediatamente acima dele.
+- O rodapé Café é reorganizado em duas linhas: marcas / contato / redes sociais na primeira; links institucionais / copyright na segunda.
+- Removidas setas do fechamento institucional; Instagram e LinkedIn permanecem agrupados.
+- Ticker, cabeçalho e demais conteúdos permanecem inalterados.
+- Marcador técnico atualizado para `ROAD_BUILD=52.10.0`.
+
 ## V52.9 — Cabeçalho Café — Destaques fora do topo fixo — 08/10/2026
 
 - O topo fixo passa a terminar na barra de indicadores: cabeçalho, legenda técnica e ticker permanecem sticky.

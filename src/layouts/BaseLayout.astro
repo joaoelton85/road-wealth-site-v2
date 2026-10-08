@@ -32,7 +32,8 @@ import "../styles/v52-5.css";
 import "../styles/v52-6.css";
 import "../styles/v52-7.css";
 import "../styles/v52-8.css";
-const BUILD_VERSION = "52.9.0";
+import "../styles/v52-9.css";
+const BUILD_VERSION = "52.10.0";
 const { title = "ROAD Wealth®", description = "ROAD Wealth — planejamento patrimonial e acompanhamento de investimentos, escritório integrante da Rede Meu Patrimônio.", active = "", noindex = true } = Astro.props;
 ---
 <!doctype html>
@@ -68,6 +69,9 @@ const { title = "ROAD Wealth®", description = "ROAD Wealth — planejamento pat
     <main>
       <slot />
     </main>
+    <aside class="site-regulatory-disclaimer" aria-label="Aviso regulatório">
+      <p>ROAD Wealth® — Escritório associado à Rede Meu Patrimônio. A atividade de consultoria de valores mobiliários é realizada no âmbito da Meu Patrimônio. Rentabilidade passada não é garantia de rentabilidade futura. <a href="/avisos-legais/">Avisos legais e regulatórios</a></p>
+    </aside>
     <Footer />
     <MarketTools />
     <script is:inline>
