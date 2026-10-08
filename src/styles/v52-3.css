@@ -1,0 +1,105 @@
+/* ROAD Wealth V52.4 — normalização editorial das inclusões da Rede Meu Patrimônio. */
+
+/* Home: o contexto institucional usa a mesma malha e escala editorial da seção. */
+.home-network-note{
+  width:100%!important;
+  max-width:none!important;
+  margin:22px 0 0!important;
+  padding-top:18px!important;
+  font-family:inherit!important;
+  font-size:17px!important;
+  line-height:1.6!important;
+  font-weight:400!important;
+  text-align:left!important;
+}
+
+/* A ROAD / A Rede: corpo de texto segue a tipografia editorial já usada na página. */
+.road-network-grid p,
+.road-network-tech p{
+  font-family:inherit!important;
+  font-size:16px!important;
+  line-height:1.58!important;
+  font-weight:400!important;
+}
+.road-network-grid h3,
+.road-network-tech h3{
+  font-size:23px!important;
+  line-height:1.25!important;
+  font-weight:400!important;
+}
+.road-network-tech img{
+  width:120px!important;
+  max-width:120px!important;
+  height:auto!important;
+  filter:none!important;
+  opacity:1!important;
+}
+.road-network-stats span{
+  font-family:inherit!important;
+  font-size:14px!important;
+  line-height:1.5!important;
+}
+
+/* Investimentos: remove medidas tipográficas próprias do bloco novo. */
+.network-structure-layout>div:first-child>p:not(.lead){
+  max-width:none!important;
+  font-family:inherit!important;
+  font-size:16px!important;
+  line-height:1.58!important;
+  font-weight:400!important;
+}
+.network-structure-cards span{
+  font-family:inherit!important;
+  font-size:16px!important;
+  line-height:1.5!important;
+  font-weight:400!important;
+}
+
+/* Avisos legais: volta ao mesmo eixo horizontal das demais páginas. */
+.legal-shell{
+  display:block!important;
+}
+.legal-content{
+  width:100%!important;
+  max-width:none!important;
+}
+.legal-block h2{
+  max-width:1120px!important;
+  font-size:clamp(36px,3.5vw,48px)!important;
+  line-height:1.08!important;
+}
+.legal-block p{
+  max-width:1120px!important;
+  font-family:inherit!important;
+  font-size:16px!important;
+  line-height:1.6!important;
+  font-weight:400!important;
+}
+
+/* Rodapé regulatório: mantém hierarquia secundária, sem estreitar o texto artificialmente. */
+.footer-regulatory-note{
+  font-family:inherit!important;
+  font-size:11px!important;
+  line-height:1.5!important;
+}
+.footer-regulatory-note p{
+  flex:1 1 auto!important;
+  max-width:none!important;
+}
+
+@media(max-width:680px){
+  .home-network-note{
+    font-size:16px!important;
+    line-height:1.58!important;
+  }
+  .road-network-grid p,
+  .road-network-tech p,
+  .network-structure-layout>div:first-child>p:not(.lead),
+  .network-structure-cards span,
+  .legal-block p{
+    font-size:15px!important;
+  }
+  .legal-block h2{
+    font-size:clamp(32px,9vw,42px)!important;
+  }
+}

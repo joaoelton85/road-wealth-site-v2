@@ -1,5 +1,16 @@
 # CHANGELOG — ROAD Wealth
 
+## V52.4 — 08/10/2026
+
+- Corrige o enquadramento da mensagem institucional da Rede na Home: largura total da malha editorial e tipografia compatível com a seção.
+- Normaliza fontes e tamanhos dos conteúdos novos em “A ROAD”, Investimentos e Avisos legais.
+- Substitui a assinatura extensa ainda presente no capítulo “A Rede” pela assinatura Box discreta já adotada no restante do site.
+- A página de Avisos legais deixa de usar container central estreito e retorna ao eixo horizontal padrão do site.
+- O aviso regulatório do rodapé deixa de ficar artificialmente limitado a 980 px.
+- Em referências institucionais, regulatórias, tecnológicas e de relação com a Rede, passa a ser usado “ROAD Wealth®” em vez de apenas “ROAD”.
+- O logo do header/footer, ticker, Destaques, Check-up e demais áreas permanecem inalterados.
+- Marcador técnico atualizado para `ROAD_BUILD=52.4.0`.
+
 ## V52.3 — 08/10/2026
 
 - Reduz a assinatura Box da Rede Meu Patrimônio para aproximadamente 40% da altura visual da marca ROAD.
