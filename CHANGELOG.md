@@ -1,5 +1,15 @@
 # CHANGELOG — ROAD Wealth
 
+## V51 — 08/10/2026
+
+- Incorpora ao site o endosso institucional oficial da Rede Meu Patrimônio, conforme o Manual de Marca v1.0.
+- O rodapé passa a exibir a assinatura horizontal branca oficial da Rede, em posição e escala secundárias à marca ROAD.
+- A seção “Quem somos” em A ROAD passa a incluir a frase “Faz parte da Rede Meu Patrimônio” acompanhada da assinatura horizontal verde oficial.
+- Os arquivos SVG são utilizados sem filtro, recoloração, alteração de proporção ou reconstrução.
+- A Meu Patrimônio não é incluída na grade de plataformas, preservando sua função de endosso institucional.
+- Cabeçalho e ticker permanecem inalterados.
+- Marcador técnico atualizado para `ROAD_BUILD=51.0.0`.
+
 ## V50.1 — 07/10/2026
 
 - Mantém as quatro bolinhas centralizadas na parte inferior da faixa Destaque.

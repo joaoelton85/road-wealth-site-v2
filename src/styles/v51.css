@@ -1,0 +1,397 @@
+/* ROAD Wealth V51 — incorpora o endosso oficial da Rede Meu Patrimônio sobre a base V50.1 estável. */
+
+/* Home: melhor aproveitamento da largura editorial. */
+.home-planning > .section-intro,
+.home-areas > .section-intro,
+.home-institutions > .section-intro,
+.home-planning > .section-intro h2,
+.home-areas > .section-intro h2,
+.home-institutions > .section-intro h2,
+.home-planning > .section-intro p,
+.home-areas > .section-intro p,
+.home-institutions > .section-intro p{
+  width:100%;
+  max-width:none;
+}
+
+/* Planejamento: 01–05 como marcadores visuais fortes. */
+.planning-steps article,
+.planning-steps article:first-child,
+.planning-steps article:last-child{
+  min-height:200px;
+  padding:22px 20px 23px;
+}
+.planning-steps .planning-step-number{
+  display:block;
+  margin:0 0 16px;
+  color:var(--coffee);
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:38px;
+  font-weight:500;
+  line-height:.95;
+  letter-spacing:.01em;
+  font-variant-numeric:tabular-nums;
+  opacity:1;
+}
+
+/* Plataformas: logos monocromáticos com caixa óptica uniforme. */
+.home-institutions .platform-grid{
+  align-items:center;
+  gap:16px 22px;
+}
+.home-institutions .platform-logo-cell{
+  min-height:64px;
+  height:64px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:8px 12px;
+  overflow:hidden;
+}
+.home-institutions .platform-logo{
+  display:block;
+  width:min(100%,140px);
+  height:40px;
+  max-width:140px;
+  max-height:40px;
+  object-fit:contain;
+  filter:grayscale(1) saturate(0) brightness(.46) contrast(1.12)!important;
+  opacity:.84!important;
+}
+
+/* Destaque: mesma malha estrutural de MERCADOS. */
+.road-highlights__inner{
+  grid-template-columns:var(--road-top-label-w) minmax(0,1fr);
+}
+.road-highlights__label{
+  width:var(--road-top-label-w);
+  min-width:var(--road-top-label-w);
+  padding-left:14px!important;
+  padding-right:14px!important;
+}
+.road-highlights__label-text{
+  display:block;
+  width:100%;
+  text-align:center;
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:11.5px;
+  font-weight:600;
+  line-height:1;
+  letter-spacing:.095em;
+  text-transform:uppercase;
+}
+.road-highlights__stage{min-width:0}
+.road-highlights__slide{padding-right:30px}
+
+/* Contatos institucionais: mesma escala em Home, Contato e Onde estamos. */
+main .road-contact-info,
+main .contact-address,
+main .presence-address .contact-lines{
+  font-family:"Inter",Arial,sans-serif;
+  font-size:14.5px;
+  line-height:1.62;
+  font-weight:400;
+}
+main .road-contact-info{
+  margin-top:24px;
+  color:rgba(243,236,227,.82);
+}
+main .road-contact-info strong,
+main .contact-address > strong,
+main .presence-address > strong{
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:14px;
+  line-height:1.4;
+  font-weight:500;
+}
+main .road-contact-info p,
+main .contact-address p{
+  margin:7px 0 0;
+  font:inherit;
+}
+main .road-contact-info a,
+main .contact-address a,
+main .presence-address a{
+  font-family:"Inter",Arial,sans-serif;
+  font-size:inherit;
+  color:inherit;
+}
+main .road-contact-socials{margin-top:20px}
+.footer,.footer-links,.footer small{font-family:"Inter",Arial,sans-serif}
+
+/* Ritmo vertical: menos vazio sem perder a leitura boutique. */
+.page-hero{padding-bottom:28px}
+@media(min-width:681px){
+  .hero--road-photo{
+    min-height:clamp(440px,50vh,570px);
+    padding-top:clamp(46px,4.4vw,68px);
+    padding-bottom:clamp(34px,3vw,48px);
+  }
+  .home-intro,
+  .home-planning,
+  .home-areas,
+  .home-institutions,
+  .home-a-road,
+  .home-contact{
+    padding-top:42px;
+    padding-bottom:42px;
+  }
+}
+
+/* Calculadora: metadados simples e CTA consistente. */
+.ir-simulation-head{
+  margin:0 0 20px;
+  padding:0 0 15px;
+  background:transparent;
+  border:0;
+  border-bottom:1px solid var(--line);
+}
+.ir-simulation-head .eyebrow{margin-bottom:5px}
+.ir-simulation-head p{
+  margin:0;
+  font-family:"Inter",Arial,sans-serif;
+  font-size:12.5px;
+  line-height:1.45;
+  letter-spacing:.01em;
+  color:var(--muted);
+}
+.ir-result-contact{font-family:"Inter",Arial,sans-serif}
+.ir-result-contact a{
+  font-family:"Montserrat",Arial,sans-serif;
+  font-weight:500;
+}
+
+@media(max-width:1100px){
+  .planning-steps article,
+  .planning-steps article:first-child,
+  .planning-steps article:last-child{min-height:0}
+}
+@media(max-width:680px){
+  .road-highlights__label{
+    padding-left:8px!important;
+    padding-right:8px!important;
+  }
+  .road-highlights__label-text{
+    font-size:9.5px;
+    letter-spacing:.07em;
+  }
+  .road-highlights__slide{padding-right:12px}
+  .planning-steps .planning-step-number{
+    margin-bottom:10px;
+    font-size:30px;
+  }
+  .planning-steps article,
+  .planning-steps article:first-child,
+  .planning-steps article:last-child{
+    min-height:0;
+    padding:17px 0;
+  }
+  .home-institutions .platform-logo-cell{
+    height:58px;
+    min-height:58px;
+  }
+  .home-institutions .platform-logo{
+    width:min(100%,124px);
+    height:36px;
+    max-width:124px;
+    max-height:36px;
+  }
+  main .road-contact-info,
+  main .contact-address,
+  main .presence-address .contact-lines{font-size:14px}
+}
+
+
+/* V50 — padronização tipográfica da Home. */
+.home-intro-copy,
+.home-intro-copy p,
+.home-intro-copy .home-trust-line{
+  font-family:inherit!important;
+}
+.home-intro-copy .home-trust-line{
+  font-size:16.5px!important;
+  line-height:1.62!important;
+  font-weight:400;
+}
+
+/* As etapas usam uma única família: nome em negrito, explicação em peso regular. */
+.planning-steps h3,
+.planning-steps p{
+  font-family:inherit!important;
+  font-size:13.5px;
+  line-height:1.5;
+}
+.planning-steps h3{
+  margin-bottom:6px;
+  font-weight:600;
+}
+
+/* Endereços e contatos herdam a tipografia corrente do site, sem família exclusiva. */
+main .road-contact-info,
+main .contact-address,
+main .presence-address .contact-lines,
+main .road-contact-info strong,
+main .contact-address > strong,
+main .presence-address > strong,
+main .road-contact-info a,
+main .contact-address a,
+main .presence-address a{
+  font-family:inherit!important;
+}
+main .road-contact-info,
+main .contact-address,
+main .presence-address .contact-lines{
+  font-size:15px;
+  line-height:1.6;
+}
+main .road-contact-info strong,
+main .contact-address > strong,
+main .presence-address > strong{
+  font-size:15px;
+  line-height:1.5;
+  font-weight:600;
+}
+
+/* Destaques: bolinhas saem da lateral e passam para o centro, abaixo da chamada. */
+.road-highlights__stage{
+  min-height:66px;
+}
+.road-highlights__pager{
+  position:absolute;
+  z-index:4;
+  left:50%!important;
+  top:auto!important;
+  bottom:7px;
+  transform:translateX(-50%)!important;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0;
+  margin:0;
+}
+.road-highlights__dots{
+  justify-content:center;
+  gap:7px;
+}
+.road-highlights__slide{
+  padding:0 30px 0 26px!important;
+}
+
+@media(max-width:680px){
+  .road-highlights__stage{
+    min-height:62px;
+  }
+  .road-highlights__pager{
+    left:50%!important;
+    top:auto!important;
+    bottom:5px;
+    transform:translateX(-50%)!important;
+  }
+  .road-highlights__dots{
+    gap:6px;
+  }
+  .road-highlights__slide{
+    padding:0 12px!important;
+  }
+}
+
+
+/* V51 — endosso institucional da Rede Meu Patrimônio.
+   Os SVGs são oficiais e não recebem filtros, recoloração ou deformação. */
+.footer-brand-group{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  min-width:0;
+}
+.footer-road-brand{
+  display:flex;
+  align-items:center;
+  flex:none;
+}
+.footer-road-brand img{
+  display:block;
+  width:48px;
+  height:auto;
+  max-height:76px;
+}
+.footer-network-endorsement{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:4px;
+  padding-left:18px;
+  border-left:1px solid rgba(243,236,227,.22);
+}
+.footer-network-endorsement span{
+  font-family:inherit;
+  font-size:8.5px;
+  line-height:1;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:rgba(243,236,227,.58);
+}
+.footer-network-endorsement img{
+  display:block;
+  width:148px;
+  max-width:100%;
+  height:auto;
+  filter:none!important;
+  opacity:1!important;
+}
+
+.road-network-endorsement{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:22px;
+  max-width:720px;
+  margin-top:28px;
+  padding-top:22px;
+  border-top:1px solid rgba(72,58,47,.18);
+}
+.road-network-endorsement p{
+  margin:0;
+  font-family:inherit;
+  font-size:14.5px;
+  line-height:1.5;
+  color:rgba(72,58,47,.78);
+}
+.road-network-endorsement img{
+  display:block;
+  width:180px;
+  max-width:42%;
+  height:auto;
+  filter:none!important;
+  opacity:1!important;
+}
+
+@media(max-width:1000px){
+  .footer-brand-group{
+    justify-content:flex-start;
+  }
+}
+@media(max-width:680px){
+  .footer-road-brand img{
+    width:42px;
+    max-height:66px;
+  }
+  .footer-brand-group{
+    gap:14px;
+  }
+  .footer-network-endorsement{
+    padding-left:14px;
+  }
+  .footer-network-endorsement img{
+    width:136px;
+  }
+  .road-network-endorsement{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:12px;
+  }
+  .road-network-endorsement img{
+    width:170px;
+    max-width:80%;
+  }
+}
