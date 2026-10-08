@@ -1,5 +1,17 @@
 # CHANGELOG — ROAD Wealth
 
+## V52.6 — Cabeçalho Café — 08/10/2026
+
+- Esta revisão passa a ser registrada como o perfil **Cabeçalho Café**.
+- O perfil **Cabeçalho Areia** também fica registrado, tomando como referência cromática o estado anterior à V52.5 (V52.4); futuras alternâncias devem preservar todas as demais evoluções do site.
+- Destaques mantém o arranjo atual, mas o Areia fica esmaecido para revelar discretamente detalhes da mesma imagem do Hero.
+- Uma linha Café separa o rótulo “DESTAQUE” exatamente no eixo do final de “MERCADOS”.
+- O quadro de Destaques recebe borda inferior Café para separar visualmente o topo do Hero.
+- O bloco “A ROAD” da Home é simplificado para: “Entenda o que é consultoria, Wealth, quem somos e a origem da nossa marca.”, seguido apenas do link “Comece pela Consultoria →”.
+- O rodapé principal passa a Café, com borda superior preta e borda inferior Areia; apenas o disclaimer regulatório final permanece em fundo preto.
+- O fundo estrutural inferior do documento passa de preto para Café.
+- Marcador técnico atualizado para `ROAD_BUILD=52.6.0`.
+
 ## V52.5 — 08/10/2026
 
 - Cabeçalho passa para fundo Café, com logo ROAD em Areia e chancela Box da Rede Meu Patrimônio em branco.

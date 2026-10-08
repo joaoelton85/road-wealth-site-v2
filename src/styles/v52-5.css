@@ -1,0 +1,78 @@
+/* ROAD Wealth V52.6 — revisão "Cabeçalho Café". */
+
+/* Destaques: Areia esmaecido com referência visual ao Hero, preservando o arranjo. */
+.road-highlights{
+  background:
+    linear-gradient(rgba(243,236,227,.88),rgba(243,236,227,.88)),
+    url("/assets/road-hero-caminho-v35.webp") center 58% / cover no-repeat!important;
+  border-bottom:1px solid var(--coffee)!important;
+}
+.road-highlights__inner,
+.road-highlights__label,
+.road-highlights__stage{
+  background:transparent!important;
+}
+.road-highlights__label{
+  border-right:1px solid var(--coffee)!important;
+}
+.road-highlights__inner{
+  box-shadow:none!important;
+}
+
+/* A ROAD: bloco editorial simples, sem segunda coluna nem textos concorrentes. */
+.road-teaser--simple{
+  display:block!important;
+  max-width:1180px;
+}
+.road-teaser--simple h2{
+  max-width:1080px;
+  margin-bottom:20px;
+}
+.home-a-road-link{
+  display:inline-flex;
+  padding:0;
+  font-family:"Montserrat",Arial,sans-serif!important;
+  font-size:13px!important;
+  line-height:1.4!important;
+  font-weight:500!important;
+  letter-spacing:.01em;
+}
+
+/* Encerramento: superfície principal Café; apenas o disclaimer final permanece preto. */
+html,
+body{
+  background:var(--coffee)!important;
+}
+.footer{
+  background:var(--coffee)!important;
+  color:var(--sand)!important;
+  border-top:1px solid #090909!important;
+  border-bottom:1px solid var(--sand)!important;
+}
+.footer-regulatory-note{
+  position:relative;
+  background:#090909!important;
+  border-top:0!important;
+  color:rgba(243,236,227,.66)!important;
+  padding-top:10px!important;
+  padding-bottom:10px!important;
+  box-shadow:0 0 0 100vmax #090909;
+  clip-path:inset(0 -100vmax);
+}
+.footer-regulatory-note a{
+  color:rgba(243,236,227,.78)!important;
+}
+
+@media(max-width:680px){
+  .road-highlights{
+    background:
+      linear-gradient(rgba(243,236,227,.90),rgba(243,236,227,.90)),
+      url("/assets/road-hero-caminho-v35.webp") center 58% / cover no-repeat!important;
+  }
+  .road-teaser--simple h2{
+    margin-bottom:16px;
+  }
+  .home-a-road-link{
+    font-size:12.5px!important;
+  }
+}
