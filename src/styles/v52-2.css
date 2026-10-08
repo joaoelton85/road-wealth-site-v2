@@ -1,21 +1,42 @@
-/* ROAD Wealth V52.2 — chancela Box discreta no header e footer. */
+/* ROAD Wealth V52.3 — chancela Box em proporção secundária (~40% da altura visual da ROAD). */
 
-/* A Rede permanece como chancela secundária.
-   O tamanho de 120 px preserva o mínimo digital indicado pela marca. */
+/* ROAD permanece como marca principal.
+   A assinatura Box da Rede é reduzida para funcionar como chancela,
+   alinhada pela base inferior do conjunto ROAD / WEALTH. */
+.header-brand-group,
+.footer-brand-group{
+  align-items:flex-end!important;
+}
+
+.header-network-endorsement,
+.footer-network-endorsement{
+  display:flex!important;
+  align-items:flex-end!important;
+  align-self:flex-end!important;
+  padding-left:0!important;
+  border-left:0!important;
+}
+
 .header-network-endorsement img,
 .footer-network-endorsement img{
-  width:120px!important;
-  max-width:120px!important;
+  display:block!important;
+  width:68px!important;
+  max-width:68px!important;
   height:auto!important;
   object-fit:contain!important;
   filter:none!important;
   opacity:1!important;
 }
 
-.header-brand-group{gap:12px!important}
-.footer-brand-group{gap:14px!important}
+.header-brand-group{gap:10px!important}
+.footer-brand-group{gap:12px!important}
 
 @media(max-width:680px){
-  .header-brand-group{gap:9px!important}
+  .header-network-endorsement img,
+  .footer-network-endorsement img{
+    width:60px!important;
+    max-width:60px!important;
+  }
+  .header-brand-group{gap:8px!important}
   .footer-brand-group{gap:10px!important}
 }

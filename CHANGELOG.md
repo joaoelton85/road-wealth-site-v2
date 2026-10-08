@@ -1,5 +1,13 @@
 # CHANGELOG — ROAD Wealth
 
+## V52.3 — 08/10/2026
+
+- Reduz a assinatura Box da Rede Meu Patrimônio para aproximadamente 40% da altura visual da marca ROAD.
+- Header e footer deixam de centralizar verticalmente a chancela da Rede e passam a alinhá-la pela base inferior do conjunto ROAD / WEALTH.
+- Largura da chancela Box: 68 px no desktop e 60 px no mobile, preservando a ROAD como identificação claramente principal.
+- Nenhum texto, disclaimer, página, ticker ou outro elemento do site foi alterado.
+- Marcador técnico atualizado para `ROAD_BUILD=52.3.0`.
+
 ## V52.2 — 08/10/2026
 
 - Substitui a assinatura “Coruja” no cabeçalho e no rodapé por uma aplicação Box mais discreta.
