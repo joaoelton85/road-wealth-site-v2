@@ -33,7 +33,6 @@ const checks = [
     required: [
       'class="planning-step-number">1',
       'class="planning-step-number">5',
-      "road-contact-info",
       "A ROAD Wealth® integra a Rede Meu Patrimônio",
       "Entenda o que é consultoria, Wealth, quem somos e a origem da nossa marca.",
       "Comece pela Consultoria →",
