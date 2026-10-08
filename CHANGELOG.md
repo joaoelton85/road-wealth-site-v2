@@ -1,5 +1,15 @@
 # CHANGELOG — ROAD Wealth
 
+## V52.2 — 08/10/2026
+
+- Substitui a assinatura “Coruja” no cabeçalho e no rodapé por uma aplicação Box mais discreta.
+- Cabeçalho: Box monocromático cinza, construído sobre a geometria oficial da assinatura Box e utilizando o cinza institucional permitido para aplicação monocromática.
+- Rodapé: assinatura Box branca oficial sobre o fundo Café.
+- Ambas as chancelas são mantidas em 120 px, referência mínima digital indicada pelo material de marca.
+- ROAD permanece como identificação principal; a Rede Meu Patrimônio aparece apenas como chancela secundária.
+- Nenhuma outra área, texto, disclaimer ou funcionalidade da V52.1 foi alterada.
+- Marcador técnico atualizado para `ROAD_BUILD=52.2.0`.
+
 ## V52.1 — 08/10/2026
 
 - Abandona a composição de chancela extensa aplicada por iniciativa técnica na V52.

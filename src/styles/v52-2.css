@@ -1,0 +1,21 @@
+/* ROAD Wealth V52.2 — chancela Box discreta no header e footer. */
+
+/* A Rede permanece como chancela secundária.
+   O tamanho de 120 px preserva o mínimo digital indicado pela marca. */
+.header-network-endorsement img,
+.footer-network-endorsement img{
+  width:120px!important;
+  max-width:120px!important;
+  height:auto!important;
+  object-fit:contain!important;
+  filter:none!important;
+  opacity:1!important;
+}
+
+.header-brand-group{gap:12px!important}
+.footer-brand-group{gap:14px!important}
+
+@media(max-width:680px){
+  .header-brand-group{gap:9px!important}
+  .footer-brand-group{gap:10px!important}
+}

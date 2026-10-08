@@ -3,7 +3,8 @@ import { existsSync, readFileSync } from "node:fs";
 const checks = [
   {
     file: "src/layouts/BaseLayout.astro",
-    required: ['import "../styles/v52.css";', 'import "../styles/v52-1.css";', 'const BUILD_VERSION = "52.1.0";'],
+    required: ['import "../styles/v52.css";', 'import "../styles/v52-1.css";
+import "../styles/v52-2.css";', 'const BUILD_VERSION = "52.2.0";'],
   },
   {
     file: "src/components/MarketTicker.astro",
@@ -30,11 +31,11 @@ const checks = [
   },
   {
     file: "src/components/Header.astro",
-    required: ["header-network-endorsement", "rede-meu-patrimonio-coruja.png"],
+    required: ["header-network-endorsement", "rede-meu-patrimonio-box-cinza.svg"],
   },
   {
     file: "src/components/Footer.astro",
-    required: ["footer-network-endorsement", "rede-meu-patrimonio-coruja-branca.png", "/avisos-legais/"],
+    required: ["footer-network-endorsement", "rede-meu-patrimonio-box-branca.svg", "/avisos-legais/"],
     forbidden: ["Faz parte da"],
   },
   {
@@ -82,12 +83,12 @@ const checks = [
       '"term": "Diferimento / diferido"',
     ],
   },
-  { file: "dist/__road-build.json", required: ['"roadBuild": "52.1.0"'] },
+  { file: "dist/__road-build.json", required: ['"roadBuild": "52.2.0"'] },
   {
     file: "dist/index.html",
     required: [
-      'road-build" content="52.1.0"',
-      'data-road-build="52.1.0"',
+      'road-build" content="52.2.0"',
+      'data-road-build="52.2.0"',
       "DESTAQUE",
       "Conceitos, ferramentas e Glossário ROAD para entender melhor suas decisões.",
       "planning-step-number",
@@ -100,7 +101,7 @@ const checks = [
   {
     file: "dist/calculadora-ir/index.html",
     required: [
-      'road-build" content="52.1.0"',
+      'road-build" content="52.2.0"',
       "SIMULAÇÃO IRPF 2026",
       "Ficou em dúvida?",
       "Fale com a gente",
@@ -110,7 +111,7 @@ const checks = [
   {
     file: "dist/glossario/index.html",
     required: [
-      'road-build" content="52.1.0"',
+      'road-build" content="52.2.0"',
       "160 verbetes",
       "Pix",
       "Open Finance",
@@ -143,4 +144,4 @@ if (failures.length) {
   failures.forEach(failure => console.error(`- ${failure}`));
   process.exit(1);
 }
-console.log("ROAD build verification OK — V52.1.0");
+console.log("ROAD build verification OK — V52.2.0");
