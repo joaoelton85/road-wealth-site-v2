@@ -15,7 +15,8 @@ const checks = [
       'import "../styles/v52-8.css";',
       'import "../styles/v52-9.css";',
       'import "../styles/v52-10.css";',
-      'const BUILD_VERSION = "52.11.0";',
+      'import "../styles/v52-11.css";',
+      'const BUILD_VERSION = "52.12.0";',
       'B3 · 15 min de atraso',
       '<RoadHighlights />',
       'class="site-regulatory-disclaimer"',
@@ -32,6 +33,10 @@ const checks = [
   {
     file: "src/styles/v52-10.css",
     required: ["--header-h:72px", "--header-h:64px", "transform:translateY(4px)", "footer-channel--whatsapp", "justify-content:center!important"],
+  },
+  {
+    file: "src/styles/v52-11.css",
+    required: ["gap:12px!important", "article:last-child", "border-bottom:1px solid rgba(72,58,47,.18)!important"],
   },
   {
     file: "src/components/MarketTicker.astro",
@@ -129,12 +134,12 @@ const checks = [
       '"term": "Diferimento / diferido"',
     ],
   },
-  { file: "dist/__road-build.json", required: ['"roadBuild": "52.11.0"'] },
+  { file: "dist/__road-build.json", required: ['"roadBuild": "52.12.0"'] },
   {
     file: "dist/index.html",
     required: [
-      'road-build" content="52.11.0"',
-      'data-road-build="52.11.0"',
+      'road-build" content="52.12.0"',
+      'data-road-build="52.12.0"',
       "DESTAQUE",
       "Conceitos, ferramentas e Glossário ROAD para entender melhor suas decisões.",
       "planning-step-number",
@@ -147,7 +152,7 @@ const checks = [
   {
     file: "dist/calculadora-ir/index.html",
     required: [
-      'road-build" content="52.11.0"',
+      'road-build" content="52.12.0"',
       "SIMULAÇÃO IRPF 2026",
       "Ficou em dúvida?",
       "Fale com a gente",
@@ -157,7 +162,7 @@ const checks = [
   {
     file: "dist/glossario/index.html",
     required: [
-      'road-build" content="52.11.0"',
+      'road-build" content="52.12.0"',
       "160 verbetes",
       "Pix",
       "Open Finance",
@@ -190,4 +195,4 @@ if (failures.length) {
   failures.forEach(failure => console.error(`- ${failure}`));
   process.exit(1);
 }
-console.log("ROAD build verification OK — V52.11.0");
+console.log("ROAD build verification OK — V52.12.0");

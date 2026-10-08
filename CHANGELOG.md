@@ -1,5 +1,13 @@
 # CHANGELOG — ROAD Wealth
 
+## V52.12 — Cabeçalho Café — ajustes mobile de ritmo — 08/10/2026
+
+- No mobile, reduz o espaço entre a mandala de Áreas de atuação e o início das definições, sem diminuir a figura.
+- No Planejamento Financeiro mobile, a etapa 5 recupera a borda inferior de encerramento.
+- A seção de Planejamento continua sem espaço inferior adicional, de modo que o bloco Areia seguinte começa exatamente após a borda da etapa 5.
+- Desktop, ticker, cabeçalho, rodapé e demais conteúdos permanecem inalterados.
+- Marcador técnico atualizado para `ROAD_BUILD=52.12.0`.
+
 ## V52.11 — Cabeçalho Café — topo compacto e canais visuais — 08/10/2026
 
 - Reduz a altura do cabeçalho para 72 px no desktop e 64 px no mobile, preservando o tamanho atual das marcas.

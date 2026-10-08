@@ -1,0 +1,20 @@
+/* ROAD Wealth V52.12 — refinamento mobile de Planejamento e Áreas de atuação. */
+
+@media(max-width:680px){
+  /* A mandala mantém seu tamanho; reduzimos apenas o vazio entre a figura e as definições. */
+  .home-areas .wealth-grid--visual{
+    gap:12px!important;
+  }
+
+  /* A etapa 5 recupera a borda de encerramento e a seção termina exatamente nela. */
+  .home-planning{
+    padding-bottom:0!important;
+  }
+  .home-planning .planning-steps{
+    margin-bottom:0!important;
+    border-bottom:0!important;
+  }
+  .home-planning .planning-steps article:last-child{
+    border-bottom:1px solid rgba(72,58,47,.18)!important;
+  }
+}
