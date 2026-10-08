@@ -1,0 +1,49 @@
+/* ROAD Wealth V52.8 — transparência real da faixa Destaques sobre o Hero. */
+
+:root{
+  --road-highlight-overlay-h:67px;
+}
+
+/* A faixa deixa de carregar uma cópia da imagem: passa a ser apenas Areia translúcido. */
+.road-highlights{
+  background:rgba(243,236,227,.82)!important;
+  border-bottom:1px solid var(--coffee)!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+.road-highlights__inner,
+.road-highlights__label,
+.road-highlights__stage{
+  background:transparent!important;
+  background-image:none!important;
+}
+.road-highlights__label{
+  border-right:1px solid var(--coffee)!important;
+}
+
+/* Na Home, o Hero real sobe exatamente a altura da faixa para continuar por trás dela.
+   O padding e a altura são compensados para preservar a posição do conteúdo e o ritmo da página. */
+.hero--road-photo{
+  margin-top:calc(-1 * var(--road-highlight-overlay-h));
+}
+
+@media(min-width:681px){
+  .hero--road-photo{
+    min-height:calc(clamp(440px,50vh,570px) + var(--road-highlight-overlay-h));
+    padding-top:calc(clamp(46px,4.4vw,68px) + var(--road-highlight-overlay-h));
+  }
+}
+
+@media(max-width:680px){
+  :root{
+    --road-highlight-overlay-h:63px;
+  }
+  .road-highlights{
+    background:rgba(243,236,227,.84)!important;
+  }
+  .hero--road-photo{
+    min-height:calc(clamp(550px,69svh,700px) + var(--road-highlight-overlay-h));
+    padding-top:calc(42px + var(--road-highlight-overlay-h));
+    padding-bottom:42px;
+  }
+}

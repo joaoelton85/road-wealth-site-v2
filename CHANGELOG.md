@@ -1,5 +1,15 @@
 # CHANGELOG — ROAD Wealth
 
+## V52.8 — Cabeçalho Café — Destaques translúcido — 08/10/2026
+
+- A faixa “Destaques” deixa de usar uma cópia estática da imagem do Hero como fundo.
+- O fundo passa a ser Areia semitransparente, permitindo que o Hero real apareça continuamente por trás da faixa.
+- O Hero sobe somente a altura da faixa de Destaques, com compensação de altura e padding para manter o conteúdo na mesma posição e preservar o ritmo da Home.
+- Mantidas a linha Café após “DESTAQUE” e a borda inferior Café.
+- Nenhum blur é aplicado nesta primeira versão, evitando o efeito de imagem “congelada” ou excessivamente fosca.
+- Cabeçalho, ticker, rodapé compacto e demais conteúdos da V52.7 permanecem inalterados.
+- Marcador técnico atualizado para `ROAD_BUILD=52.8.0`.
+
 ## V52.7 — Cabeçalho Café — rodapé compacto — 08/10/2026
 
 - Remove da Home o grande bloco “CONTATO”, evitando a repetição de informações já presentes no fechamento institucional.
