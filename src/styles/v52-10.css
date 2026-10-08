@@ -1,0 +1,163 @@
+/* ROAD Wealth V52.11 — cabeçalho mais compacto e rodapé com canais visuais. */
+
+:root{
+  --header-h:72px;
+}
+
+/* Cabeçalho menor sem reduzir as marcas; conjunto óptico apoiado mais abaixo. */
+.site-header{
+  height:var(--header-h)!important;
+  min-height:var(--header-h)!important;
+  padding-top:3px!important;
+  padding-bottom:3px!important;
+}
+.header-brand-group{
+  align-self:center!important;
+  transform:translateY(4px);
+}
+.site-header .nav{
+  align-self:center;
+  transform:translateY(2px);
+}
+
+/* A microinformação B3 permanece independente e não interfere na posição das marcas. */
+.site-top-stack .road-market-note{
+  flex:none!important;
+}
+
+/* A ROAD mantém a mesma hierarquia editorial dos demais títulos. */
+.home-a-road .road-teaser--simple h2{
+  text-transform:none!important;
+}
+
+/* Disclaimer apenas informativo, sem CTA ou link duplicado. */
+.site-regulatory-disclaimer p{
+  max-width:none;
+}
+.site-regulatory-disclaimer a{
+  display:none!important;
+}
+
+/* Rodapé: marca + endereço/canais; links legais e copyright centralizados. */
+.footer-primary{
+  grid-template-columns:auto minmax(0,1fr)!important;
+  gap:28px!important;
+}
+.footer-contact{
+  min-width:0;
+}
+.footer-contact-actions{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end;
+  flex-wrap:wrap;
+  gap:8px 10px!important;
+  margin-top:6px!important;
+}
+
+.footer-channel{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  min-height:28px;
+  margin:0;
+  padding:4px 6px;
+  border:0;
+  background:transparent;
+  color:var(--sand);
+  font-family:inherit;
+  font-size:10.5px;
+  line-height:1.2;
+  text-decoration:none;
+  cursor:pointer;
+  white-space:nowrap;
+}
+.footer-channel:hover,
+.footer-channel:focus-visible{
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+.footer-channel-icon{
+  display:block;
+  width:17px;
+  height:17px;
+  flex:none;
+}
+
+.footer-channel--whatsapp{
+  min-height:32px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:var(--sand);
+  color:var(--coffee);
+  text-decoration:none!important;
+}
+.footer-channel--whatsapp:hover,
+.footer-channel--whatsapp:focus-visible{
+  text-decoration:none;
+  box-shadow:inset 0 0 0 1px rgba(72,58,47,.25);
+}
+
+.footer-meta{
+  display:flex!important;
+  flex-direction:column;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:7px!important;
+  margin-top:11px!important;
+  padding-top:9px!important;
+}
+.footer-links{
+  width:100%;
+  justify-content:center!important;
+  text-align:center;
+}
+.footer-meta small{
+  width:100%;
+  text-align:center;
+  white-space:normal!important;
+}
+
+@media(max-width:1000px){
+  .footer-contact-actions{
+    justify-content:flex-start;
+  }
+}
+
+@media(max-width:680px){
+  :root{
+    --header-h:64px;
+  }
+  .site-header{
+    height:var(--header-h)!important;
+    min-height:var(--header-h)!important;
+    padding-top:2px!important;
+    padding-bottom:2px!important;
+  }
+  .header-brand-group{
+    transform:translateY(3px);
+  }
+  .site-header .nav{
+    transform:none;
+  }
+  .site-header .nav:not(.open){
+    top:64px!important;
+  }
+  .nav.open{
+    top:64px!important;
+  }
+  .footer-primary{
+    grid-template-columns:1fr!important;
+    gap:12px!important;
+  }
+  .footer-contact-actions{
+    justify-content:flex-start;
+    gap:7px 8px!important;
+  }
+  .footer-channel{
+    font-size:10.3px;
+  }
+  .footer-links{
+    gap:7px 13px!important;
+  }
+}

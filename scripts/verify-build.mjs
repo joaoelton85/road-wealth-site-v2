@@ -14,7 +14,8 @@ const checks = [
       'import "../styles/v52-7.css";',
       'import "../styles/v52-8.css";',
       'import "../styles/v52-9.css";',
-      'const BUILD_VERSION = "52.10.0";',
+      'import "../styles/v52-10.css";',
+      'const BUILD_VERSION = "52.11.0";',
       'B3 · 15 min de atraso',
       '<RoadHighlights />',
       'class="site-regulatory-disclaimer"',
@@ -27,6 +28,10 @@ const checks = [
   {
     file: "src/styles/v52-9.css",
     required: ["background:rgba(243,236,227,.72)!important", "padding-bottom:0!important", "padding-bottom:18px!important", "site-regulatory-disclaimer", "footer-primary", "footer-meta"],
+  },
+  {
+    file: "src/styles/v52-10.css",
+    required: ["--header-h:72px", "--header-h:64px", "transform:translateY(4px)", "footer-channel--whatsapp", "justify-content:center!important"],
   },
   {
     file: "src/components/MarketTicker.astro",
@@ -48,7 +53,7 @@ const checks = [
       'class="planning-step-number">1',
       'class="planning-step-number">5',
       "A ROAD Wealth® integra a Rede Meu Patrimônio",
-      "CONHEÇA MELHOR A ROAD",
+      "Conheça melhor a ROAD",
       "Entenda o que é consultoria, Wealth, quem somos e a origem da nossa marca.",
       "Comece pela Consultoria →",
     ],
@@ -76,8 +81,8 @@ const checks = [
   },
   {
     file: "src/components/Footer.astro",
-    required: ["footer-network-endorsement", "rede-meu-patrimonio-box-branca.svg", "/avisos-legais/", "footer-primary", "footer-meta", "footer-contact", "footer-socials", "Rua Pater Josef Stefan, 1249", "WhatsApp", "contato@roadwealth.com.br", "@road.wealth", "LinkedIn"],
-    forbidden: ["Faz parte da", "footer-regulatory-note", "→"],
+    required: ["footer-network-endorsement", "rede-meu-patrimonio-box-branca.svg", "/avisos-legais/", "footer-primary", "footer-meta", "footer-contact", "footer-channel--whatsapp", "footer-channel--email", "Rua Pater Josef Stefan, 1249", "WhatsApp", "contato@roadwealth.com.br", "@road.wealth", "LinkedIn"],
+    forbidden: ["Faz parte da", "footer-regulatory-note", "footer-socials", "→"],
   },
   {
     file: "src/pages/a-road.astro",
@@ -124,12 +129,12 @@ const checks = [
       '"term": "Diferimento / diferido"',
     ],
   },
-  { file: "dist/__road-build.json", required: ['"roadBuild": "52.10.0"'] },
+  { file: "dist/__road-build.json", required: ['"roadBuild": "52.11.0"'] },
   {
     file: "dist/index.html",
     required: [
-      'road-build" content="52.10.0"',
-      'data-road-build="52.10.0"',
+      'road-build" content="52.11.0"',
+      'data-road-build="52.11.0"',
       "DESTAQUE",
       "Conceitos, ferramentas e Glossário ROAD para entender melhor suas decisões.",
       "planning-step-number",
@@ -142,7 +147,7 @@ const checks = [
   {
     file: "dist/calculadora-ir/index.html",
     required: [
-      'road-build" content="52.10.0"',
+      'road-build" content="52.11.0"',
       "SIMULAÇÃO IRPF 2026",
       "Ficou em dúvida?",
       "Fale com a gente",
@@ -152,7 +157,7 @@ const checks = [
   {
     file: "dist/glossario/index.html",
     required: [
-      'road-build" content="52.10.0"',
+      'road-build" content="52.11.0"',
       "160 verbetes",
       "Pix",
       "Open Finance",
@@ -185,4 +190,4 @@ if (failures.length) {
   failures.forEach(failure => console.error(`- ${failure}`));
   process.exit(1);
 }
-console.log("ROAD build verification OK — V52.10.0");
+console.log("ROAD build verification OK — V52.11.0");

@@ -1,5 +1,18 @@
 # CHANGELOG — ROAD Wealth
 
+## V52.11 — Cabeçalho Café — topo compacto e canais visuais — 08/10/2026
+
+- Reduz a altura do cabeçalho para 72 px no desktop e 64 px no mobile, preservando o tamanho atual das marcas.
+- ROAD + Rede Meu Patrimônio recebem ajuste óptico para permanecerem mais próximos da base do cabeçalho, recuperando a posição visual anterior.
+- A informação B3 continua separada do cabeçalho e acima do ticker; o ticker não é alterado.
+- O título da Home passa para “Conheça melhor a ROAD”, seguindo a capitalização dos demais títulos.
+- O disclaimer claro perde o link repetido “Avisos legais e regulatórios” e permanece apenas como texto regulatório.
+- WhatsApp vira botão Areia/Café com ícone, mantendo placeholder até a definição do número oficial.
+- E-mail recebe ícone de envelope; Instagram mantém ícone e link oficial; LinkedIn recebe ícone e permanece como placeholder até a URL oficial.
+- Política de Privacidade, Cookies e Avisos legais e regulatórios passam a ficar centralizados no rodapé; copyright também é centralizado e subordinado.
+- Demais elementos da V52.10 permanecem inalterados.
+- Marcador técnico atualizado para `ROAD_BUILD=52.11.0`.
+
 ## V52.10 — Cabeçalho Café — refinamento da Home e rodapé — 08/10/2026
 
 - Remove as setas decorativas do bloco “Destaques”.
