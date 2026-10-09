@@ -407,3 +407,31 @@
     grid-template-columns:1fr!important;
   }
 }
+
+
+/* Revisão — faixa segura para a aba Mercados & Ferramentas. */
+
+/* A aba vertical ocupa a lateral direita no desktop.
+   O conteúdo editorial termina antes dessa faixa para impedir sobreposição
+   de títulos, textos, cards e formulários extensos. */
+@media(min-width:1001px){
+  :root{
+    --road-utility-safe-right:76px;
+  }
+
+  main .section{
+    padding-right:calc(max(26px,calc((100vw - var(--max))/2)) + var(--road-utility-safe-right))!important;
+  }
+
+  .site-regulatory-disclaimer{
+    padding-right:calc(max(26px,calc((100vw - var(--max))/2)) + var(--road-utility-safe-right))!important;
+  }
+}
+
+/* Em tablet/mobile a aba lateral é substituída pelo botão inferior,
+   portanto não reservamos largura adicional. */
+@media(max-width:1000px){
+  :root{
+    --road-utility-safe-right:0px;
+  }
+}

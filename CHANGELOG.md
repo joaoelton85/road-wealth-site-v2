@@ -1,5 +1,15 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão — faixa segura para Mercados & Ferramentas — 09/10/2026
+
+- Desktop: reservada uma faixa fixa de 76 px à direita de todos os blocos editoriais para a aba vertical “MERCADOS & FERRAMENTAS”.
+- Títulos, subtítulos, textos, cards e formulários passam a terminar antes da aba, evitando que conteúdos longos fiquem escondidos.
+- O mesmo respiro é aplicado ao aviso regulatório.
+- Tablet e mobile permanecem sem reserva lateral adicional, pois utilizam o botão inferior em vez da aba vertical.
+- Preservado o logo colorido da Rede Meu Patrimônio diretamente sobre o fundo claro, sem cartão Café.
+- Demais elementos da revisão anterior permanecem inalterados.
+- Build técnico atualizado para `52.24.0`.
+
 ## Revisão — logo da Rede em fundo claro — 09/10/2026
 
 - A ROAD / A Rede: removido o suporte Café criado atrás do logo da Meu Patrimônio.
