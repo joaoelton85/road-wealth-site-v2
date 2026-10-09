@@ -1,5 +1,16 @@
 # CHANGELOG — ROAD Wealth
 
+## V52.15 — Cabeçalho Café — redistribuição final do rodapé — 09/10/2026
+
+- Desktop amplo: o endereço permanece na posição logo após as marcas.
+- Política de Privacidade, Cookies, Avisos legais e regulatórios e copyright passam para uma coluna central independente.
+- WhatsApp, e-mail, Instagram e LinkedIn passam a ocupar a coluna da extrema direita.
+- Mobile: a coluna direita ganha mais largura útil.
+- Mobile: o endereço desce discretamente e permanece alinhado à direita.
+- Mobile: a fileira de ícones passa a usar largura própria e fica ancorada na borda direita da coluna.
+- Demais comportamentos da V52.14 permanecem inalterados.
+- Marcador técnico atualizado para `ROAD_BUILD=52.15.0`.
+
 ## V52.14 — Cabeçalho Café — refinamento do rodapé — 09/10/2026
 
 - Desktop: endereço, links legais e copyright passam a ocupar a mesma coluna central, em sequência vertical compacta.

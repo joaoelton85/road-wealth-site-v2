@@ -1,0 +1,64 @@
+/* ROAD Wealth V52.15 — redistribuição final do rodapé desktop/mobile. */
+
+/* Desktop amplo: endereço permanece após as marcas; legais centralizados; canais no extremo direito. */
+@media(min-width:1281px){
+  .footer-primary{
+    grid-template-columns:auto minmax(360px,1fr) minmax(360px,auto) auto!important;
+    grid-template-areas:"brand address legal channels"!important;
+    align-items:center!important;
+    column-gap:28px!important;
+    row-gap:0!important;
+  }
+  .footer-address-block{
+    grid-area:address;
+    align-self:center!important;
+  }
+  .footer-meta{
+    grid-area:legal;
+    justify-self:center!important;
+    align-self:center!important;
+    align-items:center!important;
+    justify-content:center!important;
+    text-align:center!important;
+    gap:3px!important;
+  }
+  .footer-links{
+    justify-content:center!important;
+    text-align:center!important;
+  }
+  .footer-meta small{
+    text-align:center!important;
+  }
+  .footer-channels{
+    grid-area:channels;
+    justify-self:end!important;
+    align-self:center!important;
+  }
+}
+
+/* Mobile: dá mais território à coluna direita e ancora endereço/canais no lado direito. */
+@media(max-width:680px){
+  .footer-primary{
+    grid-template-columns:minmax(118px,.82fr) minmax(0,1.18fr)!important;
+    column-gap:12px!important;
+  }
+  .footer-address-block{
+    width:min(100%,250px)!important;
+    margin-top:9px!important;
+    margin-left:auto!important;
+    justify-self:end!important;
+    align-self:start!important;
+    text-align:right!important;
+  }
+  .footer-address{
+    text-align:right!important;
+  }
+  .footer-channels{
+    width:max-content!important;
+    max-width:100%!important;
+    margin-left:auto!important;
+    justify-self:end!important;
+    justify-content:flex-end!important;
+    gap:8px!important;
+  }
+}
