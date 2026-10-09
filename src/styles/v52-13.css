@@ -1,0 +1,113 @@
+/* ROAD Wealth V52.14 — compactação final do rodapé desktop + alinhamento mobile. */
+
+/* Desktop: marcas à esquerda; endereço + legais + copyright no centro; canais à direita. */
+.footer{
+  padding-top:7px!important;
+  padding-bottom:calc(7px + env(safe-area-inset-bottom,0px))!important;
+}
+.footer-primary{
+  display:grid!important;
+  grid-template-columns:auto minmax(360px,1fr) auto!important;
+  grid-template-areas:
+    "brand address channels"
+    "brand legal channels"!important;
+  align-items:center!important;
+  column-gap:28px!important;
+  row-gap:3px!important;
+}
+.footer-brand-group{
+  grid-area:brand;
+  align-self:center!important;
+}
+.footer-address-block{
+  grid-area:address;
+  align-self:end!important;
+}
+.footer-channels{
+  grid-area:channels;
+  align-self:center!important;
+  justify-self:end;
+}
+.footer-meta{
+  grid-area:legal;
+  align-self:start!important;
+  align-items:flex-start!important;
+  justify-content:flex-start!important;
+  gap:3px!important;
+  margin:0!important;
+  padding:0!important;
+  border-top:0!important;
+}
+.footer-links{
+  width:auto!important;
+  justify-content:flex-start!important;
+  text-align:left!important;
+  gap:4px 11px!important;
+}
+.footer-meta small{
+  width:auto!important;
+  text-align:left!important;
+  white-space:nowrap!important;
+}
+
+/* Notebooks/tablets: mantém o mesmo raciocínio, permitindo quebra natural dos canais. */
+@media(max-width:1280px) and (min-width:681px){
+  .footer-primary{
+    grid-template-columns:auto minmax(0,1fr)!important;
+    grid-template-areas:
+      "brand address"
+      "brand channels"
+      "brand legal"!important;
+    row-gap:4px!important;
+  }
+  .footer-channels{
+    justify-self:start;
+    flex-wrap:wrap;
+  }
+  .footer-meta{
+    align-items:flex-start!important;
+  }
+}
+
+/* Mobile: coluna direita realmente alinhada à borda direita. */
+@media(max-width:680px){
+  .footer{
+    padding:9px 18px calc(8px + env(safe-area-inset-bottom,0px))!important;
+  }
+  .footer-primary{
+    grid-template-columns:auto minmax(0,1fr)!important;
+    grid-template-areas:
+      "brand address"
+      "brand channels"
+      "legal legal"!important;
+    column-gap:14px!important;
+    row-gap:6px!important;
+  }
+  .footer-address-block{
+    justify-self:end!important;
+    width:min(100%,280px);
+    align-self:end!important;
+    text-align:right!important;
+  }
+  .footer-address{
+    text-align:right!important;
+  }
+  .footer-channels{
+    justify-self:end!important;
+    justify-content:flex-end!important;
+    width:100%;
+  }
+  .footer-meta{
+    align-items:center!important;
+    justify-content:center!important;
+    padding-top:6px!important;
+  }
+  .footer-links{
+    justify-content:center!important;
+    text-align:center!important;
+  }
+  .footer-meta small{
+    text-align:center!important;
+    white-space:normal!important;
+  }
+}
