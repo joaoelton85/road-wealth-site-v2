@@ -25,7 +25,7 @@ const checks = [
       'import "../styles/v52-18.css";',
       'import "../styles/v52-19.css";',
       'import "../styles/revision.css";',
-      'const BUILD_VERSION = "52.21.0";',
+      'const BUILD_VERSION = "52.22.0";',
       '<ContactLauncher />',
       'B3 · 15 min de atraso',
       '<RoadHighlights />',
@@ -86,7 +86,7 @@ const checks = [
   },
   {
     file: "src/styles/revision.css",
-    required: ["contact-launcher", "min-height:0!important", "road-network-tech-brand", "contact-page--light", "padding-left:9px!important"],
+    required: ["contact-launcher", "min-height:0!important", "road-network-tech-brand", "contact-page--light", "padding-left:9px!important", "--road-chapter-text-measure:min(100%,1480px)", ".road-story-carousel .team", ".road-story-carousel .career-form"],
   },
   {
     file: "src/components/ContactLauncher.astro",
@@ -192,12 +192,12 @@ const checks = [
       '"term": "Diferimento / diferido"',
     ],
   },
-  { file: "dist/__road-build.json", required: ['"roadBuild": "52.21.0"'] },
+  { file: "dist/__road-build.json", required: ['"roadBuild": "52.22.0"'] },
   {
     file: "dist/index.html",
     required: [
-      'road-build" content="52.21.0"',
-      'data-road-build="52.21.0"',
+      'road-build" content="52.22.0"',
+      'data-road-build="52.22.0"',
       "DESTAQUE",
       "Conceitos, ferramentas e Glossário ROAD para entender melhor suas decisões.",
       "planning-step-number",
@@ -210,7 +210,7 @@ const checks = [
   {
     file: "dist/calculadora-ir/index.html",
     required: [
-      'road-build" content="52.21.0"',
+      'road-build" content="52.22.0"',
       "SIMULAÇÃO IRPF 2026",
       "Ficou em dúvida?",
       "Fale com a gente",
@@ -220,7 +220,7 @@ const checks = [
   {
     file: "dist/glossario/index.html",
     required: [
-      'road-build" content="52.21.0"',
+      'road-build" content="52.22.0"',
       "160 verbetes",
       "Pix",
       "Open Finance",
@@ -253,4 +253,4 @@ if (failures.length) {
   failures.forEach(failure => console.error(`- ${failure}`));
   process.exit(1);
 }
-console.log("ROAD build verification OK — revisão 52.21.0");
+console.log("ROAD build verification OK — revisão 52.22.0");

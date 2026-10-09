@@ -311,3 +311,99 @@
     width:min(220px,calc(100vw - 28px));
   }
 }
+
+
+/* A ROAD — correção da malha horizontal dos capítulos.
+   Uma única largura útil para título, texto e blocos estruturais. */
+.road-story-carousel .chapter-section{
+  --road-chapter-text-measure:min(100%,1480px);
+}
+
+.road-story-carousel .chapter-heading,
+.road-story-carousel .chapter-heading--wide{
+  width:100%!important;
+  max-width:none!important;
+  margin-left:0!important;
+  margin-right:0!important;
+}
+
+.road-story-carousel .chapter-section h1,
+.road-story-carousel .chapter-section h2{
+  width:100%!important;
+  max-width:none!important;
+}
+
+.road-story-carousel .chapter-heading > .lead,
+.road-story-carousel .chapter-heading .narrative,
+.road-story-carousel .chapter-heading .editorial-copy,
+.road-story-carousel .chapter-support,
+.road-story-carousel .presence-copy-wide{
+  width:var(--road-chapter-text-measure)!important;
+  max-width:var(--road-chapter-text-measure)!important;
+}
+
+.road-story-carousel .chapter-heading .narrative p,
+.road-story-carousel .chapter-heading .editorial-copy p,
+.road-story-carousel .presence-copy-wide p,
+.road-story-carousel .presence-copy-wide .lead{
+  width:100%!important;
+  max-width:none!important;
+}
+
+/* Blocos principais começam e terminam no mesmo eixo do capítulo. */
+.road-story-carousel .consult-flow,
+.road-story-carousel .origin-layout,
+.road-story-carousel .symbol-construction,
+.road-story-carousel .team,
+.road-story-carousel .road-network-grid,
+.road-story-carousel .road-network-tech,
+.road-story-carousel .road-network-numbers,
+.road-story-carousel .career-form{
+  width:100%!important;
+  max-width:none!important;
+  margin-left:0!important;
+  margin-right:0!important;
+}
+
+/* A seção Quem somos deixa de terminar antes do restante da página. */
+.road-story-carousel .team{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+}
+
+/* Consultoria e Rede usam a largura inteira sem criar uma segunda régua interna. */
+.road-story-carousel .consult-flow{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+}
+.road-story-carousel .road-network-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+}
+.road-story-carousel .road-network-tech{
+  grid-template-columns:minmax(0,1fr) auto!important;
+}
+
+/* Faça parte acompanha a mesma largura dos demais capítulos. */
+.road-story-carousel .career-form{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+}
+
+@media(max-width:1100px){
+  .road-story-carousel .team,
+  .road-story-carousel .consult-flow,
+  .road-story-carousel .career-form{
+    grid-template-columns:1fr 1fr!important;
+  }
+}
+
+@media(max-width:760px){
+  .road-story-carousel .chapter-section{
+    --road-chapter-text-measure:100%;
+  }
+
+  .road-story-carousel .consult-flow,
+  .road-story-carousel .team,
+  .road-story-carousel .road-network-grid,
+  .road-story-carousel .road-network-tech,
+  .road-story-carousel .career-form{
+    grid-template-columns:1fr!important;
+  }
+}

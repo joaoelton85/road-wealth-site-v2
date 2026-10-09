@@ -1,5 +1,16 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão — alinhamento dos blocos de A ROAD — 09/10/2026
+
+- Corrigida a malha horizontal da página A ROAD, removendo limites históricos diferentes entre capítulos.
+- Títulos passam a usar a largura completa do capítulo, evitando quebras artificiais.
+- Leads, narrativas e textos de apoio passam a compartilhar a mesma medida ampla de leitura.
+- Consultoria, Quem somos, A Rede e Faça parte da ROAD passam a usar a mesma largura estrutural para grids, cards e formulário.
+- Removidos os limites internos de 1120 px, 1180 px, 1240 px e 1400 px que faziam os blocos terminarem em eixos diferentes.
+- Responsividade mobile preservada, com os grids retornando a uma coluna quando necessário.
+- Nenhuma alteração de cor, conteúdo, rodapé, botão de mensagem ou demais páginas nesta correção.
+- Build técnico atualizado para `52.22.0`.
+
 ## Revisão institucional e de interface — 09/10/2026
 
 - Investimentos: removido o grande bloco final Café de Contato; o contato permanente passa a ser oferecido pelo novo botão global de mensagem e pela página própria.
