@@ -83,16 +83,16 @@
 .road-network-tech-brand{
   display:flex;
   align-items:center;
-  justify-content:center;
+  justify-content:flex-end;
   justify-self:end;
   width:min(230px,100%);
-  padding:14px 16px;
-  border-radius:14px;
-  background:var(--coffee);
+  padding:0;
+  border-radius:0;
+  background:transparent;
 }
 .road-network-tech-brand img{
   display:block;
-  width:190px!important;
+  width:210px!important;
   max-width:100%!important;
   height:auto!important;
 }

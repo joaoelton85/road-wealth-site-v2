@@ -1,5 +1,13 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão — logo da Rede em fundo claro — 09/10/2026
+
+- A ROAD / A Rede: removido o suporte Café criado atrás do logo da Meu Patrimônio.
+- Substituída a aplicação branca pelo arquivo oficial escuro adequado a fundo claro, preservando a identificação “Rede” em verde.
+- O logo passa a ficar diretamente sobre o fundo claro da seção, sem cartão, borda ou preenchimento adicional.
+- Nenhuma outra alteração de conteúdo, espaçamento ou estrutura nesta correção.
+- Build técnico atualizado para `52.23.0`.
+
 ## Revisão — alinhamento dos blocos de A ROAD — 09/10/2026
 
 - Corrigida a malha horizontal da página A ROAD, removendo limites históricos diferentes entre capítulos.
