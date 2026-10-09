@@ -1,0 +1,9 @@
+/* ROAD Wealth V52.17 — corrige corte das marcas no cabeçalho desktop. */
+
+@media(min-width:681px){
+  /* Mantém o cabeçalho compacto, mas remove o deslocamento vertical que empurrava
+     ROAD + Rede Meu Patrimônio para dentro da borda inferior do topo. */
+  .header-brand-group{
+    transform:translateY(0)!important;
+  }
+}

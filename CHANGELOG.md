@@ -1,5 +1,12 @@
 # CHANGELOG — ROAD Wealth
 
+## V52.17 — Cabeçalho Café — correção das marcas no topo — 09/10/2026
+
+- Corrige o corte inferior dos logos ROAD + Rede Meu Patrimônio no cabeçalho desktop.
+- Remove somente o deslocamento vertical adicional aplicado ao conjunto das marcas em larguras a partir de 681 px.
+- Mantém a altura compacta do cabeçalho, navegação, linha B3, ticker, rodapé e mobile inalterados.
+- Marcador técnico atualizado para `ROAD_BUILD=52.17.0`.
+
 ## V52.16 — Cabeçalho Café — correção do breakpoint do rodapé desktop — 09/10/2026
 
 - Corrige o breakpoint que fazia alguns desktops com zoom/DPI entrarem no arranjo intermediário do rodapé.
