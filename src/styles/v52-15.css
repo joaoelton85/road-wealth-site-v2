@@ -1,0 +1,66 @@
+/* ROAD Wealth V52.16 — correção do breakpoint do rodapé desktop. */
+
+/* Desktop/notebook: mesma composição em três zonas desde 681px.
+   Evita que desktops com zoom/DPI caiam no arranjo intermediário antigo. */
+@media(min-width:681px){
+  .footer-primary{
+    grid-template-columns:auto minmax(0,1fr) auto!important;
+    grid-template-areas:
+      "brand address channels"
+      "brand legal channels"!important;
+    align-items:center!important;
+    column-gap:28px!important;
+    row-gap:3px!important;
+  }
+
+  .footer-brand-group{
+    grid-area:brand!important;
+    align-self:center!important;
+  }
+
+  .footer-address-block{
+    grid-area:address!important;
+    align-self:end!important;
+    justify-self:start!important;
+    width:auto!important;
+    margin:0!important;
+    text-align:left!important;
+  }
+
+  .footer-address{
+    text-align:left!important;
+  }
+
+  .footer-meta{
+    grid-area:legal!important;
+    align-self:start!important;
+    justify-self:center!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:3px!important;
+    margin:0!important;
+    padding:0!important;
+    border-top:0!important;
+    text-align:center!important;
+  }
+
+  .footer-links{
+    justify-content:center!important;
+    text-align:center!important;
+  }
+
+  .footer-meta small{
+    text-align:center!important;
+    white-space:nowrap!important;
+  }
+
+  .footer-channels{
+    grid-area:channels!important;
+    align-self:center!important;
+    justify-self:end!important;
+    justify-content:flex-end!important;
+    flex-wrap:nowrap!important;
+    width:auto!important;
+    margin:0!important;
+  }
+}

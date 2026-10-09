@@ -1,5 +1,14 @@
 # CHANGELOG — ROAD Wealth
 
+## V52.16 — Cabeçalho Café — correção do breakpoint do rodapé desktop — 09/10/2026
+
+- Corrige o breakpoint que fazia alguns desktops com zoom/DPI entrarem no arranjo intermediário do rodapé.
+- A partir de 681 px, o rodapé usa a composição desktop em três zonas: marcas à esquerda, endereço + legais/copyright no centro e canais no extremo direito.
+- Endereço permanece na posição atual; Política de Privacidade, Cookies e Avisos legais e regulatórios ficam centralizados logo abaixo.
+- WhatsApp, e-mail, Instagram e LinkedIn permanecem alinhados à direita.
+- O mobile aprovado da V52.15 permanece inalterado.
+- Marcador técnico atualizado para `ROAD_BUILD=52.16.0`.
+
 ## V52.15 — Cabeçalho Café — redistribuição final do rodapé — 09/10/2026
 
 - Desktop amplo: o endereço permanece na posição logo após as marcas.
