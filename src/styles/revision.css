@@ -1,0 +1,313 @@
+/* ROAD Wealth — Revisão institucional e de interface — 09/10/2026. */
+
+/* Rodapé desktop: o endereço começa no mesmo eixo óptico do ícone do WhatsApp. */
+@media(min-width:1001px){
+  .footer-address-block{
+    justify-self:stretch!important;
+    width:100%!important;
+    max-width:none!important;
+    padding-left:9px!important;
+    padding-right:0!important;
+    text-align:left!important;
+  }
+  .footer-address{
+    text-align:left!important;
+  }
+  .footer-channels{
+    justify-self:stretch!important;
+    justify-content:flex-start!important;
+    width:100%!important;
+  }
+}
+
+/* A ROAD: capítulos claros e dimensionados pelo conteúdo, sem andares vazios. */
+.road-story-carousel .chapter-section{
+  flex:0 0 auto!important;
+  min-height:0!important;
+  padding-top:36px!important;
+  padding-bottom:36px!important;
+}
+.road-story-carousel .chapter-heading{
+  max-width:1240px!important;
+}
+.road-story-carousel .chapter-heading--wide{
+  max-width:1400px!important;
+}
+.road-story-carousel .chapter-section h1,
+.road-story-carousel .chapter-section h2{
+  max-width:1320px!important;
+}
+.road-story-carousel .chapter-heading .narrative{
+  max-width:1080px!important;
+  margin-top:14px!important;
+}
+.road-story-carousel .narrative p{
+  margin-bottom:12px;
+}
+.road-story-carousel .chapter-support{
+  max-width:1080px!important;
+}
+.chapter-section--consultoria .consult-flow{
+  margin-top:24px!important;
+}
+.chapter-section--consultoria .flow-box{
+  min-height:0!important;
+  padding:16px!important;
+  background:#fff!important;
+  color:var(--coffee)!important;
+  border:1px solid rgba(72,58,47,.14)!important;
+  box-shadow:none!important;
+}
+.chapter-section--consultoria .flow-box span{
+  background:var(--coffee)!important;
+  color:var(--sand)!important;
+}
+.chapter-section--consultoria .flow-box small{
+  color:rgba(72,58,47,.72)!important;
+}
+.road-network-grid{
+  max-width:1400px!important;
+  margin-top:22px!important;
+  gap:12px!important;
+}
+.road-network-grid article{
+  background:rgba(255,255,255,.62)!important;
+  border-color:rgba(72,58,47,.14)!important;
+}
+.road-network-tech{
+  max-width:1400px!important;
+  margin-top:22px!important;
+  padding-top:22px!important;
+  gap:28px!important;
+}
+.road-network-tech-brand{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  justify-self:end;
+  width:min(230px,100%);
+  padding:14px 16px;
+  border-radius:14px;
+  background:var(--coffee);
+}
+.road-network-tech-brand img{
+  display:block;
+  width:190px!important;
+  max-width:100%!important;
+  height:auto!important;
+}
+.road-network-numbers{
+  max-width:1400px!important;
+  margin-top:22px!important;
+  padding-top:22px!important;
+}
+.team{margin-top:22px!important}
+.symbol-construction{padding-top:22px!important;margin-top:22px!important}
+.career-form{margin-top:22px!important}
+
+@media(max-width:760px){
+  .road-story-carousel .chapter-section{
+    padding-top:30px!important;
+    padding-bottom:30px!important;
+  }
+  .road-network-tech-brand{
+    justify-self:start;
+    width:190px;
+  }
+}
+
+/* Investimentos: melhor aproveitamento textual e fechamento sem painel de contato redundante. */
+.network-structure-section{
+  padding-top:38px!important;
+  padding-bottom:38px!important;
+}
+.network-structure-layout{
+  max-width:1400px!important;
+  gap:42px!important;
+  align-items:start!important;
+}
+.network-structure-layout > div:first-child{
+  max-width:1080px;
+}
+.network-structure-section h2{
+  max-width:1050px;
+}
+.network-structure-section .lead{
+  max-width:1020px;
+}
+.investment-principles{
+  margin-bottom:0!important;
+}
+@media(min-width:1001px){
+  .network-structure-layout{
+    grid-template-columns:minmax(0,1.35fr) minmax(300px,.65fr)!important;
+  }
+}
+@media(max-width:1000px){
+  .network-structure-section{
+    padding-top:34px!important;
+    padding-bottom:34px!important;
+  }
+}
+
+/* Página de contato: mantém o quadro somente aqui, em superfície clara. */
+.contact-page--light{
+  background:var(--sand)!important;
+  color:var(--coffee)!important;
+  padding-top:42px!important;
+  padding-bottom:42px!important;
+}
+.contact-page--light h1{
+  max-width:1240px;
+}
+.contact-page--light .lead{
+  color:rgba(72,58,47,.78)!important;
+  max-width:900px;
+}
+.contact-page--light .contact-page-grid{
+  max-width:1280px!important;
+  gap:64px!important;
+  margin-top:28px!important;
+}
+.contact-page--light .contact-address{
+  border-top-color:rgba(72,58,47,.18)!important;
+  color:rgba(72,58,47,.78)!important;
+}
+.contact-page--light .contact-address strong{
+  color:var(--coffee)!important;
+}
+.contact-page--light .social-link{
+  color:var(--coffee)!important;
+  border-color:rgba(72,58,47,.34)!important;
+  background:transparent!important;
+}
+@media(max-width:800px){
+  .contact-page--light{
+    padding-top:32px!important;
+    padding-bottom:32px!important;
+  }
+  .contact-page--light .contact-page-grid{
+    gap:28px!important;
+    margin-top:24px!important;
+  }
+}
+
+/* Mensagem global: discreta, contextual e fora do rodapé. */
+.contact-launcher{
+  position:fixed;
+  right:22px;
+  bottom:20px;
+  z-index:47;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:9px;
+  transition:opacity .18s ease,transform .18s ease,visibility .18s ease;
+}
+.contact-launcher-toggle{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:8px;
+  width:46px;
+  height:46px;
+  padding:0 12px;
+  overflow:hidden;
+  border:1px solid rgba(243,236,227,.18);
+  border-radius:999px;
+  background:var(--petrol);
+  color:var(--sand);
+  box-shadow:0 10px 28px rgba(36,31,27,.18);
+  cursor:pointer;
+  transition:width .2s ease,transform .18s ease,box-shadow .18s ease;
+}
+.contact-launcher-icon{
+  display:block;
+  width:21px;
+  height:21px;
+  flex:0 0 21px;
+}
+.contact-launcher-label{
+  max-width:0;
+  overflow:hidden;
+  opacity:0;
+  white-space:nowrap;
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:11px;
+  letter-spacing:.02em;
+  transition:max-width .2s ease,opacity .16s ease;
+}
+@media(min-width:681px) and (hover:hover){
+  .contact-launcher-toggle:hover,
+  .contact-launcher-toggle:focus-visible,
+  .contact-launcher.is-open .contact-launcher-toggle{
+    width:146px;
+    transform:translateY(-1px);
+    box-shadow:0 13px 32px rgba(36,31,27,.22);
+  }
+  .contact-launcher-toggle:hover .contact-launcher-label,
+  .contact-launcher-toggle:focus-visible .contact-launcher-label,
+  .contact-launcher.is-open .contact-launcher-label{
+    max-width:96px;
+    opacity:1;
+  }
+}
+.contact-launcher-panel{
+  width:220px;
+  padding:10px;
+  border:1px solid rgba(72,58,47,.14);
+  border-radius:15px;
+  background:rgba(243,236,227,.98);
+  color:var(--coffee);
+  box-shadow:0 16px 42px rgba(36,31,27,.18);
+}
+.contact-launcher-panel[hidden]{display:none!important}
+.contact-launcher-heading{
+  padding:4px 7px 9px;
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:11px;
+  letter-spacing:.035em;
+}
+.contact-launcher-action{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  min-height:36px;
+  padding:8px 7px;
+  border:0;
+  border-top:1px solid rgba(72,58,47,.12);
+  background:transparent;
+  color:var(--coffee);
+  text-decoration:none;
+  text-align:left;
+  cursor:pointer;
+  font-family:"Inter",Arial,sans-serif;
+  font-size:12px;
+}
+.contact-launcher-action:hover,
+.contact-launcher-action:focus-visible{
+  background:rgba(72,58,47,.05);
+}
+.contact-launcher.is-footer-visible{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transform:translateY(10px);
+}
+@media(max-width:680px){
+  .contact-launcher{
+    right:14px;
+    bottom:14px;
+  }
+  .contact-launcher-toggle{
+    width:44px;
+    height:44px;
+    padding:0 11px;
+  }
+  .contact-launcher-label{display:none!important}
+  .contact-launcher-panel{
+    width:min(220px,calc(100vw - 28px));
+  }
+}

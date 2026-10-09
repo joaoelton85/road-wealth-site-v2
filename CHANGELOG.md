@@ -1,5 +1,19 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão institucional e de interface — 09/10/2026
+
+- Investimentos: removido o grande bloco final Café de Contato; o contato permanente passa a ser oferecido pelo novo botão global de mensagem e pela página própria.
+- Investimentos: “Estrutura da Rede” recebe título e redação mais sofisticados, com melhor aproveitamento da largura e menor altura.
+- A ROAD: capítulos passam a priorizar fundos Areia e branco; Wealth e Propósito deixam de usar grandes superfícies Café.
+- A ROAD: removido o min-height que criava áreas vazias; títulos, textos, cards e formulários passam a determinar naturalmente a altura dos capítulos.
+- A ROAD / A Rede: logo da Meu Patrimônio padronizado com o mesmo arquivo oficial do cabeçalho e rodapé, incluindo a assinatura Rede em verde, aplicado sobre suporte Café compacto para preservar contraste.
+- Contato: página passa a usar fundo Areia e elementos claros, mantendo os canais concentrados na página própria sem o peso de um grande painel Café.
+- Global: criado botão flutuante discreto de mensagem em todas as páginas; no desktop revela “Fale com a ROAD” e abre opções de WhatsApp, e-mail e Entre em contato.
+- Global: o botão de mensagem desaparece ao chegar ao rodapé para não sobrepor informações; o WhatsApp permanece como placeholder até definição do número oficial.
+- Rodapé desktop: o início do endereço passa a coincidir com o eixo óptico do ícone do WhatsApp.
+- Cabeçalho, ticker, legenda B3 transparente, rodapé mobile e demais conteúdos permanecem preservados.
+- Build técnico atualizado para `52.21.0`.
+
 ## V52.20 — Cabeçalho Café — endereço no extremo direito do rodapé desktop — 09/10/2026
 
 - Desktop: o endereço deixa a coluna central e passa efetivamente para o extremo direito do rodapé.

@@ -3,6 +3,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import MarketTicker from "../components/MarketTicker.astro";
 import MarketTools from "../components/MarketTools.astro";
+import ContactLauncher from "../components/ContactLauncher.astro";
 import RoadHighlights from "../components/RoadHighlights.astro";
 import { ClientRouter } from "astro:transitions";
 import "../styles/global.css";
@@ -43,7 +44,8 @@ import "../styles/v52-16.css";
 import "../styles/v52-17.css";
 import "../styles/v52-18.css";
 import "../styles/v52-19.css";
-const BUILD_VERSION = "52.20.0";
+import "../styles/revision.css";
+const BUILD_VERSION = "52.21.0";
 const { title = "ROAD Wealth®", description = "ROAD Wealth — planejamento patrimonial e acompanhamento de investimentos, escritório integrante da Rede Meu Patrimônio.", active = "", noindex = true } = Astro.props;
 ---
 <!doctype html>
@@ -83,6 +85,7 @@ const { title = "ROAD Wealth®", description = "ROAD Wealth — planejamento pat
       <p>ROAD Wealth® — Escritório associado à Rede Meu Patrimônio. A atividade de consultoria de valores mobiliários é realizada no âmbito da Meu Patrimônio. Rentabilidade passada não é garantia de rentabilidade futura.</p>
     </aside>
     <Footer />
+    <ContactLauncher />
     <MarketTools />
     <script is:inline>
       (()=>{

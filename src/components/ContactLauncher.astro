@@ -1,0 +1,93 @@
+<div class="contact-launcher" data-contact-launcher>
+  <button class="contact-launcher-toggle" type="button" aria-expanded="false" aria-controls="contact-launcher-panel" aria-label="Fale com a ROAD">
+    <svg class="contact-launcher-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M4.2 5.8A3.3 3.3 0 0 1 7.5 2.5h9A3.3 3.3 0 0 1 19.8 5.8v6.7a3.3 3.3 0 0 1-3.3 3.3H10l-4.6 3.7.9-3.9a3.3 3.3 0 0 1-2.1-3.1V5.8Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+      <circle cx="8.5" cy="9.2" r="1" fill="currentColor"/>
+      <circle cx="12" cy="9.2" r="1" fill="currentColor"/>
+      <circle cx="15.5" cy="9.2" r="1" fill="currentColor"/>
+    </svg>
+    <span class="contact-launcher-label">Fale com a ROAD</span>
+  </button>
+
+  <div class="contact-launcher-panel" id="contact-launcher-panel" hidden>
+    <div class="contact-launcher-heading">Como podemos ajudar?</div>
+    <button class="contact-launcher-action js-placeholder" data-message="O número oficial de WhatsApp será inserido antes da publicação." type="button">
+      <span>WhatsApp</span>
+    </button>
+    <a class="contact-launcher-action" href="mailto:contato@roadwealth.com.br">
+      <span>E-mail</span>
+    </a>
+    <a class="contact-launcher-action" href="/contato/">
+      <span>Entre em contato</span>
+    </a>
+  </div>
+</div>
+
+<script is:inline>
+  (()=>{
+    const getLauncher=()=>document.querySelector('[data-contact-launcher]');
+    const closeLauncher=()=>{
+      const launcher=getLauncher();
+      const toggle=launcher?.querySelector('.contact-launcher-toggle');
+      const panel=launcher?.querySelector('.contact-launcher-panel');
+      if(panel instanceof HTMLElement) panel.hidden=true;
+      toggle?.setAttribute('aria-expanded','false');
+      launcher?.classList.remove('is-open');
+    };
+
+    const refreshFooterWatch=()=>{
+      const launcher=getLauncher();
+      const footer=document.querySelector('.footer');
+      window.__roadContactFooterObserver?.disconnect?.();
+      if(!launcher || !footer || !('IntersectionObserver' in window)) return;
+      const observer=new IntersectionObserver(entries=>{
+        const visible=entries.some(entry=>entry.isIntersecting);
+        launcher.classList.toggle('is-footer-visible',visible);
+        if(visible) closeLauncher();
+      },{threshold:0});
+      observer.observe(footer);
+      window.__roadContactFooterObserver=observer;
+    };
+
+    if(!window.__roadContactLauncherBound){
+      window.__roadContactLauncherBound=true;
+
+      document.addEventListener('click',event=>{
+        const target=event.target instanceof Element ? event.target : null;
+        if(!target) return;
+        const launcher=getLauncher();
+        if(!launcher) return;
+
+        const toggle=target.closest('.contact-launcher-toggle');
+        if(toggle){
+          event.preventDefault();
+          const panel=launcher.querySelector('.contact-launcher-panel');
+          const willOpen=panel instanceof HTMLElement && panel.hidden;
+          if(panel instanceof HTMLElement) panel.hidden=!willOpen;
+          toggle.setAttribute('aria-expanded',willOpen?'true':'false');
+          launcher.classList.toggle('is-open',willOpen);
+          return;
+        }
+
+        if(target.closest('.contact-launcher-action')){
+          closeLauncher();
+          return;
+        }
+
+        if(!target.closest('[data-contact-launcher]')) closeLauncher();
+      });
+
+      document.addEventListener('keydown',event=>{
+        if(event.key==='Escape') closeLauncher();
+      });
+
+      document.addEventListener('astro:after-swap',()=>{
+        closeLauncher();
+        refreshFooterWatch();
+      });
+      document.addEventListener('astro:page-load',refreshFooterWatch);
+    }
+
+    refreshFooterWatch();
+  })();
+</script>

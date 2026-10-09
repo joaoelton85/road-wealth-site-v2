@@ -1,6 +1,6 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 
-const version = "52.20.0"
+const version = "52.21.0"
 const commit =
   process.env.WORKERS_CI_COMMIT_SHA ||
   process.env.GITHUB_SHA ||
@@ -21,4 +21,4 @@ const payload = {
 };
 
 writeFileSync("dist/__road-build.json", JSON.stringify(payload, null, 2) + "\n");
-console.log(`ROAD asset marker OK — V${version} — ${commit.slice(0, 12)} — ${buildId}`);
+console.log(`ROAD asset marker OK — revisão ${version} — ${commit.slice(0, 12)} — ${buildId}`);
