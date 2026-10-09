@@ -1,0 +1,14 @@
+/* ROAD Wealth V52.18 — legenda B3 transparente e restauração óptica das marcas. */
+
+@media(min-width:681px){
+  /* Restaura o posicionamento aprovado antes da V52.17. */
+  .header-brand-group{
+    transform:translateY(4px)!important;
+  }
+}
+
+/* A legenda técnica não possui mais superfície própria.
+   O Café percebido passa a vir do próprio topo/sticky abaixo dela. */
+.site-top-stack .road-market-note{
+  background:transparent!important;
+}

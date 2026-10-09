@@ -1,5 +1,14 @@
 # CHANGELOG — ROAD Wealth
 
+## V52.18 — Cabeçalho Café — legenda B3 transparente — 09/10/2026
+
+- Reverte somente o ajuste de posição das marcas introduzido na V52.17, restaurando ROAD + Rede Meu Patrimônio ao posicionamento óptico anterior.
+- A microlegenda `B3 · 15 min de atraso | via TradingView` deixa de ter fundo Café próprio e passa a ser transparente.
+- O fundo percebido da legenda passa a vir do próprio topo Café, evitando a sensação de uma faixa independente.
+- Altura, posição e tipografia da legenda permanecem inalteradas.
+- Navegação, ticker, rodapé e mobile permanecem inalterados.
+- Marcador técnico atualizado para `ROAD_BUILD=52.18.0`.
+
 ## V52.17 — Cabeçalho Café — correção das marcas no topo — 09/10/2026
 
 - Corrige o corte inferior dos logos ROAD + Rede Meu Patrimônio no cabeçalho desktop.
