@@ -1,0 +1,33 @@
+/* ROAD Wealth V52.19 — refinamento desktop do rodapé. */
+
+@media(min-width:681px){
+  /* Endereço alinhado à direita, levemente elevado e com respiro antes do WhatsApp. */
+  .footer-address-block{
+    justify-self:stretch!important;
+    align-self:end!important;
+    width:100%!important;
+    padding-right:8px!important;
+    text-align:right!important;
+    transform:translateY(-2px);
+  }
+
+  .footer-address{
+    display:block;
+    text-align:right!important;
+  }
+
+  /* Legais e copyright assentam mais próximos da borda inferior. */
+  .footer-meta{
+    align-self:end!important;
+    transform:translateY(3px);
+  }
+
+  /* Separadores discretos entre os três links legais. */
+  .footer-links a + a::before{
+    content:"•";
+    display:inline-block;
+    margin:0 10px 0 0;
+    color:rgba(243,236,227,.46);
+    text-decoration:none;
+  }
+}

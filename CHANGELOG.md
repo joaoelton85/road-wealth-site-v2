@@ -1,5 +1,14 @@
 # CHANGELOG — ROAD Wealth
 
+## V52.19 — Cabeçalho Café — refinamento desktop do rodapé — 09/10/2026
+
+- Desktop: o endereço passa a ficar alinhado à direita dentro da coluna central.
+- O endereço é elevado discretamente em 2 px e recebe respiro adicional antes do botão de WhatsApp.
+- Política de Privacidade, Cookies e Avisos legais e regulatórios passam a usar bolinhas como separadores visuais.
+- O bloco legal e o copyright descem alguns pixels para ficarem mais próximos da borda inferior do rodapé.
+- Mobile e demais elementos da V52.18 permanecem inalterados.
+- Marcador técnico atualizado para `ROAD_BUILD=52.19.0`.
+
 ## V52.18 — Cabeçalho Café — legenda B3 transparente — 09/10/2026
 
 - Reverte somente o ajuste de posição das marcas introduzido na V52.17, restaurando ROAD + Rede Meu Patrimônio ao posicionamento óptico anterior.
