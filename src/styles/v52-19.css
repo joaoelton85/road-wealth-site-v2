@@ -1,0 +1,49 @@
+/* ROAD Wealth V52.20 — endereço no extremo direito do rodapé desktop. */
+
+@media(min-width:1001px){
+  /* Desktop: marcas à esquerda; legais no centro inferior;
+     endereço realmente no extremo direito, com canais logo abaixo. */
+  .footer-primary{
+    grid-template-columns:auto minmax(0,1fr) auto!important;
+    grid-template-areas:
+      "brand . address"
+      "brand legal channels"!important;
+    align-items:center!important;
+    column-gap:28px!important;
+    row-gap:4px!important;
+  }
+
+  .footer-address-block{
+    grid-area:address!important;
+    justify-self:end!important;
+    align-self:end!important;
+    width:auto!important;
+    max-width:560px;
+    margin:0!important;
+    padding-right:0!important;
+    text-align:right!important;
+    transform:translateY(-1px);
+  }
+
+  .footer-address{
+    text-align:right!important;
+    white-space:nowrap;
+  }
+
+  .footer-channels{
+    grid-area:channels!important;
+    justify-self:end!important;
+    align-self:start!important;
+    justify-content:flex-end!important;
+    width:auto!important;
+    margin:0!important;
+    transform:translateY(3px);
+  }
+
+  .footer-meta{
+    grid-area:legal!important;
+    justify-self:center!important;
+    align-self:end!important;
+    transform:translateY(3px);
+  }
+}

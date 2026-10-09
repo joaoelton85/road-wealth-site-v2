@@ -1,5 +1,14 @@
 # CHANGELOG — ROAD Wealth
 
+## V52.20 — Cabeçalho Café — endereço no extremo direito do rodapé desktop — 09/10/2026
+
+- Desktop: o endereço deixa a coluna central e passa efetivamente para o extremo direito do rodapé.
+- O endereço fica acima dos canais, alinhado à direita e discretamente elevado para preservar o respiro visual.
+- WhatsApp, e-mail, Instagram e LinkedIn permanecem no extremo direito e descem alguns pixels, logo abaixo do endereço.
+- Política de Privacidade, Cookies, Avisos legais e regulatórios e copyright permanecem no centro inferior, preservando os separadores por bolinha.
+- Mobile permanece inalterado.
+- Marcador técnico atualizado para `ROAD_BUILD=52.20.0`.
+
 ## V52.19 — Cabeçalho Café — refinamento desktop do rodapé — 09/10/2026
 
 - Desktop: o endereço passa a ficar alinhado à direita dentro da coluna central.
