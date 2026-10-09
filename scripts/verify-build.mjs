@@ -25,7 +25,8 @@ const checks = [
       'import "../styles/v52-18.css";',
       'import "../styles/v52-19.css";',
       'import "../styles/revision.css";',
-      'const BUILD_VERSION = "52.24.0";',
+      'import "../styles/revision-53.css";',
+      'const BUILD_VERSION = "53.0.0";',
       '<ContactLauncher />',
       'B3 · 15 min de atraso',
       '<RoadHighlights />',
@@ -91,6 +92,14 @@ const checks = [
   {
     file: "src/components/ContactLauncher.astro",
     required: ["Fale com a ROAD", "Como podemos ajudar?", "WhatsApp", "contato@roadwealth.com.br", "/contato/", "IntersectionObserver", "is-footer-visible"],
+  },
+  {
+    file: "src/styles/revision-53.css",
+    required: ["--road-utility-safe-right:60px", "background:transparent!important", "--road-disclaimer-bg", "background:#fff!important", "grid-row:1 / 3!important"],
+  },
+  {
+    file: "src/layouts/BaseLayout.astro",
+    required: ["syncDisclaimerSurface", "--road-disclaimer-bg", "const BUILD_VERSION = \"53.0.0\""],
   },
   {
     file: "src/components/MarketTicker.astro",
@@ -192,12 +201,12 @@ const checks = [
       '"term": "Diferimento / diferido"',
     ],
   },
-  { file: "dist/__road-build.json", required: ['"roadBuild": "52.24.0"'] },
+  { file: "dist/__road-build.json", required: ['"roadBuild": "53.0.0"'] },
   {
     file: "dist/index.html",
     required: [
-      'road-build" content="52.24.0"',
-      'data-road-build="52.24.0"',
+      'road-build" content="53.0.0"',
+      'data-road-build="53.0.0"',
       "DESTAQUE",
       "Conceitos, ferramentas e Glossário ROAD para entender melhor suas decisões.",
       "planning-step-number",
@@ -210,7 +219,7 @@ const checks = [
   {
     file: "dist/calculadora-ir/index.html",
     required: [
-      'road-build" content="52.24.0"',
+      'road-build" content="53.0.0"',
       "SIMULAÇÃO IRPF 2026",
       "Ficou em dúvida?",
       "Fale com a gente",
@@ -220,7 +229,7 @@ const checks = [
   {
     file: "dist/glossario/index.html",
     required: [
-      'road-build" content="52.24.0"',
+      'road-build" content="53.0.0"',
       "160 verbetes",
       "Pix",
       "Open Finance",
@@ -253,4 +262,4 @@ if (failures.length) {
   failures.forEach(failure => console.error(`- ${failure}`));
   process.exit(1);
 }
-console.log("ROAD build verification OK — revisão 52.24.0");
+console.log("ROAD build verification OK — Revisão 53");

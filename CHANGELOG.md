@@ -1,5 +1,19 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 53 — 09/10/2026
+
+- Mercados & Ferramentas: a reserva lateral deixa de somar 76 px à margem existente e passa a usar apenas o maior valor entre a margem natural da página e 60 px.
+- O conteúdo aproveita novamente a largura disponível em telas grandes, mantendo somente o espaço necessário para não ficar sob a aba vertical.
+- Mensagem global: removidos círculo, cápsula, borda e sombra do acionador; permanece apenas o ícone de conversa em Petróleo, com área de clique confortável.
+- No desktop, “Fale com a ROAD” aparece discretamente ao passar o mouse; no mobile permanece apenas o ícone.
+- Disclaimer: passa a assumir dinamicamente a mesma cor de fundo do último bloco visível da página e ajusta automaticamente a cor do texto para fundos claros ou escuros.
+- Quando o último bloco não oferece um fundo identificável, o disclaimer usa Areia como fallback seguro.
+- Disclaimer deixa de ter borda inferior própria e mantém apenas uma divisão superior sutil.
+- A Rede: cards ROAD, Meu Patrimônio e Cliente passam a usar fundo branco, borda suave e sombra mínima para aumentar contraste sem pesar.
+- Rodapé desktop: Política de Privacidade, Cookies, Avisos legais e regulatórios e copyright passam a ficar centralizados verticalmente na altura total do rodapé.
+- Rodapé mobile, logo colorido da Rede, conteúdo e demais estruturas aprovadas permanecem inalterados.
+- Build técnico: `53.0.0`.
+
 ## Revisão — faixa segura para Mercados & Ferramentas — 09/10/2026
 
 - Desktop: reservada uma faixa fixa de 76 px à direita de todos os blocos editoriais para a aba vertical “MERCADOS & FERRAMENTAS”.

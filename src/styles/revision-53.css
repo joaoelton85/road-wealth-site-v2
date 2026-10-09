@@ -1,0 +1,102 @@
+/* ROAD Wealth — Revisão 53 — 09/10/2026. */
+
+/* 1. Reserva lateral justa: nunca soma uma faixa fixa à margem natural.
+   Em desktop usa somente o maior valor entre a margem normal e 60px. */
+@media(min-width:1001px){
+  :root{
+    --road-utility-safe-right:60px;
+  }
+
+  main .section,
+  .site-regulatory-disclaimer{
+    padding-right:max(var(--road-utility-safe-right),calc((100vw - var(--max))/2))!important;
+  }
+}
+
+/* 2. Botão global de mensagem como ícone direto, sem cápsula/círculo visível. */
+.contact-launcher-toggle{
+  position:relative!important;
+  width:46px!important;
+  height:46px!important;
+  padding:10px!important;
+  overflow:visible!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:var(--petrol)!important;
+  box-shadow:none!important;
+}
+.contact-launcher-icon{
+  width:26px!important;
+  height:26px!important;
+  flex:0 0 26px!important;
+}
+.contact-launcher-label{
+  position:absolute!important;
+  right:38px!important;
+  top:50%!important;
+  max-width:none!important;
+  padding:4px 7px;
+  border-radius:7px;
+  background:rgba(243,236,227,.90);
+  color:var(--petrol);
+  opacity:0!important;
+  transform:translateY(-50%) translateX(4px);
+  pointer-events:none;
+  transition:opacity .16s ease,transform .16s ease!important;
+}
+@media(min-width:681px) and (hover:hover){
+  .contact-launcher-toggle:hover,
+  .contact-launcher-toggle:focus-visible,
+  .contact-launcher.is-open .contact-launcher-toggle{
+    width:46px!important;
+    transform:translateY(-1px)!important;
+    box-shadow:none!important;
+  }
+  .contact-launcher-toggle:hover .contact-launcher-label,
+  .contact-launcher-toggle:focus-visible .contact-launcher-label,
+  .contact-launcher.is-open .contact-launcher-label{
+    max-width:none!important;
+    opacity:1!important;
+    transform:translateY(-50%) translateX(0)!important;
+  }
+}
+@media(max-width:680px){
+  .contact-launcher-toggle{
+    width:44px!important;
+    height:44px!important;
+    padding:9px!important;
+  }
+  .contact-launcher-icon{
+    width:26px!important;
+    height:26px!important;
+  }
+}
+
+/* 3. Disclaimer contextual: o JS define as variáveis a partir do último bloco visível. */
+.site-regulatory-disclaimer{
+  background:var(--road-disclaimer-bg,var(--sand))!important;
+  color:var(--road-disclaimer-fg,rgba(72,58,47,.72))!important;
+  border-top:1px solid var(--road-disclaimer-line,rgba(72,58,47,.14))!important;
+  border-bottom:0!important;
+  transition:background-color .18s ease,color .18s ease,border-color .18s ease;
+}
+
+/* 4. A Rede: cards mais claros e com separação óptica discreta. */
+.road-network-grid article{
+  background:#fff!important;
+  border-color:rgba(72,58,47,.16)!important;
+  box-shadow:0 5px 18px rgba(36,31,27,.045)!important;
+}
+
+/* 5. Rodapé desktop: bloco legal centralizado verticalmente na altura total. */
+@media(min-width:1001px){
+  .footer-meta{
+    grid-area:auto!important;
+    grid-column:2!important;
+    grid-row:1 / 3!important;
+    align-self:center!important;
+    justify-self:center!important;
+    transform:none!important;
+  }
+}

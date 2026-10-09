@@ -45,7 +45,8 @@ import "../styles/v52-17.css";
 import "../styles/v52-18.css";
 import "../styles/v52-19.css";
 import "../styles/revision.css";
-const BUILD_VERSION = "52.24.0";
+import "../styles/revision-53.css";
+const BUILD_VERSION = "53.0.0";
 const { title = "ROAD Wealth®", description = "ROAD Wealth — planejamento patrimonial e acompanhamento de investimentos, escritório integrante da Rede Meu Patrimônio.", active = "", noindex = true } = Astro.props;
 ---
 <!doctype html>
@@ -149,11 +150,53 @@ const { title = "ROAD Wealth®", description = "ROAD Wealth — planejamento pat
           tickerNote.classList.toggle('is-on-dark',dark);
         };
 
+        const syncDisclaimerSurface=()=>{
+          const main=document.querySelector('main');
+          const disclaimer=document.querySelector('.site-regulatory-disclaimer');
+          if(!main || !disclaimer) return;
+
+          const surfaces=[...main.querySelectorAll('.section')].filter(section=>{
+            if(section.hidden) return false;
+            const style=getComputedStyle(section);
+            return style.display!=='none' && style.visibility!=='hidden';
+          });
+          const surface=surfaces.at(-1);
+          const fallbackBg='rgb(243, 236, 227)';
+          const fallbackFg='rgba(72,58,47,.72)';
+          const fallbackLine='rgba(72,58,47,.14)';
+
+          if(!surface){
+            disclaimer.style.setProperty('--road-disclaimer-bg',fallbackBg);
+            disclaimer.style.setProperty('--road-disclaimer-fg',fallbackFg);
+            disclaimer.style.setProperty('--road-disclaimer-line',fallbackLine);
+            return;
+          }
+
+          let bg=getComputedStyle(surface).backgroundColor;
+          if(!bg || bg==='transparent' || /rgba\([^)]*,\s*0(?:\.0+)?\)$/.test(bg)){
+            if(surface.matches('.section--coffee')) bg='rgb(72, 58, 47)';
+            else if(surface.matches('.section--petrol')) bg='rgb(58, 73, 80)';
+            else if(surface.matches('.section--olive')) bg='rgb(67, 114, 107)';
+            else if(surface.matches('.section--white')) bg='rgb(255, 255, 255)';
+            else bg=fallbackBg;
+          }
+
+          const values=bg.match(/[\d.]+/g)?.map(Number) || [];
+          const [r=243,g=236,b=227]=values;
+          const luminance=(.2126*r+.7152*g+.0722*b)/255;
+          const dark=luminance<.55;
+
+          disclaimer.style.setProperty('--road-disclaimer-bg',bg);
+          disclaimer.style.setProperty('--road-disclaimer-fg',dark?'rgba(243,236,227,.74)':fallbackFg);
+          disclaimer.style.setProperty('--road-disclaimer-line',dark?'rgba(243,236,227,.16)':fallbackLine);
+        };
+
         const requestTickerNoteTone=()=>{
           if(tickerToneFrame) return;
           tickerToneFrame=requestAnimationFrame(()=>{
             tickerToneFrame=0;
             syncTickerNoteTone();
+            syncDisclaimerSurface();
           });
         };
 
