@@ -126,3 +126,28 @@
     });
   })();
 </script>
+
+
+<script is:inline>
+  (()=> {
+    const refreshFooterWatch=()=>{
+      const button=document.getElementById('mobile-utility');
+      const footer=document.querySelector('.footer');
+      window.__roadMobileFooterObserver?.disconnect?.();
+      if(!button || !footer || !('IntersectionObserver' in window)) return;
+      const observer=new IntersectionObserver(entries=>{
+        button.classList.toggle('is-footer-visible',entries.some(entry=>entry.isIntersecting));
+      },{threshold:0});
+      observer.observe(footer);
+      window.__roadMobileFooterObserver=observer;
+    };
+
+    window.__roadRefreshMobileUtilityFooter=refreshFooterWatch;
+    if(!window.__roadMobileFooterWatchBound){
+      window.__roadMobileFooterWatchBound=true;
+      document.addEventListener('astro:after-swap',()=>window.__roadRefreshMobileUtilityFooter?.());
+      document.addEventListener('astro:page-load',()=>window.__roadRefreshMobileUtilityFooter?.());
+    }
+    refreshFooterWatch();
+  })();
+</script>

@@ -1,5 +1,18 @@
 # CHANGELOG — ROAD Wealth
 
+## V52.13 — Cabeçalho Café — rodapé único e compacto — 09/10/2026
+
+- Desktop: o rodapé deixa de ter dois andares visuais e passa a uma única composição horizontal com marcas, endereço, canais e bloco legal/copyright.
+- Reduzidos padding, gaps e tipografia secundária do rodapé desktop sem diminuir as marcas ROAD / Rede Meu Patrimônio.
+- Mobile: rodapé passa a duas colunas, com marcas à esquerda e endereço/canais à direita.
+- No mobile, WhatsApp, e-mail, Instagram e LinkedIn aparecem apenas por seus ícones, preservando aria-labels e os links/placeholders existentes.
+- Política de Privacidade, Cookies, Avisos legais e regulatórios e copyright permanecem no mesmo bloco Café, em fechamento compacto.
+- O botão “Mercados & Ferramentas” é ocultado enquanto o rodapé estiver visível, evitando sobreposição, e reaparece ao sair do fechamento.
+- Em Áreas de atuação no mobile, o padding inferior é zerado e o bloco Areia termina exatamente na borda inferior de “Decisões”.
+- O encerramento do Planejamento Financeiro na borda da etapa 5 é preservado.
+- Disclaimer, cabeçalho, ticker, Destaques e demais conteúdos permanecem inalterados.
+- Marcador técnico atualizado para `ROAD_BUILD=52.13.0`.
+
 ## V52.12 — Cabeçalho Café — ajustes mobile de ritmo — 08/10/2026
 
 - No mobile, reduz o espaço entre a mandala de Áreas de atuação e o início das definições, sem diminuir a figura.

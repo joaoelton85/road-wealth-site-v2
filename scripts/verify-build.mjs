@@ -16,7 +16,8 @@ const checks = [
       'import "../styles/v52-9.css";',
       'import "../styles/v52-10.css";',
       'import "../styles/v52-11.css";',
-      'const BUILD_VERSION = "52.12.0";',
+      'import "../styles/v52-12.css";',
+      'const BUILD_VERSION = "52.13.0";',
       'B3 · 15 min de atraso',
       '<RoadHighlights />',
       'class="site-regulatory-disclaimer"',
@@ -37,6 +38,14 @@ const checks = [
   {
     file: "src/styles/v52-11.css",
     required: ["gap:12px!important", "article:last-child", "border-bottom:1px solid rgba(72,58,47,.18)!important"],
+  },
+  {
+    file: "src/styles/v52-12.css",
+    required: ["grid-template-columns:auto minmax(250px,1fr) auto minmax(330px,auto)!important", "grid-template-areas:", "padding-bottom:0!important", "mobile-utility.is-footer-visible"],
+  },
+  {
+    file: "src/components/MarketTools.astro",
+    required: ["__roadRefreshMobileUtilityFooter", "IntersectionObserver", "is-footer-visible"],
   },
   {
     file: "src/components/MarketTicker.astro",
@@ -86,7 +95,7 @@ const checks = [
   },
   {
     file: "src/components/Footer.astro",
-    required: ["footer-network-endorsement", "rede-meu-patrimonio-box-branca.svg", "/avisos-legais/", "footer-primary", "footer-meta", "footer-contact", "footer-channel--whatsapp", "footer-channel--email", "Rua Pater Josef Stefan, 1249", "WhatsApp", "contato@roadwealth.com.br", "@road.wealth", "LinkedIn"],
+    required: ["footer-network-endorsement", "rede-meu-patrimonio-box-branca.svg", "/avisos-legais/", "footer-primary", "footer-meta", "footer-contact", "footer-channels", "footer-channel--whatsapp", "footer-channel--email", "Rua Pater Josef Stefan, 1249", "WhatsApp", "contato@roadwealth.com.br", "@road.wealth", "LinkedIn"],
     forbidden: ["Faz parte da", "footer-regulatory-note", "footer-socials", "→"],
   },
   {
@@ -134,12 +143,12 @@ const checks = [
       '"term": "Diferimento / diferido"',
     ],
   },
-  { file: "dist/__road-build.json", required: ['"roadBuild": "52.12.0"'] },
+  { file: "dist/__road-build.json", required: ['"roadBuild": "52.13.0"'] },
   {
     file: "dist/index.html",
     required: [
-      'road-build" content="52.12.0"',
-      'data-road-build="52.12.0"',
+      'road-build" content="52.13.0"',
+      'data-road-build="52.13.0"',
       "DESTAQUE",
       "Conceitos, ferramentas e Glossário ROAD para entender melhor suas decisões.",
       "planning-step-number",
@@ -152,7 +161,7 @@ const checks = [
   {
     file: "dist/calculadora-ir/index.html",
     required: [
-      'road-build" content="52.12.0"',
+      'road-build" content="52.13.0"',
       "SIMULAÇÃO IRPF 2026",
       "Ficou em dúvida?",
       "Fale com a gente",
@@ -162,7 +171,7 @@ const checks = [
   {
     file: "dist/glossario/index.html",
     required: [
-      'road-build" content="52.12.0"',
+      'road-build" content="52.13.0"',
       "160 verbetes",
       "Pix",
       "Open Finance",
@@ -195,4 +204,4 @@ if (failures.length) {
   failures.forEach(failure => console.error(`- ${failure}`));
   process.exit(1);
 }
-console.log("ROAD build verification OK — V52.12.0");
+console.log("ROAD build verification OK — V52.13.0");
