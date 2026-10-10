@@ -1,5 +1,14 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 53.1 — 10/10/2026
+
+- Botão global “Fale com a ROAD” passa a usar fundo sólido Petróleo, exatamente a mesma cor da aba “MERCADOS & FERRAMENTAS”.
+- Ícone e texto passam a usar Areia para contraste.
+- Mantido o acionador compacto, sem borda e sem sombra, com arredondamento leve.
+- Tooltip/legenda dinâmica acompanha a mesma combinação Petróleo + Areia.
+- Comportamento, painel de opções, posição e ocultação junto ao rodapé permanecem inalterados.
+- Build técnico: `53.1.0`.
+
 ## Revisão 53 — 09/10/2026
 
 - Mercados & Ferramentas: a reserva lateral deixa de somar 76 px à margem existente e passa a usar apenas o maior valor entre a margem natural da página e 60 px.

@@ -1,0 +1,28 @@
+/* ROAD Wealth — Revisão 53.1 — botão de mensagem sólido. */
+
+.contact-launcher-toggle{
+  border:0!important;
+  border-radius:11px!important;
+  background:var(--petrol)!important;
+  color:var(--sand)!important;
+  box-shadow:none!important;
+}
+
+.contact-launcher-label{
+  background:var(--petrol)!important;
+  color:var(--sand)!important;
+  border:0!important;
+}
+
+.contact-launcher-toggle:hover,
+.contact-launcher-toggle:focus-visible,
+.contact-launcher.is-open .contact-launcher-toggle{
+  background:var(--petrol)!important;
+  color:var(--sand)!important;
+}
+
+@media(max-width:680px){
+  .contact-launcher-toggle{
+    border-radius:10px!important;
+  }
+}
