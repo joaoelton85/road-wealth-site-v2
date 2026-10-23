@@ -29,7 +29,8 @@ const checks = [
       'import "../styles/revision-53-1.css";',
       'import "../styles/revision-54.css";',
       'import "../styles/revision-55.css";',
-      'const BUILD_VERSION = "55.0.0";',
+      'import "../styles/revision-56.css";',
+      'const BUILD_VERSION = "56.0.0";',
       'const isHome = Astro.url.pathname === "/";',
       '{isHome && <RoadHighlights />}',
       '<ContactLauncher />',
@@ -45,6 +46,10 @@ const checks = [
   {
     file: "src/styles/a-road.css",
     forbidden: ["road-carousel-status", "road-carousel-track"],
+  },
+  {
+    file: "src/styles/revision-56.css",
+    required: ["--road-top-label-w:100px", "--road-top-label-font:12px", "market-ticker-mobile-label", "road-highlights__label-text"],
   },
   {
     file: "src/styles/v52-8.css",
@@ -124,7 +129,7 @@ const checks = [
   },
   {
     file: "src/layouts/BaseLayout.astro",
-    required: ["syncDisclaimerSurface", "--road-disclaimer-bg", "const BUILD_VERSION = \"55.0.0\""],
+    required: ["syncDisclaimerSurface", "--road-disclaimer-bg", "const BUILD_VERSION = \"56.0.0\""],
   },
   {
     file: "src/components/MarketTicker.astro",
@@ -226,12 +231,12 @@ const checks = [
       '"term": "Diferimento / diferido"',
     ],
   },
-  { file: "dist/__road-build.json", required: ['"roadBuild": "55.0.0"'] },
+  { file: "dist/__road-build.json", required: ['"roadBuild": "56.0.0"'] },
   {
     file: "dist/index.html",
     required: [
-      'road-build" content="55.0.0"',
-      'data-road-build="55.0.0"',
+      'road-build" content="56.0.0"',
+      'data-road-build="56.0.0"',
       "DESTAQUE",
       "Conceitos, ferramentas e Glossário ROAD para entender melhor suas decisões.",
       "planning-step-number",
@@ -244,7 +249,7 @@ const checks = [
   {
     file: "dist/calculadora-ir/index.html",
     required: [
-      'road-build" content="55.0.0"',
+      'road-build" content="56.0.0"',
       "SIMULAÇÃO IRPF 2026",
       "Ficou em dúvida?",
       "Fale com a gente",
@@ -254,7 +259,7 @@ const checks = [
   {
     file: "dist/glossario/index.html",
     required: [
-      'road-build" content="55.0.0"',
+      'road-build" content="56.0.0"',
       "160 verbetes",
       "Pix",
       "Open Finance",
@@ -287,4 +292,4 @@ if (failures.length) {
   failures.forEach(failure => console.error(`- ${failure}`));
   process.exit(1);
 }
-console.log("ROAD build verification OK — Revisão 55");
+console.log("ROAD build verification OK — Revisão 56");

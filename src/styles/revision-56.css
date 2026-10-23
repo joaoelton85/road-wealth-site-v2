@@ -1,0 +1,25 @@
+/* ROAD Wealth — Revisão 56 — 22/10/2026.
+   Tipografia proporcional do topo mobile, sem modificar o widget TradingView. */
+
+@media(max-width:680px){
+  :root{
+    --road-top-label-w:100px;
+    --road-top-label-font:12px;
+    --road-top-label-spacing:.055em;
+  }
+
+  /* Mesmo peso, tamanho e eixo nas duas etiquetas do topo. */
+  .market-ticker-mobile-label,
+  .road-highlights__label .road-highlights__label-text{
+    font-size:var(--road-top-label-font)!important;
+    font-weight:600!important;
+    letter-spacing:var(--road-top-label-spacing)!important;
+  }
+}
+
+@media(max-width:380px){
+  :root{
+    --road-top-label-w:94px;
+    --road-top-label-font:11.25px;
+  }
+}

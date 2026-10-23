@@ -1,5 +1,14 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 56 — 22/10/2026
+
+- Mobile: etiquetas MERCADOS e DESTAQUE recebem a mesma fonte Montserrat em 12 px e mesma largura de 100 px, preservando o alinhamento dos dois blocos.
+- Telas até 380 px usam 11,25 px e largura de 94 px para evitar quebra de linha.
+- TradingView preservado integralmente: mesmo componente, tickers, tamanhos internos, rolagem, carregamento, cores e altura.
+- Nenhum ajuste desktop ou mudança nos DESTAQUES além do alinhamento da etiqueta.
+- Build técnico `56.0.0`.
+
+
 ## Revisão 55 — 22/10/2026
 
 - A ROAD: eliminado o contador de capítulos (ex.: 01 / 08) e a linha de progresso da navegação, tanto no desktop quanto no mobile.
