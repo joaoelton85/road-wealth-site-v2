@@ -1,0 +1,9 @@
+/* ROAD Wealth — Revisão 55 — 22/10/2026. */
+
+/* Rodapé mobile: compacta a margem inferior sem somar toda a área segura
+   do iPhone ao preenchimento do componente. Mantém um respiro discreto. */
+@media(max-width:680px){
+  .footer{
+    padding-bottom:calc(6px + min(env(safe-area-inset-bottom, 0px), 12px))!important;
+  }
+}

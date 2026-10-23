@@ -15,10 +15,6 @@ import "../styles/a-road.css";
         <a href="#presenca" data-chapter-link="presenca">Onde estamos</a>
         <a href="#faca-parte" data-chapter-link="faca-parte">Faça parte da ROAD</a>
       </nav>
-      <div class="road-carousel-status" aria-hidden="true">
-        <span data-carousel-count>01 / 08</span>
-        <div class="road-carousel-track"><span data-carousel-progress></span></div>
-      </div>
     </div>
 
     <div id="a-road-chapters">
@@ -222,8 +218,6 @@ import "../styles/a-road.css";
 
       const chapterLinks=[...root.querySelectorAll('[data-chapter-link]')];
       const chapters=[...root.querySelectorAll('[data-chapter]')];
-      const progress=root.querySelector('[data-carousel-progress]');
-      const count=root.querySelector('[data-carousel-count]');
       const aliases={equipe:'socios','time-road':'faca-parte',simbolo:'origem'};
       const order=chapterLinks.map(link=>link.dataset.chapterLink).filter(Boolean);
       const valid=new Set(order);
@@ -235,16 +229,6 @@ import "../styles/a-road.css";
       function normalizeChapter(value){
         const raw=(value||'').replace(/^#/,'');
         return aliases[raw] || (valid.has(raw)?raw:'consultoria');
-      }
-
-      function updateProgress(){
-        if(count) count.textContent=`${String(active+1).padStart(2,'0')} / ${String(order.length).padStart(2,'0')}`;
-        if(progress instanceof HTMLElement){
-          progress.style.animation='none';
-          progress.offsetHeight;
-          progress.style.animation=reduced.matches || paused ? 'none' : 'roadCarouselProgress 15s linear forwards';
-          progress.style.width=reduced.matches || paused ? `${((active+1)/order.length)*100}%` : '';
-        }
       }
 
       function showChapter(name,{updateHash=false,scroll=false,restart=true}={}){
@@ -259,7 +243,6 @@ import "../styles/a-road.css";
         });
         if(updateHash) history.pushState(null,'',`#${chapter}`);
         if(scroll) root.scrollIntoView({behavior:'smooth',block:'start'});
-        updateProgress();
         if(restart) start();
       }
 
@@ -279,18 +262,17 @@ import "../styles/a-road.css";
         showChapter(link.dataset.chapterLink,{updateHash:true,scroll:false});
       }));
 
-      root.addEventListener('mouseenter',()=>{paused=true;stop();updateProgress()});
-      root.addEventListener('mouseleave',()=>{paused=false;start();updateProgress()});
-      root.addEventListener('focusin',()=>{paused=true;stop();updateProgress()});
+      root.addEventListener('mouseenter',()=>{paused=true;stop()});
+      root.addEventListener('mouseleave',()=>{paused=false;start()});
+      root.addEventListener('focusin',()=>{paused=true;stop()});
       root.addEventListener('focusout',event=>{
         if(event.relatedTarget instanceof Node && root.contains(event.relatedTarget)) return;
         paused=false;
         start();
-        updateProgress();
       });
 
       window.addEventListener('popstate',()=>showChapter(location.hash,{restart:true}));
-      if(typeof reduced.addEventListener==='function') reduced.addEventListener('change',()=>{start();updateProgress()});
+      if(typeof reduced.addEventListener==='function') reduced.addEventListener('change',()=>{start()});
 
       showChapter(location.hash,{restart:true});
       if(location.hash) requestAnimationFrame(()=>root.scrollIntoView({behavior:'auto',block:'start'}));

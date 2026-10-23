@@ -1,5 +1,14 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 55 — 22/10/2026
+
+- A ROAD: eliminado o contador de capítulos (ex.: 01 / 08) e a linha de progresso da navegação, tanto no desktop quanto no mobile.
+- Barra de navegação A ROAD volta a uma única linha compacta no mobile, sem preenchimento inferior extra.
+- Preservados os oito capítulos clicáveis, o destaque do capítulo ativo e a alternância automática a cada 15 segundos.
+- Rodapé mobile: reduzida a sobra abaixo do copyright, limitando o preenchimento adicional de área segura do iPhone; marcas, contatos e links mantidos.
+- Atualizados marcadores e verificações técnicas do build para `55.0.0`.
+
+
 ## Revisão 54 — 22/10/2026
 
 - DESTAQUES passam a ser renderizados somente na página inicial; páginas internas deixam de carregar a faixa.

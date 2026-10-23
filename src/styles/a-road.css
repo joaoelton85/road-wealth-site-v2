@@ -102,41 +102,9 @@
 
 .page-nav-wrap{
   display:grid;
-  grid-template-columns:minmax(0,1fr) auto;
+  grid-template-columns:minmax(0,1fr);
   align-items:center;
-  gap:18px;
-}
-
-.road-carousel-status{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  flex:0 0 auto;
-  color:rgba(243,236,227,.64);
-  font-family:"Montserrat",Arial,sans-serif;
-  font-size:9px;
-  letter-spacing:.08em;
-  white-space:nowrap;
-}
-
-.road-carousel-track{
-  position:relative;
-  width:76px;
-  height:1px;
-  overflow:hidden;
-  background:rgba(243,236,227,.18);
-}
-
-.road-carousel-track span{
-  position:absolute;
-  inset:0 auto 0 0;
-  width:0;
-  background:var(--sand);
-}
-
-@keyframes roadCarouselProgress{
-  from{width:0}
-  to{width:100%}
+  gap:0;
 }
 
 .chapter-section{
@@ -228,17 +196,9 @@
   .page-nav-wrap{
     grid-template-columns:1fr;
     gap:0;
-    padding-bottom:7px;
+    padding-bottom:0;
   }
 
-  .road-carousel-status{
-    justify-content:flex-end;
-    padding-top:4px;
-  }
-
-  .road-carousel-track{
-    width:64px;
-  }
 }
 
 @media(max-width:760px){
@@ -250,13 +210,6 @@
     min-height:0;
   }
 
-  .road-carousel-status{
-    font-size:8.5px;
-  }
-}
-
-@media(prefers-reduced-motion:reduce){
-  .road-carousel-track span{animation:none!important}
 }
 
 

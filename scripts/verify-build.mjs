@@ -28,7 +28,8 @@ const checks = [
       'import "../styles/revision-53.css";',
       'import "../styles/revision-53-1.css";',
       'import "../styles/revision-54.css";',
-      'const BUILD_VERSION = "54.0.0";',
+      'import "../styles/revision-55.css";',
+      'const BUILD_VERSION = "55.0.0";',
       'const isHome = Astro.url.pathname === "/";',
       '{isHome && <RoadHighlights />}',
       '<ContactLauncher />',
@@ -36,6 +37,14 @@ const checks = [
       '<RoadHighlights />',
       'class="site-regulatory-disclaimer"',
     ],
+  },
+  {
+    file: "src/styles/revision-55.css",
+    required: ["safe-area-inset-bottom", "padding-bottom:calc(", "@media(max-width:680px)"],
+  },
+  {
+    file: "src/styles/a-road.css",
+    forbidden: ["road-carousel-status", "road-carousel-track"],
   },
   {
     file: "src/styles/v52-8.css",
@@ -115,7 +124,7 @@ const checks = [
   },
   {
     file: "src/layouts/BaseLayout.astro",
-    required: ["syncDisclaimerSurface", "--road-disclaimer-bg", "const BUILD_VERSION = \"54.0.0\""],
+    required: ["syncDisclaimerSurface", "--road-disclaimer-bg", "const BUILD_VERSION = \"55.0.0\""],
   },
   {
     file: "src/components/MarketTicker.astro",
@@ -171,7 +180,7 @@ const checks = [
   {
     file: "src/pages/a-road.astro",
     required: ["data-chapter-link=\"rede\"", "Identidade própria. Estrutura compartilhada.", "rede-meu-patrimonio-box-branca.svg", "+ R$ 1 bi", "+ 500", "NPS 95"],
-    forbidden: ["RoadCallout", "road-callout", "rede-meu-patrimonio-box-cinza.svg", "rede-meu-patrimonio-coruja.png", "section--coffee chapter-section\" id=\"wealth", "section--coffee chapter-section\" id=\"proposito"],
+    forbidden: ["RoadCallout", "road-callout", "rede-meu-patrimonio-box-cinza.svg", "rede-meu-patrimonio-coruja.png", "section--coffee chapter-section\" id=\"wealth", "section--coffee chapter-section\" id=\"proposito", "data-carousel-count", "data-carousel-progress"],
   },
   {
     file: "src/pages/investimentos.astro",
@@ -217,12 +226,12 @@ const checks = [
       '"term": "Diferimento / diferido"',
     ],
   },
-  { file: "dist/__road-build.json", required: ['"roadBuild": "54.0.0"'] },
+  { file: "dist/__road-build.json", required: ['"roadBuild": "55.0.0"'] },
   {
     file: "dist/index.html",
     required: [
-      'road-build" content="54.0.0"',
-      'data-road-build="54.0.0"',
+      'road-build" content="55.0.0"',
+      'data-road-build="55.0.0"',
       "DESTAQUE",
       "Conceitos, ferramentas e Glossário ROAD para entender melhor suas decisões.",
       "planning-step-number",
@@ -235,7 +244,7 @@ const checks = [
   {
     file: "dist/calculadora-ir/index.html",
     required: [
-      'road-build" content="54.0.0"',
+      'road-build" content="55.0.0"',
       "SIMULAÇÃO IRPF 2026",
       "Ficou em dúvida?",
       "Fale com a gente",
@@ -245,7 +254,7 @@ const checks = [
   {
     file: "dist/glossario/index.html",
     required: [
-      'road-build" content="54.0.0"',
+      'road-build" content="55.0.0"',
       "160 verbetes",
       "Pix",
       "Open Finance",
@@ -278,4 +287,4 @@ if (failures.length) {
   failures.forEach(failure => console.error(`- ${failure}`));
   process.exit(1);
 }
-console.log("ROAD build verification OK — Revisão 54");
+console.log("ROAD build verification OK — Revisão 55");
