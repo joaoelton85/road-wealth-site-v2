@@ -1,0 +1,50 @@
+/* ROAD Wealth — Revisão 54 — 22/10/2026. */
+
+/* DESTAQUES: somente Home e controles sempre acima do slide no desktop. */
+.road-highlights__pager{
+  z-index:10!important;
+  pointer-events:auto!important;
+}
+.road-highlights__dots,
+.road-highlights__dots button{
+  pointer-events:auto!important;
+}
+.road-highlights__slide{
+  z-index:1;
+}
+.road-highlights__slide.is-active{
+  z-index:2;
+}
+
+/* A Rede: usa exatamente o mesmo logo branco do cabeçalho e rodapé.
+   O suporte Café existe apenas para garantir contraste do SVG branco. */
+.road-network-tech-brand{
+  width:min(248px,100%)!important;
+  padding:10px 12px!important;
+  border-radius:10px!important;
+  background:var(--coffee)!important;
+}
+.road-network-tech-brand img{
+  display:block!important;
+  width:210px!important;
+  max-width:100%!important;
+  height:auto!important;
+  filter:none!important;
+  opacity:1!important;
+}
+
+/* Cabeçalho: pequeno respiro óptico antes da faixa de indicadores.
+   Remove o deslocamento para baixo que aproximava os logos da faixa seguinte. */
+.header-brand-group{
+  transform:translateY(0)!important;
+}
+
+@media(max-width:680px){
+  .road-network-tech-brand{
+    width:min(220px,100%)!important;
+    padding:9px 11px!important;
+  }
+  .road-network-tech-brand img{
+    width:188px!important;
+  }
+}

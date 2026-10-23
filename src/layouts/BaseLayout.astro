@@ -47,8 +47,10 @@ import "../styles/v52-19.css";
 import "../styles/revision.css";
 import "../styles/revision-53.css";
 import "../styles/revision-53-1.css";
-const BUILD_VERSION = "53.1.0";
+import "../styles/revision-54.css";
+const BUILD_VERSION = "54.0.0";
 const { title = "ROAD Wealth®", description = "ROAD Wealth — planejamento patrimonial e acompanhamento de investimentos, escritório integrante da Rede Meu Patrimônio.", active = "", noindex = true } = Astro.props;
+const isHome = Astro.url.pathname === "/";
 ---
 <!doctype html>
 <html lang="pt-BR" transition:animate="none">
@@ -79,7 +81,7 @@ const { title = "ROAD Wealth®", description = "ROAD Wealth — planejamento pat
       </div>
       <MarketTicker />
     </div>
-    <RoadHighlights />
+    {isHome && <RoadHighlights />}
     <main>
       <slot />
     </main>

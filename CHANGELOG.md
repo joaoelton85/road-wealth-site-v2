@@ -1,5 +1,16 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 54 — 22/10/2026
+
+- DESTAQUES passam a ser renderizados somente na página inicial; páginas internas deixam de carregar a faixa.
+- Corrigida a inicialização dos DESTAQUES durante a navegação interna do Astro, garantindo que os controles sejam reativados ao retornar à Home.
+- Bolinhas de navegação dos DESTAQUES recebem prioridade explícita de clique sobre o slide no desktop.
+- A seção A Rede passa a usar exatamente o mesmo arquivo de logo da Rede Meu Patrimônio utilizado no cabeçalho e no rodapé.
+- Como esse logo oficial é branco, ele recebe suporte Café compacto apenas na área necessária para contraste, sem recriar o antigo bloco grande.
+- Cabeçalho: removido o deslocamento óptico para baixo dos logos, criando pequeno respiro adicional antes da faixa de indicadores.
+- Demais elementos aprovados nas Revisões 53 e 53.1 permanecem inalterados.
+- Build técnico: `54.0.0`.
+
 ## Revisão 53.1 — 10/10/2026
 
 - Botão global “Fale com a ROAD” passa a usar fundo sólido Petróleo, exatamente a mesma cor da aba “MERCADOS & FERRAMENTAS”.
