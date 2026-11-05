@@ -205,7 +205,7 @@ const checks = [
   },
   {
     file: "src/pages/contato.astro",
-    required: ["contact-page--light", "btn--primary js-placeholder", "btn--outline-coffee"],
+    required: ["contact-page--light", "btn btn--primary", "https://wa.me/5542984242852?text=", "btn--outline-coffee"],
   },
   {
     file: "src/pages/avisos-legais.astro",
