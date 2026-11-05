@@ -30,7 +30,7 @@ const checks = [
       'import "../styles/revision-54.css";',
       'import "../styles/revision-55.css";',
       'import "../styles/revision-56.css";',
-      'const BUILD_VERSION = "56.0.0";',
+      'const BUILD_VERSION = "57.0.0";',
       'const isHome = Astro.url.pathname === "/";',
       '{isHome && <RoadHighlights />}',
       '<ContactLauncher />',
@@ -113,7 +113,8 @@ const checks = [
   },
   {
     file: "src/components/ContactLauncher.astro",
-    required: ["Fale com a ROAD", "Como podemos ajudar?", "WhatsApp", "contato@roadwealth.com.br", "/contato/", "IntersectionObserver", "is-footer-visible"],
+    required: ["Fale com a ROAD", "Como podemos ajudar?", "WhatsApp", "https://wa.me/5542984242852?text=Ol%C3%A1!%20Conheci%20a%20ROAD%20Wealth%20pelo%20site%20e%20gostaria%20de%20conversar%20com%20a%20equipe.", "contato@roadwealth.com.br", "/contato/", "IntersectionObserver", "is-footer-visible"],
+    forbidden: ["O número oficial de WhatsApp será inserido"],
   },
   {
     file: "src/styles/revision-53.css",
@@ -129,7 +130,7 @@ const checks = [
   },
   {
     file: "src/layouts/BaseLayout.astro",
-    required: ["syncDisclaimerSurface", "--road-disclaimer-bg", "const BUILD_VERSION = \"56.0.0\""],
+    required: ["syncDisclaimerSurface", "--road-disclaimer-bg", "const BUILD_VERSION = \"57.0.0\""],
   },
   {
     file: "src/components/MarketTicker.astro",
@@ -178,9 +179,14 @@ const checks = [
     required: ["background:var(--coffee)!important", "border-top:1px solid #090909", "border-bottom:1px solid var(--sand)", "background:transparent!important"],
   },
   {
+    file: "src/pages/contato.astro",
+    required: ["https://wa.me/5542984242852?text=Ol%C3%A1!%20Conheci%20a%20ROAD%20Wealth%20pelo%20site%20e%20gostaria%20de%20conversar%20com%20a%20equipe.", "mailto:contato@roadwealth.com.br"],
+    forbidden: ["O número oficial de WhatsApp será inserido"],
+  },
+  {
     file: "src/components/Footer.astro",
-    required: ["footer-network-endorsement", "rede-meu-patrimonio-box-branca.svg", "/avisos-legais/", "footer-primary", "footer-meta", "footer-contact", "footer-channels", "footer-channel--whatsapp", "footer-channel--email", "Rua Pater Josef Stefan, 1249", "WhatsApp", "contato@roadwealth.com.br", "@road.wealth", "LinkedIn"],
-    forbidden: ["Faz parte da", "footer-regulatory-note", "footer-socials", "→"],
+    required: ["footer-network-endorsement", "rede-meu-patrimonio-box-branca.svg", "/avisos-legais/", "footer-primary", "footer-meta", "footer-contact", "footer-channels", "footer-channel--whatsapp", "footer-channel--email", "Rua Pater Josef Stefan, 1249", "WhatsApp", "https://wa.me/5542984242852?text=Ol%C3%A1!%20Conheci%20a%20ROAD%20Wealth%20pelo%20site%20e%20gostaria%20de%20conversar%20com%20a%20equipe.", "contato@roadwealth.com.br", "@road.wealth", "LinkedIn"],
+    forbidden: ["Faz parte da", "footer-regulatory-note", "footer-socials", "→", "O número oficial de WhatsApp será inserido"],
   },
   {
     file: "src/pages/a-road.astro",
@@ -231,12 +237,12 @@ const checks = [
       '"term": "Diferimento / diferido"',
     ],
   },
-  { file: "dist/__road-build.json", required: ['"roadBuild": "56.0.0"'] },
+  { file: "dist/__road-build.json", required: ['"roadBuild": "57.0.0"'] },
   {
     file: "dist/index.html",
     required: [
-      'road-build" content="56.0.0"',
-      'data-road-build="56.0.0"',
+      'road-build" content="57.0.0"',
+      'data-road-build="57.0.0"',
       "DESTAQUE",
       "Conceitos, ferramentas e Glossário ROAD para entender melhor suas decisões.",
       "planning-step-number",
@@ -249,7 +255,7 @@ const checks = [
   {
     file: "dist/calculadora-ir/index.html",
     required: [
-      'road-build" content="56.0.0"',
+      'road-build" content="57.0.0"',
       "SIMULAÇÃO IRPF 2026",
       "Ficou em dúvida?",
       "Fale com a gente",
@@ -259,7 +265,7 @@ const checks = [
   {
     file: "dist/glossario/index.html",
     required: [
-      'road-build" content="56.0.0"',
+      'road-build" content="57.0.0"',
       "160 verbetes",
       "Pix",
       "Open Finance",
@@ -292,4 +298,4 @@ if (failures.length) {
   failures.forEach(failure => console.error(`- ${failure}`));
   process.exit(1);
 }
-console.log("ROAD build verification OK — Revisão 56");
+console.log("ROAD build verification OK — Revisão 57");

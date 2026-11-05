@@ -1,5 +1,14 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 57 — 05/11/2026
+
+- Implementação dos links diretos de WhatsApp Business para o número oficial da ROAD Wealth: (42) 98424-2852, com DDI 55.
+- O botão flutuante “Fale com a ROAD”, o ícone no rodapé e o botão na página Contato passam a abrir o WhatsApp em nova aba, com texto de apresentação já preenchido, sem enviar automaticamente.
+- Preservados o e-mail, os demais contatos, os estilos atuais, os indicadores e a navegação.
+- Incluídas verificações de integridade específicas para os três links e para a remoção dos avisos provisórios de WhatsApp.
+- Build técnico `57.0.0`.
+
+
 ## Revisão 56 — 22/10/2026
 
 - Mobile: etiquetas MERCADOS e DESTAQUE recebem a mesma fonte Montserrat em 12 px e mesma largura de 100 px, preservando o alinhamento dos dois blocos.
