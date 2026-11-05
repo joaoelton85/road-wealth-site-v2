@@ -9,18 +9,21 @@
     <span class="contact-launcher-label">Fale com a ROAD</span>
   </button>
 
-  <div class="contact-launcher-panel" id="contact-launcher-panel" hidden>
-    <div class="contact-launcher-heading">Como podemos ajudar?</div>
-    <a class="contact-launcher-action" href="https://wa.me/5542984242852?text=Ol%C3%A1!%20Conheci%20a%20ROAD%20Wealth%20pelo%20site%20e%20gostaria%20de%20conversar%20com%20a%20equipe." target="_blank" rel="noopener noreferrer" aria-label="Conversar com a ROAD Wealth pelo WhatsApp">
-      <span>WhatsApp</span>
-    </a>
-    <a class="contact-launcher-action" href="mailto:contato@roadwealth.com.br">
-      <span>E-mail</span>
-    </a>
-    <a class="contact-launcher-action" href="/contato/">
-      <span>Entre em contato</span>
-    </a>
-  </div>
+  <section class="contact-launcher-panel" id="contact-launcher-panel" aria-label="Conversa com a ROAD" hidden>
+    <div class="contact-launcher-top">
+      <div><strong class="contact-launcher-brand">ROAD Wealth</strong><div class="contact-launcher-heading">Atendimento pelo WhatsApp</div></div>
+      <button type="button" class="contact-launcher-close" aria-label="Fechar conversa">×</button>
+    </div>
+    <p class="contact-launcher-welcome">Olá! Como podemos ajudar?</p>
+    <label class="contact-launcher-field-label" for="contact-launcher-message">Sua mensagem</label>
+    <textarea class="contact-launcher-message" id="contact-launcher-message" rows="3" maxlength="1200">Olá! Conheci a ROAD Wealth pelo site e gostaria de conversar com a equipe.</textarea>
+    <a class="contact-launcher-action contact-launcher-send" href="https://wa.me/5542984242852?text=Ol%C3%A1!%20Conheci%20a%20ROAD%20Wealth%20pelo%20site%20e%20gostaria%20de%20conversar%20com%20a%20equipe." target="_blank" rel="noopener noreferrer">Enviar pelo WhatsApp →</a>
+    <p class="contact-launcher-note">A conversa continuará no WhatsApp. Nenhuma mensagem é enviada automaticamente.</p>
+    <div class="contact-launcher-alternatives">
+      <a class="contact-launcher-action" href="mailto:contato@roadwealth.com.br">E-mail</a>
+      <a class="contact-launcher-action" href="/contato/">Outros canais de contato</a>
+    </div>
+  </section>
 </div>
 
 <script is:inline>
@@ -35,18 +38,19 @@
       launcher?.classList.remove('is-open');
     };
 
-    const refreshFooterWatch=()=>{
+    const positionLauncher=()=>{
       const launcher=getLauncher();
       const footer=document.querySelector('.footer');
-      window.__roadContactFooterObserver?.disconnect?.();
-      if(!launcher || !footer || !('IntersectionObserver' in window)) return;
-      const observer=new IntersectionObserver(entries=>{
-        const visible=entries.some(entry=>entry.isIntersecting);
-        launcher.classList.toggle('is-footer-visible',visible);
-        if(visible) closeLauncher();
-      },{threshold:0});
-      observer.observe(footer);
-      window.__roadContactFooterObserver=observer;
+      if(!launcher) return;
+      const rect=footer instanceof HTMLElement?footer.getBoundingClientRect():null;
+      const overlap=rect && rect.top<window.innerHeight && rect.bottom>0?Math.max(0,window.innerHeight-rect.top):0;
+      launcher.style.setProperty('--road-footer-overlap',Math.round(Math.min(overlap,Math.max(0,window.innerHeight-120)))+'px');
+    };
+    let positionQueued=false;
+    const schedulePosition=()=>{
+      if(positionQueued)return;
+      positionQueued=true;
+      requestAnimationFrame(()=>{positionQueued=false;positionLauncher()});
     };
 
     if(!window.__roadContactLauncherBound){
@@ -66,9 +70,20 @@
           if(panel instanceof HTMLElement) panel.hidden=!willOpen;
           toggle.setAttribute('aria-expanded',willOpen?'true':'false');
           launcher.classList.toggle('is-open',willOpen);
+          if(willOpen) launcher.querySelector('.contact-launcher-message')?.focus();
           return;
         }
 
+        if(target.closest('.contact-launcher-close')){
+          event.preventDefault();
+          closeLauncher();
+          launcher.querySelector('.contact-launcher-toggle')?.focus();
+          return;
+        }
+        if(target.closest('.contact-launcher-send[aria-disabled="true"]')){
+          event.preventDefault();
+          return;
+        }
         if(target.closest('.contact-launcher-action')){
           closeLauncher();
           return;
@@ -77,17 +92,28 @@
         if(!target.closest('[data-contact-launcher]')) closeLauncher();
       });
 
+      document.addEventListener('input',event=>{
+        const target=event.target;
+        if(!(target instanceof HTMLTextAreaElement)||!target.matches('.contact-launcher-message'))return;
+        const link=target.closest('[data-contact-launcher]')?.querySelector('.contact-launcher-send');
+        if(!(link instanceof HTMLAnchorElement))return;
+        const message=target.value.trim();
+        link.href=message?'https://wa.me/5542984242852?text='+encodeURIComponent(message):'#';
+        link.setAttribute('aria-disabled',message?'false':'true');
+      });
       document.addEventListener('keydown',event=>{
         if(event.key==='Escape') closeLauncher();
       });
 
       document.addEventListener('astro:after-swap',()=>{
         closeLauncher();
-        refreshFooterWatch();
+        schedulePosition();
       });
-      document.addEventListener('astro:page-load',refreshFooterWatch);
+      document.addEventListener('astro:page-load',schedulePosition);
+      window.addEventListener('scroll',schedulePosition,{passive:true});
+      window.addEventListener('resize',schedulePosition,{passive:true});
     }
 
-    refreshFooterWatch();
+    schedulePosition();
   })();
 </script>

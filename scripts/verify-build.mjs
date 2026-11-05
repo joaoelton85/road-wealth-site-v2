@@ -30,7 +30,8 @@ const checks = [
       'import "../styles/revision-54.css";',
       'import "../styles/revision-55.css";',
       'import "../styles/revision-56.css";',
-      'const BUILD_VERSION = "57.0.0";',
+      'import "../styles/revision-58.css";',
+      'const BUILD_VERSION = "58.0.0";',
       'const isHome = Astro.url.pathname === "/";',
       '{isHome && <RoadHighlights />}',
       '<ContactLauncher />',
@@ -46,6 +47,10 @@ const checks = [
   {
     file: "src/styles/a-road.css",
     forbidden: ["road-carousel-status", "road-carousel-track"],
+  },
+  {
+    file: "src/styles/revision-58.css",
+    required: [".footer a.footer-channel--whatsapp", "color:var(--coffee)!important", "color:var(--sand)!important", ".contact-launcher-panel", "--road-footer-overlap"],
   },
   {
     file: "src/styles/revision-56.css",
@@ -118,7 +123,7 @@ const checks = [
   },
   {
     file: "src/components/ContactLauncher.astro",
-    required: ["Fale com a ROAD", "Como podemos ajudar?", "WhatsApp", "https://wa.me/5542984242852?text=Ol%C3%A1!%20Conheci%20a%20ROAD%20Wealth%20pelo%20site%20e%20gostaria%20de%20conversar%20com%20a%20equipe.", "contato@roadwealth.com.br", "/contato/", "IntersectionObserver", "is-footer-visible"],
+    required: ["Fale com a ROAD", "Como podemos ajudar?", "Atendimento pelo WhatsApp", "https://wa.me/5542984242852?text=Ol%C3%A1!%20Conheci%20a%20ROAD%20Wealth%20pelo%20site%20e%20gostaria%20de%20conversar%20com%20a%20equipe.", "contact-launcher-message", "contact-launcher-send", "contato@roadwealth.com.br", "/contato/", "positionLauncher", "--road-footer-overlap"],
     forbidden: ["O número oficial de WhatsApp será inserido"],
   },
   {
@@ -135,7 +140,7 @@ const checks = [
   },
   {
     file: "src/layouts/BaseLayout.astro",
-    required: ["syncDisclaimerSurface", "--road-disclaimer-bg", "const BUILD_VERSION = \"57.0.0\""],
+    required: ["syncDisclaimerSurface", "--road-disclaimer-bg", "const BUILD_VERSION = \"58.0.0\""],
   },
   {
     file: "src/components/MarketTicker.astro",
@@ -242,12 +247,12 @@ const checks = [
       '"term": "Diferimento / diferido"',
     ],
   },
-  { file: "dist/__road-build.json", required: ['"roadBuild": "57.0.0"'] },
+  { file: "dist/__road-build.json", required: ['"roadBuild": "58.0.0"'] },
   {
     file: "dist/index.html",
     required: [
-      'road-build" content="57.0.0"',
-      'data-road-build="57.0.0"',
+      'road-build" content="58.0.0"',
+      'data-road-build="58.0.0"',
       "DESTAQUE",
       "Conceitos, ferramentas e Glossário ROAD para entender melhor suas decisões.",
       "planning-step-number",
@@ -260,7 +265,7 @@ const checks = [
   {
     file: "dist/calculadora-ir/index.html",
     required: [
-      'road-build" content="57.0.0"',
+      'road-build" content="58.0.0"',
       "SIMULAÇÃO IRPF 2026",
       "Ficou em dúvida?",
       "Fale com a gente",
@@ -270,7 +275,7 @@ const checks = [
   {
     file: "dist/glossario/index.html",
     required: [
-      'road-build" content="57.0.0"',
+      'road-build" content="58.0.0"',
       "160 verbetes",
       "Pix",
       "Open Finance",
@@ -303,4 +308,4 @@ if (failures.length) {
   failures.forEach(failure => console.error(`- ${failure}`));
   process.exit(1);
 }
-console.log("ROAD build verification OK — Revisão 57");
+console.log("ROAD build verification OK — Revisão 58");

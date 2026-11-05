@@ -1,5 +1,15 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 58 — 05/11/2026
+
+- Fale com a ROAD: janela de mensagem editável com encaminhamento ao WhatsApp Business oficial (42) 98424-2852, mantendo acesso a e-mail e à página Contato.
+- Rodapé: corrigido contraste de texto e ícone WhatsApp no desktop após a conversão para link; preservado o padrão discreto no mobile.
+- Botão flutuante: permanece visível ao chegar ao rodapé e reposiciona-se acima dele, sem encobrir as informações institucionais.
+- Sem envio automático, armazenamento da mensagem ou uso de API do WhatsApp nesta etapa.
+- Nenhuma modificação nos indicadores, menus, conteúdo institucional ou demais componentes.
+- Build técnico `58.0.0`.
+
+
 ## Revisão 57 — 05/11/2026
 
 - Ajuste pontual da V57: botão WhatsApp do bloco Contato na página Patrimônio também aponta para o número oficial; nenhuma outra funcionalidade alterada.
