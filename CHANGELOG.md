@@ -2,6 +2,8 @@
 
 ## Revisão 57 — 05/11/2026
 
+- Ajuste pontual da V57: botão WhatsApp do bloco Contato na página Patrimônio também aponta para o número oficial; nenhuma outra funcionalidade alterada.
+
 - Implementação dos links diretos de WhatsApp Business para o número oficial da ROAD Wealth: (42) 98424-2852, com DDI 55.
 - O botão flutuante “Fale com a ROAD”, o ícone no rodapé e o botão na página Contato passam a abrir o WhatsApp em nova aba, com texto de apresentação já preenchido, sem enviar automaticamente.
 - Preservados o e-mail, os demais contatos, os estilos atuais, os indicadores e a navegação.

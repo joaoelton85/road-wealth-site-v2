@@ -112,6 +112,11 @@ const checks = [
     required: ["data-astro-rerun", "data-highlight-dot", "render(i)", "start()"],
   },
   {
+    file: "src/pages/patrimonio.astro",
+    required: ["https://wa.me/5542984242852?text=Ol%C3%A1!%20Conheci%20a%20ROAD%20Wealth%20pelo%20site%20e%20gostaria%20de%20conversar%20com%20a%20equipe.", "Receber por e-mail", "Receber pelo WhatsApp"],
+    forbidden: ["O número oficial de WhatsApp será inserido antes da publicação."],
+  },
+  {
     file: "src/components/ContactLauncher.astro",
     required: ["Fale com a ROAD", "Como podemos ajudar?", "WhatsApp", "https://wa.me/5542984242852?text=Ol%C3%A1!%20Conheci%20a%20ROAD%20Wealth%20pelo%20site%20e%20gostaria%20de%20conversar%20com%20a%20equipe.", "contato@roadwealth.com.br", "/contato/", "IntersectionObserver", "is-footer-visible"],
     forbidden: ["O número oficial de WhatsApp será inserido"],
