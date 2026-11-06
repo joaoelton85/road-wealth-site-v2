@@ -8,6 +8,29 @@
   "assets": {
     "directory": "./dist",
     "not_found_handling": "404-page",
-    "html_handling": "auto-trailing-slash"
-  }
+    "html_handling": "auto-trailing-slash",
+    "binding": "ASSETS",
+    "run_worker_first": [
+      "/api/*"
+    ]
+  },
+  "main": "./src/worker.js",
+  "send_email": [
+    {
+      "name": "EMAIL",
+      "allowed_sender_addresses": [
+        "contato@roadwealth.com.br"
+      ]
+    }
+  ],
+  "ratelimits": [
+    {
+      "name": "CHECKUP_EMAIL_RATE_LIMIT",
+      "namespace_id": "592026",
+      "simple": {
+        "limit": 3,
+        "period": 60
+      }
+    }
+  ]
 }
