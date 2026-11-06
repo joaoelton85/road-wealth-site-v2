@@ -22,5 +22,15 @@
         "contato@roadwealth.com.br"
       ]
     }
+  ],
+  "ratelimits": [
+    {
+      "name": "CHECKUP_EMAIL_RATE_LIMIT",
+      "namespace_id": "592026",
+      "simple": {
+        "limit": 3,
+        "period": 60
+      }
+    }
   ]
 }
