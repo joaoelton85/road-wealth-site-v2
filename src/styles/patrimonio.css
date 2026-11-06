@@ -1,2 +1,17 @@
 .service-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}.service-detail{border:1px solid var(--line);border-radius:18px;padding:22px;background:rgba(255,255,255,.56)}.service-detail h3{font-size:24px}.service-detail p{margin-bottom:0}.checkup-section{background:#fff}.checkup-shell{max-width:980px}.page-hero .lead{max-width:840px}
 @media(max-width:760px){.service-detail-grid{grid-template-columns:1fr}}
+
+/* V59 — campo opcional de entrega do Check-up por e-mail. */
+.road-checkup-email{margin-top:20px;padding:18px;border:1px solid rgba(69,49,37,.2);border-radius:12px;background:rgba(255,255,255,.2);max-width:650px}
+.road-checkup-email form{display:flex;flex-direction:column;gap:12px}
+.road-checkup-email label{font-weight:600;color:var(--coffee)}
+.road-checkup-email input[type="email"]{width:100%;max-width:440px;box-sizing:border-box;padding:12px 14px;border:1px solid rgba(69,49,37,.35);border-radius:8px;font:inherit;background:white;color:#302b27}
+.road-checkup-email input[type="email"]:focus-visible{outline:2px solid var(--coffee);outline-offset:3px}
+.road-checkup-consent{display:flex;align-items:flex-start;gap:10px;font-weight:400!important;line-height:1.45}
+.road-checkup-consent input{width:18px;height:18px;margin-top:3px;flex:0 0 18px}
+.road-checkup-email .checkup-note{margin:0;font-size:.9rem}
+.road-checkup-email-feedback{min-height:1.3em;line-height:1.4;font-weight:600;color:var(--coffee)}
+.road-checkup-email-feedback:empty{display:none}
+.road-checkup-email button[type="submit"]{align-self:flex-start}
+.road-checkup-email button[disabled]{opacity:.6;cursor:wait}
+@media(max-width:760px){.road-checkup-email{padding:14px}.road-checkup-email input[type="email"]{max-width:100%}}
