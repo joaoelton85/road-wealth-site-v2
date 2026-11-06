@@ -60,7 +60,28 @@ import "../styles/patrimonio.css";
         <div class="checkup-final" hidden id="checkup-final">
           <div class="checkup-head"><div><div class="eyebrow">RESULTADO</div><h3>Seu Check-up ROAD</h3></div><button class="text-btn" id="close-checkup-final" type="button">Fechar</button></div>
           <p>O resultado mostra, de forma resumida, quais áreas parecem mais estruturadas e quais podem merecer atenção. Ele não substitui uma análise patrimonial individualizada.</p><div class="scoreboard"><div class="scoreboard-grid" id="scoreboard-grid"></div></div>
-          <div class="delivery-box"><h4>Quer guardar seu resultado?</h4><p>Ao concluir, você poderá receber o resumo do Check-up no canal que preferir.</p><div class="actions"><button class="btn btn--primary js-placeholder" data-message="O envio automático do Check-up por e-mail será conectado ao backend." type="button">Receber por e-mail</button><button class="btn btn--outline-coffee js-placeholder" data-message="O envio do resultado pelo WhatsApp será conectado ao canal oficial da ROAD." type="button">Receber pelo WhatsApp</button></div><p class="checkup-note">Ao informar seu contato, você autoriza o envio do resultado do Check-up e das comunicações diretamente relacionadas a ele.</p></div>
+          <div class="delivery-box">
+            <h4>Quer guardar seu resultado?</h4>
+            <p>Você pode receber o resumo do Check-up por e-mail.</p>
+            <div class="actions">
+              <button class="btn btn--primary" id="open-checkup-email" type="button" aria-expanded="false" aria-controls="road-checkup-email">Receber por e-mail</button>
+              <button class="btn btn--outline-coffee js-placeholder" data-message="O envio do resultado pelo WhatsApp será conectado ao canal oficial da ROAD." type="button">Receber pelo WhatsApp</button>
+            </div>
+            <div class="road-checkup-email" id="road-checkup-email" hidden>
+              <form id="road-checkup-email-form">
+                <label for="road-result-email">Seu e-mail</label>
+                <input id="road-result-email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="254" placeholder="voce@exemplo.com" required />
+                <label class="road-checkup-consent" for="road-result-consent">
+                  <input id="road-result-consent" name="consent" type="checkbox" required />
+                  <span>Autorizo a ROAD a enviar o resultado deste Check-up para o e-mail informado.</span>
+                </label>
+                <p class="checkup-note">O endereço será usado para o envio solicitado. Consulte nossa <a href="/privacidade/">Política de Privacidade</a>.</p>
+                <div id="road-checkup-turnstile" aria-label="Verificação de segurança"></div>
+                <button id="road-checkup-email-submit" class="btn btn--primary" type="submit">Enviar meu resultado</button>
+                <p id="road-checkup-email-feedback" class="road-checkup-email-feedback" role="status" aria-live="polite"></p>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -93,6 +114,96 @@ import "../styles/patrimonio.css";
     qs('#start-checkup')?.addEventListener('click',()=>{checkupStep=0;qs('#checkup-intro').hidden=true;qs('#checkup-flow').hidden=false;renderCheckup();qs('#checkup-flow').scrollIntoView({behavior:'smooth',block:'start'})});
     qs('#prev-checkup')?.addEventListener('click',()=>{if(checkupStep>0){checkupStep--;renderCheckup();}});
     qs('#next-checkup')?.addEventListener('click',()=>{if(!currentComplete())return;if(checkupStep<3){checkupStep++;renderCheckup();qs('#checkup-flow').scrollIntoView({behavior:'smooth',block:'start'})}else{qs('#checkup-flow').hidden=true;qs('#checkup-final').hidden=false;renderScore();qs('#checkup-final').scrollIntoView({behavior:'smooth',block:'start'})}});
+
+    // Envio opcional do resultado por e-mail. Nenhum dado é enviado antes da confirmação.
+    const roadEmailOpen=qs('#open-checkup-email');
+    const roadEmailPanel=qs('#road-checkup-email');
+    const roadEmailForm=qs('#road-checkup-email-form');
+    if(roadEmailOpen && roadEmailPanel && roadEmailForm){
+      const feedback=qs('#road-checkup-email-feedback');
+      const submitButton=qs('#road-checkup-email-submit');
+      let verificationToken='';
+      let verificationWidget=null;
+      let setupPending=null;
+      let emailSent=false;
+
+      const showEmailFeedback=(message)=>{feedback.textContent=message;};
+      const loadTurnstile=()=>new Promise((resolve,reject)=>{
+        if(window.turnstile){resolve();return;}
+        let script=document.querySelector('script[data-road-turnstile]');
+        if(!script){
+          script=document.createElement('script');
+          script.src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+          script.async=true;
+          script.dataset.roadTurnstile='true';
+          document.head.appendChild(script);
+        }
+        const timer=setTimeout(()=>reject(new Error('Tempo esgotado ao carregar a verificação.')),12000);
+        script.addEventListener('load',()=>{clearTimeout(timer);resolve();},{once:true});
+        script.addEventListener('error',()=>{clearTimeout(timer);script.remove();reject(new Error('Verificação indisponível.'))},{once:true});
+      });
+      const prepareEmailVerification=async()=>{
+        const response=await fetch('/api/checkup-config',{cache:'no-store'});
+        if(!response.ok)throw new Error('O serviço de envio está temporariamente indisponível.');
+        const config=await response.json();
+        if(!config.enabled || !config.siteKey)throw new Error('O envio por e-mail ainda não está disponível.');
+        await loadTurnstile();
+        if(!window.turnstile)throw new Error('Verificação de segurança indisponível.');
+        if(verificationWidget===null){
+          verificationWidget=window.turnstile.render('#road-checkup-turnstile',{
+            sitekey:config.siteKey,
+            action:'road_checkup_email',
+            callback:(token)=>{verificationToken=token;showEmailFeedback('');},
+            'expired-callback':()=>{verificationToken='';showEmailFeedback('A verificação expirou. Conclua novamente.');},
+            'error-callback':()=>{verificationToken='';showEmailFeedback('Não foi possível verificar a segurança. Tente novamente.');}
+          });
+        }
+      };
+
+      roadEmailOpen.addEventListener('click',()=>{
+        roadEmailPanel.hidden=!roadEmailPanel.hidden;
+        roadEmailOpen.setAttribute('aria-expanded',String(!roadEmailPanel.hidden));
+        if(roadEmailPanel.hidden || emailSent)return;
+        qs('#road-result-email')?.focus();
+        if(setupPending)return;
+        showEmailFeedback('Preparando envio seguro...');
+        setupPending=prepareEmailVerification()
+          .then(()=>showEmailFeedback(''))
+          .catch(error=>{showEmailFeedback(error.message||'Não foi possível preparar o envio.');setupPending=null;});
+      });
+
+      roadEmailForm.addEventListener('submit',async(event)=>{
+        event.preventDefault();
+        if(emailSent || submitButton.disabled)return;
+        if(!roadEmailForm.reportValidity())return;
+        if(!verificationToken){showEmailFeedback('Conclua a verificação de segurança para enviar.');return;}
+        const email=qs('#road-result-email').value.trim();
+        submitButton.disabled=true;
+        showEmailFeedback('Enviando resultado...');
+        const controller=new AbortController();
+        const timeout=setTimeout(()=>controller.abort(),15000);
+        try{
+          const response=await fetch('/api/checkup-email',{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({email,consent:qs('#road-result-consent').checked,answers,turnstileToken:verificationToken}),
+            signal:controller.signal
+          });
+          let result={};
+          try{result=await response.json();}catch{}
+          if(!response.ok)throw new Error(result.error||'Não foi possível enviar. Tente novamente.');
+          emailSent=true;
+          showEmailFeedback('Solicitação de envio recebida. Confira sua caixa de entrada e o Spam.');
+        }catch(error){
+          showEmailFeedback(error.name==='AbortError'?'A solicitação demorou demais. Confirme o recebimento antes de tentar novamente.':(error.message||'Falha no envio.'));
+          verificationToken='';
+          if(verificationWidget!==null && window.turnstile)window.turnstile.reset(verificationWidget);
+        }finally{
+          clearTimeout(timeout);
+          if(!emailSent)submitButton.disabled=false;
+        }
+      });
+    }
     renderScore();
   </script>
 </BaseLayout>
