@@ -92,6 +92,13 @@ async function verifyTurnstile(request, token, secret) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    if (url.pathname === "/api/checkup-config") {
+      if (request.method !== "GET") return json({ error: "Método não permitido." }, 405);
+      return json({
+        enabled: Boolean(env.EMAIL && env.TURNSTILE_SITE_KEY && env.TURNSTILE_SECRET_KEY),
+        siteKey: env.TURNSTILE_SITE_KEY || null,
+      });
+    }
     if (url.pathname !== "/api/checkup-email") {
       return env.ASSETS.fetch(request);
     }
