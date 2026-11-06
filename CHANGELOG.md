@@ -1,5 +1,17 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 59 — desenvolvimento — 05/11/2026
+
+- Implantação em preparação: integração do Check-up ROAD com o Cloudflare Email Sending, sem serviços terceiros.
+- Novo endpoint `/api/checkup-email` que valida as 16 respostas, consentimento explícito e token Turnstile verificado no servidor; envia somente resumo por área.
+- Interface de solicitação de e-mail e widget Turnstile com configuração disponibilizada via `/api/checkup-config`.
+- Worker executa primeiro apenas em `/api/*`; demais páginas Astro mantidas como ativos estáticos.
+- Nenhuma mudança nas respostas ou faixas de pontuação do Check-up; ajustes isolados a formulário e envio.
+- Sem publicação em produção nesta etapa: exige configurar Turnstile (`TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET_KEY`), validar plano de envio e realizar testes.
+- A V58 permanece disponível para retorno.
+- Build técnico `59.0.0`.
+
+
 ## Revisão 58 — 05/11/2026
 
 - Fale com a ROAD: janela de mensagem editável com encaminhamento ao WhatsApp Business oficial (42) 98424-2852, mantendo acesso a e-mail e à página Contato.
