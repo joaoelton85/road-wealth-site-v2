@@ -140,6 +140,18 @@ export default {
       return json({ error: "Verificação de segurança inválida. Tente novamente." }, 403);
     }
 
+    if (!env.CHECKUP_EMAIL_RATE_LIMIT) {
+      return json({ error: "Serviço temporariamente indisponível." }, 503);
+    }
+    try {
+      const { success } = await env.CHECKUP_EMAIL_RATE_LIMIT.limit({ key: email.toLowerCase() });
+      if (!success) {
+        return json({ error: "Limite de solicitações para este endereço atingido. Tente novamente mais tarde." }, 429);
+      }
+    } catch {
+      return json({ error: "Não foi possível verificar o limite de envios." }, 503);
+    }
+
     try {
       const message = buildEmail(summary);
       await env.EMAIL.send({
