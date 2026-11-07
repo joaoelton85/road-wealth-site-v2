@@ -1,5 +1,13 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 62.2 — 07/11/2026
+
+- Mobile: restaurados exatamente os tamanhos anteriores do cabeçalho, ROAD 42px e Meu Patrimônio 60px, preservando SVGs originais.
+- Chancela Meu Patrimônio realinhada pela **base inferior da marca ROAD**, conforme padrão anterior aprovado. Não centralizar verticalmente as duas marcas.
+- Mantido cabeçalho de 86px, com 10px de respiro vertical e contenção completa da marca, eliminando corte no topo.
+- Layout do desktop e demais seções preservados. V62.1 preservada na branch backup/v62-1-antes-v62-2.
+
+
 ## Revisão 62.1 — 07/11/2026
 
 - Correção pontual do cabeçalho **mobile** (até 680px): altura útil de 86px, folga vertical de 10px e marcas centradas.
