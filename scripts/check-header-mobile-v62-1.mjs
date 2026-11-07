@@ -28,9 +28,14 @@ try {
       assert(box.bottom<=geometry.header.bottom-7, name+" bottom cut @"+width+": "+JSON.stringify(geometry));
       assert(box.x>=0&&box.right<=width, name+" out of viewport @"+width);
     }
-    const logoMiddle=geometry.logo.y+geometry.logo.height/2;
-    const partnerMiddle=geometry.partner.y+geometry.partner.height/2;
-    assert(Math.abs(logoMiddle-partnerMiddle)<4,"brand pair not vertically centered @"+width+": "+JSON.stringify(geometry));
+    // Diretriz de branding: a chancela da Rede alinha pela BASE da ROAD,
+    // e não pelo centro das duas imagens.
+    assert(Math.abs(geometry.logo.bottom-geometry.partner.bottom)<1,
+      "partner logo must align to ROAD bottom @"+width+": "+JSON.stringify(geometry));
+    assert(Math.abs(geometry.logo.width-42)<0.1,
+      "ROAD logo must preserve original mobile width 42px @"+width);
+    assert(Math.abs(geometry.partner.width-60)<0.1,
+      "Meu Patrimônio logo must preserve original width 60px @"+width);
     assert(Math.abs(geometry.header.height-86)<1,"header height @"+width+" was "+geometry.header.height);
     await page.screenshot({path:dir+"/header-mobile-"+width+".png",fullPage:false});
     await page.locator(".nav-toggle").click();
