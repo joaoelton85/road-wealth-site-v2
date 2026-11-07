@@ -103,6 +103,25 @@ import "../styles/patrimonio.css";
     const answers={};const checkupOrder=['investments','legacy','strategy','decisions'];let checkupStep=0;
     const qs=s=>document.querySelector(s),qsa=s=>[...document.querySelectorAll(s)];
     const checkup=qs('#checkup'),questions=qs('#questions'),checkupArea=qs('#checkup-area');
+    // Âncora do Check-up: com navegação Astro, carregamento de fontes e cabeçalho
+    // sticky, a rolagem nativa pode deixar o convite fora da primeira tela.
+    // Alinha apenas a abertura direta por hash, sem interferir no questionário.
+    if(location.hash==='#checkup-road'){
+      const alignCheckupAnchor=()=>{
+        const target=qs('#checkup-road');
+        if(!target)return;
+        const stack=qs('#site-top-stack');
+        const topGap=(stack?.getBoundingClientRect().height||0)+6;
+        const delta=target.getBoundingClientRect().top-topGap;
+        if(Math.abs(delta)>5){
+          window.scrollTo({top:Math.max(0,window.scrollY+delta),behavior:'instant'});
+        }
+      };
+      requestAnimationFrame(()=>requestAnimationFrame(alignCheckupAnchor));
+      document.fonts?.ready?.then(alignCheckupAnchor);
+      document.addEventListener('astro:page-load',()=>requestAnimationFrame(alignCheckupAnchor),{once:true});
+    }
+
     function currentComplete(){const key=checkupOrder[checkupStep];return areas[key].questions.every((_,i)=>answers[key+'-'+i])}
     function renderCheckup(){const key=checkupOrder[checkupStep],a=areas[key];checkupArea.textContent=a.kicker;qs('#checkup-step-title').textContent=`${checkupStep+1} de 4 — ${a.kicker.charAt(0)+a.kicker.slice(1).toLowerCase()}`;qs('#progress-copy').textContent=`Área ${checkupStep+1} de 4`;qs('#progress-bar').style.width=`${(checkupStep+1)*25}%`;questions.innerHTML='';a.questions.forEach((q,i)=>{const answerKey=key+'-'+i;const row=document.createElement('div');row.className='question';row.innerHTML=`<p>${q}</p><div class="answers"><button type="button" data-key="${answerKey}" data-value="sim">Sim</button><button type="button" data-key="${answerKey}" data-value="parcial">Parcialmente</button><button type="button" data-key="${answerKey}" data-value="nao">Não</button><button type="button" data-key="${answerKey}" data-value="naosei">Não sei</button></div>`;questions.appendChild(row)});qsa('.answers button').forEach(b=>{if(answers[b.dataset.key]===b.dataset.value)b.classList.add('selected');b.addEventListener('click',()=>{answers[b.dataset.key]=b.dataset.value;qsa(`button[data-key="${b.dataset.key}"]`).forEach(x=>x.classList.toggle('selected',x===b));updateCheckupNav()})});qs('#prev-checkup').hidden=checkupStep===0;qs('#next-checkup').textContent=checkupStep===3?'Concluir e receber por e-mail →':'Próxima área →';updateCheckupNav()}
     function updateCheckupNav(){qs('#next-checkup').disabled=!currentComplete()}
