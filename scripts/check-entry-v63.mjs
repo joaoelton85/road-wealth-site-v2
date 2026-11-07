@@ -16,6 +16,7 @@ try {
       const rect=sel=>{const el=document.querySelector(sel);const r=el.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height,bottom:r.bottom};};
       return {stack:rect(".site-top-stack"),section:rect("#checkup-road"),intro:rect("#checkup-road .checkup-entry"),button:rect("#open-checkup"),eyebrow:rect("#checkup-road .eyebrow"),height:innerHeight};
     });
+    console.log("FIRST_SCREEN",JSON.stringify({width,first}));
     assert(first.section.x>=-2&&first.section.x+first.section.width<=width+2,"section shifted @"+width+": "+JSON.stringify(first));
     assert(first.eyebrow.y>=first.stack.bottom-2,"eyebrow hidden behind sticky top @"+width+": "+JSON.stringify(first));
     assert(first.button.bottom<height-12,"button not visible on first screen @"+width+": "+JSON.stringify(first));
