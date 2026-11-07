@@ -75,8 +75,15 @@ test("Worker envia resultado HTML com mapa, assinatura e links oficiais",async()
     assert.match(msg.html,/Instagram @road\.wealth/);
     assert.match(msg.html,/Montserrat,Arial/);
     assert.match(msg.text,/Legado: Em desenvolvimento/);
-    assert.match(msg.text,/SUA ANÁLISE PATRIMONIAL/);
-    assert.match(msg.text,/Seu patrimônio, seu legado, seu caminho/);
+    assert.match(msg.text,/PDF anexo/);
+    assert.doesNotMatch(msg.html,/Sua análise patrimonial/);
+    assert.equal(msg.attachments.length,1);
+    const [file] = msg.attachments;
+    assert.equal(file.filename,"Diagnostico-Check-up-ROAD.pdf");
+    assert.equal(file.type,"application/pdf");
+    assert.equal(file.disposition,"attachment");
+    assert.equal(new TextDecoder().decode(file.content.slice(0,5)),"%PDF-");
+    assert.match(msg.text,/Seu patrimônio, seu caminho, seu legado/);
     assert.doesNotMatch(msg.html,/token-teste|segredo-teste/);
   } finally {globalThis.fetch=fetchPrevious;}
 });

@@ -1,5 +1,11 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 64 — 07/11/2026
+
+- O Check-up envia uma única mensagem com o resumo das quatro áreas e o diagnóstico completo em PDF, com fontes institucionais incorporadas e marca vetorial.
+- A assinatura do e-mail usa o logo completo em 70 × 109 px e o lema institucional.
+- A marca do cabeçalho mobile se aproxima da faixa de indicadores.
+
 ## Revisão 63 — 07/11/2026
 
 - Página Patrimônio: substituída a abertura redundante do Check-up (texto introdutório + cartão repetido) por um único bloco editorial com título curto, explicação única e botão de início imediatamente visível.

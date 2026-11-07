@@ -11,6 +11,23 @@ try {
     const page=await ctx.newPage();
     await page.goto("http://127.0.0.1:4321/",{waitUntil:"domcontentloaded"});
     await page.waitForTimeout(350);
+    const panelGeometry = () => page.evaluate(() => {
+      return [".road-market-note", "#market-ticker-shell", ".market-ticker-mobile-live"].map(selector => {
+        const element = document.querySelector(selector);
+        const {x, y, width, height} = element.getBoundingClientRect();
+        return {x, y, width, height};
+      });
+    });
+    // Compare o painel com a geometria da V63 no mesmo navegador e viewport.
+    const original = await page.addStyleTag({content: `
+      .site-header .header-brand-group {transform:none!important}
+      .site-header .brand img {width:42px!important;max-width:42px!important;max-height:66px!important}
+    `});
+    const previousPanel = await panelGeometry();
+    const previousLogo = await page.locator(".site-header .brand img").boundingBox();
+    await original.evaluate(element => element.remove());
+    assert.deepEqual(await panelGeometry(), previousPanel, "ticker or B3 legend displaced @" + width);
+    assert.match(await page.locator(".road-market-note").innerText(), /B3\s*·\s*15 min de atraso\s*\|\s*via TradingView/);
     const geometry=await page.evaluate(()=>{
       const header=document.querySelector(".site-header");
       const logo=header?.querySelector(".brand img");
@@ -25,15 +42,18 @@ try {
     for (const name of ["logo","partner","toggle"]) {
       const box=geometry[name];
       assert(box.y>=geometry.header.y+7, name+" top cut @"+width+": "+JSON.stringify(geometry));
-      assert(box.bottom<=geometry.header.bottom-7, name+" bottom cut @"+width+": "+JSON.stringify(geometry));
+      assert(box.bottom<=geometry.header.bottom-2, name+" bottom cut @"+width+": "+JSON.stringify(geometry));
       assert(box.x>=0&&box.right<=width, name+" out of viewport @"+width);
     }
     // Diretriz de branding: a chancela da Rede alinha pela BASE da ROAD,
     // e não pelo centro das duas imagens.
     assert(Math.abs(geometry.logo.bottom-geometry.partner.bottom)<1,
       "partner logo must align to ROAD bottom @"+width+": "+JSON.stringify(geometry));
-    assert(Math.abs(geometry.logo.width-42)<0.1,
-      "ROAD logo must preserve original mobile width 42px @"+width);
+    assert(Math.abs(geometry.logo.width-46)<0.1,
+      "ROAD logo must fill the mobile header at 46px @"+width);
+    assert(geometry.logo.bottom > previousLogo.y + previousLogo.height + 4,
+      "ROAD should sit closer to the ticker @" + width);
+    assert(geometry.group.right < geometry.toggle.x, "branding overlaps menu @" + width);
     assert(Math.abs(geometry.partner.width-60)<0.1,
       "Meu Patrimônio logo must preserve original width 60px @"+width);
     assert(Math.abs(geometry.header.height-86)<1,"header height @"+width+" was "+geometry.header.height);

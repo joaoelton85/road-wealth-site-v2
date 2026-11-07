@@ -1,6 +1,4 @@
-/* ROAD Wealth V62.2 — restaura branding mobile.
-   Tamanho original ROAD 42px e chancela da Rede 60px, ambos completos,
-   alinhados pela base. A altura útil do cabeçalho evita cortes. */
+/* Marcas no cabeçalho mobile, alinhadas pela base. */
 @media(max-width:680px){
   :root{--header-h:86px}
   .site-header{
@@ -21,7 +19,8 @@
     align-items:flex-end!important;
     justify-content:flex-start!important;
     gap:10px!important;
-    transform:none!important;
+    /* Mesmo ajuste óptico do desktop, sem mover o painel de cotações. */
+    transform:translateY(4px)!important;
   }
   .site-header .brand{
     display:flex!important;
@@ -33,10 +32,10 @@
   }
   .site-header .brand img{
     display:block!important;
-    width:42px!important;
-    max-width:42px!important;
+    width:46px!important;
+    max-width:46px!important;
     height:auto!important;
-    max-height:66px!important;
+    max-height:72px!important;
     object-fit:contain!important;
   }
   .site-header .header-network-endorsement{
