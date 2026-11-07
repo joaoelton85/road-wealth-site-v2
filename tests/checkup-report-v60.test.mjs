@@ -34,12 +34,13 @@ test("intervalos de classificação não deixam lacunas",()=>{
 });
 test("lacuna de conhecimento gera recomendação de verificação, não presume ausência",()=>{
   const r=evaluateCheckup(answers("naosei"));
-  assert.match(r.priorities[0].detail,/Verificar|Levantar|Identificar|Estimar|Confirmar|Mapear|Avaliar/);
+  assert.equal(r.limited,true);
+  assert.match(r.priorities[0].title,/simples/);
 });
 test("se nenhuma lacuna declarada, recomenda manutenção e revisão",()=>{
   const r=evaluateCheckup(answers("sim"));
   assert.equal(r.priorities.length,2);
-  assert.match(r.priorities[0].title,/revisão/);
+  assert.match(r.priorities[0].title,/estrutura coerente/);
 });
 test("16 respostas são obrigatórias e não permitem valores arbitrários",()=>{
   const raw=answers("sim");raw["legacy-2"]="talvez";
@@ -70,12 +71,54 @@ test("Worker envia resultado HTML com mapa, assinatura e links oficiais",async()
     assert.match(msg.html,/Seu mapa patrimonial/);
     assert.match(msg.html,/SITUAÇÃO ATUAL/);
     assert.match(msg.html,/D4A080/);
-    assert.match(msg.html,/assets\/apple-touch-icon.png/);
+    assert.match(msg.html,/assets\/road-logo-cafe-email.png/);
     assert.match(msg.html,/Instagram @road\.wealth/);
     assert.match(msg.html,/Montserrat,Arial/);
     assert.match(msg.text,/Legado: Em desenvolvimento/);
-    assert.match(msg.text,/Onde|CONCENTRAR SUA ATENÇÃO/);
+    assert.match(msg.text,/SUA ANÁLISE PATRIMONIAL/);
     assert.match(msg.text,/Seu patrimônio, seu legado, seu caminho/);
     assert.doesNotMatch(msg.html,/token-teste|segredo-teste/);
   } finally {globalThis.fetch=fetchPrevious;}
+});
+
+test("protocolo de desconhecimento começa em 12 respostas, não 11",()=>{
+  const raw=answers("sim");
+  const keys=Object.keys(raw);
+  for(let i=0;i<11;i++)raw[keys[i]]="naosei";
+  const r11=evaluateCheckup(raw);
+  assert.equal(r11.unknownCount,11);
+  assert.equal(r11.limited,false);
+  raw[keys[11]]="naosei";
+  const r12=evaluateCheckup(raw);
+  assert.equal(r12.unknownCount,12);
+  assert.equal(r12.limited,true);
+  assert.match(r12.priorities[1].detail,/Você já indicou/);
+});
+test("protocolo especial sem respostas positivas não inventa estrutura",()=>{
+  const r=evaluateCheckup(answers("naosei"));
+  assert.equal(r.limited,true);
+  assert.doesNotMatch(r.priorities[1].detail,/Você já indicou/);
+});
+test("liquidez trata da continuidade dos negócios sem alarmismo de venda",()=>{
+  const raw=answers("sim");
+  raw["strategy-1"]="nao";
+  const r=evaluateCheckup(raw);
+  assert(r.priorities.some(p=>/Liquidez também significa preservar escolhas/.test(p.title)));
+  assert(r.priorities.some(p=>/continuidade dos negócios/.test(p.detail)));
+  assert(!r.priorities.some(p=>/vendid[oa]|vender|venda em condições desfavoráveis/i.test(p.detail)));
+});
+test("relações entre sucessão e liquidez priorizam interpretação integrada",()=>{
+  const raw=answers("sim");
+  raw["legacy-1"]="nao";
+  raw["strategy-1"]="nao";
+  const r=evaluateCheckup(raw);
+  assert(r.priorities.some(p=>/continuidade da família também depende de liquidez/.test(p.title)));
+});
+test("respostas negativas e desconhecimento não são tratados como sinônimos",()=>{
+  const raw=answers("sim");
+  raw["investments-0"]="naosei";
+  const r=evaluateCheckup(raw);
+  assert.equal(r.unknownCount,1);
+  assert.equal(r.limited,false);
+  assert(!r.priorities.some(p=>/inexistente|inadequada|comprovadamente/.test(p.detail)));
 });
