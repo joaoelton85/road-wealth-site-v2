@@ -1,0 +1,47 @@
+name: Validar V62 (testes, compilação e mobile)
+
+on:
+  push:
+    branches:
+      - feature/v62-mobile-checkup-email
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Instalar dependências
+        run: npm install --no-audit --no-fund
+      - name: Testar diagnóstico, e-mail e assets
+        run: npm test
+      - name: Build e verificação de integridade
+        run: npm run build
+      - name: Verificar pacote Cloudflare (sem deploy)
+        run: npx wrangler deploy --dry-run --outdir .wrangler-v62
+      - name: Chromium para teste real de layout
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Iniciar site e verificar layout do iPhone
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4321 >/tmp/road-v62-preview.log 2>&1 &
+          for i in {1..30}; do curl -fsS http://127.0.0.1:4321/ >/dev/null && break || sleep 1; done
+          node scripts/check-mobile-v62.mjs
+      - name: Guardar capturas do browser mobile
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: road-v62-mobile-screenshots
+          path: /tmp/road-v62-screens/*.png
+          if-no-files-found: ignore
