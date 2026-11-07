@@ -1,0 +1,45 @@
+name: Generate official ROAD email logo V61
+
+on:
+  push:
+    branches:
+      - feature/v61-checkup-refinado
+    paths:
+      - .github/workflows/generate-email-logo-v61.yml
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout official brand assets
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Render exact official SVG to transparent PNG
+        run: |
+          python -m pip install --disable-pip-version-check cairosvg
+          python - <<'PY'
+          from pathlib import Path
+          import cairosvg
+          source=Path('public/assets/road-logo-cafe.svg')
+          target=Path('public/assets/road-logo-cafe-email.png')
+          cairosvg.svg2png(bytestring=source.read_bytes(),write_to=str(target),output_height=360)
+          from PIL import Image
+          image=Image.open(target)
+          assert image.mode=="RGBA", image.mode
+          assert image.width>=170 and image.height==360
+          print('PNG oficial:',image.size,target.stat().st_size,'bytes')
+          PY
+      - name: Commit generated official PNG only
+        run: |
+          git config user.name "road-wealth-ci"
+          git config user.email "road-wealth-ci@users.noreply.github.com"
+          git add public/assets/road-logo-cafe-email.png
+          git diff --cached --quiet || (git commit -m "V61: render original ROAD logo SVG as transparent PNG for email" && git push origin HEAD:feature/v61-checkup-refinado)
