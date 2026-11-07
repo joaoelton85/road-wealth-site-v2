@@ -42,17 +42,13 @@ import "../styles/patrimonio.css";
 
   <section class="section checkup-section" id="checkup-road">
     <div class="checkup-shell">
-      <div class="section-intro"><div class="eyebrow">CHECK-UP ROAD</div><h2>Depois de conhecer as áreas de atuação, faça uma leitura inicial do seu patrimônio.</h2><p>O Check-up ROAD percorre Investimentos, Legado, Estratégia e Decisões em uma sequência guiada. São 16 perguntas, sem solicitar valores de patrimônio, renda, nomes de instituições ou outros dados sensíveis.</p></div>
-      <div class="checkup-invite">
-        <div class="eyebrow">CHECK-UP ROAD</div><h4>Uma visão rápida das áreas de atuação da ROAD.</h4><p>O Check-up percorre <strong>Investimentos, Legado, Estratégia e Decisões</strong>. São quatro perguntas por área, organizadas em uma sequência única e simples.</p>
-        <div class="checkup-meta"><span>4 áreas</span><span>16 perguntas</span><span>cerca de 3 minutos</span></div><button class="btn btn--primary" id="open-checkup" type="button">Iniciar Check-up ROAD</button>
+      <div class="checkup-entry">
+        <div class="eyebrow">CHECK-UP ROAD</div>
+        <h2>Conheça melhor a organização do seu patrimônio.</h2>
+        <p>Responda a 16 perguntas sobre <strong>Investimentos, Legado, Estratégia e Decisões</strong>. Sem informar valores ou dados sensíveis. Sua análise será enviada por e-mail.</p>
+        <button class="btn btn--primary" id="open-checkup" type="button">Iniciar Check-up ROAD</button>
       </div>
       <div class="checkup" hidden id="checkup">
-        <div class="checkup-intro" id="checkup-intro">
-          <div class="checkup-head"><div><div class="eyebrow">ANTES DE COMEÇAR</div><h3>Você passará pelas áreas de atuação da ROAD.</h3></div><button class="text-btn" id="close-checkup" type="button">Fechar</button></div>
-          <div class="checkup-areas"><div class="checkup-area-card"><small>1 de 4</small><strong>Investimentos</strong></div><div class="checkup-area-card"><small>2 de 4</small><strong>Legado</strong></div><div class="checkup-area-card"><small>3 de 4</small><strong>Estratégia</strong></div><div class="checkup-area-card"><small>4 de 4</small><strong>Decisões</strong></div></div>
-          <p>Você não precisará informar valores de patrimônio, renda, nomes de instituições financeiras ou outros dados sensíveis. Suas respostas servem apenas para compor uma visão indicativa das áreas avaliadas.</p><button class="btn btn--primary" id="start-checkup" type="button">Começar por Investimentos</button>
-        </div>
         <div class="checkup-flow" hidden id="checkup-flow">
           <div class="checkup-head"><div><div class="eyebrow" id="checkup-area">INVESTIMENTOS</div><h4 id="checkup-step-title">1 de 4 — Investimentos</h4></div><button class="text-btn" id="close-checkup-flow" type="button">Fechar</button></div>
           <div class="checkup-progress"><div class="progress-label"><span id="progress-copy">Área 1 de 4</span><span>4 perguntas</span></div><div class="progress-track"><div class="progress-bar" id="progress-bar"></div></div></div>
@@ -110,10 +106,19 @@ import "../styles/patrimonio.css";
     function currentComplete(){const key=checkupOrder[checkupStep];return areas[key].questions.every((_,i)=>answers[key+'-'+i])}
     function renderCheckup(){const key=checkupOrder[checkupStep],a=areas[key];checkupArea.textContent=a.kicker;qs('#checkup-step-title').textContent=`${checkupStep+1} de 4 — ${a.kicker.charAt(0)+a.kicker.slice(1).toLowerCase()}`;qs('#progress-copy').textContent=`Área ${checkupStep+1} de 4`;qs('#progress-bar').style.width=`${(checkupStep+1)*25}%`;questions.innerHTML='';a.questions.forEach((q,i)=>{const answerKey=key+'-'+i;const row=document.createElement('div');row.className='question';row.innerHTML=`<p>${q}</p><div class="answers"><button type="button" data-key="${answerKey}" data-value="sim">Sim</button><button type="button" data-key="${answerKey}" data-value="parcial">Parcialmente</button><button type="button" data-key="${answerKey}" data-value="nao">Não</button><button type="button" data-key="${answerKey}" data-value="naosei">Não sei</button></div>`;questions.appendChild(row)});qsa('.answers button').forEach(b=>{if(answers[b.dataset.key]===b.dataset.value)b.classList.add('selected');b.addEventListener('click',()=>{answers[b.dataset.key]=b.dataset.value;qsa(`button[data-key="${b.dataset.key}"]`).forEach(x=>x.classList.toggle('selected',x===b));updateCheckupNav()})});qs('#prev-checkup').hidden=checkupStep===0;qs('#next-checkup').textContent=checkupStep===3?'Ver resultado →':'Próxima área →';updateCheckupNav()}
     function updateCheckupNav(){qs('#next-checkup').disabled=!currentComplete()}
-    function openCheckup(){checkup.hidden=false;qs('#checkup-intro').hidden=false;qs('#checkup-flow').hidden=true;qs('#checkup-final').hidden=true;checkup.scrollIntoView({behavior:'smooth',block:'start'})}
+    function openCheckup(){
+      Object.keys(answers).forEach(key=>delete answers[key]);
+      checkupStep=0;
+      checkup.hidden=false;
+      qs('#checkup-flow').hidden=false;
+      qs('#checkup-final').hidden=true;
+      renderCheckup();
+      qs('#checkup-flow').scrollIntoView({behavior:'smooth',block:'start'});
+    }
     function closeCheckup(){checkup.hidden=true}
-    qs('#open-checkup')?.addEventListener('click',openCheckup);qs('#close-checkup')?.addEventListener('click',closeCheckup);qs('#close-checkup-flow')?.addEventListener('click',closeCheckup);qs('#close-checkup-final')?.addEventListener('click',closeCheckup);
-    qs('#start-checkup')?.addEventListener('click',()=>{checkupStep=0;qs('#checkup-intro').hidden=true;qs('#checkup-flow').hidden=false;renderCheckup();qs('#checkup-flow').scrollIntoView({behavior:'smooth',block:'start'})});
+    qs('#open-checkup')?.addEventListener('click',openCheckup);
+    qs('#close-checkup-flow')?.addEventListener('click',closeCheckup);
+    qs('#close-checkup-final')?.addEventListener('click',closeCheckup);
     qs('#prev-checkup')?.addEventListener('click',()=>{if(checkupStep>0){checkupStep--;renderCheckup();}});
     qs('#next-checkup')?.addEventListener('click',()=>{if(!currentComplete())return;if(checkupStep<3){checkupStep++;renderCheckup();qs('#checkup-flow').scrollIntoView({behavior:'smooth',block:'start'})}else{qs('#checkup-flow').hidden=true;qs('#checkup-final').hidden=false;qs('#checkup-final').dispatchEvent(new Event('road:checkup-finished'));qs('#checkup-final').scrollIntoView({behavior:'smooth',block:'start'})}});
 
@@ -170,7 +175,7 @@ import "../styles/patrimonio.css";
           .then(()=>showEmailFeedback(''))
           .catch(error=>{showEmailFeedback(error.message||'Não foi possível preparar o envio.');setupPending=null;});
       });
-      qs('#start-checkup').addEventListener('click',()=>{
+      qs('#open-checkup').addEventListener('click',()=>{
         emailSent=false;
         submitButton.disabled=false;
         roadEmailForm.reset();
