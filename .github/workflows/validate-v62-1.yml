@@ -1,0 +1,45 @@
+name: Validar V62.1 — Cabeçalho Mobile
+
+on:
+  push:
+    branches:
+      - feature/v62-1-header-mobile
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Instalar dependências
+        run: npm install --no-audit --no-fund
+      - name: Testar código do Check-up e regressões
+        run: npm test
+      - name: Compilar Astro e conferir integridade
+        run: npm run build
+      - name: Verificar empacotamento Cloudflare Worker
+        run: npx wrangler deploy --dry-run --outdir .wrangler-v62-1
+      - name: Preparar Chromium
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Testar cabeçalho em 320, 390, 430 e 1280 pixels
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4321 >/tmp/road-v62-1.log 2>&1 &
+          for i in {1..30}; do curl -fsS http://127.0.0.1:4321/ >/dev/null && break || sleep 1; done
+          node scripts/check-header-mobile-v62-1.mjs
+      - name: Guardar imagens das larguras testadas
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: road-v62-1-header
+          path: /tmp/road-v62-1-header/*.png
+          if-no-files-found: ignore
