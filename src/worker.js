@@ -1,12 +1,11 @@
-// API transacional do Check-up ROAD. O site estático não é interceptado.
+import {
+  evaluateCheckup, ROAD_REPORT_INTRO, ROAD_REPORT_NOTICE, ROAD_TAGLINE, ROAD_CTA_LINK,
+} from "./checkup-report.js";
+
+// API do Check-up ROAD. As demais páginas continuam sendo servidas como arquivos estáticos.
 const ORIGIN = "https://roadwealth.com.br";
-const AREAS = [
-  ["investments", "Investimentos"],
-  ["legacy", "Legado"],
-  ["strategy", "Estratégia"],
-  ["decisions", "Decisões"],
-];
-const ANSWERS = new Set(["sim", "parcial", "nao"]);
+const SAND = "#F3ECE3";
+const COFFEE = "#483A2F";
 
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -19,52 +18,96 @@ function json(data, status = 200) {
   });
 }
 
-function summarize(answers) {
-  if (!answers || typeof answers !== "object" || Array.isArray(answers)) return null;
-  if (Object.keys(answers).length !== 16) return null;
-  const summary = [];
-  for (const [key, title] of AREAS) {
-    let score = 0;
-    for (let i = 0; i < 4; i++) {
-      const answer = answers[key + "-" + i];
-      if (typeof answer !== "string" || !ANSWERS.has(answer)) return null;
-      score += answer === "sim" ? 2 : answer === "parcial" ? 1 : 0;
-    }
-    summary.push({
-      title,
-      status: score >= 6 ? "Bem estruturado" : score >= 3 ? "Em desenvolvimento" : "Merece atenção",
-    });
-  }
-  return summary;
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, (char) =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]
+  );
 }
 
-function escapeHtml(text) {
-  return text.replace(/[&<>"']/g, (char) => ({
-    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
-  })[char]);
+// Indicador para e-mail: faixas como células de tabela, com seta de posição acima.
+// Não depende de gradientes ou imagens externas para renderizar os quatro resultados.
+function emailBar(area) {
+  const position = Math.max(1, Math.min(99, area.percentage));
+  const left = position.toFixed(2);
+  const right = (100 - position).toFixed(2);
+  return '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse;margin:3px 0 0;">' +
+    '<tr><td width="' + left + '%" style="font-size:1px;line-height:1px;">&nbsp;</td>' +
+    '<td width="1" style="width:12px;text-align:center;color:' + COFFEE + ';font-size:16px;line-height:13px;font-family:Arial,sans-serif;">▼</td>' +
+    '<td width="' + right + '%" style="font-size:1px;line-height:1px;">&nbsp;</td></tr></table>' +
+    '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse;margin:0;">' +
+    '<tr><td bgcolor="#D4A080" width="55%" height="12" style="height:12px;background-color:#D4A080;font-size:1px;">&nbsp;</td>' +
+    '<td bgcolor="#D7BC77" width="25%" height="12" style="height:12px;background-color:#D7BC77;font-size:1px;">&nbsp;</td>' +
+    '<td bgcolor="#7BA398" width="20%" height="12" style="height:12px;background-color:#7BA398;font-size:1px;">&nbsp;</td></tr></table>';
 }
 
-function buildEmail(summary) {
-  const lines = summary.map(({ title, status }) => title + ": " + status);
+function buildEmail(report) {
+  const textLines = report.areas.map((area) => area.label + ": " + area.statusLabel);
   const text = [
-    "Seu Check-up ROAD",
+    "SEU CHECK-UP ROAD",
     "",
-    "Confira o resumo indicativo das quatro áreas avaliadas:",
-    ...lines,
+    ROAD_REPORT_INTRO,
     "",
-    "Este resultado é uma leitura inicial e não substitui uma análise patrimonial individualizada.",
-    "ROAD Wealth — Seu patrimônio, seu caminho, seu legado.",
+    "SEU MAPA PATRIMONIAL — SITUAÇÃO ATUAL",
+    ...textLines,
+    "",
+    "ONDE CONCENTRAR SUA ATENÇÃO",
+    ...report.priorities.map((item, i) => (i + 1) + ". " + item.title + " — " + item.detail),
+    "",
+    "APROFUNDE SEU DIAGNÓSTICO",
+    ROAD_REPORT_NOTICE,
+    "Converse com a ROAD: " + ROAD_CTA_LINK,
+    "",
+    "ROAD Wealth",
+    ROAD_TAGLINE,
     ORIGIN,
+    "Instagram: https://www.instagram.com/road.wealth/",
   ].join("\n");
-  const items = summary.map(({ title, status }) =>
-    "<li><strong>" + escapeHtml(title) + ":</strong> " + escapeHtml(status) + "</li>"
+
+  const areaItems = report.areas.map((area) => {
+    return '<tr><td style="padding:13px 0 16px;border-bottom:1px solid #E9E0D6;">' +
+      '<table role="presentation" width="100%" cellspacing="0" cellpadding="0"><tr>' +
+      '<td style="font:600 13px Montserrat,Arial,sans-serif;color:' + COFFEE + ';text-align:left;">' + escapeHtml(area.label) + '</td>' +
+      '<td align="right" style="font:500 12px Inter,Arial,sans-serif;color:' + area.color + ';">' + escapeHtml(area.statusLabel) + '</td>' +
+      '</tr></table>' + emailBar(area) + '</td></tr>';
+  }).join("");
+  const priorities = report.priorities.map((item, i) =>
+    '<tr><td style="padding:8px 0;">' +
+      '<div style="font:600 12px Montserrat,Arial,sans-serif;color:' + COFFEE + ';margin-bottom:4px;">' +
+      String(i + 1).padStart(2, "0") + ' · ' + escapeHtml(item.title) + '</div>' +
+      '<div style="font:400 13px/1.55 Inter,Arial,sans-serif;color:#66574B;">' + escapeHtml(item.detail) + '</div>' +
+    '</td></tr>'
   ).join("");
-  const html = '<div style="font-family:Arial,sans-serif;color:#302b27;line-height:1.6;max-width:640px">' +
-    "<h1>Seu Check-up ROAD</h1>" +
-    "<p>Confira o resumo indicativo das quatro áreas avaliadas:</p><ul>" + items + "</ul>" +
-    "<p>Este resultado é uma leitura inicial e não substitui uma análise patrimonial individualizada.</p>" +
-    "<p>ROAD Wealth — Seu patrimônio, seu caminho, seu legado.</p>" +
-    '<p><a href="' + ORIGIN + '">' + ORIGIN + "</a></p></div>";
+  const html = '<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>' +
+    '<body style="margin:0;padding:0;background-color:#F7F3EE;color:' + COFFEE + ';font-family:Inter,Arial,sans-serif;">' +
+    '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#F7F3EE"><tr><td align="center" style="padding:18px 12px;">' +
+    '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width:620px;background:#FFFFFF;border:1px solid #E9E0D6;">' +
+    '<tr><td style="padding:30px 30px 24px;">' +
+    '<div style="font:600 11px Montserrat,Arial,sans-serif;letter-spacing:2px;color:#847261;margin-bottom:10px;">ROAD WEALTH · CHECK-UP</div>' +
+    '<h1 style="font:400 28px/1.15 Questrial,Montserrat,Arial,sans-serif;margin:0 0 12px;color:' + COFFEE + ';">Seu Check-up ROAD</h1>' +
+    '<p style="font:400 13px/1.65 Inter,Arial,sans-serif;color:#6A5B4F;margin:0 0 24px;">' + escapeHtml(ROAD_REPORT_INTRO) + '</p>' +
+    '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="' + SAND + '" style="background:' + SAND + ';">' +
+    '<tr><td style="padding:20px 18px;">' +
+    '<table role="presentation" width="100%" cellspacing="0" cellpadding="0"><tr><td style="text-align:left;font:600 15px Montserrat,Arial,sans-serif;color:' + COFFEE + ';">Seu mapa patrimonial</td>' +
+    '<td align="right" style="font:600 9px Montserrat,Arial,sans-serif;color:#998775;letter-spacing:1px;">SITUAÇÃO ATUAL</td></tr></table>' +
+    '<table role="presentation" width="100%" cellspacing="0" cellpadding="0">' + areaItems + '</table>' +
+    '<p style="font:400 10px/1.5 Inter,Arial,sans-serif;color:#827263;margin:15px 0 0;">Laranja · Merece atenção &nbsp;&nbsp; Dourado · Em desenvolvimento &nbsp;&nbsp; Verde · Bem estruturado</p>' +
+    '</td></tr></table>' +
+    '<h2 style="font:600 16px Montserrat,Arial,sans-serif;margin:26px 0 12px;">Onde concentrar sua atenção</h2>' +
+    '<table role="presentation" width="100%" cellspacing="0" cellpadding="0">' + priorities + '</table>' +
+    '<div style="border-top:1px solid #E9E0D6;margin:23px 0 18px;"></div>' +
+    '<h2 style="font:600 16px Montserrat,Arial,sans-serif;margin:0 0 9px;">Aprofunde seu diagnóstico</h2>' +
+    '<p style="font:400 12px/1.65 Inter,Arial,sans-serif;color:#6A5B4F;margin:0 0 18px;">' + escapeHtml(ROAD_REPORT_NOTICE) + '</p>' +
+    '<a href="' + escapeHtml(ROAD_CTA_LINK) + '" style="display:inline-block;padding:12px 18px;background:' + COFFEE + ';border-radius:5px;color:#FFFFFF;text-decoration:none;font:600 12px Montserrat,Arial,sans-serif;">Conversar com a ROAD</a>' +
+    '<div style="border-top:1px solid #E9E0D6;margin:26px 0 20px;"></div>' +
+    // PNG do símbolo oficial do site para compatibilidade de clientes de e-mail; o HTML web mantém SVG oficial.
+    '<table role="presentation" cellspacing="0" cellpadding="0" border="0"><tr><td style="vertical-align:middle;padding-right:10px;">' +
+    '<img src="' + ORIGIN + '/assets/apple-touch-icon.png" alt="Símbolo ROAD Wealth" width="50" height="50" style="display:block;width:50px;height:50px;border:0;" /></td>' +
+    '<td style="vertical-align:middle;text-align:left;"><div style="font:700 17px/1.1 Montserrat,Arial,sans-serif;letter-spacing:1px;color:' + COFFEE + ';">ROAD</div>' +
+    '<div style="font:600 10px/1.4 Montserrat,Arial,sans-serif;letter-spacing:3px;color:' + COFFEE + ';">WEALTH</div></td></tr></table>' +
+    '<p style="font:400 12px/1.5 Inter,Arial,sans-serif;margin:12px 0 6px;color:' + COFFEE + ';">' + escapeHtml(ROAD_TAGLINE) + '</p>' +
+    '<p style="font:400 11px/1.6 Inter,Arial,sans-serif;margin:0;"><a href="' + ORIGIN + '" style="color:#695447;">roadwealth.com.br</a>' +
+    ' &nbsp;&middot;&nbsp; <a href="https://www.instagram.com/road.wealth/" style="color:#695447;">Instagram @road.wealth</a></p>' +
+    '</td></tr></table></td></tr></table></body></html>';
   return { text, html };
 }
 
@@ -133,8 +176,8 @@ export default {
     if (payload.consent !== true) {
       return json({ error: "É necessário autorizar o envio do resultado." }, 400);
     }
-    const summary = summarize(payload.answers);
-    if (!summary) return json({ error: "Respostas do Check-up incompletas." }, 400);
+    const report = evaluateCheckup(payload.answers);
+    if (!report) return json({ error: "Respostas do Check-up incompletas." }, 400);
     const token = typeof payload.turnstileToken === "string" ? payload.turnstileToken : "";
     if (!token || token.length > 2048 || !(await verifyTurnstile(request, token, env.TURNSTILE_SECRET_KEY))) {
       return json({ error: "Verificação de segurança inválida. Tente novamente." }, 403);
@@ -153,7 +196,7 @@ export default {
     }
 
     try {
-      const message = buildEmail(summary);
+      const message = buildEmail(report);
       await env.EMAIL.send({
         from: { email: "contato@roadwealth.com.br", name: "ROAD Wealth" },
         to: email,
