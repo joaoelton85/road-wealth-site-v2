@@ -70,7 +70,7 @@ test("Worker envia resultado HTML com mapa, assinatura e links oficiais",async()
     const msg=sent[0];
     assert.match(msg.html,/Seu mapa patrimonial/);
     assert.match(msg.html,/SITUAÇÃO ATUAL/);
-    assert.match(msg.html,/checkup-bar-8\\.png/);
+    assert.match(msg.html,/checkup-bar-8\.png/);
     assert.match(msg.html,/assets\/road-logo-cafe-email.png/);
     assert.match(msg.html,/Instagram @road\.wealth/);
     assert.match(msg.html,/Montserrat,Arial/);
