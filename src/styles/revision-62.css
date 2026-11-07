@@ -83,7 +83,7 @@
     white-space:normal!important;
     overflow-wrap:normal;
   }
-  .footer-neighborhood{display:block}
+  .footer-locality{display:block;white-space:nowrap}
   .footer-address-separator{display:none}
   .footer-channels{
     width:auto!important;

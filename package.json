@@ -1,7 +1,7 @@
 {
   "name": "road-wealth-site",
   "private": true,
-  "version": "64.2.0",
+  "version": "64.3.0",
   "type": "module",
   "scripts": {
     "dev": "astro dev",
