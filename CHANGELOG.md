@@ -1,5 +1,15 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 62.1 — 07/11/2026
+
+- Correção pontual do cabeçalho **mobile** (até 680px): altura útil de 86px, folga vertical de 10px e marcas centradas.
+- Logotipo ROAD completo com largura 39px (reduzido de 42px), altura proporcional, sem corte no topo.
+- Marca Rede Meu Patrimônio preservada em seu SVG original e alinhada ao centro da ROAD; menu mobile igualmente centralizado.
+- Menu expansível ancorado abaixo do cabeçalho (`top:100%`), evitando sobreposição após ajuste de altura.
+- Sem alteração no cabeçalho desktop, no ticker, no Check-up, nos e-mails ou nos dados.
+- V62 preservada em `backup/v62-antes-v62-1`. Build `62.1.0`.
+
+
 ## Revisão 62 — 07/11/2026
 
 - **Home:** chamada permanente para o Check-up ROAD imediatamente abaixo dos dois botões de apresentação, visível também no mobile, encaminhando para a seção Patrimônio.
