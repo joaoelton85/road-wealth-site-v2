@@ -1,0 +1,45 @@
+name: Validar V63 — Check-up sem duplicação
+
+on:
+  push:
+    branches:
+      - feature/v63-checkup-entry
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Instalar dependências
+        run: npm install --no-audit --no-fund
+      - name: Testes do diagnóstico, fluxo e identidade
+        run: npm test
+      - name: Build e integridade
+        run: npm run build
+      - name: Validar Cloudflare Worker sem publicar
+        run: npx wrangler deploy --dry-run --outdir .wrangler-v63
+      - name: Instalar Chromium
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Verificar primeira tela e questionário mobile
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4321 >/tmp/road-v63-preview.log 2>&1 &
+          for i in {1..30}; do curl -fsS http://127.0.0.1:4321/ >/dev/null && break || sleep 1; done
+          node scripts/check-entry-v63.mjs
+      - name: Capturas de tela do teste
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: road-v63-mobile-entry
+          path: /tmp/road-v63-entry/*.png
+          if-no-files-found: ignore
