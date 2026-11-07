@@ -21,7 +21,7 @@ try {
     assert(first.eyebrow.y>=first.stack.bottom-2,"eyebrow hidden behind sticky top @"+width+": "+JSON.stringify(first));
     assert(first.button.bottom<height-12,"button not visible on first screen @"+width+": "+JSON.stringify(first));
     await page.screenshot({path:dir+"/first-screen-"+width+".png"});
-    assert.equal(await page.locator("#checkup-road .eyebrow").count(),1);
+    assert.equal(await page.locator("#checkup-road .checkup-entry .eyebrow").count(),1);
     assert.equal(await page.locator("#checkup-road .checkup-invite").count(),0);
     await page.locator("#open-checkup").click();
     assert(await page.locator("#checkup-flow").isVisible(),"flow not opened immediately");
