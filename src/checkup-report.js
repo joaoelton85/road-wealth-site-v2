@@ -57,7 +57,7 @@ export function evaluateCheckup(answers) {
       areaAnswers.push(choice);
     }
     const status = roadStatus(points);
-    areas.push({ key, label, points, percentage: Math.round(points / 12 * 10000) / 100, ...status });
+    areas.push({ key, label, points, percentage: Math.round(points / 12 * 10000) / 100, statusLabel: status.label, statusKey: status.key, color: status.color });
     areaAnswers.forEach((choice, index) => {
       if (choice === "sim") return;
       const suggestion = ROAD_ACTIONS[key][index];
