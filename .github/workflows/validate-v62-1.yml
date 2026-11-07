@@ -1,9 +1,9 @@
-name: Validar V62.1 — Cabeçalho Mobile
+name: Validar V62.2 — Branding do cabeçalho mobile
 
 on:
   push:
     branches:
-      - feature/v62-1-header-mobile
+      - feature/v62-2-branding-mobile
   pull_request:
     branches:
       - main
@@ -31,7 +31,7 @@ jobs:
         run: |
           npm install --no-save playwright
           npx playwright install --with-deps chromium
-      - name: Testar cabeçalho em 320, 390, 430 e 1280 pixels
+      - name: Testar marcas originais em 320, 390, 430 e 1280 pixels
         run: |
           npm run preview -- --host 127.0.0.1 --port 4321 >/tmp/road-v62-1.log 2>&1 &
           for i in {1..30}; do curl -fsS http://127.0.0.1:4321/ >/dev/null && break || sleep 1; done
