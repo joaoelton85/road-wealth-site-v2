@@ -42,6 +42,23 @@ try {
     console.log(JSON.stringify({width,height,stackBottom:first.stack.bottom,headingTop:first.eyebrow.y,buttonBottom:first.button.bottom,stage:"16 responses to email"}));
     await ctx.close();
   }
+  // Cenário real: visita à Home e clique no botão permanente do Check-up.
+  const mobile=await browser.newContext({viewport:{width:390,height:640},deviceScaleFactor:1,isMobile:true,hasTouch:true});
+  const fromHome=await mobile.newPage();
+  await fromHome.goto("http://127.0.0.1:4321/",{waitUntil:"domcontentloaded"});
+  await fromHome.locator('.hero .actions a[href="/patrimonio/#checkup-road"]').click();
+  await fromHome.waitForURL(url=>url.pathname==="/patrimonio/" && url.hash==="#checkup-road");
+  await fromHome.waitForTimeout(700);
+  const afterHome=await fromHome.evaluate(()=>{
+    const r=document.querySelector("#open-checkup").getBoundingClientRect();
+    const h=document.querySelector(".site-top-stack").getBoundingClientRect();
+    return {buttonBottom:r.bottom,buttonTop:r.top,stackBottom:h.bottom,viewport:innerHeight};
+  });
+  assert(afterHome.buttonTop>=afterHome.stackBottom-2,"CTA from Home behind header: "+JSON.stringify(afterHome));
+  assert(afterHome.buttonBottom<afterHome.viewport-12,"CTA from Home not in first screen: "+JSON.stringify(afterHome));
+  await fromHome.screenshot({path:dir+"/home-to-checkup.png"});
+  console.log("FROM_HOME",JSON.stringify(afterHome));
+  await mobile.close();
   const ctx=await browser.newContext({viewport:{width:1280,height:800}});
   const page=await ctx.newPage();
   await page.goto("http://127.0.0.1:4321/",{waitUntil:"domcontentloaded"});
