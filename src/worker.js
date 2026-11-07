@@ -2,10 +2,18 @@ import {
   evaluateCheckup, ROAD_REPORT_INTRO, ROAD_REPORT_NOTICE, ROAD_TAGLINE, ROAD_CTA_LINK,
 } from "./checkup-report.js";
 
-// API do Check-up ROAD. As demais páginas continuam sendo servidas como arquivos estáticos.
+// Check-up ROAD — endpoint de envio seguro. Nenhum resultado é exibido no site.
 const ORIGIN = "https://roadwealth.com.br";
-const SAND = "#F3ECE3";
-const COFFEE = "#483A2F";
+const COLORS = {
+  coffee: "#483A2F",
+  sand: "#F3ECE3",
+  background: "#F8F5F0",
+  muted: "#72665D",
+  attention: "#D4A080",
+  developing: "#D7BC77",
+  good: "#7BA398",
+  separator: "#E2D9D0",
+};
 
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -17,98 +25,106 @@ function json(data, status = 200) {
     },
   });
 }
-
 function escapeHtml(value) {
-  return String(value).replace(/[&<>"']/g, (char) =>
-    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]
-  );
+  return String(value).replace(/[&<>"']/g,(char)=>
+    ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" })[char]);
 }
 
-// Indicador para e-mail: faixas como células de tabela, com seta de posição acima.
-// Não depende de gradientes ou imagens externas para renderizar os quatro resultados.
+// Tabela com cores reais: robusta no Outlook para Windows e Gmail.
+// A posição é o marcador ▼, sem nota exibida ao visitante.
 function emailBar(area) {
-  const position = Math.max(1, Math.min(99, area.percentage));
-  const left = position.toFixed(2);
-  const right = (100 - position).toFixed(2);
-  return '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse;margin:3px 0 0;">' +
-    '<tr><td width="' + left + '%" style="font-size:1px;line-height:1px;">&nbsp;</td>' +
-    '<td width="1" style="width:12px;text-align:center;color:' + COFFEE + ';font-size:16px;line-height:13px;font-family:Arial,sans-serif;">▼</td>' +
-    '<td width="' + right + '%" style="font-size:1px;line-height:1px;">&nbsp;</td></tr></table>' +
-    '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse;margin:0;">' +
-    '<tr><td bgcolor="#D4A080" width="55%" height="12" style="height:12px;background-color:#D4A080;font-size:1px;">&nbsp;</td>' +
-    '<td bgcolor="#D7BC77" width="25%" height="12" style="height:12px;background-color:#D7BC77;font-size:1px;">&nbsp;</td>' +
-    '<td bgcolor="#7BA398" width="20%" height="12" style="height:12px;background-color:#7BA398;font-size:1px;">&nbsp;</td></tr></table>';
+  const selected = Math.max(0, Math.min(12, area.points));
+  const marker = Array.from({length:13},(_,i)=>
+    '<td width="7.69%" align="center" style="height:19px;line-height:19px;font-size:15px;color:' + COLORS.coffee +
+    ';font-family:Arial,sans-serif;">' + (i===selected?"&#9660;":"&nbsp;") + '</td>').join("");
+  const cells=Array.from({length:13},(_,i)=>{
+    const color=i<=6?COLORS.attention:i<=9?COLORS.developing:COLORS.good;
+    return '<td width="7.69%" height="11" bgcolor="'+color+
+      '" style="background-color:'+color+';height:11px;font-size:1px;line-height:1px;">&nbsp;</td>';
+  }).join("");
+  return '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse;table-layout:fixed;">'+
+    '<tr>'+marker+'</tr><tr>'+cells+'</tr></table>';
 }
 
 function buildEmail(report) {
-  const textLines = report.areas.map((area) => area.label + ": " + area.statusLabel);
   const text = [
     "SEU CHECK-UP ROAD",
     "",
     ROAD_REPORT_INTRO,
     "",
     "SEU MAPA PATRIMONIAL — SITUAÇÃO ATUAL",
-    ...textLines,
+    ...report.areas.map(area=>area.label+": "+area.statusLabel),
+    ...(report.limited ? ["Esta avaliação é limitada pelas informações disponíveis. As classificações podem refletir desconhecimento, e não problemas comprovados."] : []),
     "",
-    "ONDE CONCENTRAR SUA ATENÇÃO",
-    ...report.priorities.map((item, i) => (i + 1) + ". " + item.title + " — " + item.detail),
+    "SUA ANÁLISE PATRIMONIAL",
+    ...report.priorities.map((item,i)=>(i+1)+". "+item.title+"\n"+item.detail),
     "",
     "APROFUNDE SEU DIAGNÓSTICO",
     ROAD_REPORT_NOTICE,
-    "Converse com a ROAD: " + ROAD_CTA_LINK,
+    "Converse com a ROAD: "+ROAD_CTA_LINK,
     "",
-    "ROAD Wealth",
     ROAD_TAGLINE,
     ORIGIN,
     "Instagram: https://www.instagram.com/road.wealth/",
   ].join("\n");
 
-  const areaItems = report.areas.map((area) => {
-    return '<tr><td style="padding:13px 0 16px;border-bottom:1px solid #E9E0D6;">' +
-      '<table role="presentation" width="100%" cellspacing="0" cellpadding="0"><tr>' +
-      '<td style="font:600 13px Montserrat,Arial,sans-serif;color:' + COFFEE + ';text-align:left;">' + escapeHtml(area.label) + '</td>' +
-      '<td align="right" style="font:500 12px Inter,Arial,sans-serif;color:' + area.color + ';">' + escapeHtml(area.statusLabel) + '</td>' +
-      '</tr></table>' + emailBar(area) + '</td></tr>';
+  const areaRows=report.areas.map(area=>{
+    return '<tr><td style="padding:16px 0 17px;border-bottom:1px solid '+COLORS.separator+';">' +
+      '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">' +
+      '<tr><td valign="bottom" style="font-family:Montserrat,Arial,sans-serif;font-size:14px;font-weight:600;color:'+COLORS.coffee+';">'+
+      escapeHtml(area.label)+'</td><td align="right" valign="bottom" style="font-family:Inter,Arial,sans-serif;font-size:13px;font-weight:500;color:'+area.color+';">'+
+      escapeHtml(area.statusLabel)+'</td></tr></table>' + emailBar(area) + '</td></tr>';
   }).join("");
-  const priorities = report.priorities.map((item, i) =>
-    '<tr><td style="padding:8px 0;">' +
-      '<div style="font:600 12px Montserrat,Arial,sans-serif;color:' + COFFEE + ';margin-bottom:4px;">' +
-      String(i + 1).padStart(2, "0") + ' · ' + escapeHtml(item.title) + '</div>' +
-      '<div style="font:400 13px/1.55 Inter,Arial,sans-serif;color:#66574B;">' + escapeHtml(item.detail) + '</div>' +
+
+  const analysisRows=report.priorities.map((item,index)=>
+    '<tr><td style="padding:10px 0 13px;">' +
+    '<p style="margin:0 0 6px;font-family:Montserrat,Arial,sans-serif;font-size:16px;line-height:1.35;font-weight:600;color:'+COLORS.coffee+';">'+
+    '<span style="color:#A48A71;">'+String(index+1).padStart(2,"0")+' &nbsp;</span>'+escapeHtml(item.title)+'</p>'+
+    '<p style="margin:0;font-family:Inter,Arial,sans-serif;font-size:15px;line-height:1.65;font-weight:400;color:'+COLORS.muted+';">'+escapeHtml(item.detail)+'</p>'+
     '</td></tr>'
   ).join("");
-  const html = '<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>' +
-    '<body style="margin:0;padding:0;background-color:#F7F3EE;color:' + COFFEE + ';font-family:Inter,Arial,sans-serif;">' +
-    '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#F7F3EE"><tr><td align="center" style="padding:18px 12px;">' +
-    '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width:620px;background:#FFFFFF;border:1px solid #E9E0D6;">' +
-    '<tr><td style="padding:30px 30px 24px;">' +
-    '<div style="font:600 11px Montserrat,Arial,sans-serif;letter-spacing:2px;color:#847261;margin-bottom:10px;">ROAD WEALTH · CHECK-UP</div>' +
-    '<h1 style="font:400 28px/1.15 Questrial,Montserrat,Arial,sans-serif;margin:0 0 12px;color:' + COFFEE + ';">Seu Check-up ROAD</h1>' +
-    '<p style="font:400 13px/1.65 Inter,Arial,sans-serif;color:#6A5B4F;margin:0 0 24px;">' + escapeHtml(ROAD_REPORT_INTRO) + '</p>' +
-    '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="' + SAND + '" style="background:' + SAND + ';">' +
-    '<tr><td style="padding:20px 18px;">' +
-    '<table role="presentation" width="100%" cellspacing="0" cellpadding="0"><tr><td style="text-align:left;font:600 15px Montserrat,Arial,sans-serif;color:' + COFFEE + ';">Seu mapa patrimonial</td>' +
-    '<td align="right" style="font:600 9px Montserrat,Arial,sans-serif;color:#998775;letter-spacing:1px;">SITUAÇÃO ATUAL</td></tr></table>' +
-    '<table role="presentation" width="100%" cellspacing="0" cellpadding="0">' + areaItems + '</table>' +
-    '<p style="font:400 10px/1.5 Inter,Arial,sans-serif;color:#827263;margin:15px 0 0;">Laranja · Merece atenção &nbsp;&nbsp; Dourado · Em desenvolvimento &nbsp;&nbsp; Verde · Bem estruturado</p>' +
+  const limitedNotice=report.limited
+    ? '<p style="font-family:Inter,Arial,sans-serif;font-size:12px;line-height:1.6;color:'+COLORS.muted+';margin:14px 0 0;">As classificações refletem as respostas disponíveis e não comprovam ausência de organização patrimonial.</p>'
+    : '';
+
+  const html='<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>' +
+    '<body style="margin:0;padding:0;background-color:'+COLORS.background+';font-family:Inter,Arial,sans-serif;color:'+COLORS.coffee+';">' +
+    '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="'+COLORS.background+'"><tr><td align="center" style="padding:20px 10px;">' +
+    '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#FFFFFF" style="max-width:630px;background-color:#FFFFFF;border:1px solid '+COLORS.separator+';">' +
+    '<tr><td style="padding:32px 28px 30px;text-align:left;">' +
+    '<p style="font-family:Montserrat,Arial,sans-serif;font-size:12px;font-weight:600;letter-spacing:2px;color:#9A8371;margin:0 0 12px;">ROAD WEALTH · CHECK-UP</p>' +
+    '<h1 style="font-family:Questrial,Montserrat,Arial,sans-serif;font-size:30px;font-weight:400;line-height:1.17;letter-spacing:-.02em;margin:0 0 17px;color:'+COLORS.coffee+';">Seu Check-up ROAD</h1>' +
+    '<p style="font-family:Inter,Arial,sans-serif;font-size:15px;font-weight:400;line-height:1.65;margin:0 0 23px;color:'+COLORS.muted+';">'+escapeHtml(ROAD_REPORT_INTRO)+'</p>' +
+
+    '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="'+COLORS.sand+'" style="background-color:'+COLORS.sand+';">' +
+    '<tr><td style="padding:20px 20px 18px;">' +
+    '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"><tr>' +
+    '<td style="font-family:Montserrat,Arial,sans-serif;font-size:19px;font-weight:600;line-height:1.3;color:'+COLORS.coffee+';">Seu mapa patrimonial</td>' +
+    '<td align="right" style="font-family:Montserrat,Arial,sans-serif;font-size:10px;font-weight:500;letter-spacing:1px;color:#91806F;white-space:nowrap;">SITUAÇÃO ATUAL</td>' +
+    '</tr></table>' +
+    '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">'+areaRows+'</table>'+
+    limitedNotice+'</td></tr></table>' +
+
+    '<h2 style="font-family:Montserrat,Arial,sans-serif;font-size:20px;line-height:1.3;font-weight:600;margin:29px 0 12px;color:'+COLORS.coffee+';">Sua análise patrimonial</h2>' +
+    '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">'+analysisRows+'</table>' +
+
+    '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"><tr><td style="border-top:1px solid '+COLORS.separator+';padding-top:21px;">' +
+    '<h2 style="font-family:Montserrat,Arial,sans-serif;font-size:20px;line-height:1.3;font-weight:600;margin:0 0 10px;color:'+COLORS.coffee+';">Aprofunde seu diagnóstico</h2>' +
+    '<p style="font-family:Inter,Arial,sans-serif;font-size:14px;line-height:1.65;color:'+COLORS.muted+';margin:0 0 19px;">'+escapeHtml(ROAD_REPORT_NOTICE)+'</p>' +
+    '<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td bgcolor="'+COLORS.coffee+'" style="background-color:'+COLORS.coffee+';padding:14px 20px;border-radius:4px;">' +
+    '<a href="'+escapeHtml(ROAD_CTA_LINK)+'" style="font-family:Montserrat,Arial,sans-serif;font-size:14px;font-weight:600;color:#FFFFFF;text-decoration:none;display:inline-block;">Conversar com a ROAD</a></td></tr></table>' +
     '</td></tr></table>' +
-    '<h2 style="font:600 16px Montserrat,Arial,sans-serif;margin:26px 0 12px;">Onde concentrar sua atenção</h2>' +
-    '<table role="presentation" width="100%" cellspacing="0" cellpadding="0">' + priorities + '</table>' +
-    '<div style="border-top:1px solid #E9E0D6;margin:23px 0 18px;"></div>' +
-    '<h2 style="font:600 16px Montserrat,Arial,sans-serif;margin:0 0 9px;">Aprofunde seu diagnóstico</h2>' +
-    '<p style="font:400 12px/1.65 Inter,Arial,sans-serif;color:#6A5B4F;margin:0 0 18px;">' + escapeHtml(ROAD_REPORT_NOTICE) + '</p>' +
-    '<a href="' + escapeHtml(ROAD_CTA_LINK) + '" style="display:inline-block;padding:12px 18px;background:' + COFFEE + ';border-radius:5px;color:#FFFFFF;text-decoration:none;font:600 12px Montserrat,Arial,sans-serif;">Conversar com a ROAD</a>' +
-    '<div style="border-top:1px solid #E9E0D6;margin:26px 0 20px;"></div>' +
-    // PNG do símbolo oficial do site para compatibilidade de clientes de e-mail; o HTML web mantém SVG oficial.
-    '<table role="presentation" cellspacing="0" cellpadding="0" border="0"><tr><td style="vertical-align:middle;padding-right:10px;">' +
-    '<img src="' + ORIGIN + '/assets/apple-touch-icon.png" alt="Símbolo ROAD Wealth" width="50" height="50" style="display:block;width:50px;height:50px;border:0;" /></td>' +
-    '<td style="vertical-align:middle;text-align:left;"><div style="font:700 17px/1.1 Montserrat,Arial,sans-serif;letter-spacing:1px;color:' + COFFEE + ';">ROAD</div>' +
-    '<div style="font:600 10px/1.4 Montserrat,Arial,sans-serif;letter-spacing:3px;color:' + COFFEE + ';">WEALTH</div></td></tr></table>' +
-    '<p style="font:400 12px/1.5 Inter,Arial,sans-serif;margin:12px 0 6px;color:' + COFFEE + ';">' + escapeHtml(ROAD_TAGLINE) + '</p>' +
-    '<p style="font:400 11px/1.6 Inter,Arial,sans-serif;margin:0;"><a href="' + ORIGIN + '" style="color:#695447;">roadwealth.com.br</a>' +
-    ' &nbsp;&middot;&nbsp; <a href="https://www.instagram.com/road.wealth/" style="color:#695447;">Instagram @road.wealth</a></p>' +
+
+    '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="border-top:1px solid '+COLORS.separator+';padding-top:23px;padding-bottom:4px;text-align:left;">' +
+    // Símbolo + grafia original são uma única imagem gerada a partir do SVG oficial.
+    '<img alt="ROAD Wealth" src="'+ORIGIN+'/assets/road-logo-cafe-email.png" width="90" height="140" style="display:block;width:90px;height:140px;border:0;object-fit:contain;" />' +
+    '<p style="font-family:Inter,Arial,sans-serif;font-size:13px;line-height:1.55;color:'+COLORS.coffee+';margin:13px 0 7px;">'+escapeHtml(ROAD_TAGLINE)+'</p>' +
+    '<p style="font-family:Inter,Arial,sans-serif;font-size:12px;line-height:1.65;margin:0;">' +
+    '<a href="'+ORIGIN+'" style="color:#6A5749;text-decoration:underline;">roadwealth.com.br</a>' +
+    ' &nbsp;·&nbsp; <a href="https://www.instagram.com/road.wealth/" style="color:#6A5749;text-decoration:underline;">Instagram @road.wealth</a></p>' +
+    '</td></tr></table>' +
     '</td></tr></table></td></tr></table></body></html>';
-  return { text, html };
+  return {text,html};
 }
 
 async function verifyTurnstile(request, token, secret) {
