@@ -1,3 +1,4 @@
+import { generateCheckupPdf } from "./checkup-pdf.js";
 import {
   evaluateCheckup, ROAD_REPORT_INTRO, ROAD_REPORT_NOTICE, ROAD_TAGLINE, ROAD_CTA_LINK,
 } from "./checkup-report.js";
@@ -50,8 +51,7 @@ function buildEmail(report) {
     ...report.areas.map(area=>area.label+": "+area.statusLabel),
     ...(report.limited ? ["Esta avaliação é limitada pelas informações disponíveis. As classificações podem refletir desconhecimento, e não problemas comprovados."] : []),
     "",
-    "SUA ANÁLISE PATRIMONIAL",
-    ...report.priorities.map((item,i)=>(i+1)+". "+item.title+"\n"+item.detail),
+    "O diagnóstico completo, com a análise das suas respostas, está no PDF anexo.",
     "",
     "APROFUNDE SEU DIAGNÓSTICO",
     ROAD_REPORT_NOTICE,
@@ -70,13 +70,6 @@ function buildEmail(report) {
       escapeHtml(area.statusLabel)+'</td></tr></table>' + emailBar(area) + '</td></tr>';
   }).join("");
 
-  const analysisRows=report.priorities.map((item,index)=>
-    '<tr><td style="padding:10px 0 13px;">' +
-    '<p style="margin:0 0 6px;font-family:Montserrat,Arial,Helvetica,sans-serif;font-size:16px;line-height:1.35;font-weight:600;color:'+COLORS.coffee+';">'+
-    '<span style="color:#A48A71;">'+String(index+1).padStart(2,"0")+' &nbsp;</span>'+escapeHtml(item.title)+'</p>'+
-    '<p style="margin:0;font-family:Inter,Arial,Helvetica,sans-serif;font-size:15px;line-height:1.65;font-weight:400;color:'+COLORS.muted+';">'+escapeHtml(item.detail)+'</p>'+
-    '</td></tr>'
-  ).join("");
   const limitedNotice=report.limited
     ? '<p style="font-family:Inter,Arial,Helvetica,sans-serif;font-size:12px;line-height:1.6;color:'+COLORS.muted+';margin:14px 0 0;">As classificações refletem as respostas disponíveis e não comprovam ausência de organização patrimonial.</p>'
     : '';
@@ -99,8 +92,7 @@ function buildEmail(report) {
     '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">'+areaRows+'</table>'+
     limitedNotice+'</td></tr></table>' +
 
-    '<h2 style="font-family:Montserrat,Arial,Helvetica,sans-serif;font-size:20px;line-height:1.3;font-weight:600;margin:29px 0 12px;color:'+COLORS.coffee+';">Sua análise patrimonial</h2>' +
-    '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">'+analysisRows+'</table>' +
+    '<p style="font-family:Inter,Arial,Helvetica,sans-serif;font-size:15px;line-height:1.65;margin:20px 0;color:'+COLORS.coffee+';">O diagnóstico completo, com a análise das suas respostas, está no <strong>PDF anexo</strong>.</p>' +
 
     '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"><tr><td style="border-top:1px solid '+COLORS.separator+';padding-top:21px;">' +
     '<h2 style="font-family:Montserrat,Arial,Helvetica,sans-serif;font-size:20px;line-height:1.3;font-weight:600;margin:0 0 10px;color:'+COLORS.coffee+';">Aprofunde seu diagnóstico</h2>' +
@@ -113,7 +105,7 @@ function buildEmail(report) {
     // Logo oficial completo em PNG: duas colunas robustas para Outlook e Gmail.
     '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"><tr>' +
     '<td width="79" valign="middle" style="width:79px;vertical-align:middle;padding-right:15px;">' +
-    '<img alt="ROAD Wealth" src="'+ORIGIN+'/assets/road-logo-cafe-email.png" width="64" height="109" style="display:block;width:64px;height:109px;border:0;outline:none;text-decoration:none;" />' +
+    '<img alt="ROAD Wealth" src="'+ORIGIN+'/assets/road-logo-cafe-email.png" width="70" height="109" style="display:block;width:70px;height:109px;border:0;outline:none;text-decoration:none;" />' +
     '</td>' +
     '<td valign="middle" style="vertical-align:middle;text-align:left;">' +
     '<p style="font-family:Inter,Arial,Helvetica,sans-serif;font-size:13px;line-height:1.5;color:'+COLORS.coffee+';margin:0 0 9px;">'+escapeHtml(ROAD_TAGLINE)+'</p>' +
@@ -213,12 +205,19 @@ export default {
 
     try {
       const message = buildEmail(report);
+      const pdf = await generateCheckupPdf(report);
       await env.EMAIL.send({
         from: { email: "contato@roadwealth.com.br", name: "ROAD Wealth" },
         to: email,
         replyTo: "contato@roadwealth.com.br",
         subject: "Seu resultado — Check-up ROAD",
         ...message,
+        attachments: [{
+          filename: "Diagnostico-Check-up-ROAD.pdf",
+          type: "application/pdf",
+          disposition: "attachment",
+          content: pdf,
+        }],
       });
       return json({ success: true, message: "Solicitação de envio recebida." }, 202);
     } catch (error) {

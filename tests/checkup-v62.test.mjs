@@ -70,10 +70,10 @@ test("fontes do site são carregadas quando possível, mantendo fallback em Outl
 
 test("a marca original, menor, compartilha uma linha com lema e canais",async()=>{
   const msg=await emailFor(answers("nao"));
-  assert.match(msg.html,/road-logo-cafe-email\.png" width="64" height="109"/);
+  assert.match(msg.html,/road-logo-cafe-email\.png" width="70" height="109"/);
   assert.match(msg.html,/roadwealth\.com\.br/);
   assert.match(msg.html,/Instagram @road\.wealth/);
-  assert.match(msg.html,/Seu patrimônio, seu legado, seu caminho/);
+  assert.match(msg.html,/Seu patrimônio, seu caminho, seu legado/);
   assert.doesNotMatch(msg.html,/alt="ROAD Wealth"[^>]*width="90"/);
   assert.match(msg.html,/border:1px solid #483A2F/);
   assert.match(msg.html,/color:#483A2F;text-decoration:underline/);

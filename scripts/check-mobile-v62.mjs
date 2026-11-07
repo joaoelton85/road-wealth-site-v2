@@ -11,7 +11,7 @@ try {
     const page=await context.newPage();
     await page.goto("http://127.0.0.1:4321/",{waitUntil:"domcontentloaded"});
     await page.waitForTimeout(450);
-    const cta=page.locator(".road-home-checkup-access a");
+    const cta=page.locator('.hero .actions a[href="/patrimonio/#checkup-road"]');
     assert(await cta.count()===1,"CTA home Check-up missing");
     await cta.scrollIntoViewIfNeeded();
     const cb=await cta.boundingBox();
