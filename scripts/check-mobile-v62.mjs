@@ -26,7 +26,11 @@ try {
     assert(heading && heading.x>=12 && heading.x+heading.width<=width-11,
       "Check-up heading out of frame: "+JSON.stringify(heading));
     await page.screenshot({path:snapshots+"/checkup-"+width+".png"});
-    // Link is readable even when floating controls are hidden during Check-up.
+    // A entrada compacta da V63 ocupa apenas parte da tela. O modo de
+    // leitura se aplica quando as perguntas alcançam os controles flutuantes.
+    await page.locator("#open-checkup").click();
+    await page.locator("#checkup-flow").scrollIntoViewIfNeeded();
+    await page.waitForFunction(() => document.body.classList.contains("road-mobile-reading-zone"));
     assert.equal(await page.locator("body.road-mobile-reading-zone").count(),1,
       "Mobile reading mode not activated in Check-up");
     const utilityVisibility=await page.locator("#mobile-utility").evaluate(el=>getComputedStyle(el).visibility);
