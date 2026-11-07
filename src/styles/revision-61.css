@@ -1,0 +1,209 @@
+/* ROAD Wealth — V61. Ajustes isolados, preservando o restante do layout. */
+
+/* Contato: uma linha de canais no desktop, compacto e responsivo. */
+#contato.cta-final{
+  padding-top:29px!important;
+  padding-bottom:20px!important;
+  min-height:0!important;
+}
+#contato.cta-final h2{margin:0 0 10px}
+#contato.cta-final .lead{margin:0 0 18px}
+#contato .road-contact-channels{
+  display:flex;
+  align-items:center;
+  flex-wrap:nowrap;
+  gap:10px;
+  margin:0;
+  padding:0;
+}
+#contato .road-contact-channels .btn,
+#contato .road-contact-channels .social-link{
+  min-height:42px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  white-space:nowrap;
+  margin:0;
+  box-sizing:border-box;
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:12px;
+  line-height:1.25;
+}
+#contato .road-contact-channels .social-link{
+  color:var(--sand);
+  background:transparent;
+  border:1px solid rgba(243,236,227,.6);
+  padding:10px 14px;
+}
+#contato .road-contact-channels .social-link:hover,
+#contato .road-contact-channels .social-link:focus-visible{
+  background:rgba(243,236,227,.09);
+}
+@media(max-width:760px){
+  #contato.cta-final{padding-top:26px!important;padding-bottom:22px!important}
+  #contato .road-contact-channels{flex-wrap:wrap;gap:9px}
+  #contato .road-contact-channels .btn,
+  #contato .road-contact-channels .social-link{min-height:40px}
+}
+
+/* Rodapé desktop: marca à esquerda, legais alinhados pela BASE, canais à direita. */
+@media(min-width:1201px){
+  .footer-primary{
+    display:grid!important;
+    grid-template-columns:auto minmax(250px,1fr) auto!important;
+    grid-template-areas:"brand legal right"!important;
+    align-items:end!important;
+    column-gap:30px!important;
+    row-gap:0!important;
+  }
+  .footer-brand-group{
+    grid-area:brand!important;
+    justify-self:start!important;
+    align-self:end!important;
+  }
+  .footer-right{
+    grid-area:right!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:flex-end!important;
+    justify-content:flex-end!important;
+    gap:6px!important;
+    margin:0!important;
+    padding:0!important;
+    align-self:end!important;
+    min-width:0;
+  }
+  .footer-meta{
+    grid-area:legal!important;
+    grid-column:auto!important;
+    grid-row:auto!important;
+    align-self:end!important;
+    justify-self:center!important;
+    align-items:center!important;
+    justify-content:flex-end!important;
+    transform:none!important;
+    margin:0!important;
+    padding:0!important;
+    gap:3px!important;
+  }
+  .footer-links{justify-content:center!important;text-align:center!important}
+  .footer-meta small{text-align:center!important}
+  .footer-address-block{
+    grid-area:auto!important;
+    align-self:auto!important;
+    justify-self:auto!important;
+    width:auto!important;
+    margin:0!important;
+    padding:0!important;
+    transform:none!important;
+    text-align:right!important;
+  }
+  .footer-address{text-align:right!important}
+  .footer-channels{
+    grid-area:auto!important;
+    width:auto!important;
+    max-width:100%;
+    margin:0!important;
+    justify-self:auto!important;
+    align-self:auto!important;
+    justify-content:flex-end!important;
+    flex-wrap:nowrap!important;
+    gap:6px!important;
+  }
+}
+/* Notebooks: evita esmagar as três colunas e mantém os contatos juntos. */
+@media(min-width:681px) and (max-width:1200px){
+  .footer-primary{
+    display:grid!important;
+    grid-template-columns:auto minmax(0,1fr)!important;
+    grid-template-areas:"brand right" "legal legal"!important;
+    align-items:end!important;
+    column-gap:20px!important;
+    row-gap:6px!important;
+  }
+  .footer-brand-group{grid-area:brand!important;align-self:end!important}
+  .footer-right{
+    grid-area:right!important;
+    align-self:end!important;
+    display:flex!important;
+    flex-direction:column!important;
+    gap:5px!important;
+    align-items:flex-end!important;
+    min-width:0;
+  }
+  .footer-address-block{
+    grid-area:auto!important;
+    transform:none!important;
+    align-self:auto!important;
+    margin:0!important;
+    padding:0!important;
+    text-align:right!important;
+  }
+  .footer-address{text-align:right!important}
+  .footer-channels{
+    grid-area:auto!important;
+    align-self:auto!important;
+    justify-content:flex-end!important;
+    flex-wrap:wrap!important;
+  }
+  .footer-meta{
+    grid-area:legal!important;
+    grid-column:auto!important;
+    grid-row:auto!important;
+    justify-self:center!important;
+    align-self:end!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:3px!important;
+    transform:none!important;
+    margin:0!important;
+    padding:0!important;
+    border-top:0!important;
+  }
+  .footer-links{justify-content:center!important;text-align:center!important}
+  .footer-meta small{text-align:center!important;white-space:normal!important}
+}
+@media(max-width:680px){
+  .footer-primary{
+    display:grid!important;
+    grid-template-columns:minmax(118px,.82fr) minmax(0,1.18fr)!important;
+    grid-template-areas:"brand right" "legal legal"!important;
+    align-items:start!important;
+    gap:7px 12px!important;
+  }
+  .footer-brand-group{grid-area:brand!important;align-self:start!important}
+  .footer-right{
+    grid-area:right!important;
+    min-width:0;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:flex-end!important;
+    justify-content:flex-start!important;
+    gap:6px!important;
+  }
+  .footer-address-block{
+    grid-area:auto!important;
+    align-self:auto!important;
+    width:100%!important;
+    margin:0!important;
+    padding:0!important;
+    text-align:right!important;
+  }
+  .footer-channels{
+    grid-area:auto!important;
+    align-self:auto!important;
+    margin:0!important;
+    justify-content:flex-end!important;
+    max-width:100%!important;
+  }
+  .footer-meta{
+    grid-area:legal!important;
+    grid-column:auto!important;
+    grid-row:auto!important;
+    align-self:end!important;
+    justify-self:center!important;
+    transform:none!important;
+    width:100%;
+  }
+}
