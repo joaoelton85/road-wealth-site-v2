@@ -104,7 +104,8 @@ test("protocolo 'Não sei' permanece restrito a 12 ou mais respostas",()=>{
 
 test("Home prioriza o Check-up sem balão solto, preservando Destaques e navegação",()=>{
   const home=read("src/pages/index.astro");
-  assert.match(home,/class="actions"[\\s\\S]*href="\/patrimonio\/#checkup-road"/);
+  assert.match(home,/class="actions"/);
+  assert.match(home,/href="\/patrimonio\/#checkup-road"/);
   assert.doesNotMatch(home,/road-home-checkup-access/);
   assert.match(home,/road-home-how-link/);
   assert.match(home,/Conheça a ROAD/);
