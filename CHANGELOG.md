@@ -1,5 +1,9 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 64.1 — 07/11/2026
+
+- Relatório PDF do Check-up em tons de café e areia, inclusive os marcadores e barras das quatro áreas.
+
 ## Revisão 64 — 07/11/2026
 
 - O Check-up envia uma única mensagem com o resumo das quatro áreas e o diagnóstico completo em PDF, com fontes institucionais incorporadas e marca vetorial.

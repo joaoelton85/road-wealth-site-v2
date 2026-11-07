@@ -12,7 +12,7 @@ const WIDTH = 507;
 const COFFEE = "#49392E";
 const MUTED = "#655A50";
 const SAND = "#E7DED4";
-const FOREST = "#345A50";
+const BAR_FILL = "#977F69";
 
 function color(hex) {
   return [1, 3, 5].map(pos => (parseInt(hex.slice(pos, pos + 2), 16) / 255).toFixed(3)).join(" ");
@@ -78,7 +78,7 @@ export function generateCheckupPdf(report) {
     }
     return top;
   }
-  text("ROAD WEALTH", LEFT, 52, "Montserrat", 9, FOREST);
+  text("ROAD WEALTH", LEFT, 52, "Montserrat", 9, COFFEE);
   text("Seu Check-up ROAD", LEFT, 91, "Questrial", 34);
   paragraph(ROAD_REPORT_INTRO, LEFT, 122, "Inter", 10.5, WIDTH, 15);
   rect(LEFT, 154, WIDTH, 1, SAND);
@@ -93,8 +93,8 @@ export function generateCheckupPdf(report) {
     // Thirteen possible positions for scores from 0 through 12. The point at
     // zero is visible even when the result is entirely unknown.
     rect(LEFT, y + 10, WIDTH, 3, SAND);
-    rect(LEFT, y + 10, WIDTH * area.points / 12, 3, area.color);
-    rect(LEFT + (WIDTH - 3) * area.points / 12, y + 7.5, 3, 8, area.color);
+    rect(LEFT, y + 10, WIDTH * area.points / 12, 3, BAR_FILL);
+    rect(LEFT + (WIDTH - 3) * area.points / 12, y + 7.5, 3, 8, COFFEE);
     y += 37;
   }
   if (report.limited) {
@@ -105,7 +105,7 @@ export function generateCheckupPdf(report) {
   text("Sua análise patrimonial", LEFT, y, "Questrial", 22);
   y += 25;
   for (const [index, item] of report.priorities.entries()) {
-    text(String(index + 1).padStart(2, "0"), LEFT, y, "Montserrat", 9, FOREST);
+    text(String(index + 1).padStart(2, "0"), LEFT, y, "Montserrat", 9, COFFEE);
     y = paragraph(item.title, LEFT + 27, y, "Montserrat", 11, WIDTH - 27, 15, COFFEE);
     y = paragraph(item.detail, LEFT + 27, y + 3, "Inter", 10.5, WIDTH - 27, 15);
     y += 13;
@@ -115,7 +115,7 @@ export function generateCheckupPdf(report) {
   paragraph(ROAD_REPORT_NOTICE, LEFT, y + 45, "Inter", 10, WIDTH, 14);
 
   rect(LEFT, 770, WIDTH, 1, SAND);
-  text("Conversar com a ROAD", LEFT, 799, "Montserrat", 10, FOREST);
+  text("Conversar com a ROAD", LEFT, 799, "Montserrat", 10, COFFEE);
   text(ROAD_TAGLINE, LEFT + WIDTH - measure(ROAD_TAGLINE, "Inter", 9.5), 799, "Inter", 9.5);
   return fillTemplate(commands);
 }
