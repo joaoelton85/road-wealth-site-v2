@@ -1,5 +1,17 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 61 — 07/11/2026
+
+- Questionário: 16 perguntas mantidas, quatro opções de resposta, sem resultados parciais e sem diagnóstico na página. O e-mail é solicitado apenas depois da última pergunta.
+- Relatório: enviado exclusivamente por e-mail (Cloudflare Email Sending e Turnstile preservados). Fontes e hierarquia visual ajustadas ao padrão ROAD; texto 15 px, seções 20 px, título 30 px com alternativas compatíveis para Outlook/Gmail.
+- Marca: PNG transparente gerado diretamente do SVG original completo de ROAD Wealth, sem reconstruir texto. Assinatura à esquerda, lema, site e Instagram.
+- Mapa: quatro barras Outlook-friendly com cores reais e indicador de posição, sem legenda redundante; classificação indicada como situação atual.
+- Análise: duas interpretações com linguagem acessível e relevância prática, considerando relações entre as quatro áreas e separando desconhecimento de ausência declarada.
+- Protocolo Não sei: adotado somente em 12 ou mais respostas (de 16), com convite acolhedor, observação sobre informação limitada e valorização de respostas positivas.
+- Site: canais WhatsApp, e-mail, Instagram e LinkedIn na mesma linha no desktop e seção Contato mais compacta; rodapé com links legais alinhados pela parte inferior e endereço próximo dos ícones.
+- V60 preservada para retorno na branch `backup/v60-antes-v61`. Build técnico 61.0.0.
+
+
 ## Revisão 60 — 07/11/2026
 
 - Check-up ROAD: respostas separadas em Sim (3), Parcialmente (2), Não (1) e Não sei (0).
