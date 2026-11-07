@@ -1,5 +1,18 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 60 — 07/11/2026
+
+- Check-up ROAD: respostas separadas em Sim (3), Parcialmente (2), Não (1) e Não sei (0).
+- Quatro barras de 0 a 10 sem nota explícita, com marcador de posição e zonas laranja, dourado e verde; rótulo Situação atual.
+- Classificações por área com base em 0–6, 7–9 e 10–12 pontos de 12 possíveis.
+- Duas prioridades selecionadas conforme respostas autodeclaradas, distinguindo ausência declarada de falta de conhecimento.
+- Relatório por e-mail com visual inspirado no site, fontes Inter/Montserrat/Questrial (com alternativas compatíveis), logo corporativo em assinatura à esquerda, site, Instagram e lema.
+- Mantido o envio via Cloudflare Email Sending e Turnstile, sem alterar a infraestrutura do Microsoft 365.
+- Removida a opção de WhatsApp para recebimento automático do diagnóstico; preservado o convite de contato via WhatsApp.
+- Política de Privacidade esclarece envio solicitado, processamento e ausência de cadastro promocional automático.
+- V59 preservada em backup/v59-antes-v60; build técnico 60.0.0.
+
+
 ## Revisão 59 — desenvolvimento — 05/11/2026
 
 - Implantação em preparação: integração do Check-up ROAD com o Cloudflare Email Sending, sem serviços terceiros.

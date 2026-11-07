@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import RoadMandala from "../components/RoadMandala.astro";
 import "../styles/patrimonio.css";
+import { ROAD_ACTIONS, ROAD_REPORT_INTRO, ROAD_REPORT_NOTICE, ROAD_CTA_LINK, ROAD_TAGLINE } from "../checkup-report.js";
 ---
 <BaseLayout title="Patrimônio | ROAD Wealth®" description="Investimentos, Legado, Estratégia e Decisões em uma visão patrimonial integrada." active="patrimonio">
   <section class="hero section section--sand page-hero" id="inicio">
@@ -59,13 +60,27 @@ import "../styles/patrimonio.css";
         </div>
         <div class="checkup-final" hidden id="checkup-final">
           <div class="checkup-head"><div><div class="eyebrow">RESULTADO</div><h3>Seu Check-up ROAD</h3></div><button class="text-btn" id="close-checkup-final" type="button">Fechar</button></div>
-          <p>O resultado mostra, de forma resumida, quais áreas parecem mais estruturadas e quais podem merecer atenção. Ele não substitui uma análise patrimonial individualizada.</p><div class="scoreboard"><div class="scoreboard-grid" id="scoreboard-grid"></div></div>
+          <p>{ROAD_REPORT_INTRO}</p>
+          <div class="scoreboard">
+            <div class="road-map-heading"><h4>Seu mapa patrimonial</h4><span>Situação atual</span></div>
+            <div class="scoreboard-grid" id="scoreboard-grid" aria-label="Posição patrimonial indicativa das quatro áreas"></div>
+            <div class="road-map-legend" aria-hidden="true"><span><i class="is-attention"></i>Merece atenção</span><span><i class="is-developing"></i>Em desenvolvimento</span><span><i class="is-good"></i>Bem estruturado</span></div>
+          </div>
+          <section class="road-report-priorities" id="road-report-priorities" hidden aria-labelledby="road-priorities-title">
+            <h4 id="road-priorities-title">Onde concentrar sua atenção</h4>
+            <div id="road-priority-items"></div>
+          </section>
+          <div class="road-report-cta">
+            <h4>Aprofunde seu diagnóstico</h4>
+            <p>{ROAD_REPORT_NOTICE}</p>
+            <a href={ROAD_CTA_LINK} class="btn btn--primary" target="_blank" rel="noopener noreferrer">Conversar com a ROAD</a>
+          </div>
           <div class="delivery-box">
             <h4>Quer guardar seu resultado?</h4>
             <p>Você pode receber o resumo do Check-up por e-mail.</p>
             <div class="actions">
               <button class="btn btn--primary" id="open-checkup-email" type="button" aria-expanded="false" aria-controls="road-checkup-email">Receber por e-mail</button>
-              <button class="btn btn--outline-coffee js-placeholder" data-message="O envio do resultado pelo WhatsApp será conectado ao canal oficial da ROAD." type="button">Receber pelo WhatsApp</button>
+              
             </div>
             <div class="road-checkup-email" id="road-checkup-email" hidden>
               <form id="road-checkup-email-form">
@@ -82,6 +97,11 @@ import "../styles/patrimonio.css";
               </form>
             </div>
           </div>
+          <footer class="road-checkup-signature">
+            <img src="/assets/road-logo-cafe.svg" alt="ROAD Wealth" width="55" loading="lazy" />
+            <p>{ROAD_TAGLINE}</p>
+            <div><a href="https://roadwealth.com.br/" target="_blank" rel="noopener noreferrer">roadwealth.com.br</a><span>·</span><a href="https://www.instagram.com/road.wealth/" target="_blank" rel="noopener noreferrer">Instagram @road.wealth</a></div>
+          </footer>
         </div>
       </div>
     </div>
@@ -92,6 +112,7 @@ import "../styles/patrimonio.css";
     <div class="socials" style="margin-top:20px"><a aria-label="Instagram da ROAD Wealth — @road.wealth" class="social-link" href="https://www.instagram.com/road.wealth/" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" class="social-icon" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect height="18" rx="5" stroke="currentColor" stroke-width="1.8" width="18" x="3" y="3"></rect><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"></circle><circle cx="17.4" cy="6.7" fill="currentColor" r="1.1"></circle></svg><span>@road.wealth</span></a><button class="social-link js-placeholder" data-message="A URL oficial do LinkedIn será inserida antes da publicação." type="button">LinkedIn</button></div>
   </section>
 
+  <script type="application/json" id="road-checkup-recommendations" set:html={JSON.stringify(ROAD_ACTIONS)}></script>
   <script is:inline>
     const areas={
       investments:{kicker:'INVESTIMENTOS',title:'Uma estratégia antes de uma carteira.',body:'A ROAD parte dos objetivos, do perfil e da Política de Investimentos para analisar, consolidar e acompanhar as decisões financeiras do cliente — inclusive quando o patrimônio está distribuído entre diferentes instituições.',points:['Política de Investimentos','Consolidação de instituições','Diversificação e risco','Acompanhamento e rebalanceamento'],questions:['Sua carteira segue uma Política de Investimentos claramente definida?','Você conhece a concentração do seu patrimônio por instituição, emissor, classe de ativo e moeda?','Você sabe qual foi o retorno líquido e real dos seus investimentos nos últimos períodos?','Seus investimentos mantidos em diferentes instituições são analisados como uma única carteira?']},
@@ -102,10 +123,64 @@ import "../styles/patrimonio.css";
     const answers={};const checkupOrder=['investments','legacy','strategy','decisions'];let checkupStep=0;
     const qs=s=>document.querySelector(s),qsa=s=>[...document.querySelectorAll(s)];
     const checkup=qs('#checkup'),questions=qs('#questions'),result=qs('#result'),scoreGrid=qs('#scoreboard-grid'),checkupArea=qs('#checkup-area');
-    function statusFor(key){const vals=areas[key].questions.map((_,i)=>answers[key+'-'+i]).filter(Boolean);if(vals.length<4)return 'Ainda não respondido';const n=vals.reduce((s,v)=>s+(v==='sim'?2:v==='parcial'?1:0),0);return n>=6?'Bem estruturado':n>=3?'Em desenvolvimento':'Merece atenção'}
-    function renderScore(){scoreGrid.innerHTML='';checkupOrder.forEach(k=>{const d=document.createElement('div');d.className='score-item';d.innerHTML=`<small>${areas[k].kicker}</small><strong>${statusFor(k)}</strong>`;scoreGrid.appendChild(d)})}
+    const REPORT_POINTS={sim:3,parcial:2,nao:1,naosei:0};
+    const REPORT_ACTIONS=JSON.parse(qs('#road-checkup-recommendations').textContent);
+    const scoreFor=(key)=>areas[key].questions.reduce((sum,_,i)=>sum+(REPORT_POINTS[answers[key+'-'+i]]??0),0);
+    const statusFor=(key)=>{if(!areas[key].questions.every((_,i)=>answers[key+'-'+i]))return 'Ainda não respondido';const n=scoreFor(key);return n>=10?'Bem estruturado':n>=7?'Em desenvolvimento':'Merece atenção'};
+    function getReportPriorities(){
+      const candidates=[];
+      checkupOrder.forEach(key=>{
+        const total=scoreFor(key);
+        areas[key].questions.forEach((_,i)=>{
+          const choice=answers[key+'-'+i];
+          if(choice==='sim')return;
+          const info=REPORT_ACTIONS[key][i];
+          candidates.push({area:key,title:info.title,detail:choice==='naosei'?info.unknown:info.action,
+            severity:choice==='naosei'?3:choice==='nao'?2:1,areaScore:total,index:i});
+        });
+      });
+      candidates.sort((a,b)=>b.severity-a.severity||a.areaScore-b.areaScore||a.index-b.index);
+      const chosen=[];
+      for(const item of candidates){if(!chosen.some(x=>x.area===item.area))chosen.push(item);if(chosen.length===2)break}
+      for(const item of candidates){if(chosen.length===2)break;if(!chosen.includes(item))chosen.push(item)}
+      if(!chosen.length)return [
+        {title:'Manter a revisão periódica',detail:'Revisar as diretrizes patrimoniais conforme mudarem os objetivos e a realidade familiar.'},
+        {title:'Preservar a visão integrada',detail:'Continuar avaliando investimentos, proteção, estratégia e decisões em conjunto.'}
+      ];
+      if(chosen.length===1)chosen.push({title:'Revisão integrada',detail:'Manter a revisão periódica das quatro áreas para acompanhar novas necessidades.'});
+      return chosen.slice(0,2);
+    }
+    function renderScore(){
+      scoreGrid.innerHTML='';
+      const allComplete=checkupOrder.every(k=>areas[k].questions.every((_,i)=>answers[k+'-'+i]));
+      const priorities=qs('#road-report-priorities'),items=qs('#road-priority-items');
+      if(!allComplete){priorities.hidden=true;return}
+      checkupOrder.forEach(key=>{
+        const total=scoreFor(key),value=(100*total/12).toFixed(2);
+        const status=statusFor(key);
+        const row=document.createElement('div');
+        row.className='road-map-row';
+        const line=document.createElement('div');line.className='road-map-line';
+        const areaTitle=document.createElement('strong');areaTitle.textContent=areas[key].kicker;
+        const resultLabel=document.createElement('span');resultLabel.textContent=status;
+        resultLabel.className=total>=10?'is-good':total>=7?'is-developing':'is-attention';
+        const bar=document.createElement('div');bar.className='road-map-bar';
+        bar.setAttribute('role','img');bar.setAttribute('aria-label',areas[key].kicker+': '+status);
+        const marker=document.createElement('span');marker.className='road-map-marker';marker.style.left=value+'%';
+        line.append(areaTitle,resultLabel);bar.appendChild(marker);row.append(line,bar);
+        scoreGrid.appendChild(row);
+      });
+      items.replaceChildren();
+      getReportPriorities().forEach((suggestion,i)=>{
+        const row=document.createElement('div');row.className='road-priority-row';
+        const title=document.createElement('strong');title.textContent=String(i+1).padStart(2,'0')+' · '+suggestion.title;
+        const detail=document.createElement('p');detail.textContent=suggestion.detail;
+        row.append(title,detail);items.appendChild(row);
+      });
+      priorities.hidden=false;
+    }
     function currentComplete(){const key=checkupOrder[checkupStep];return areas[key].questions.every((_,i)=>answers[key+'-'+i])}
-    function renderCheckup(){const key=checkupOrder[checkupStep],a=areas[key];checkupArea.textContent=a.kicker;qs('#checkup-step-title').textContent=`${checkupStep+1} de 4 — ${a.kicker.charAt(0)+a.kicker.slice(1).toLowerCase()}`;qs('#progress-copy').textContent=`Área ${checkupStep+1} de 4`;qs('#progress-bar').style.width=`${(checkupStep+1)*25}%`;questions.innerHTML='';a.questions.forEach((q,i)=>{const answerKey=key+'-'+i;const row=document.createElement('div');row.className='question';row.innerHTML=`<p>${q}</p><div class="answers"><button type="button" data-key="${answerKey}" data-value="sim">Sim</button><button type="button" data-key="${answerKey}" data-value="parcial">Parcialmente</button><button type="button" data-key="${answerKey}" data-value="nao">Não / não sei</button></div>`;questions.appendChild(row)});qsa('.answers button').forEach(b=>{if(answers[b.dataset.key]===b.dataset.value)b.classList.add('selected');b.addEventListener('click',()=>{answers[b.dataset.key]=b.dataset.value;qsa(`button[data-key="${b.dataset.key}"]`).forEach(x=>x.classList.toggle('selected',x===b));renderStepResult();updateCheckupNav()})});qs('#prev-checkup').hidden=checkupStep===0;qs('#next-checkup').textContent=checkupStep===3?'Ver resultado →':'Próxima área →';renderStepResult();updateCheckupNav()}
+    function renderCheckup(){const key=checkupOrder[checkupStep],a=areas[key];checkupArea.textContent=a.kicker;qs('#checkup-step-title').textContent=`${checkupStep+1} de 4 — ${a.kicker.charAt(0)+a.kicker.slice(1).toLowerCase()}`;qs('#progress-copy').textContent=`Área ${checkupStep+1} de 4`;qs('#progress-bar').style.width=`${(checkupStep+1)*25}%`;questions.innerHTML='';a.questions.forEach((q,i)=>{const answerKey=key+'-'+i;const row=document.createElement('div');row.className='question';row.innerHTML=`<p>${q}</p><div class="answers"><button type="button" data-key="${answerKey}" data-value="sim">Sim</button><button type="button" data-key="${answerKey}" data-value="parcial">Parcialmente</button><button type="button" data-key="${answerKey}" data-value="nao">Não</button><button type="button" data-key="${answerKey}" data-value="naosei">Não sei</button></div>`;questions.appendChild(row)});qsa('.answers button').forEach(b=>{if(answers[b.dataset.key]===b.dataset.value)b.classList.add('selected');b.addEventListener('click',()=>{answers[b.dataset.key]=b.dataset.value;qsa(`button[data-key="${b.dataset.key}"]`).forEach(x=>x.classList.toggle('selected',x===b));renderStepResult();updateCheckupNav()})});qs('#prev-checkup').hidden=checkupStep===0;qs('#next-checkup').textContent=checkupStep===3?'Ver resultado →':'Próxima área →';renderStepResult();updateCheckupNav()}
     function renderStepResult(){const key=checkupOrder[checkupStep];if(!currentComplete()){result.hidden=true;return}const st=statusFor(key);result.hidden=false;result.innerHTML=st==='Bem estruturado'?'<strong>Esta área parece relativamente bem estruturada.</strong><br>O resultado final considerará a integração com as demais áreas.':st==='Em desenvolvimento'?'<strong>Há elementos estruturados e pontos que ainda merecem revisão.</strong><br>O resultado final mostrará esta área em conjunto com as demais.':'<strong>Existem pontos relevantes que merecem atenção.</strong><br>O resultado final ajudará a visualizar onde podem estar as prioridades.'}
     function updateCheckupNav(){qs('#next-checkup').disabled=!currentComplete()}
     function openCheckup(){checkup.hidden=false;qs('#checkup-intro').hidden=false;qs('#checkup-flow').hidden=true;qs('#checkup-final').hidden=true;checkup.scrollIntoView({behavior:'smooth',block:'start'})}
