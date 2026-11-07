@@ -42,8 +42,10 @@ try {
     assert(footer && footer.height<175,"Footer too tall: "+JSON.stringify(footer));
     const address = await page.locator(".footer-address").innerText();
     assert.deepEqual(address.trim().split(/\n+/).map(line => line.trim()), [
-      "Rua Pater Josef Stefan, 1249", "Colônia Vitória", "Entre Rios · Guarapuava/PR"
+      "Rua Pater Josef Stefan, 1249", "Colônia Vitória · Entre Rios · Guarapuava/PR"
     ]);
+    const localityFits = await page.locator(".footer-locality").evaluate(el => el.scrollWidth <= el.clientWidth + 1);
+    assert(localityFits, "Locality exceeds available width at " + width);
     const labels=await page.locator(".footer-links a").all();
     assert.equal(labels.length,3);
     const rowBoxes=await Promise.all(labels.map(x=>x.boundingBox()));
