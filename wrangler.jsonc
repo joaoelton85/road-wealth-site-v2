@@ -32,5 +32,8 @@
         "period": 60
       }
     }
-  ]
+  ],
+  "vars": {
+    "TURNSTILE_SITE_KEY": "0x4AAAAAAF3d2CGykyL2vS6i"
+  }
 }
