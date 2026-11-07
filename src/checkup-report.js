@@ -76,27 +76,41 @@ const POSITIVE_SIGNALS = {
 
 const isKnownGap=(v)=>v==="nao"||v==="parcial";
 const weight=(v)=>v==="nao"?4:v==="parcial"?2:v==="naosei"?1:0;
+// Assuntos editoriais: evita duas mensagens sobre a mesma questão apenas com títulos diferentes.
+const THEME_TOPIC = {
+  "one-portfolio":"visao-integrada", "integrated":"visao-integrada", "visibility":"visao-integrada",
+  "portfolio":"criterios-de-carteira", "purpose":"criterios-de-carteira",
+  "returns":"retornos", "succession":"sucessao", "protection":"protecao",
+  "liquidity":"liquidez", "family-continuity":"liquidez", "properties-liquidity":"liquidez",
+  "goals":"objetivos", "future":"objetivos", "credit":"credito",
+};
+
 function uniqueThemes(answers) {
   const candidates=[];
   for(const theme of COMBINATIONS){
     const missing=theme.keys.filter(k=>answers[k]!=="sim");
     if(missing.length<2 || !missing.some(k=>isKnownGap(answers[k])))continue;
-    candidates.push({...theme,priority:3+missing.reduce((s,k)=>s+weight(answers[k]),0)});
+    candidates.push({...theme,topic:THEME_TOPIC[theme.id],priority:3+missing.reduce((s,k)=>s+weight(answers[k]),0)});
   }
   for(const theme of THEMES){
     const missing=theme.keys.filter(k=>answers[k]!=="sim");
     if(!missing.length)continue;
-    candidates.push({...theme,priority:missing.reduce((s,k)=>s+weight(answers[k]),0)});
+    candidates.push({...theme,topic:THEME_TOPIC[theme.id],priority:missing.reduce((s,k)=>s+weight(answers[k]),0)});
   }
   candidates.sort((a,b)=>b.priority-a.priority);
+  // Preferir áreas diferentes, assuntos diferentes e sinais de respostas distintos.
   const chosen=[];
   for(const item of candidates){
-    if(!chosen.some(c=>c.area===item.area))chosen.push(item);
     if(chosen.length===2)break;
+    if(chosen.some(c=>c.topic===item.topic))continue;
+    if(chosen.length && chosen.some(c=>c.area===item.area))continue;
+    chosen.push(item);
   }
+  // Se não houver outra área relevante, admitir a mesma área, mas nunca repetir o tema.
   for(const item of candidates){
-    if(chosen.length>=2)break;
-    if(!chosen.some(c=>c.id===item.id))chosen.push(item);
+    if(chosen.length===2)break;
+    if(chosen.some(c=>c.topic===item.topic))continue;
+    chosen.push(item);
   }
   return chosen.slice(0,2).map(({title,detail})=>({title,detail}));
 }

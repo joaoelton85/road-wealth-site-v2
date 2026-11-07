@@ -30,20 +30,14 @@ function escapeHtml(value) {
     ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" })[char]);
 }
 
-// Tabela com cores reais: robusta no Outlook para Windows e Gmail.
-// A posição é o marcador ▼, sem nota exibida ao visitante.
+// As barras são PNGs oficiais de paleta fixa (0–12), para permanecerem visíveis
+// mesmo quando o Outlook/Gmail suprimem fundos coloridos na impressão.
 function emailBar(area) {
-  const selected = Math.max(0, Math.min(12, area.points));
-  const marker = Array.from({length:13},(_,i)=>
-    '<td width="7.69%" align="center" style="height:19px;line-height:19px;font-size:15px;color:' + COLORS.coffee +
-    ';font-family:Arial,sans-serif;">' + (i===selected?"&#9660;":"&nbsp;") + '</td>').join("");
-  const cells=Array.from({length:13},(_,i)=>{
-    const color=i<=6?COLORS.attention:i<=9?COLORS.developing:COLORS.good;
-    return '<td width="7.69%" height="11" bgcolor="'+color+
-      '" style="background-color:'+color+';height:11px;font-size:1px;line-height:1px;">&nbsp;</td>';
-  }).join("");
-  return '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse;table-layout:fixed;">'+
-    '<tr>'+marker+'</tr><tr>'+cells+'</tr></table>';
+  const score = Math.max(0,Math.min(12,Math.round(area.points)));
+  return '<img src="'+ORIGIN+'/assets/checkup-bar-'+score+'.png" '+
+    'alt="Posição indicativa de '+escapeHtml(area.label)+': '+escapeHtml(area.statusLabel)+'" '+
+    'width="510" height="48" '+
+    'style="display:block;width:100%;height:auto;max-width:510px;border:0;margin:0;outline:none;text-decoration:none;" />';
 }
 
 function buildEmail(report) {
@@ -71,57 +65,63 @@ function buildEmail(report) {
   const areaRows=report.areas.map(area=>{
     return '<tr><td style="padding:16px 0 17px;border-bottom:1px solid '+COLORS.separator+';">' +
       '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">' +
-      '<tr><td valign="bottom" style="font-family:Montserrat,Arial,sans-serif;font-size:14px;font-weight:600;color:'+COLORS.coffee+';">'+
-      escapeHtml(area.label)+'</td><td align="right" valign="bottom" style="font-family:Inter,Arial,sans-serif;font-size:13px;font-weight:500;color:'+area.color+';">'+
+      '<tr><td valign="bottom" style="font-family:Montserrat,Arial,Helvetica,sans-serif;font-size:14px;font-weight:600;color:'+COLORS.coffee+';">'+
+      escapeHtml(area.label)+'</td><td align="right" valign="bottom" style="font-family:Inter,Arial,Helvetica,sans-serif;font-size:13px;font-weight:500;color:'+area.color+';">'+
       escapeHtml(area.statusLabel)+'</td></tr></table>' + emailBar(area) + '</td></tr>';
   }).join("");
 
   const analysisRows=report.priorities.map((item,index)=>
     '<tr><td style="padding:10px 0 13px;">' +
-    '<p style="margin:0 0 6px;font-family:Montserrat,Arial,sans-serif;font-size:16px;line-height:1.35;font-weight:600;color:'+COLORS.coffee+';">'+
+    '<p style="margin:0 0 6px;font-family:Montserrat,Arial,Helvetica,sans-serif;font-size:16px;line-height:1.35;font-weight:600;color:'+COLORS.coffee+';">'+
     '<span style="color:#A48A71;">'+String(index+1).padStart(2,"0")+' &nbsp;</span>'+escapeHtml(item.title)+'</p>'+
-    '<p style="margin:0;font-family:Inter,Arial,sans-serif;font-size:15px;line-height:1.65;font-weight:400;color:'+COLORS.muted+';">'+escapeHtml(item.detail)+'</p>'+
+    '<p style="margin:0;font-family:Inter,Arial,Helvetica,sans-serif;font-size:15px;line-height:1.65;font-weight:400;color:'+COLORS.muted+';">'+escapeHtml(item.detail)+'</p>'+
     '</td></tr>'
   ).join("");
   const limitedNotice=report.limited
-    ? '<p style="font-family:Inter,Arial,sans-serif;font-size:12px;line-height:1.6;color:'+COLORS.muted+';margin:14px 0 0;">As classificações refletem as respostas disponíveis e não comprovam ausência de organização patrimonial.</p>'
+    ? '<p style="font-family:Inter,Arial,Helvetica,sans-serif;font-size:12px;line-height:1.6;color:'+COLORS.muted+';margin:14px 0 0;">As classificações refletem as respostas disponíveis e não comprovam ausência de organização patrimonial.</p>'
     : '';
 
-  const html='<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>' +
-    '<body style="margin:0;padding:0;background-color:'+COLORS.background+';font-family:Inter,Arial,sans-serif;color:'+COLORS.coffee+';">' +
+  const html='<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Montserrat:wght@400;500;600&amp;family=Questrial&amp;display=swap"><style type="text/css">@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@400;500;600&family=Questrial&display=swap");@media screen and (max-width:480px){.road-email-content{padding:24px 16px!important}.road-email-map{padding:17px 14px!important}}</style><!--[if mso]><style type="text/css">h1,h2,p,td,a{font-family:Arial,sans-serif!important}</style><![endif]--></head>' +
+    '<body style="margin:0;padding:0;background-color:'+COLORS.background+';font-family:Inter,Arial,Helvetica,sans-serif;color:'+COLORS.coffee+';">' +
     '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="'+COLORS.background+'"><tr><td align="center" style="padding:20px 10px;">' +
     '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#FFFFFF" style="max-width:630px;background-color:#FFFFFF;border:1px solid '+COLORS.separator+';">' +
-    '<tr><td style="padding:32px 28px 30px;text-align:left;">' +
-    '<p style="font-family:Montserrat,Arial,sans-serif;font-size:12px;font-weight:600;letter-spacing:2px;color:#9A8371;margin:0 0 12px;">ROAD WEALTH · CHECK-UP</p>' +
-    '<h1 style="font-family:Questrial,Montserrat,Arial,sans-serif;font-size:30px;font-weight:400;line-height:1.17;letter-spacing:-.02em;margin:0 0 17px;color:'+COLORS.coffee+';">Seu Check-up ROAD</h1>' +
-    '<p style="font-family:Inter,Arial,sans-serif;font-size:15px;font-weight:400;line-height:1.65;margin:0 0 23px;color:'+COLORS.muted+';">'+escapeHtml(ROAD_REPORT_INTRO)+'</p>' +
+    '<tr><td class="road-email-content" style="padding:32px 28px 30px;text-align:left;">' +
+    '<p style="font-family:Montserrat,Arial,Helvetica,sans-serif;font-size:12px;font-weight:600;letter-spacing:2px;color:#9A8371;margin:0 0 12px;">ROAD WEALTH · CHECK-UP</p>' +
+    '<h1 style="font-family:Questrial,Century Gothic,Trebuchet MS,Arial,sans-serif;font-size:30px;font-weight:400;line-height:1.17;letter-spacing:-.02em;margin:0 0 17px;color:'+COLORS.coffee+';">Seu Check-up ROAD</h1>' +
+    '<p style="font-family:Inter,Arial,Helvetica,sans-serif;font-size:15px;font-weight:400;line-height:1.65;margin:0 0 23px;color:'+COLORS.muted+';">'+escapeHtml(ROAD_REPORT_INTRO)+'</p>' +
 
     '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="'+COLORS.sand+'" style="background-color:'+COLORS.sand+';">' +
-    '<tr><td style="padding:20px 20px 18px;">' +
+    '<tr><td class="road-email-map" style="padding:20px 20px 18px;">' +
     '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"><tr>' +
-    '<td style="font-family:Montserrat,Arial,sans-serif;font-size:19px;font-weight:600;line-height:1.3;color:'+COLORS.coffee+';">Seu mapa patrimonial</td>' +
-    '<td align="right" style="font-family:Montserrat,Arial,sans-serif;font-size:10px;font-weight:500;letter-spacing:1px;color:#91806F;white-space:nowrap;">SITUAÇÃO ATUAL</td>' +
+    '<td style="font-family:Montserrat,Arial,Helvetica,sans-serif;font-size:19px;font-weight:600;line-height:1.3;color:'+COLORS.coffee+';">Seu mapa patrimonial</td>' +
+    '<td align="right" style="font-family:Montserrat,Arial,Helvetica,sans-serif;font-size:10px;font-weight:500;letter-spacing:1px;color:#91806F;white-space:nowrap;">SITUAÇÃO ATUAL</td>' +
     '</tr></table>' +
     '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">'+areaRows+'</table>'+
     limitedNotice+'</td></tr></table>' +
 
-    '<h2 style="font-family:Montserrat,Arial,sans-serif;font-size:20px;line-height:1.3;font-weight:600;margin:29px 0 12px;color:'+COLORS.coffee+';">Sua análise patrimonial</h2>' +
+    '<h2 style="font-family:Montserrat,Arial,Helvetica,sans-serif;font-size:20px;line-height:1.3;font-weight:600;margin:29px 0 12px;color:'+COLORS.coffee+';">Sua análise patrimonial</h2>' +
     '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">'+analysisRows+'</table>' +
 
     '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"><tr><td style="border-top:1px solid '+COLORS.separator+';padding-top:21px;">' +
-    '<h2 style="font-family:Montserrat,Arial,sans-serif;font-size:20px;line-height:1.3;font-weight:600;margin:0 0 10px;color:'+COLORS.coffee+';">Aprofunde seu diagnóstico</h2>' +
-    '<p style="font-family:Inter,Arial,sans-serif;font-size:14px;line-height:1.65;color:'+COLORS.muted+';margin:0 0 19px;">'+escapeHtml(ROAD_REPORT_NOTICE)+'</p>' +
-    '<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td bgcolor="'+COLORS.coffee+'" style="background-color:'+COLORS.coffee+';padding:14px 20px;border-radius:4px;">' +
-    '<a href="'+escapeHtml(ROAD_CTA_LINK)+'" style="font-family:Montserrat,Arial,sans-serif;font-size:14px;font-weight:600;color:#FFFFFF;text-decoration:none;display:inline-block;">Conversar com a ROAD</a></td></tr></table>' +
+    '<h2 style="font-family:Montserrat,Arial,Helvetica,sans-serif;font-size:20px;line-height:1.3;font-weight:600;margin:0 0 10px;color:'+COLORS.coffee+';">Aprofunde seu diagnóstico</h2>' +
+    '<p style="font-family:Inter,Arial,Helvetica,sans-serif;font-size:14px;line-height:1.65;color:'+COLORS.muted+';margin:0 0 19px;">'+escapeHtml(ROAD_REPORT_NOTICE)+'</p>' +
+    '<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td bgcolor="'+COLORS.sand+'" style="background-color:'+COLORS.sand+';padding:13px 18px;border:1px solid '+COLORS.coffee+';border-radius:4px;">' +
+    '<a href="'+escapeHtml(ROAD_CTA_LINK)+'" style="font-family:Montserrat,Arial,Helvetica,sans-serif;font-size:14px;font-weight:600;color:'+COLORS.coffee+';text-decoration:underline;text-underline-offset:3px;display:inline-block;">Conversar com a ROAD</a></td></tr></table>' +
     '</td></tr></table>' +
 
     '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="border-top:1px solid '+COLORS.separator+';padding-top:23px;padding-bottom:4px;text-align:left;">' +
-    // Símbolo + grafia original são uma única imagem gerada a partir do SVG oficial.
-    '<img alt="ROAD Wealth" src="'+ORIGIN+'/assets/road-logo-cafe-email.png" width="90" height="140" style="display:block;width:90px;height:140px;border:0;object-fit:contain;" />' +
-    '<p style="font-family:Inter,Arial,sans-serif;font-size:13px;line-height:1.55;color:'+COLORS.coffee+';margin:13px 0 7px;">'+escapeHtml(ROAD_TAGLINE)+'</p>' +
-    '<p style="font-family:Inter,Arial,sans-serif;font-size:12px;line-height:1.65;margin:0;">' +
-    '<a href="'+ORIGIN+'" style="color:#6A5749;text-decoration:underline;">roadwealth.com.br</a>' +
-    ' &nbsp;·&nbsp; <a href="https://www.instagram.com/road.wealth/" style="color:#6A5749;text-decoration:underline;">Instagram @road.wealth</a></p>' +
+    // Logo oficial completo em PNG: duas colunas robustas para Outlook e Gmail.
+    '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"><tr>' +
+    '<td width="79" valign="middle" style="width:79px;vertical-align:middle;padding-right:15px;">' +
+    '<img alt="ROAD Wealth" src="'+ORIGIN+'/assets/road-logo-cafe-email.png" width="64" height="109" style="display:block;width:64px;height:109px;border:0;outline:none;text-decoration:none;" />' +
+    '</td>' +
+    '<td valign="middle" style="vertical-align:middle;text-align:left;">' +
+    '<p style="font-family:Inter,Arial,Helvetica,sans-serif;font-size:13px;line-height:1.5;color:'+COLORS.coffee+';margin:0 0 9px;">'+escapeHtml(ROAD_TAGLINE)+'</p>' +
+    '<p style="font-family:Inter,Arial,Helvetica,sans-serif;font-size:12px;line-height:1.55;margin:0 0 4px;">' +
+    '<a href="'+ORIGIN+'" style="color:#6A5749;text-decoration:underline;">roadwealth.com.br</a></p>' +
+    '<p style="font-family:Inter,Arial,Helvetica,sans-serif;font-size:12px;line-height:1.55;margin:0;">' +
+    '<a href="https://www.instagram.com/road.wealth/" style="color:#6A5749;text-decoration:underline;">Instagram @road.wealth</a></p>' +
+    '</td></tr></table>' +
     '</td></tr></table>' +
     '</td></tr></table></td></tr></table></body></html>';
   return {text,html};

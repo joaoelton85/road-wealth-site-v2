@@ -1,5 +1,20 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 62 — 07/11/2026
+
+- **Home:** chamada permanente para o Check-up ROAD imediatamente abaixo dos dois botões de apresentação, visível também no mobile, encaminhando para a seção Patrimônio.
+- **Mobile — rodapé:** compactação de logos, endereço, ícones e faixa legal; links abreviados apenas no celular; preservados URLs e nomes completos no desktop.
+- **Mobile — Check-up:** corrigido enquadramento da seção e margem superior na navegação por âncora; tipografia e paddings ajustados para telas estreitas.
+- **Mobile — elementos flutuantes:** botões de Mercados & Ferramentas e Fale com a ROAD são ocultados durante a leitura do Check-up, do disclaimer e do rodapé (exceto conversa já aberta), sem alterar seus serviços.
+- **E-mail — marca:** assinatura horizontal com PNG oficial completo menor (64 px de largura, proporção original) à esquerda e lema/site/Instagram à direita.
+- **E-mail — fontes:** referências Google Fonts Questrial, Montserrat e Inter por link e import nos aplicativos compatíveis, preservando hierarquia de tamanho/peso e fallback de fonte segura no Outlook/Gmail.
+- **E-mail — barras:** 13 PNGs discretos (0–12) com paleta e marcador para manter cores em clientes de e-mail e impressão que removem fundos CSS. Imagens públicas estáticas, sem informações do visitante.
+- **E-mail — CTA:** botão com contraste marrom e contorno visível mesmo sem impressão de fundos, preservado link WhatsApp.
+- **Diagnóstico:** seleção de temas distintos para não repetir interpretações com títulos diferentes.
+- Sem alterações nas 16 perguntas, pontuação e protocolo de 12+ respostas Não sei; envio via Cloudflare/Turnstile preservado.
+- Backup da V61 na branch `backup/v61-antes-v62`. Build técnico `62.0.0`.
+
+
 ## Revisão 61 — 07/11/2026
 
 - Questionário: 16 perguntas mantidas, quatro opções de resposta, sem resultados parciais e sem diagnóstico na página. O e-mail é solicitado apenas depois da última pergunta.
