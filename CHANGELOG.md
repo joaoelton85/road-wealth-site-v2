@@ -1,5 +1,15 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 63 — 07/11/2026
+
+- Página Patrimônio: substituída a abertura redundante do Check-up (texto introdutório + cartão repetido) por um único bloco editorial com título curto, explicação única e botão de início imediatamente visível.
+- Removido o passo intermediário "Antes de começar", que repetia novamente os conceitos. Um único clique no botão inicia diretamente as perguntas, sem modificar as 16 respostas ou a análise por e-mail.
+- Chamada da Home: Check-up promovido a botão principal, preservados o acesso à ROAD, "Como trabalhamos" como link discreto e os banners DESTAQUES, sem bloco promocional flutuante.
+- Layout mobile: títulos e respiros ajustados para manter o início do Check-up na primeira tela após acessar a âncora e permitir leitura confortável mesmo em telas estreitas.
+- Fluxo final esclarecido: "Concluir e receber por e-mail", sem antecipar o diagnóstico no navegador.
+- V62.2 preservada em `backup/v62-2-antes-v63`. Site, marca, cabeçalho e plataforma de e-mail mantidos.
+
+
 ## Revisão 62.2 — 07/11/2026
 
 - Mobile: restaurados exatamente os tamanhos anteriores do cabeçalho, ROAD 42px e Meu Patrimônio 60px, preservando SVGs originais.
