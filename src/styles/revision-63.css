@@ -1,0 +1,102 @@
+/* ROAD Wealth V63 — entrada editorial única do Check-up, sem cartões duplicados.
+   CTA visível logo após a descrição, inclusive no mobile. */
+
+#checkup-road .checkup-entry{
+  width:100%;
+  max-width:810px;
+  margin:0;
+  padding:0;
+  text-align:left;
+}
+#checkup-road .checkup-entry .eyebrow{
+  margin-bottom:12px;
+}
+#checkup-road .checkup-entry h2{
+  max-width:770px;
+  margin:0 0 14px;
+  font-family:"Questrial",Arial,sans-serif;
+  font-weight:400;
+  font-size:clamp(30px,3.5vw,43px);
+  line-height:1.13;
+  letter-spacing:-.025em;
+  color:var(--coffee);
+}
+#checkup-road .checkup-entry p{
+  max-width:700px;
+  margin:0 0 18px;
+  color:var(--coffee);
+  font-family:"Inter",Arial,sans-serif;
+  font-size:16px;
+  line-height:1.56;
+}
+#checkup-road .checkup-entry p strong{
+  font-weight:600;
+}
+#checkup-road .checkup-entry .btn{
+  margin:0;
+  min-height:44px;
+}
+#checkup-road #checkup{
+  scroll-margin-top:calc(var(--sticky-top) + 12px);
+}
+#checkup-road #checkup-flow,
+#checkup-road #checkup-final{
+  scroll-margin-top:calc(var(--sticky-top) + 12px);
+}
+.road-home-how-link{
+  display:inline-block;
+  margin-top:13px;
+  font:500 12px/1.4 "Montserrat",Arial,sans-serif;
+  color:var(--sand);
+  text-decoration:underline;
+  text-underline-offset:4px;
+}
+.road-home-how-link:hover,.road-home-how-link:focus-visible{
+  color:#fff;
+}
+@media(max-width:680px){
+  #checkup-road.section{
+    scroll-margin-top:calc(var(--sticky-top) + 6px)!important;
+    padding-top:19px!important;
+    padding-bottom:26px!important;
+  }
+  #checkup-road .checkup-entry{
+    width:100%;
+    max-width:100%;
+    padding:0!important;
+    margin:0!important;
+  }
+  #checkup-road .checkup-entry .eyebrow{
+    margin-bottom:11px;
+  }
+  #checkup-road .checkup-entry h2{
+    font-size:clamp(28px,7.3vw,32px)!important;
+    line-height:1.13!important;
+    letter-spacing:-.025em!important;
+    max-width:100%;
+    margin:0 0 14px!important;
+  }
+  #checkup-road .checkup-entry p{
+    font-size:15px!important;
+    line-height:1.53!important;
+    margin:0 0 17px!important;
+  }
+  #checkup-road .checkup-entry .btn{
+    width:auto;
+    min-height:44px;
+    max-width:100%;
+  }
+  #checkup-road #checkup{
+    padding-top:17px!important;
+    margin-top:19px!important;
+  }
+  #checkup-road #checkup-flow,#checkup-road #checkup-final{
+    scroll-margin-top:calc(var(--sticky-top) + 14px)!important;
+  }
+  .hero--road-photo .actions{
+    margin-bottom:0;
+  }
+  .road-home-how-link{
+    margin-top:10px;
+  }
+}
