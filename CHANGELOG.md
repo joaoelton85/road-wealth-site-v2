@@ -1,5 +1,9 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 64.2 — 07/11/2026
+
+- No rodapé mobile, Colônia Vitória ocupa uma linha própria entre a rua e a localidade.
+
 ## Revisão 64.1 — 07/11/2026
 
 - Relatório PDF do Check-up em tons de café e areia, inclusive os marcadores e barras das quatro áreas.
