@@ -61,7 +61,7 @@ test("marca e rodapé do e-mail são preservados",async()=>{
   assert.match(msg.html,/road-logo-cafe-email\.png" width="70" height="109"/);
   assert.match(msg.html,/roadwealth\.com\.br/);
   assert.match(msg.html,/Instagram @road\.wealth/);
-  assert(msg.text.includes(ROAD_REPORT_CTA_TITLE));
+  assert(msg.text.includes(ROAD_REPORT_CTA_TITLE.toUpperCase()));
   assert(msg.text.includes(ROAD_REPORT_NOTICE));
   assert.match(msg.html,/Seu patrimônio, seu caminho, seu legado/);
 });
