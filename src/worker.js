@@ -1,6 +1,6 @@
 import { generateCheckupPdf } from "./checkup-pdf.js";
 import { calculateIr, buildIrEmail } from "./ir-email.js";
-import { parseContact, saveLeadEvent } from "./road-leads.js";
+import { parseContact, saveLeadEvent, notifyLead } from "./road-leads.js";
 import {
   evaluateCheckup, ROAD_REPORT_INTRO, ROAD_REPORT_NOTICE, ROAD_REPORT_CTA_TITLE, ROAD_TAGLINE, ROAD_CTA_LINK,
 } from "./checkup-report.js";
@@ -233,6 +233,11 @@ export default {
         await saveLeadEvent(env,contact,isCheckup?"checkup":"ir_doacoes",isCheckup?payload.profile:null);
       } catch (dbError) {
         console.error("ROAD lead registration failed",dbError?.code||"UNKNOWN");
+      }
+      try {
+        await notifyLead(env, contact, isCheckup?"checkup":"ir_doacoes", isCheckup?payload.profile:null);
+      } catch (notifyError) {
+        console.error("ROAD lead notification failed",notifyError?.code||"UNKNOWN");
       }
       return json({ success: true, message: "Solicitação de envio recebida." }, 202);
     } catch (error) {
