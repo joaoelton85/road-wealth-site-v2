@@ -28,10 +28,13 @@ test("escolha de perfil precede o fluxo de perguntas",()=>{
 });
 test("Home tem acesso único ao Check-up sem caixa duplicada",()=>{
   assert.equal((home.match(/href="\/patrimonio\/#checkup-road"/g)||[]).length,1);
-  assert.match(home,/href="\/patrimonio\/#checkup-road"[^>]*>Check-up ROAD<\/a>/);
+  assert.match(home,/href="\/patrimonio\/#checkup-road"[^>]*>Fazer Check-up Financeiro<\/a>/);
   assert.doesNotMatch(home,/road-home-checkup-access|road-home-checkup-eyebrow/);
-  assert.match(home,/road-home-how-link/);
+  assert.doesNotMatch(home,/road-home-how-link/);
   assert.match(home,/Conheça a ROAD/);
+  assert(home.indexOf("Conheça a ROAD") < home.indexOf("Fazer Check-up Financeiro"));
+  assert(home.indexOf("home-institutions") < home.indexOf("home-areas"));
+  assert(home.indexOf("home-areas") < home.indexOf("home-planning"));
 });
 test("primeira tela mobile mantém espaço para o CTA",()=>{
   assert.match(css,/#checkup-road \.checkup-entry h2/);
