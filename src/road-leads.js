@@ -9,7 +9,7 @@ export function parseContact(payload) {
   if (name.length > 80 || /[\x00-\x1F\x7F]/.test(name)) return null;
   const phone = typeof payload.phone === "string" ? payload.phone.trim() : "";
   if (phone.length > 28 || (phone && (!/^[+()\d\s.-]+$/.test(phone) || phone.replace(/\D/g, "").length < 8 || phone.replace(/\D/g, "").length > 15))) return null;
-  return { email, name, phone, marketingConsent: payload.marketingConsent === true };
+  return { email, name, phone, contactConsent: payload.contactConsent === true, marketingConsent: payload.marketingConsent === true };
 }
 
 // Falha no CRM não impede o envio solicitado pelo visitante.
@@ -52,6 +52,7 @@ export async function notifyLead(env, contact, origin, profile = null) {
     "E-mail: " + contact.email,
     "Telefone: " + (contact.phone || "Não informado"),
     "Perfil: " + (profile || "Não aplicável"),
+    "Contato sobre o diagnóstico: " + (contact.contactConsent ? "SIM — aceite expresso" : "NÃO — sem autorização"),
     "Comunicações comerciais: " + marketing,
     "Registrado em: " + new Date().toISOString(),
     "",
