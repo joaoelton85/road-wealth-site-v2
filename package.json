@@ -1,7 +1,7 @@
 {
   "name": "road-wealth-site",
   "private": true,
-  "version": "65.4.0",
+  "version": "65.5.0",
   "type": "module",
   "scripts": {
     "dev": "astro dev",
@@ -15,6 +15,7 @@
     "astro": "7.3.5"
   },
   "devDependencies": {
-    "wrangler": "latest"
+    "wrangler": "latest",
+    "sharp": "^0.34.3"
   }
 }

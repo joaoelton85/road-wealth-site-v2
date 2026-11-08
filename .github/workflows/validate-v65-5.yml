@@ -1,0 +1,38 @@
+name: Validar V65.5 — Brandbook e assets
+
+on:
+  push:
+    branches:
+      - feature/v65-5-identidade-assets-seo
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate-v65-5:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Instalar dependências
+        run: npm install --no-audit --no-fund
+      - name: Testes e build local
+        run: |
+          npm test
+          npm run build
+      - name: Validar Worker sem publicar
+        run: npx wrangler deploy --dry-run --outdir .wrangler-v65-5
+      - name: Instalar Chromium
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Inspecionar layout e fontes no mobile/desktop
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4321 >/tmp/road-v65-5-preview.log 2>&1 &
+          for i in {1..30}; do curl -fsS http://127.0.0.1:4321/ >/dev/null && break || sleep 1; done
+          node scripts/check-v65-5.mjs
