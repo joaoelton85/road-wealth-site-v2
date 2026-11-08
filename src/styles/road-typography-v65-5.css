@@ -1,0 +1,14 @@
+/* V65.5 — Fontes web previstas no Brandbook oficial ROAD Wealth.
+   As fontes originais são Century Gothic (títulos) e Calibri (corpo).
+   Alternativas web aprovadas: Questrial e Lato.
+   Não modifica fontes internas dos widgets TradingView. */
+:root{
+  --road-font-heading:"Questrial","Century Gothic",Arial,sans-serif;
+  --road-font-text:"Lato",Calibri,Arial,sans-serif;
+}
+body{font-family:var(--road-font-text)}
+main :is(p,li,small,label,input,textarea,select){font-family:var(--road-font-text)}
+main :is(h1,h2,h3,h4,.eyebrow,.btn,.section-nav,.road-map-heading h4){font-family:var(--road-font-heading)}
+.site-header :is(.nav,.nav a,.nav-cta){font-family:var(--road-font-heading)}
+.footer :is(a,small,span),.site-regulatory-disclaimer p{font-family:var(--road-font-text)}
+main .road-checkup-email-feedback,main .career-feedback{font-family:var(--road-font-text)}
