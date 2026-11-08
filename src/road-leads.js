@@ -38,3 +38,31 @@ export async function saveLeadEvent(env, contact, origin, profile = null) {
   `).bind(crypto.randomUUID(),lead.id,origin,profile,now).run();
   return true;
 }
+
+// Notificação interna de atendimento; funciona mesmo antes da criação do D1.
+// Não inclui respostas do Check-up nem valores fiscais. Não é uma lista de marketing.
+export async function notifyLead(env, contact, origin, profile = null) {
+  if (env.LEAD_NOTIFICATIONS !== "enabled") return false;
+  const description = origin === "checkup" ? "Check-up ROAD" : "Simulação IR e Doações";
+  const marketing = contact.marketingConsent ? "SIM — aceite expresso" : "NÃO — somente envio do resultado";
+  const text = [
+    "NOVO ENVIO NO SITE ROAD",
+    "Ferramenta: " + description,
+    "Nome: " + (contact.name || "Não informado"),
+    "E-mail: " + contact.email,
+    "Telefone: " + (contact.phone || "Não informado"),
+    "Perfil: " + (profile || "Não aplicável"),
+    "Comunicações comerciais: " + marketing,
+    "Registrado em: " + new Date().toISOString(),
+    "",
+    "Não encaminhe ofertas a contatos sem autorização para comunicações.",
+    "Nenhuma resposta ou valor fiscal integra esta mensagem.",
+  ].join("\n");
+  await env.EMAIL.send({
+    from: { email: "contato@roadwealth.com.br", name: "ROAD Wealth" },
+    to: "contato@roadwealth.com.br",
+    subject: "[ROAD] Novo contato — " + description,
+    text,
+  });
+  return true;
+}
