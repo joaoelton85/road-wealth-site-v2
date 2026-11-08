@@ -1,5 +1,14 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 65.3 — 07/11/2026
+
+- Faça Parte da ROAD: formulário ativo com campos profissionais já existentes, consentimento específico e verificação Cloudflare Turnstile.
+- Apresentações recebidas por e-mail institucional, com confirmação automática ao interessado após o recebimento principal.
+- Preparado banco D1 exclusivo de talentos, independente dos leads comerciais; pendente de provisionamento na Cloudflare.
+- Identidade visual preservada; formulário não desaparece durante o preenchimento por rotação automática.
+- Política de Privacidade e testes atualizados.
+
+
 ## Revisão 65.2 — 07/11/2026
 
 - Home: removido o último bloco “Conheça melhor a ROAD”, redundante com o botão “Conheça a ROAD” no início.
