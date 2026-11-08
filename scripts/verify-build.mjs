@@ -120,7 +120,7 @@ const checks = [
   },
   {
     file: "src/pages/patrimonio.astro",
-    required: ["https://wa.me/5542984242852?text=Ol%C3%A1!%20Conheci%20a%20ROAD%20Wealth%20pelo%20site%20e%20gostaria%20de%20conversar%20com%20a%20equipe.", "Receba sua análise por e-mail", "road-contact-channels", "data-value=\"naosei\"", "road:checkup-finished"],
+    required: ["https://wa.me/5542984242852?text=Ol%C3%A1!%20Conheci%20a%20ROAD%20Wealth%20pelo%20site%20e%20gostaria%20de%20conversar%20com%20a%20equipe.", "Receba sua análise por e-mail", "road-contact-channels", "['naosei','Não sei']", "road:checkup-finished"],
     forbidden: ["O número oficial de WhatsApp será inserido antes da publicação.", "renderScore()", "id=\"scoreboard-grid\"", "id=\"result\""],
   },
   {
