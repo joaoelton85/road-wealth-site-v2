@@ -161,11 +161,37 @@ import "../styles/calculadora-ir.css";
         </div>
       </form>
 
+      <div class="ir-result-column">
       <aside class="ir-result" id="ir-result" aria-live="polite">
         <div class="eyebrow">ESTIMATIVA</div>
         <h2>Preencha os dados para simular.</h2>
         <p>O resultado compara os dois regimes de dedução e separa o efeito do PGBL das destinações incentivadas.</p>
       </aside>
+      <section class="ir-delivery" id="ir-delivery" hidden aria-label="Enviar simulação por e-mail">
+        <h3>Receba sua simulação por e-mail</h3>
+        <p>Envie para seu endereço o resumo do Imposto de Renda, PGBL e doações incentivadas.</p>
+        <form id="ir-email-form" class="ir-email-form">
+          <label for="ir-email-address">E-mail <span aria-hidden="true">*</span></label>
+          <input id="ir-email-address" name="email" type="email" autocomplete="email" maxlength="254" placeholder="voce@exemplo.com" required />
+          <label for="ir-email-name">Nome <span class="optional">(opcional)</span></label>
+          <input id="ir-email-name" name="name" type="text" autocomplete="name" maxlength="80" placeholder="Seu nome" />
+          <label for="ir-email-phone">Telefone <span class="optional">(opcional)</span></label>
+          <input id="ir-email-phone" name="phone" type="tel" autocomplete="tel" maxlength="28" placeholder="(00) 00000-0000" />
+          <label class="ir-email-consent" for="ir-email-consent">
+            <input id="ir-email-consent" type="checkbox" required />
+            <span>Autorizo o envio desta simulação para o e-mail informado.</span>
+          </label>
+          <label class="ir-email-consent" for="ir-email-marketing">
+            <input id="ir-email-marketing" type="checkbox" />
+            <span>Quero receber comunicações da ROAD sobre planejamento financeiro e patrimonial. (Opcional)</span>
+          </label>
+          <p class="ir-note">Seus dados de contato e a origem da solicitação poderão ser registrados, sem guardar valores fiscais. O aceite para comunicações é independente. Veja nossa <a href="/privacidade/">Política de Privacidade</a>.</p>
+          <div id="ir-email-turnstile" aria-label="Verificação de segurança"></div>
+          <button class="btn btn--primary" id="ir-email-submit" type="submit">Enviar minha simulação</button>
+          <p id="ir-email-feedback" class="ir-email-feedback" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+      </div>
     </div>
   </section>
 
@@ -201,7 +227,17 @@ import "../styles/calculadora-ir.css";
       const form=document.getElementById('ir-form');
       const result=document.getElementById('ir-result');
       const reset=document.getElementById('ir-reset');
-      if(!form || !result) return;
+      const delivery=document.getElementById('ir-delivery');
+      const emailForm=document.getElementById('ir-email-form');
+      const emailFeedback=document.getElementById('ir-email-feedback');
+      const emailSubmit=document.getElementById('ir-email-submit');
+      if(!form || !result || !delivery || !emailForm) return;
+      let lastInputs=null;
+      let emailSent=false;
+      let verificationToken='';
+      let verificationWidget=null;
+      let preparation=null;
+      const inputKeys=['incomeHolder','incomeDependents','officialPension','withheldTax','dependents','students','education','medical','alimony','totalIncome','pgbl','childFund','elderlyFund','culture','sport'];
 
       const DEPENDENT=2275.08;
       const EDUCATION_PER_PERSON=3561.50;
@@ -294,6 +330,48 @@ import "../styles/calculadora-ir.css";
         };
       };
 
+      const readInputs=()=>{
+        const data=new FormData(form);
+        return {
+          ...Object.fromEntries(inputKeys.map(key=>[key,
+            key==='dependents'||key==='students'
+              ? Math.max(0,Math.floor(Number(data.get(key)||0)))
+              : parseMoney(data.get(key))
+          ])),
+          pgblEligible:data.get('pgblEligible')==='on'
+        };
+      };
+      const loadTurnstile=()=>new Promise((resolve,reject)=>{
+        if(window.turnstile){resolve();return;}
+        let script=document.querySelector('script[data-road-turnstile]');
+        if(!script){
+          script=document.createElement('script');
+          script.src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+          script.async=true;
+          script.dataset.roadTurnstile='true';
+          document.head.appendChild(script);
+        }
+        const timer=setTimeout(()=>reject(new Error('Tempo esgotado ao carregar a verificação.')),12000);
+        if(window.turnstile){clearTimeout(timer);resolve();return;}
+        script.addEventListener('load',()=>{clearTimeout(timer);resolve();},{once:true});
+        script.addEventListener('error',()=>{clearTimeout(timer);reject(new Error('Verificação indisponível.'));},{once:true});
+      });
+      const prepareVerification=async()=>{
+        const response=await fetch('/api/checkup-config',{cache:'no-store'});
+        if(!response.ok)throw new Error('Envio temporariamente indisponível.');
+        const config=await response.json();
+        if(!config.enabled||!config.siteKey)throw new Error('Envio ainda não disponível.');
+        await loadTurnstile();
+        if(!window.turnstile)throw new Error('Verificação indisponível.');
+        if(verificationWidget===null){
+          verificationWidget=window.turnstile.render('#ir-email-turnstile',{
+            sitekey:config.siteKey,action:'road_simulator_email',
+            callback:token=>{verificationToken=token;emailFeedback.textContent='';},
+            'expired-callback':()=>{verificationToken='';emailFeedback.textContent='A verificação expirou. Conclua novamente.';},
+            'error-callback':()=>{verificationToken='';emailFeedback.textContent='Não foi possível verificar a segurança.';}
+          });
+        }
+      };
       const render=()=>{
         currencyInputs.forEach(formatCurrencyField);
         const data=new FormData(form);
@@ -301,6 +379,8 @@ import "../styles/calculadora-ir.css";
         const current=compute(pgbl);
 
         if(current.gross<=0){
+          delivery.hidden=true;
+          lastInputs=null;
           result.innerHTML='<div class="eyebrow">ESTIMATIVA</div><h2>Informe ao menos os rendimentos tributáveis.</h2><p>Depois disso a calculadora consegue comparar os regimes e estimar o espaço de planejamento.</p>';
           return;
         }
@@ -335,6 +415,17 @@ import "../styles/calculadora-ir.css";
         const balanceLabel=balance>0?'Saldo estimado a pagar':'Restituição estimada';
         const balanceValue=Math.abs(balance);
 
+        lastInputs=readInputs();
+        emailSent=false;
+        emailSubmit.disabled=false;
+        delivery.hidden=false;
+        emailFeedback.textContent='Preparando envio seguro...';
+        verificationToken='';
+        if(verificationWidget!==null && window.turnstile)window.turnstile.reset(verificationWidget);
+        if(!preparation)preparation=prepareVerification().catch(error=>{
+          emailFeedback.textContent=error.message||'Não foi possível preparar o envio.';
+          preparation=null;
+        });
         result.innerHTML=`
           <div class="eyebrow">RESULTADO PRELIMINAR</div>
           <h2>${current.regime} aparece como o regime mais vantajoso agora.</h2>
@@ -377,8 +468,46 @@ import "../styles/calculadora-ir.css";
       };
 
       form.addEventListener('submit',event=>{event.preventDefault();render()});
+      form.addEventListener('input',()=>{if(lastInputs)delivery.hidden=true;});
+      emailForm.addEventListener('submit',async event=>{
+        event.preventDefault();
+        if(emailSent||emailSubmit.disabled||!lastInputs)return;
+        if(!emailForm.reportValidity())return;
+        if(!verificationToken){emailFeedback.textContent='Conclua a verificação de segurança para enviar.';return;}
+        emailSubmit.disabled=true;
+        emailFeedback.textContent='Enviando simulação...';
+        const controller=new AbortController();
+        const timeout=setTimeout(()=>controller.abort(),15000);
+        try {
+          const response=await fetch('/api/ir-email',{
+            method:'POST',headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({
+              email:document.getElementById('ir-email-address').value.trim(),
+              name:document.getElementById('ir-email-name').value.trim(),
+              phone:document.getElementById('ir-email-phone').value.trim(),
+              consent:document.getElementById('ir-email-consent').checked,
+              marketingConsent:document.getElementById('ir-email-marketing').checked,
+              inputs:lastInputs,turnstileToken:verificationToken
+            }),signal:controller.signal
+          });
+          let data={};try{data=await response.json();}catch{}
+          if(!response.ok)throw new Error(data.error||'Não foi possível enviar. Tente novamente.');
+          emailSent=true;
+          emailFeedback.textContent='Solicitação de envio recebida. Confira sua caixa de entrada e a pasta Spam.';
+        }catch(error){
+          emailFeedback.textContent=error.name==='AbortError'?'A solicitação demorou demais. Confirme o recebimento antes de tentar novamente.':(error.message||'Falha no envio.');
+          verificationToken='';
+          if(verificationWidget!==null && window.turnstile)window.turnstile.reset(verificationWidget);
+        }finally{clearTimeout(timeout);if(!emailSent)emailSubmit.disabled=false;}
+      });
       reset?.addEventListener('click',()=>{
         form.reset();
+        emailForm.reset();
+        delivery.hidden=true;
+        lastInputs=null;
+        emailSent=false;
+        verificationToken='';
+        if(verificationWidget!==null && window.turnstile)window.turnstile.reset(verificationWidget);
         result.innerHTML='<div class="eyebrow">ESTIMATIVA</div><h2>Preencha os dados para simular.</h2><p>O resultado compara os dois regimes de dedução e separa o efeito do PGBL das destinações incentivadas.</p>';
       });
     })();
