@@ -146,7 +146,7 @@ async function verifyTurnstile(request, token, secret, action = "road_checkup_em
 }
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
     if (url.pathname === "/api/checkup-config") {
       if (request.method !== "GET") return json({ error: "Método não permitido." }, 405);
@@ -229,16 +229,22 @@ export default {
         ...message,
         ...(attachments.length ? {attachments} : {}),
       });
-      try {
-        await saveLeadEvent(env,contact,isCheckup?"checkup":"ir_doacoes",isCheckup?payload.profile:null);
-      } catch (dbError) {
-        console.error("ROAD lead registration failed",dbError?.code||"UNKNOWN");
-      }
-      try {
-        await notifyLead(env, contact, isCheckup?"checkup":"ir_doacoes", isCheckup?payload.profile:null);
-      } catch (notifyError) {
-        console.error("ROAD lead notification failed",notifyError?.code||"UNKNOWN");
-      }
+      const registerDelivery = async () => {
+        try {
+          await saveLeadEvent(env,contact,isCheckup?"checkup":"ir_doacoes",isCheckup?payload.profile:null);
+        } catch (dbError) {
+          console.error("ROAD lead registration failed",dbError?.code||"UNKNOWN");
+        }
+        try {
+          await notifyLead(env,contact,isCheckup?"checkup":"ir_doacoes",isCheckup?payload.profile:null);
+        } catch (notifyError) {
+          console.error("ROAD lead notification failed",notifyError?.code||"UNKNOWN");
+        }
+      };
+      // No Worker real, a gravação e o aviso interno seguem via waitUntil sem
+      // atrasar a confirmação do e-mail do visitante.
+      if (ctx?.waitUntil) ctx.waitUntil(registerDelivery());
+      else await registerDelivery();
       return json({ success: true, message: "Solicitação de envio recebida." }, 202);
     } catch (error) {
       console.error("Check-up email send failed", error?.code || "UNKNOWN");
