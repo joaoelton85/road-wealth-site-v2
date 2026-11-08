@@ -1,5 +1,16 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 65.4 — 08/11/2026
+- Conteúdo institucional: explicitação da atuação da ROAD no relacionamento e acompanhamento, e da atividade regulada de Consultoria de Investimentos no âmbito da Meu Patrimônio, consultoria credenciada na CVM.
+- Avisos Legais: seção de identificação da ROAD WEALTH LTDA, CNPJ 68.642.253/0001-00, endereço, canal de atendimento e referência regulatória já existente.
+- Privacidade: CNPJ, canal de atendimento a titulares e aceites separados do Check-up (entrega do resultado, pedido de contato individual e comunicações gerais).
+- Investimentos: seção de remuneração com faixas indicativas sujeitas a contrato, explicação prudente sobre cashback, público atendido e como iniciar o relacionamento.
+- Conhecimento: Aprenda e Perspectivas identificados como “Em breve”.
+- Marca: unificação do lema em resultados do Check-up, IR/doações e apresentações profissionais.
+- Remoção dos botões públicos de LinkedIn do rodapé, Contato e Patrimônio; preservado o campo opcional de LinkedIn no formulário Faça Parte.
+- Preservados painel TradingView, menu, estrutura de blocos existentes e CSS legado.
+
+
 ## Revisão 65.3 — 07/11/2026
 
 - Faça Parte da ROAD: formulário ativo com campos profissionais já existentes, consentimento específico e verificação Cloudflare Turnstile.
