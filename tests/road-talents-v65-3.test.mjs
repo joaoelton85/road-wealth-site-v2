@@ -102,8 +102,8 @@ test("separa banco de talentos do LEADS_DB e registra sem apagar status",async()
   assert.equal(out.status,202);
   assert.equal(out.dbCalls.length,2);
   assert.match(out.dbCalls[0].sql,/INSERT INTO road_talent_candidates/);
-  assert.match(out.dbCalls[0].sql,/ON CONFLICT\\(email\\) DO UPDATE/);
-  assert.doesNotMatch(out.dbCalls[0].sql,/\\bstatus=excluded/);
+  assert.match(out.dbCalls[0].sql,/ON CONFLICT\(email\) DO UPDATE/);
+  assert.doesNotMatch(out.dbCalls[0].sql,/\bstatus=excluded/);
   assert.match(out.dbCalls[1].sql,/road_talent_events/);
   assert.ok(out.dbCalls[0].params.includes("ana@example.com"));
   assert.ok(out.dbCalls[0].params.includes(valid.story));
@@ -147,6 +147,6 @@ test("formulário e script inline são válidos e não interrompem o preenchimen
   assert.match(page,/id="road-career-form"/);
   assert.match(page,/id="road-career-turnstile"/);
   assert.match(page,/id="road-career-submit" type="submit"/);
-  assert.match(page,/order\\[active\\]==='faca-parte'/);
+  assert.match(page,/order\[active\]==='faca-parte'/);
   assert.doesNotMatch(page,/class="btn primary js-placeholder"/);
 });
