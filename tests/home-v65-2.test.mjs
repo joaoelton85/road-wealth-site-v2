@@ -4,7 +4,7 @@ import { readFileSync } from "node:fs";
 
 const home = readFileSync("src/pages/index.astro", "utf8");
 test("Home apresenta Conheça a ROAD na abertura sem repetir bloco ao final", () => {
-  assert.equal((home.match(/href="\\/a-road\\/"/g) || []).length, 1);
+  assert.equal(home.split('href="/a-road/"').length - 1, 1);
   assert(home.includes("Conheça a ROAD"));
   assert(home.includes("Fazer Check-up Financeiro"));
   assert(!home.includes("home-a-road"));
