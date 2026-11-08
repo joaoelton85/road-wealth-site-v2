@@ -84,8 +84,11 @@ test("Home mantém acesso único ao Check-up e navegação",()=>{
   assert.match(home,/class="actions"/);
   assert.match(home,/href="\/patrimonio\/#checkup-road"/);
   assert.doesNotMatch(home,/road-home-checkup-access/);
-  assert.match(home,/road-home-how-link/);
+  assert.doesNotMatch(home,/road-home-how-link/);
   assert.match(home,/Conheça a ROAD/);
+  assert(home.indexOf("Conheça a ROAD") < home.indexOf("Fazer Check-up Financeiro"));
+  assert(home.indexOf("home-institutions") < home.indexOf("home-areas"));
+  assert(home.indexOf("home-areas") < home.indexOf("home-planning"));
   const layout=read("src/layouts/BaseLayout.astro");
   assert.match(layout,/RoadHighlights/);
   assert.match(layout,/isHome && <RoadHighlights/);
