@@ -12,9 +12,9 @@ let filenames=[...layout.matchAll(re)].map(x=>x[1]);
 // para permitir reproduzir o arquivo sem reintroduzir 50 imports no layout.
 if(filenames.length===0){
   const existing=await readFile("src/styles/road-legacy-consolidated.css","utf8");
-  const saved=existing.match(/^ \\* Fontes: (.*)$/m);
+  const saved=existing.split("\n").find(line=>line.startsWith(" * Fontes: "));
   if(!saved)throw new Error("Lista de fontes CSS não encontrada no bundle");
-  filenames=saved[1].split(", ");
+  filenames=saved.slice(" * Fontes: ".length).split(", ");
 }
 if(filenames.length<35)throw new Error("Número inesperado de estilos de revisão: "+filenames.length);
 if(new Set(filenames).size!==filenames.length)throw new Error("Import CSS de revisão duplicado");
