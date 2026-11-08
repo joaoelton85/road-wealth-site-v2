@@ -1,5 +1,11 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 65.1 — 07/11/2026
+
+- Na seção “Por que Wealth?” de “A ROAD”, destaque inicial para Wealth Services e a origem ligada à Consultoria de Investimentos Independente; texto limitado ao parágrafo aprovado.
+- Removidos o capítulo “Propósito” e seu atalho na navegação, sem modificar os demais capítulos ou o carrossel.
+- Metadados e identificação do build atualizados para 65.1.0.
+
 ## Revisão 65 — 07/11/2026 (preparação, sem publicação)
 
 - Home: primeiro “Conheça a ROAD”, depois “Fazer Check-up Financeiro”; retirada a chamada “Como trabalhamos” do bloco principal.
