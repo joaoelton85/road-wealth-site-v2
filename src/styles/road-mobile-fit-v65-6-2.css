@@ -1,0 +1,74 @@
+/* V65.6.2 — Enquadramento tipográfico MOBILE.
+   Ajustes exclusivos para blocos institucionais, sem mudar o desktop,
+   gráficos, formulários, painel TradingView, ticker ou logotipos.
+   Mantém Questrial (títulos) e Lato (corpo) previstos no Brandbook. */
+@media (max-width:680px){
+  /* Títulos em telas pequenas: textos longos deixam de ocupar largura excessiva. */
+  main :is(.hero,.page-hero,.chapter-section) h1{
+    font-size:clamp(28px,7.7vw,34px);
+    line-height:1.12;
+    letter-spacing:-.018em;
+    overflow-wrap:break-word;
+  }
+  main .section-intro h2,
+  main .road-remuneration h2{
+    font-size:clamp(27px,7.5vw,34px);
+    line-height:1.13;
+    letter-spacing:-.018em;
+    overflow-wrap:break-word;
+  }
+  /* Blocos com novos textos institucionais: leitura proporcional ao viewport. */
+  main :is(.hero,.page-hero,.chapter-section) .lead,
+  main .section-intro > p{
+    font-size:clamp(15px,4vw,16px);
+    line-height:1.52;
+    overflow-wrap:break-word;
+  }
+  main .road-remuneration .section-intro > p{
+    font-size:15.5px;
+    line-height:1.54;
+  }
+  main .road-remuneration-cards article,
+  main .road-investment-audience-grid article,
+  main .road-investment-start-grid article{
+    min-width:0;
+    max-width:100%;
+    box-sizing:border-box;
+    overflow-wrap:break-word;
+  }
+  main .road-remuneration-cards h3,
+  main .road-investment-audience-grid h3,
+  main .road-investment-start-grid h3{
+    font-size:18px;
+    line-height:1.23;
+  }
+  main .road-remuneration-cards p,
+  main .road-remuneration-closing,
+  main .road-investment-audience-grid p,
+  main .road-investment-start-grid p{
+    font-size:15px;
+    line-height:1.54;
+  }
+  /* A ROAD conserva navegação horizontal, sem alargar a página.
+     O item ativo fica centralizado por script ao trocar de capítulo. */
+  .road-story-carousel .section-nav{
+    min-width:0;
+    max-width:100%;
+    overscroll-behavior-inline:contain;
+    -webkit-overflow-scrolling:touch;
+    scroll-snap-type:x proximity;
+  }
+  .road-story-carousel .section-nav a{
+    flex:0 0 auto;
+    scroll-snap-align:center;
+  }
+}
+@media (max-width:360px){
+  main :is(.hero,.page-hero,.chapter-section) h1{
+    font-size:27px;
+  }
+  main .section-intro h2,
+  main .road-remuneration h2{
+    font-size:27px;
+  }
+}

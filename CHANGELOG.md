@@ -1,5 +1,13 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 65.6.2 — 08/11/2026
+- Refinada a escala de títulos e textos da home, páginas institucionais e novos blocos de remuneração/atendimento em telas até 680 px (ênfase em 320–390 px), preservando a Questrial e Lato do Brandbook.
+- Contenção de textos em cards para evitar cortes em telas estreitas, sem alteração de conteúdo.
+- Navegação horizontal da página A ROAD aprimorada com scroll snap e item ativo centralizado (comportamento existente).
+- Sem alteração do CSS do painel TradingView, do ticker B3, do cabeçalho, de logos, da versão desktop ou de lógica de formulários.
+- Diagnóstico comparativo e testes mobile ampliados para 320, 360, 375, 390 e 430 px.
+
+
 ## Revisão 65.6.1 — 08/11/2026
 - Removida da seção pública de remuneração a referência à faixa de 0,40% a 0,75% ao ano. O percentual e as condições são apresentados individualmente ao interessado, na proposta, e formalizados em contrato. Demais textos, cards, layout e TradingView preservados.
 

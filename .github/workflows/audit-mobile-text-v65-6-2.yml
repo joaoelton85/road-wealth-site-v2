@@ -1,0 +1,29 @@
+name: Diagnóstico V65.6.2 — textos no mobile
+
+on:
+  push:
+    branches:
+      - fix/v65-6-2-mobile-text-fit
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Preparar compilação e Chromium
+        run: |
+          npm install --no-audit --no-fund
+          npm run build
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Auditar limites de textos a 320, 360, 375, 390 e 430 px
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4321 >/tmp/road-audit-mobile.log 2>&1 &
+          for i in {1..30}; do curl -fsS http://127.0.0.1:4321/ >/dev/null 2>&1 && break || sleep 1; done
+          node scripts/audit-mobile-text-v65-6-2.mjs
