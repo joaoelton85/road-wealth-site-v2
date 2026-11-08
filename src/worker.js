@@ -1,4 +1,5 @@
 import { generateCheckupPdf } from "./checkup-pdf.js";
+import { parseTalentSubmission, talentInternalEmail, talentAcknowledgementEmail, saveTalent } from "./road-talents.js";
 import { calculateIr, buildIrEmail } from "./ir-email.js";
 import { parseContact, saveLeadEvent, notifyLead } from "./road-leads.js";
 import {
@@ -155,9 +156,17 @@ export default {
         siteKey: env.TURNSTILE_SITE_KEY || null,
       });
     }
+    if (url.pathname === "/api/talents-config") {
+      if (request.method !== "GET") return json({ error: "Método não permitido." }, 405);
+      return json({
+        enabled: Boolean(env.EMAIL && env.TURNSTILE_SITE_KEY && env.TURNSTILE_SECRET_KEY && env.CHECKUP_EMAIL_RATE_LIMIT),
+        siteKey: env.TURNSTILE_SITE_KEY || null,
+      });
+    }
+    const isTalent = url.pathname === "/api/talent-apply";
     const isCheckup = url.pathname === "/api/checkup-email";
     const isSimulation = url.pathname === "/api/ir-email";
-    if (!isCheckup && !isSimulation) return env.ASSETS.fetch(request);
+    if (!isTalent && !isCheckup && !isSimulation) return env.ASSETS.fetch(request);
 
     if (request.method !== "POST") return json({ error: "Método não permitido." }, 405);
     if (request.headers.get("Origin") !== ORIGIN) {
@@ -180,6 +189,52 @@ export default {
       payload = JSON.parse(raw);
     } catch {
       return json({ error: "Dados inválidos." }, 400);
+    }
+
+    if (isTalent) {
+      const talent = parseTalentSubmission(payload);
+      if (!talent) return json({ error: "Confira os campos obrigatórios e a autorização de cadastro." }, 400);
+      const token = typeof payload.turnstileToken === "string" ? payload.turnstileToken : "";
+      if (!token || token.length > 2048 || !(await verifyTurnstile(request, token, env.TURNSTILE_SECRET_KEY, "road_talent_apply"))) {
+        return json({ error: "Verificação de segurança inválida. Tente novamente." }, 403);
+      }
+      if (!env.CHECKUP_EMAIL_RATE_LIMIT) return json({ error: "Serviço temporariamente indisponível." }, 503);
+      try {
+        const {success} = await env.CHECKUP_EMAIL_RATE_LIMIT.limit({ key: "talent:"+talent.email });
+        if (!success) return json({ error: "Limite de inscrições atingido. Tente novamente mais tarde." }, 429);
+      } catch {
+        return json({ error: "Não foi possível verificar o limite de envios." }, 503);
+      }
+      try {
+        // A notificação interna é o recebimento principal antes do D1 estar ativo.
+        // Não confirmamos a inscrição ao candidato se essa etapa falhar.
+        await env.EMAIL.send(talentInternalEmail(talent));
+      } catch (error) {
+        console.error("ROAD talent internal delivery failed", error?.code || "UNKNOWN");
+        return json({ error: "Não foi possível receber sua apresentação agora. Tente novamente." }, 503);
+      }
+      let confirmationSent = true;
+      try {
+        await env.EMAIL.send(talentAcknowledgementEmail(talent));
+      } catch (error) {
+        confirmationSent = false;
+        console.error("ROAD talent confirmation failed", error?.code || "UNKNOWN");
+      }
+      const registerTalent = async () => {
+        try {
+          await saveTalent(env,talent);
+        } catch (error) {
+          console.error("ROAD talent database write failed", error?.code || "UNKNOWN");
+        }
+      };
+      if (ctx?.waitUntil) ctx.waitUntil(registerTalent());
+      else await registerTalent();
+      return json({
+        success:true,
+        message: confirmationSent
+          ? "Sua apresentação foi recebida. Enviamos uma confirmação para seu e-mail."
+          : "Sua apresentação foi recebida. A confirmação por e-mail não pôde ser enviada, mas não é necessário reenviar."
+      },202);
     }
 
     const email = typeof payload?.email === "string" ? payload.email.trim() : "";
