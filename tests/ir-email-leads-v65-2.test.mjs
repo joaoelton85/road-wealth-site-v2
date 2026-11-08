@@ -1,5 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import {readFileSync} from "node:fs";
+import {Script} from "node:vm";
 import worker from "../src/worker.js";
 import {calculateIr,buildIrEmail} from "../src/ir-email.js";
 import {parseContact} from "../src/road-leads.js";
@@ -87,4 +89,18 @@ test("notificação interna automática sem D1 identifica permissão comercial",
   assert.match(r.messages[1].subject,/Novo contato/);
   assert.match(r.messages[1].text,/NÃO — somente envio do resultado/);
   assert.doesNotMatch(r.messages[1].text,/120000|15000|Diagnóstico completo/);
+});
+
+test("script inline da calculadora compila e os dois formulários têm campos opcionais",()=>{
+  const ir=readFileSync(new URL("../src/pages/calculadora-ir.astro",import.meta.url),"utf8");
+  const inline=ir.match(/<script is:inline>([\\s\\S]*?)<\\/script>/);
+  assert.ok(inline,"script inline encontrado");
+  assert.doesNotThrow(()=>new Script(inline[1]),"script da página sem erro de sintaxe");
+  assert.match(ir,/id="ir-email-name"/);
+  assert.match(ir,/id="ir-email-phone"/);
+  assert.match(ir,/id="ir-email-marketing"/);
+  const checkup=readFileSync(new URL("../src/pages/patrimonio.astro",import.meta.url),"utf8");
+  assert.match(checkup,/id="road-result-name"/);
+  assert.match(checkup,/id="road-result-phone"/);
+  assert.match(checkup,/id="road-result-marketing"/);
 });
