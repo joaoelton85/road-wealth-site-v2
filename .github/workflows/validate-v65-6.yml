@@ -1,0 +1,63 @@
+name: Validar V65.6 — CSS consolidado sem mudança visual
+
+on:
+  push:
+    branches:
+      - feature/v65-6-css-consolidado
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate-v65-6:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout baseline V65.5
+        uses: actions/checkout@v4
+        with:
+          ref: e3714d69408affbfbef7457235adb0d169ea212c
+          path: baseline
+      - name: Checkout versão V65.6
+        uses: actions/checkout@v4
+        with:
+          path: candidate
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Instalar e compilar baseline
+        working-directory: baseline
+        run: |
+          npm install --no-audit --no-fund
+          npm run build
+      - name: Instalar, testar e compilar CSS consolidado
+        working-directory: candidate
+        run: |
+          npm install --no-audit --no-fund
+          npm test
+          npm run build
+          npx wrangler deploy --dry-run --outdir .wrangler-v65-6
+      - name: Preparar Chromium para comparação visual
+        working-directory: candidate
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Comparar mesmo conteúdo em desktop e mobile
+        working-directory: candidate
+        run: |
+          (cd ../baseline && npm run preview -- --host 127.0.0.1 --port 4321 >/tmp/road-baseline.log 2>&1) &
+          (npm run preview -- --host 127.0.0.1 --port 4322 >/tmp/road-candidate.log 2>&1) &
+          for i in {1..45}; do
+            curl -fsS http://127.0.0.1:4321/ >/dev/null 2>&1 && curl -fsS http://127.0.0.1:4322/ >/dev/null 2>&1 && break
+            sleep 1
+          done
+          node scripts/compare-css-v65-6.mjs
+      - name: Capturas para análise, caso necessário
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: road-v65-6-visual-diffs
+          path: /tmp/road-v65-6-comparison
+          if-no-files-found: ignore
