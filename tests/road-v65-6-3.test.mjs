@@ -31,7 +31,7 @@ test("fontes com aliases locais não alteram os nomes de fontes no legado",()=>{
 test("conteúdo dos destaques e navegação não é reescrito",()=>{
   const slides=read("src/components/RoadHighlights.astro");
   const head=read("src/components/Header.astro");
-  assert.equal((slides.match(/<(?:a|button)\\b[^>]*\\bdata-highlight-slide\\b/g)||[]).length,4);
+  assert.equal((slides.match(/data-highlight-slide(?=\s|>)/g)||[]).length,4);
   for(const label of ["a-road","investimentos","patrimonio","conhecimento"]){
     assert.match(head,new RegExp('data-road-nav="'+label+'"'));
   }
