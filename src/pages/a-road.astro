@@ -182,18 +182,61 @@ import "../styles/a-road.css";
             <p>Não é necessário que exista uma vaga aberta para se apresentar. O objetivo é conhecer trajetórias, experiências e interesses que possam fazer sentido conforme a ROAD cresce.</p>
           </div>
         </div>
-        <form class="career-form" onsubmit="return false">
-          <label>Nome<input placeholder="Seu nome" type="text"/></label>
-          <label>Telefone / WhatsApp<input placeholder="(00) 00000-0000" type="tel"/></label>
-          <label>E-mail<input placeholder="seu@email.com" type="email"/></label>
-          <label>LinkedIn <span class="optional">(opcional)</span><input placeholder="linkedin.com/in/..." type="url"/></label>
-          <label>Já trabalha ou trabalhou no mercado financeiro e/ou de investimentos?<select><option>Selecione</option><option>Sim</option><option>Não</option></select></label>
-          <label>Possui relacionamento profissional com carteira de clientes/custódia?<select><option>Selecione</option><option>Sim</option><option>Não</option></select></label>
-          <label>Faixa aproximada de custódia/carteira sob relacionamento<select><option>Selecione</option><option>Não se aplica</option><option>Até R$ 20 milhões</option><option>R$ 20 a 50 milhões</option><option>R$ 50 a 100 milhões</option><option>R$ 100 a 200 milhões</option><option>Acima de R$ 200 milhões</option></select></label>
-          <label>Área de maior interesse<select><option>Selecione</option><option>Investimentos</option><option>Relacionamento / Comercial</option><option>Operações / Backoffice</option><option>Planejamento / Patrimônio</option><option>Outra</option></select></label>
-          <label class="full">Conte um pouco sobre sua trajetória e por que gostaria de conversar com a ROAD<textarea placeholder="Escreva uma breve apresentação"></textarea></label>
-          <p class="form-note">Não informe nomes de clientes, dados confidenciais ou informações comerciais de terceiros.</p>
-          <button class="btn primary js-placeholder" data-message="O envio deste formulário será conectado ao backend da ROAD antes da publicação." type="button">Quero me apresentar</button>
+        <form class="career-form" id="road-career-form">
+          <label>Nome
+            <input name="name" autocomplete="name" placeholder="Seu nome" type="text" minlength="2" maxlength="80" required />
+          </label>
+          <label>Telefone / WhatsApp
+            <input name="phone" autocomplete="tel" inputmode="tel" placeholder="(00) 00000-0000" type="tel" maxlength="28" required />
+          </label>
+          <label>E-mail
+            <input name="email" autocomplete="email" inputmode="email" placeholder="seu@email.com" type="email" maxlength="254" required />
+          </label>
+          <label>LinkedIn <span class="optional">(opcional)</span>
+            <input name="linkedIn" autocomplete="url" placeholder="https://www.linkedin.com/in/seu-perfil" type="url" maxlength="220" />
+          </label>
+          <label>Já trabalha ou trabalhou no mercado financeiro e/ou de investimentos?
+            <select name="marketExperience" required>
+              <option value="" selected disabled>Selecione</option><option value="sim">Sim</option><option value="nao">Não</option>
+            </select>
+          </label>
+          <label>Possui relacionamento profissional com carteira de clientes/custódia?
+            <select name="clientPortfolio" required>
+              <option value="" selected disabled>Selecione</option><option value="sim">Sim</option><option value="nao">Não</option>
+            </select>
+          </label>
+          <label>Faixa aproximada de custódia/carteira sob relacionamento
+            <select name="custodyRange" required>
+              <option value="" selected disabled>Selecione</option>
+              <option value="nao_se_aplica">Não se aplica</option>
+              <option value="ate_20">Até R$ 20 milhões</option>
+              <option value="de_20_a_50">R$ 20 a 50 milhões</option>
+              <option value="de_50_a_100">R$ 50 a 100 milhões</option>
+              <option value="de_100_a_200">R$ 100 a 200 milhões</option>
+              <option value="acima_200">Acima de R$ 200 milhões</option>
+            </select>
+          </label>
+          <label>Área de maior interesse
+            <select name="interestArea" required>
+              <option value="" selected disabled>Selecione</option>
+              <option value="investimentos">Investimentos</option>
+              <option value="relacionamento">Relacionamento / Comercial</option>
+              <option value="operacoes">Operações / Backoffice</option>
+              <option value="planejamento">Planejamento / Patrimônio</option>
+              <option value="outra">Outra</option>
+            </select>
+          </label>
+          <label class="full">Conte um pouco sobre sua trajetória e por que gostaria de conversar com a ROAD
+            <textarea name="story" minlength="20" maxlength="1200" required placeholder="Escreva uma breve apresentação, sem incluir nomes ou dados de clientes."></textarea>
+          </label>
+          <p class="form-note">Não informe nomes de clientes, dados confidenciais ou informações comerciais de terceiros. O envio não representa candidatura a uma vaga específica.</p>
+          <label class="career-consent full">
+            <input name="consent" type="checkbox" required />
+            <span>Autorizo a ROAD a registrar e utilizar meus dados para avaliar minha apresentação e entrar em contato sobre oportunidades profissionais futuras, conforme a <a href="/privacidade/">Política de Privacidade</a>. Posso solicitar exclusão a qualquer momento.</span>
+          </label>
+          <div id="road-career-turnstile" class="career-security full" aria-label="Verificação de segurança"></div>
+          <button class="btn primary" id="road-career-submit" type="submit">Quero me apresentar</button>
+          <p id="road-career-feedback" class="career-feedback" role="status" aria-live="polite"></p>
         </form>
       </section>
     </div>
@@ -210,6 +253,95 @@ import "../styles/a-road.css";
       const order=chapterLinks.map(link=>link.dataset.chapterLink).filter(Boolean);
       const valid=new Set(order);
       const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+      const careerForm=document.getElementById('road-career-form');
+      const careerSubmit=document.getElementById('road-career-submit');
+      const careerFeedback=document.getElementById('road-career-feedback');
+      let careerToken='';
+      let careerWidget=null;
+      let careerSetup=null;
+      let careerSent=false;
+
+      const loadCareerTurnstile=()=>new Promise((resolve,reject)=>{
+        if(window.turnstile){resolve();return;}
+        let script=document.querySelector('script[data-road-turnstile]');
+        if(!script){
+          script=document.createElement('script');
+          script.src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+          script.async=true;
+          script.dataset.roadTurnstile='true';
+          document.head.appendChild(script);
+        }
+        const timeout=setTimeout(()=>reject(new Error('Tempo esgotado ao carregar a verificação.')),12000);
+        script.addEventListener('load',()=>{clearTimeout(timeout);resolve();},{once:true});
+        script.addEventListener('error',()=>{clearTimeout(timeout);script.remove();reject(new Error('Verificação indisponível.'));},{once:true});
+      });
+      async function prepareCareerVerification(){
+        if(!careerForm || careerSent)return;
+        const response=await fetch('/api/talents-config',{cache:'no-store'});
+        if(!response.ok)throw new Error('O envio está temporariamente indisponível.');
+        const config=await response.json();
+        if(!config.enabled || !config.siteKey)throw new Error('O envio ainda não está disponível.');
+        await loadCareerTurnstile();
+        if(!window.turnstile)throw new Error('Não foi possível carregar a verificação.');
+        if(careerWidget===null){
+          careerWidget=window.turnstile.render('#road-career-turnstile',{
+            sitekey:config.siteKey,action:'road_talent_apply',
+            callback:token=>{careerToken=token;if(careerFeedback)careerFeedback.textContent='';},
+            'expired-callback':()=>{careerToken='';if(careerFeedback)careerFeedback.textContent='A verificação expirou. Conclua novamente.';},
+            'error-callback':()=>{careerToken='';if(careerFeedback)careerFeedback.textContent='Verificação indisponível. Tente novamente.';}
+          });
+        }
+      }
+      function ensureCareerVerification(){
+        if(!careerForm || careerSent || careerSetup)return;
+        careerFeedback.textContent='Preparando envio seguro...';
+        careerSetup=prepareCareerVerification().then(()=>{
+          if(careerFeedback.textContent==='Preparando envio seguro...')careerFeedback.textContent='';
+        }).catch(error=>{
+          careerFeedback.textContent=error.message||'Falha ao preparar o formulário.';
+          careerSetup=null;
+        });
+      }
+      if(careerForm){
+        const portfolio=careerForm.elements.namedItem('clientPortfolio');
+        const custody=careerForm.elements.namedItem('custodyRange');
+        portfolio?.addEventListener('change',()=>{
+          if(portfolio.value==='nao')custody.value='nao_se_aplica';
+        });
+        careerForm.addEventListener('submit',async event=>{
+          event.preventDefault();
+          if(careerSent || careerSubmit.disabled)return;
+          if(!careerForm.reportValidity())return;
+          if(!careerToken){careerFeedback.textContent='Conclua a verificação de segurança para enviar.';ensureCareerVerification();return;}
+          const values=Object.fromEntries(new FormData(careerForm).entries());
+          values.consent=careerForm.elements.namedItem('consent').checked;
+          values.turnstileToken=careerToken;
+          careerSubmit.disabled=true;
+          careerFeedback.textContent='Enviando sua apresentação...';
+          const controller=new AbortController();
+          const timeout=setTimeout(()=>controller.abort(),20000);
+          try{
+            const response=await fetch('/api/talent-apply',{
+              method:'POST',headers:{'Content-Type':'application/json'},
+              body:JSON.stringify(values),signal:controller.signal
+            });
+            let data={};try{data=await response.json();}catch{}
+            if(!response.ok)throw new Error(data.error||'Não foi possível enviar a apresentação.');
+            careerSent=true;
+            careerFeedback.textContent=data.message||'Sua apresentação foi recebida pela ROAD.';
+            careerForm.querySelectorAll('input,textarea,select').forEach(input=>{input.disabled=true;});
+          }catch(error){
+            careerFeedback.textContent=error.name==='AbortError'
+              ? 'A solicitação demorou demais. Confira seu e-mail antes de tentar novamente.'
+              : (error.message||'Falha no envio. Tente novamente.');
+            careerToken='';
+            if(careerWidget!==null && window.turnstile)window.turnstile.reset(careerWidget);
+          }finally{
+            clearTimeout(timeout);
+            if(!careerSent)careerSubmit.disabled=false;
+          }
+        });
+      }
       let active=0;
       let timer=0;
       let paused=false;
@@ -232,6 +364,7 @@ import "../styles/a-road.css";
         if(updateHash) history.pushState(null,'',`#${chapter}`);
         if(scroll) root.scrollIntoView({behavior:'smooth',block:'start'});
         if(restart) start();
+        if(chapter==='faca-parte')ensureCareerVerification();
       }
 
       function stop(){
@@ -241,7 +374,8 @@ import "../styles/a-road.css";
 
       function start(){
         stop();
-        if(paused || reduced.matches || order.length<2) return;
+        // Nunca ocultar um formulário enquanto a pessoa prepara sua apresentação.
+        if(paused || reduced.matches || order.length<2 || order[active]==='faca-parte') return;
         timer=window.setInterval(()=>showChapter(order[(active+1)%order.length],{restart:false}),15000);
       }
 
