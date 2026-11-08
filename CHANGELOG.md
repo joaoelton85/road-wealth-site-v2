@@ -1,5 +1,13 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 65.6.3 — 08/11/2026
+- Recuperada a Montserrat da V65.4 exclusivamente para os quatro itens de navegação do cabeçalho e os rótulos Mercados e Destaque no desktop.
+- Recuperada a Inter para os textos dos slides de Destaques, ampliados de 16 px para até 19 px (aproximadamente 18 px em 1280 px), sem mudar seu conteúdo e os controles.
+- Carregamento das fontes em apelidos exclusivos, evitando reativá-las em todos os CSS históricos e preservando Questrial/Lato no restante do site.
+- Mobile, painel TradingView, ticker de cotações, logo e demais blocos não alterados.
+- Testes de viewport e equivalência visual mobile incluídos na revisão.
+
+
 ## Revisão 65.6.2 — 08/11/2026
 - Refinada a escala de títulos e textos da home, páginas institucionais e novos blocos de remuneração/atendimento em telas até 680 px (ênfase em 320–390 px), preservando a Questrial e Lato do Brandbook.
 - Contenção de textos em cards para evitar cortes em telas estreitas, sem alteração de conteúdo.
