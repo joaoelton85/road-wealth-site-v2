@@ -44,6 +44,19 @@ try {
     assert.deepEqual(address.trim().split(/\n+/).map(line => line.trim()), [
       "Rua Pater Josef Stefan, 1249", "Colônia Vitória · Entre Rios · Guarapuava/PR"
     ]);
+    // Margens iniciais iguais: o texto da rua deve começar exatamente em "Colônia Vitória".
+    const textStarts=await page.evaluate(()=>{
+      const street=document.querySelector(".footer-address-street");
+      const locality=document.querySelector(".footer-neighborhood");
+      const streetRange=document.createRange();
+      streetRange.selectNodeContents(street);
+      const localityRange=document.createRange();
+      localityRange.selectNodeContents(locality);
+      return {street:streetRange.getBoundingClientRect().left,
+        locality:localityRange.getBoundingClientRect().left};
+    });
+    assert(Math.abs(textStarts.street-textStarts.locality)<=1,
+      "Linhas do endereço desalinhadas em "+width+"px: "+JSON.stringify(textStarts));
     const localitySize=await page.locator(".footer-address-locality").evaluate(el=>({
       available:el.clientWidth, occupied:el.scrollWidth,
       lineHeight:getComputedStyle(el).lineHeight

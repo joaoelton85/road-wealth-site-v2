@@ -32,7 +32,8 @@ const checks = [
       'import "../styles/revision-56.css";',
       'import "../styles/revision-58.css";',
       'import "../styles/revision-64-3.css";',
-      'const BUILD_VERSION = "64.3.0";',
+      'import "../styles/revision-64-4.css";',
+      'const BUILD_VERSION = "64.4.0";',
       'const isHome = Astro.url.pathname === "/";',
       '{isHome && <RoadHighlights />}',
       '<ContactLauncher />',
@@ -141,7 +142,7 @@ const checks = [
   },
   {
     file: "src/layouts/BaseLayout.astro",
-    required: ["syncDisclaimerSurface", "--road-disclaimer-bg", "const BUILD_VERSION = \"64.3.0\""],
+    required: ["syncDisclaimerSurface", "--road-disclaimer-bg", "const BUILD_VERSION = \"64.4.0\""],
   },
   {
     file: "src/components/MarketTicker.astro",
@@ -193,6 +194,10 @@ const checks = [
     file: "src/pages/contato.astro",
     required: ["https://wa.me/5542984242852?text=Ol%C3%A1!%20Conheci%20a%20ROAD%20Wealth%20pelo%20site%20e%20gostaria%20de%20conversar%20com%20a%20equipe.", "mailto:contato@roadwealth.com.br"],
     forbidden: ["O número oficial de WhatsApp será inserido"],
+  },
+  {
+    file: "src/styles/revision-64-4.css",
+    required: ["@media(max-width:680px)", ".footer-right .footer-address", "width:max-content", "margin-left:auto", "text-align:left!important"],
   },
   {
     file: "src/styles/revision-64-3.css",
@@ -252,12 +257,12 @@ const checks = [
       '"term": "Diferimento / diferido"',
     ],
   },
-  { file: "dist/__road-build.json", required: ['"roadBuild": "64.3.0"'] },
+  { file: "dist/__road-build.json", required: ['"roadBuild": "64.4.0"'] },
   {
     file: "dist/index.html",
     required: [
-      'road-build" content="64.3.0"',
-      'data-road-build="64.3.0"',
+      'road-build" content="64.4.0"',
+      'data-road-build="64.4.0"',
       "DESTAQUE",
       "Conceitos, ferramentas e Glossário ROAD para entender melhor suas decisões.",
       "planning-step-number",
@@ -270,7 +275,7 @@ const checks = [
   {
     file: "dist/calculadora-ir/index.html",
     required: [
-      'road-build" content="64.3.0"',
+      'road-build" content="64.4.0"',
       "SIMULAÇÃO IRPF 2026",
       "Ficou em dúvida?",
       "Fale com a gente",
@@ -280,7 +285,7 @@ const checks = [
   {
     file: "dist/glossario/index.html",
     required: [
-      'road-build" content="64.3.0"',
+      'road-build" content="64.4.0"',
       "160 verbetes",
       "Pix",
       "Open Finance",
@@ -313,4 +318,4 @@ if (failures.length) {
   failures.forEach(failure => console.error(`- ${failure}`));
   process.exit(1);
 }
-console.log("ROAD build verification OK — Revisão 64.3");
+console.log("ROAD build verification OK — Revisão 64.4");

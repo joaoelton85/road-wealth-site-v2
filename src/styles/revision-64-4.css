@@ -1,0 +1,20 @@
+/* ROAD Wealth V64.4 — alinhar a margem inicial das duas linhas do endereço mobile.
+   O bloco segue ancorado à direita; apenas o texto interno muda de eixo. */
+@media(max-width:680px){
+  .footer-right .footer-address-block{
+    width:100%!important;
+    max-width:100%!important;
+    text-align:left!important;
+  }
+  .footer-right .footer-address{
+    width:max-content;
+    max-width:100%;
+    margin-left:auto;
+    margin-right:0;
+    text-align:left!important;
+  }
+  .footer-address .footer-address-street,
+  .footer-address .footer-address-locality{
+    text-align:left!important;
+  }
+}
