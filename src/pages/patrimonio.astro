@@ -1,14 +1,15 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import RoadMandala from "../components/RoadMandala.astro";
+import { ROAD_CHECKUP_PROFILES } from "../checkup-profiles.js";
 import "../styles/patrimonio.css";
 
 ---
-<BaseLayout title="Patrimônio | ROAD Wealth®" description="Investimentos, Legado, Estratégia e Decisões em uma visão patrimonial integrada." active="patrimonio">
+<BaseLayout title="Patrimônio | ROAD Wealth®" description="Investimentos, Legado, Capital e Planejamento em uma visão patrimonial integrada." active="patrimonio">
   <section class="hero section section--sand page-hero" id="inicio">
     <div class="eyebrow">PATRIMÔNIO</div>
     <h1>Áreas de atuação. Uma visão integrada.</h1>
-    <p class="lead">Investimentos são parte central do patrimônio, mas não caminham sozinhos. A ROAD organiza sua atuação em frentes que se conectam: Investimentos, Legado, Estratégia e Decisões.</p>
+    <p class="lead">Investimentos são parte central do patrimônio, mas não caminham sozinhos. A ROAD organiza sua atuação em frentes que se conectam: Investimentos, Legado, Capital e Planejamento.</p>
     <div class="actions"><a class="btn btn--primary" href="#areas">Conheça as áreas</a><a class="btn btn--ghost" href="#checkup-road">Fazer o Check-up ROAD</a></div>
   </section>
 
@@ -18,13 +19,13 @@ import "../styles/patrimonio.css";
       <RoadMandala />
       <div class="area-panel">
         <div class="eyebrow">ÁREAS DE ATUAÇÃO</div>
-        <h3>Uma visão que conecta capital, proteção, estrutura e decisões.</h3>
-        <p>Investimentos, Legado, Estratégia e Decisões possuem escopos próprios e podem ser acessados separadamente, sem perder a leitura do patrimônio como um todo.</p>
+        <h3>Uma visão que conecta investimentos, proteção, recursos e planejamento.</h3>
+        <p>Investimentos, Legado, Capital e Planejamento possuem escopos próprios e podem ser acessados separadamente, sem perder a leitura do patrimônio como um todo.</p>
         <div class="area-link-list">
           <a href="/investimentos/">Investimentos <span>→</span></a>
           <a href="#legado">Legado <span>→</span></a>
-          <a href="#estrategia">Estratégia <span>→</span></a>
-          <a href="#decisoes">Decisões <span>→</span></a>
+          <a href="#capital">Capital <span>→</span></a>
+          <a href="#planejamento">Planejamento <span>→</span></a>
         </div>
       </div>
     </div>
@@ -34,9 +35,9 @@ import "../styles/patrimonio.css";
     <div class="section-intro"><div class="eyebrow">ÁREAS DE ATUAÇÃO</div><h2>O que cada área observa.</h2><p>A profundidade de cada trabalho depende da realidade de cada família. O objetivo desta estrutura é organizar temas que frequentemente aparecem separados.</p></div>
     <div class="service-detail-grid">
       <article class="service-detail" id="investimentos"><div class="eyebrow">INVESTIMENTOS</div><h3>Capital investido.</h3><p>Política de Investimentos, consolidação entre instituições, diversificação, risco, liquidez, exposição internacional, acompanhamento e rebalanceamento.</p></article>
-      <article class="service-detail" id="legado"><div class="eyebrow">LEGADO</div><h3>Proteção e continuidade.</h3><p>Sucessão, liquidez sucessória, previdência, proteção familiar, saúde e instrumentos que ajudam a preservar a continuidade patrimonial.</p></article>
-      <article class="service-detail" id="estrategia"><div class="eyebrow">ESTRATÉGIA</div><h3>Objetivos transformados em um plano.</h3><p>Planejamento financeiro, liquidez, formação de patrimônio, aposentadoria, crédito, exposição internacional e organização dos recursos ao longo do tempo.</p></article>
-      <article class="service-detail" id="decisoes"><div class="eyebrow">DECISÕES</div><h3>Escolhas que podem mudar o percurso.</h3><p>Imóveis, financiamentos, uso de capital próprio, participação em negócios, endividamento, grandes aquisições e outras decisões relevantes analisadas dentro do patrimônio como um todo.</p></article>
+      <article class="service-detail" id="legado"><div class="eyebrow">LEGADO</div><h3>Proteção e continuidade.</h3><p>Sucessão, liquidez sucessória, previdência, proteção familiar, saúde, seguros de bens e instrumentos que ajudam a preservar a continuidade patrimonial.</p></article>
+      <span id="estrategia" class="sr-only" aria-hidden="true"></span><article class="service-detail" id="capital"><div class="eyebrow">CAPITAL</div><h3>Inteligência na utilização dos recursos.</h3><p>Linhas de crédito, capital próprio e de terceiros, captação, gestão de caixa, tesouraria, garantias e estrutura financeira de famílias e empresas.</p></article>
+      <span id="decisoes" class="sr-only" aria-hidden="true"></span><article class="service-detail" id="planejamento"><div class="eyebrow">PLANEJAMENTO</div><h3>Do cotidiano às grandes decisões patrimoniais.</h3><p>Objetivos familiares, organização financeira, aposentadoria, avaliação de projetos, decisões sobre imóveis e negócios e planejamento financeiro e patrimonial integrado.</p></article>
     </div>
   </section>
 
@@ -45,19 +46,29 @@ import "../styles/patrimonio.css";
       <div class="checkup-entry">
         <div class="eyebrow">CHECK-UP ROAD</div>
         <h2>Conheça melhor a organização do seu patrimônio.</h2>
-        <p>Responda a 16 perguntas sobre <strong>Investimentos, Legado, Estratégia e Decisões</strong>. Sem informar valores ou dados sensíveis. Sua análise será enviada por e-mail.</p>
+        <p>Responda a 16 perguntas sobre <strong>Investimentos, Legado, Capital e Planejamento</strong>, de acordo com sua realidade familiar ou empresarial. Sem informar valores ou dados sensíveis. Sua análise será enviada por e-mail.</p>
         <button class="btn btn--primary" id="open-checkup" type="button">Iniciar Check-up ROAD</button>
       </div>
       <div class="checkup" hidden id="checkup">
+        <div class="checkup-profile" id="checkup-profile" hidden>
+          <div class="checkup-head"><div><div class="eyebrow">SEU PERFIL</div><h3>Qual perspectiva representa melhor sua realidade?</h3></div><button class="text-btn" id="close-checkup-profile" type="button">Fechar</button></div>
+          <p>O conteúdo se adapta à sua realidade. Quem possui atividade rural pode escolher Empresarial / Agro, mesmo atuando como pessoa física.</p>
+          <fieldset class="checkup-profile-options">
+            <legend class="sr-only">Selecione o percurso do Check-up ROAD</legend>
+            <label class="checkup-profile-option"><input type="radio" name="road-checkup-profile" value="familiar" /><span><strong>Patrimonial / Familiar</strong><small>Investimentos, proteção e planejamento do patrimônio pessoal e familiar.</small></span></label>
+            <label class="checkup-profile-option"><input type="radio" name="road-checkup-profile" value="empresarial" /><span><strong>Empresarial / Agro</strong><small>Patrimônio familiar, negócios, crédito, gestão de caixa e atividade rural.</small></span></label>
+          </fieldset>
+          <button class="btn btn--primary" id="begin-profile-checkup" type="button" disabled>Continuar para as perguntas</button>
+        </div>
         <div class="checkup-flow" hidden id="checkup-flow">
           <div class="checkup-head"><div><div class="eyebrow" id="checkup-area">INVESTIMENTOS</div><h4 id="checkup-step-title">1 de 4 — Investimentos</h4></div><button class="text-btn" id="close-checkup-flow" type="button">Fechar</button></div>
-          <div class="checkup-progress"><div class="progress-label"><span id="progress-copy">Área 1 de 4</span><span>4 perguntas</span></div><div class="progress-track"><div class="progress-bar" id="progress-bar"></div></div></div>
+          <div class="checkup-progress"><div class="progress-label"><span id="progress-copy">Área 1 de 4</span><span id="checkup-question-count">4 perguntas</span></div><div class="progress-track"><div class="progress-bar" id="progress-bar"></div></div></div>
           <div class="questions" id="questions"></div><div class="checkup-nav"><button class="btn btn--outline-coffee" hidden id="prev-checkup" type="button">← Área anterior</button><button class="btn btn--primary" disabled id="next-checkup" type="button">Próxima área →</button></div>
         </div>
 
         <div class="checkup-final" hidden id="checkup-final">
           <div class="checkup-head"><div><div class="eyebrow">ÚLTIMA ETAPA</div><h3>Seu Check-up está concluído.</h3></div><button class="text-btn" id="close-checkup-final" type="button">Fechar</button></div>
-          <p>Obrigado por concluir as 16 perguntas. Informe seu e-mail para receber o resumo das quatro áreas e o diagnóstico completo em PDF anexo.</p>
+          <p>Obrigado por concluir as 16 perguntas. Informe seu e-mail para receber o resumo das quatro áreas e o diagnóstico completo em PDF anexo.</p><p id="checkup-finished-profile" class="checkup-finished-profile"></p>
           <div class="delivery-box road-checkup-delivery">
             <h4>Receba sua análise por e-mail</h4>
             <p>Seu diagnóstico será enviado exclusivamente para o endereço informado. Ele não será exibido nesta página.</p>
@@ -93,14 +104,12 @@ import "../styles/patrimonio.css";
     </div>
   </section>
 
+  <script id="road-checkup-profiles-data" type="application/json" set:html={JSON.stringify(ROAD_CHECKUP_PROFILES)} />
   <script is:inline>
-    const areas={
-      investments:{kicker:'INVESTIMENTOS',title:'Uma estratégia antes de uma carteira.',body:'A ROAD parte dos objetivos, do perfil e da Política de Investimentos para analisar, consolidar e acompanhar as decisões financeiras do cliente — inclusive quando o patrimônio está distribuído entre diferentes instituições.',points:['Política de Investimentos','Consolidação de instituições','Diversificação e risco','Acompanhamento e rebalanceamento'],questions:['Sua carteira segue uma Política de Investimentos claramente definida?','Você conhece a concentração do seu patrimônio por instituição, emissor, classe de ativo e moeda?','Você sabe qual foi o retorno líquido e real dos seus investimentos nos últimos períodos?','Seus investimentos mantidos em diferentes instituições são analisados como uma única carteira?']},
-      legacy:{kicker:'LEGADO',title:'Patrimônio também é proteção e continuidade.',body:'Legado amplia o olhar para sucessão, liquidez, previdência, proteção familiar, saúde e continuidade patrimonial.',points:['Sucessão e continuidade','Liquidez sucessória','Proteção familiar e vida','Saúde e previdência'],questions:['Sua família tem uma estimativa dos tributos, custos e liquidez necessários em uma eventual sucessão patrimonial?','Existem instrumentos ou reservas especificamente pensados para garantir liquidez à família nesse momento?','A família possui instrumentos de proteção médica compatíveis com o padrão de atendimento desejado, inclusive em hospitais de referência no Brasil ou no exterior?','As estruturas de proteção e sucessão existentes foram revisadas recentemente e ainda refletem a realidade atual da família e do patrimônio?']},
-      strategy:{kicker:'ESTRATÉGIA',title:'Objetivos precisam se transformar em um plano.',body:'Estratégia organiza o planejamento financeiro de longo prazo: liquidez, formação de patrimônio, aposentadoria, crédito, exposição internacional e a distribuição dos recursos ao longo do tempo.',points:['Planejamento financeiro','Liquidez e reservas','Objetivos de longo prazo','Crédito e exposição internacional'],questions:['Seus objetivos financeiros de médio e longo prazo estão organizados com prazos e prioridades definidos?','Você sabe quanto precisa manter disponível para liquidez e reservas sem comprometer seus objetivos de longo prazo?','A formação de patrimônio e a aposentadoria possuem uma estratégia financeira acompanhada ao longo do tempo?','Crédito, exposição internacional e decisões de liquidez são avaliados dentro de um planejamento financeiro integrado?']},
-      decisions:{kicker:'DECISÕES',title:'Algumas escolhas podem mudar o percurso.',body:'Decisões reúne situações relevantes que merecem ser analisadas dentro do patrimônio como um todo — imóveis, financiamentos, negócios, endividamento, grandes aquisições e outras escolhas de impacto.',points:['Imóveis e aquisições','Capital próprio x financiamento','Negócios e participações','Decisões patrimoniais relevantes'],questions:['Antes de uma decisão patrimonial relevante, você costuma comparar seu impacto sobre liquidez, risco e objetivos de longo prazo?','Em aquisições importantes, você avalia diferentes formas de pagamento, financiamento ou uso de capital próprio?','Decisões envolvendo imóveis, empresas ou participações são analisadas junto do restante do patrimônio?','Quando uma escolha exige especialistas de diferentes áreas, existe coordenação entre essas análises?']}
-    };
-    const answers={};const checkupOrder=['investments','legacy','strategy','decisions'];let checkupStep=0;
+    const profiles=JSON.parse(document.getElementById('road-checkup-profiles-data').textContent);
+    let profile=null;
+    let areas=profiles.familiar.areas;
+    const answers={};const checkupOrder=['investments','legacy','capital','planning'];let checkupStep=0;
     const qs=s=>document.querySelector(s),qsa=s=>[...document.querySelectorAll(s)];
     const checkup=qs('#checkup'),questions=qs('#questions'),checkupArea=qs('#checkup-area');
     // Âncora do Check-up: com navegação Astro, carregamento de fontes e cabeçalho
@@ -123,23 +132,80 @@ import "../styles/patrimonio.css";
     }
 
     function currentComplete(){const key=checkupOrder[checkupStep];return areas[key].questions.every((_,i)=>answers[key+'-'+i])}
-    function renderCheckup(){const key=checkupOrder[checkupStep],a=areas[key];checkupArea.textContent=a.kicker;qs('#checkup-step-title').textContent=`${checkupStep+1} de 4 — ${a.kicker.charAt(0)+a.kicker.slice(1).toLowerCase()}`;qs('#progress-copy').textContent=`Área ${checkupStep+1} de 4`;qs('#progress-bar').style.width=`${(checkupStep+1)*25}%`;questions.innerHTML='';a.questions.forEach((q,i)=>{const answerKey=key+'-'+i;const row=document.createElement('div');row.className='question';row.innerHTML=`<p>${q}</p><div class="answers"><button type="button" data-key="${answerKey}" data-value="sim">Sim</button><button type="button" data-key="${answerKey}" data-value="parcial">Parcialmente</button><button type="button" data-key="${answerKey}" data-value="nao">Não</button><button type="button" data-key="${answerKey}" data-value="naosei">Não sei</button></div>`;questions.appendChild(row)});qsa('.answers button').forEach(b=>{if(answers[b.dataset.key]===b.dataset.value)b.classList.add('selected');b.addEventListener('click',()=>{answers[b.dataset.key]=b.dataset.value;qsa(`button[data-key="${b.dataset.key}"]`).forEach(x=>x.classList.toggle('selected',x===b));updateCheckupNav()})});qs('#prev-checkup').hidden=checkupStep===0;qs('#next-checkup').textContent=checkupStep===3?'Concluir e receber por e-mail →':'Próxima área →';updateCheckupNav()}
+    function renderCheckup(){
+      const key=checkupOrder[checkupStep],a=areas[key];
+      checkupArea.textContent=a.kicker;
+      qs('#checkup-step-title').textContent=`${checkupStep+1} de 4 — ${a.kicker.charAt(0)+a.kicker.slice(1).toLowerCase()}`;
+      qs('#progress-copy').textContent=`Área ${checkupStep+1} de 4`;
+      qs('#checkup-question-count').textContent=`${a.questions.length} perguntas`;
+      qs('#progress-bar').style.width=`${(checkupStep+1)*25}%`;
+      questions.innerHTML='';
+      a.questions.forEach((q,i)=>{
+        const answerKey=key+'-'+i, row=document.createElement('div');
+        row.className='question';
+        const prompt=document.createElement('p');
+        prompt.textContent=q;
+        const buttons=document.createElement('div');
+        buttons.className='answers';
+        for(const [value,label] of [['sim','Sim'],['parcial','Parcialmente'],['nao','Não'],['naosei','Não sei']]){
+          const button=document.createElement('button');
+          button.type='button';button.dataset.key=answerKey;button.dataset.value=value;button.textContent=label;
+          button.classList.toggle('selected',answers[answerKey]===value);
+          button.addEventListener('click',()=>{
+            answers[answerKey]=value;
+            buttons.querySelectorAll('button').forEach(x=>x.classList.toggle('selected',x===button));
+            updateCheckupNav();
+          });
+          buttons.appendChild(button);
+        }
+        row.append(prompt,buttons);questions.appendChild(row);
+      });
+      qs('#prev-checkup').hidden=checkupStep===0;
+      qs('#next-checkup').textContent=checkupStep===3?'Concluir e receber por e-mail →':'Próxima área →';
+      updateCheckupNav();
+    }
     function updateCheckupNav(){qs('#next-checkup').disabled=!currentComplete()}
     function openCheckup(){
       Object.keys(answers).forEach(key=>delete answers[key]);
-      checkupStep=0;
+      profile=null;checkupStep=0;
+      qsa('input[name="road-checkup-profile"]').forEach(input=>input.checked=false);
+      qs('#begin-profile-checkup').disabled=true;
       checkup.hidden=false;
-      qs('#checkup-flow').hidden=false;
+      qs('#checkup-profile').hidden=false;
+      qs('#checkup-flow').hidden=true;
       qs('#checkup-final').hidden=true;
-      renderCheckup();
-      qs('#checkup-flow').scrollIntoView({behavior:'smooth',block:'start'});
+      qs('#checkup-profile').scrollIntoView({behavior:'smooth',block:'start'});
     }
     function closeCheckup(){checkup.hidden=true}
+    qsa('input[name="road-checkup-profile"]').forEach(input=>input.addEventListener('change',()=>{
+      qs('#begin-profile-checkup').disabled=!qs('input[name="road-checkup-profile"]:checked');
+    }));
+    qs('#begin-profile-checkup').addEventListener('click',()=>{
+      const selected=qs('input[name="road-checkup-profile"]:checked')?.value;
+      if(!selected || !profiles[selected])return;
+      profile=selected;areas=profiles[selected].areas;checkupStep=0;
+      Object.keys(answers).forEach(key=>delete answers[key]);
+      qs('#checkup-profile').hidden=true;
+      qs('#checkup-flow').hidden=false;
+      renderCheckup();
+      qs('#checkup-flow').scrollIntoView({behavior:'smooth',block:'start'});
+    });
     qs('#open-checkup')?.addEventListener('click',openCheckup);
+    qs('#close-checkup-profile')?.addEventListener('click',closeCheckup);
     qs('#close-checkup-flow')?.addEventListener('click',closeCheckup);
     qs('#close-checkup-final')?.addEventListener('click',closeCheckup);
     qs('#prev-checkup')?.addEventListener('click',()=>{if(checkupStep>0){checkupStep--;renderCheckup();}});
-    qs('#next-checkup')?.addEventListener('click',()=>{if(!currentComplete())return;if(checkupStep<3){checkupStep++;renderCheckup();qs('#checkup-flow').scrollIntoView({behavior:'smooth',block:'start'})}else{qs('#checkup-flow').hidden=true;qs('#checkup-final').hidden=false;qs('#checkup-final').dispatchEvent(new Event('road:checkup-finished'));qs('#checkup-final').scrollIntoView({behavior:'smooth',block:'start'})}});
+    qs('#next-checkup')?.addEventListener('click',()=>{
+      if(!currentComplete())return;
+      if(checkupStep<3){checkupStep++;renderCheckup();qs('#checkup-flow').scrollIntoView({behavior:'smooth',block:'start'});}
+      else{
+        qs('#checkup-flow').hidden=true;
+        qs('#checkup-final').hidden=false;
+        qs('#checkup-finished-profile').textContent='Percurso: '+profiles[profile].label;
+        qs('#checkup-final').dispatchEvent(new Event('road:checkup-finished'));
+        qs('#checkup-final').scrollIntoView({behavior:'smooth',block:'start'});
+      }
+    });
 
     // Envio opcional do resultado por e-mail. Nenhum dado é enviado antes da confirmação.
     const roadEmailPanel=qs('#road-checkup-email');
@@ -217,7 +283,7 @@ import "../styles/patrimonio.css";
           const response=await fetch('/api/checkup-email',{
             method:'POST',
             headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({email,consent:qs('#road-result-consent').checked,answers,turnstileToken:verificationToken}),
+            body:JSON.stringify({email,consent:qs('#road-result-consent').checked,profile,answers,turnstileToken:verificationToken}),
             signal:controller.signal
           });
           let result={};
