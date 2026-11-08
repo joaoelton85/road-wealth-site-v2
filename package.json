@@ -1,7 +1,7 @@
 {
   "name": "road-wealth-site",
   "private": true,
-  "version": "65.6.2",
+  "version": "65.6.3",
   "type": "module",
   "scripts": {
     "dev": "astro dev",
@@ -12,7 +12,9 @@
     "test": "node --test tests/*.test.mjs"
   },
   "dependencies": {
-    "astro": "7.3.5"
+    "astro": "7.3.5",
+    "@fontsource/inter": "^5.2.8",
+    "@fontsource/montserrat": "^5.2.8"
   },
   "devDependencies": {
     "wrangler": "latest",
