@@ -24,13 +24,17 @@ try {
     assert.equal(await page.locator("#checkup-road .checkup-entry .eyebrow").count(),1);
     assert.equal(await page.locator("#checkup-road .checkup-invite").count(),0);
     await page.locator("#open-checkup").click();
-    assert(await page.locator("#checkup-flow").isVisible(),"flow not opened immediately");
+    assert(await page.locator("#checkup-profile").isVisible(),"profile selection should open");
+    await page.locator('input[name="road-checkup-profile"][value="familiar"]').check();
+    await page.locator("#begin-profile-checkup").click();
+    assert(await page.locator("#checkup-flow").isVisible(),"questions should open after profile selection");
     assert.equal(await page.locator("#checkup-intro").count(),0);
     assert.equal(await page.locator("#checkup-final").isVisible(),false);
     assert.equal(await page.locator(".question").count(),4);
     await page.screenshot({path:dir+"/questions-"+width+".png"});
-    for(let area=0;area<4;area++){
-      for(let i=0;i<4;i++){
+    for(const count of [4,5,2,5]){
+      assert.equal(await page.locator(".question").count(),count,"unexpected question count");
+      for(let i=0;i<count;i++){
         await page.locator(".question").nth(i).locator('button[data-value="sim"]').click();
       }
       await page.locator("#next-checkup").click();
@@ -59,6 +63,22 @@ try {
   await fromHome.screenshot({path:dir+"/home-to-checkup.png"});
   console.log("FROM_HOME",JSON.stringify(afterHome));
   await mobile.close();
+  // Percurso Empresarial/Agro: quatro perguntas em cada área e e-mail correto.
+  const agroCtx=await browser.newContext({viewport:{width:390,height:740},deviceScaleFactor:1,isMobile:true,hasTouch:true});
+  const agroPage=await agroCtx.newPage();
+  await agroPage.goto("http://127.0.0.1:4321/patrimonio/#checkup-road",{waitUntil:"domcontentloaded"});
+  await agroPage.locator("#open-checkup").click();
+  await agroPage.locator('input[name="road-checkup-profile"][value="empresarial"]').check();
+  await agroPage.locator("#begin-profile-checkup").click();
+  for(let step=0;step<4;step++){
+    assert.equal(await agroPage.locator(".question").count(),4);
+    for(let i=0;i<4;i++)await agroPage.locator(".question").nth(i).locator('button[data-value="sim"]').click();
+    await agroPage.locator("#next-checkup").click();
+  }
+  assert(await agroPage.locator("#checkup-final").isVisible());
+  assert.match(await agroPage.locator("#checkup-finished-profile").textContent(),/Empresarial \/ Agro/);
+  await agroCtx.close();
+
   const ctx=await browser.newContext({viewport:{width:1280,height:800}});
   const page=await ctx.newPage();
   await page.goto("http://127.0.0.1:4321/",{waitUntil:"domcontentloaded"});
