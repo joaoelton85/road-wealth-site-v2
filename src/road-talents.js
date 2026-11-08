@@ -116,7 +116,7 @@ export async function saveTalent(env,talent) {
   if(!env.TALENTS_DB)return false;
   const now=new Date().toISOString();
   const id=crypto.randomUUID();
-  await env.TALENTS_DB.prepare(\`
+  await env.TALENTS_DB.prepare(`
     INSERT INTO road_talent_candidates
       (id,email,name,phone,linkedin,market_experience,client_portfolio,custody_range,interest_area,
        presentation,consent_at,first_seen_at,last_seen_at,submissions,status)
@@ -128,13 +128,13 @@ export async function saveTalent(env,talent) {
       presentation=excluded.presentation,consent_at=excluded.consent_at,
       last_seen_at=excluded.last_seen_at,
       submissions=road_talent_candidates.submissions+1
-  \`).bind(id,talent.email,talent.name,talent.phone,talent.linkedIn,talent.marketExperience,
+  `).bind(id,talent.email,talent.name,talent.phone,talent.linkedIn,talent.marketExperience,
     talent.clientPortfolio,talent.custodyRange,talent.interestArea,talent.story,now,now,now).run();
   const person=await env.TALENTS_DB.prepare("SELECT id FROM road_talent_candidates WHERE email=?").bind(talent.email).first();
   if(!person?.id)throw new Error("ROAD_TALENT_NOT_FOUND");
-  await env.TALENTS_DB.prepare(\`
+  await env.TALENTS_DB.prepare(`
     INSERT INTO road_talent_events(id,candidate_id,event,created_at)
     VALUES (?,?,'application_received',?)
-  \`).bind(crypto.randomUUID(),person.id,now).run();
+  `).bind(crypto.randomUUID(),person.id,now).run();
   return true;
 }
