@@ -84,11 +84,15 @@ import "../styles/patrimonio.css";
                   <input id="road-result-consent" name="consent" type="checkbox" required />
                   <span>Autorizo a ROAD a enviar o resultado deste Check-up para o e-mail informado.</span>
                 </label>
+                <label class="road-checkup-consent" for="road-result-contact">
+                  <input id="road-result-contact" name="contactConsent" type="checkbox" />
+                  <span>Quero que a ROAD entre em contato comigo para conversar sobre o resultado deste Check-up. (Opcional)</span>
+                </label>
                 <label class="road-checkup-consent" for="road-result-marketing">
                   <input id="road-result-marketing" name="marketingConsent" type="checkbox" />
                   <span>Quero receber comunicações da ROAD sobre investimentos e planejamento patrimonial. (Opcional)</span>
                 </label>
-                <p class="checkup-note">O e-mail e os dados opcionais serão usados no envio e registro desta solicitação. Comunicações comerciais dependem do aceite acima. Consulte nossa <a href="/privacidade/">Política de Privacidade</a>.</p>
+                <p class="checkup-note">O e-mail e os dados opcionais serão usados no envio e registro desta solicitação. O contato sobre seu resultado e as comunicações gerais dependem de autorizações independentes. Consulte nossa <a href="/privacidade/">Política de Privacidade</a>.</p>
                 <div id="road-checkup-turnstile" aria-label="Verificação de segurança"></div>
                 <button id="road-checkup-email-submit" class="btn btn--primary" type="submit">Receber minha análise</button>
                 <p id="road-checkup-email-feedback" class="road-checkup-email-feedback" role="status" aria-live="polite"></p>
@@ -291,7 +295,7 @@ import "../styles/patrimonio.css";
           const response=await fetch('/api/checkup-email',{
             method:'POST',
             headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({email,name:qs('#road-result-name').value.trim(),phone:qs('#road-result-phone').value.trim(),marketingConsent:qs('#road-result-marketing').checked,consent:qs('#road-result-consent').checked,profile,answers,turnstileToken:verificationToken}),
+            body:JSON.stringify({email,name:qs('#road-result-name').value.trim(),phone:qs('#road-result-phone').value.trim(),contactConsent:qs('#road-result-contact').checked,marketingConsent:qs('#road-result-marketing').checked,consent:qs('#road-result-consent').checked,profile,answers,turnstileToken:verificationToken}),
             signal:controller.signal
           });
           let result={};
