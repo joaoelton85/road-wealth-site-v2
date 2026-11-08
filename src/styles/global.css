@@ -3,6 +3,10 @@
   --sand:#F3ECE3;
   --olive:#43726B;
   --petrol:#3A4950;
+  --stone:#9B9B9B; /* Cinza Pedra — alternativa prevista no Brandbook. */
+  /* Brandbook ROAD: Café e Areia são predominantes; Verde Oliva, Azul Petróleo
+     e Cinza Pedra são permitidos como apoio em áreas informativas, gráficos e
+     materiais de análise. Nunca aplicar estas cores para recolorir o logo. */
   --stone:#9B9B9B;
   --ink:#241F1B;
   --white:#fff;
