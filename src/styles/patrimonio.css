@@ -5,8 +5,8 @@
 .road-checkup-email{margin-top:20px;padding:18px;border:1px solid rgba(69,49,37,.2);border-radius:12px;background:rgba(255,255,255,.2);max-width:650px}
 .road-checkup-email form{display:flex;flex-direction:column;gap:12px}
 .road-checkup-email label{font-weight:600;color:var(--coffee)}
-.road-checkup-email input[type="email"]{width:100%;max-width:440px;box-sizing:border-box;padding:12px 14px;border:1px solid rgba(69,49,37,.35);border-radius:8px;font:inherit;background:white;color:#302b27}
-.road-checkup-email input[type="email"]:focus-visible{outline:2px solid var(--coffee);outline-offset:3px}
+.road-checkup-email input:is([type="email"],[type="text"],[type="tel"]){width:100%;max-width:440px;box-sizing:border-box;padding:12px 14px;border:1px solid rgba(69,49,37,.35);border-radius:8px;font:inherit;background:white;color:#302b27}
+.road-checkup-email input:is([type="email"],[type="text"],[type="tel"]):focus-visible{outline:2px solid var(--coffee);outline-offset:3px}
 .road-checkup-consent{display:flex;align-items:flex-start;gap:10px;font-weight:400!important;line-height:1.45}
 .road-checkup-consent input{width:18px;height:18px;margin-top:3px;flex:0 0 18px}
 .road-checkup-email .checkup-note{margin:0;font-size:.9rem}
@@ -14,7 +14,7 @@
 .road-checkup-email-feedback:empty{display:none}
 .road-checkup-email button[type="submit"]{align-self:flex-start}
 .road-checkup-email button[disabled]{opacity:.6;cursor:wait}
-@media(max-width:760px){.road-checkup-email{padding:14px}.road-checkup-email input[type="email"]{max-width:100%}}
+@media(max-width:760px){.road-checkup-email{padding:14px}.road-checkup-email input:is([type="email"],[type="text"],[type="tel"]){max-width:100%}}
 
 
 /* V60 — leitura patrimonial em barras, utilizando cores e tipografia ROAD. */

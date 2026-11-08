@@ -299,3 +299,32 @@
   .ir-form-actions .btn{width:100%}
   .ir-result-contact{align-items:flex-start;flex-direction:column;gap:5px}
 }
+
+/* V65.2 — envio de resultados no próprio fluxo da simulação */
+.ir-result-column{min-width:0;display:grid;align-content:start;gap:18px}
+.ir-delivery[hidden]{display:none!important}
+.ir-delivery{
+  padding:22px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:#fff;
+  font-family:"Inter",Arial,sans-serif;
+}
+.ir-delivery h3{font:500 19px/1.3 "Montserrat",Arial,sans-serif;color:var(--coffee);margin:0 0 7px}
+.ir-delivery>p{font-size:13px;line-height:1.55;color:var(--muted);margin:0 0 16px}
+.ir-email-form{display:flex;flex-direction:column;gap:10px}
+.ir-email-form>label:not(.ir-email-consent){font:500 13px "Montserrat",Arial,sans-serif;color:var(--coffee)}
+.ir-email-form>input{
+  width:100%;min-height:44px;padding:10px 12px;
+  border:1px solid rgba(72,58,47,.24);border-radius:11px;
+  color:var(--coffee);background:#fff;font:14px "Inter",Arial,sans-serif;
+}
+.ir-email-form>input:focus-visible{outline:2px solid var(--coffee);outline-offset:2px}
+.ir-email-consent{display:flex;align-items:flex-start;gap:9px;font:13px/1.5 "Inter",Arial,sans-serif;color:var(--coffee)}
+.ir-email-consent input{width:18px;height:18px;flex:0 0 18px;margin:2px 0 0}
+.ir-email-form .ir-note a{color:var(--coffee)}
+.ir-email-form .btn{align-self:flex-start}
+.ir-email-form .btn[disabled]{opacity:.6;cursor:wait}
+.ir-email-feedback{margin:0;min-height:1.4em;font-size:12px;line-height:1.5;color:var(--coffee);font-weight:600}
+.ir-email-feedback:empty{display:none}
+@media(max-width:680px){.ir-delivery{padding:17px}.ir-email-form .btn{width:100%}}
