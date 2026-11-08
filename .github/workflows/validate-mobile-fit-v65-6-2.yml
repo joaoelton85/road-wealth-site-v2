@@ -1,0 +1,48 @@
+name: Validar V65.6.2 — Mobile e desktop intacto
+
+on:
+  push:
+    branches:
+      - fix/v65-6-2-mobile-text-fit
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  responsive-mobile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout baseline V65.6.1
+        uses: actions/checkout@v4
+        with:
+          ref: ff1042a25eb2e412ddecb3606da4173312ff0006
+          path: baseline
+      - name: Checkout V65.6.2
+        uses: actions/checkout@v4
+        with:
+          path: candidate
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Preparar baseline e revisão
+        run: |
+          (cd baseline && npm install --no-audit --no-fund && npm run build)
+          (cd candidate && npm install --no-audit --no-fund && npm test && npm run build && npx wrangler deploy --dry-run --outdir .wrangler-v65-6-2)
+      - name: Preparar navegador
+        working-directory: candidate
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Verificar 5 larguras e comparar o desktop
+        working-directory: candidate
+        run: |
+          (cd ../baseline && npm run preview -- --host 127.0.0.1 --port 4321 >/tmp/road-base-mobile.log 2>&1) &
+          (npm run preview -- --host 127.0.0.1 --port 4322 >/tmp/road-new-mobile.log 2>&1) &
+          for i in {1..45}; do
+            curl -fsS http://127.0.0.1:4321/ >/dev/null 2>&1 && curl -fsS http://127.0.0.1:4322/ >/dev/null 2>&1 && break
+            sleep 1
+          done
+          node scripts/check-mobile-fit-v65-6-2.mjs
