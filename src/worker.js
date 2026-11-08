@@ -1,4 +1,6 @@
 import { generateCheckupPdf } from "./checkup-pdf.js";
+import { calculateIr, buildIrEmail } from "./ir-email.js";
+import { parseContact, saveLeadEvent } from "./road-leads.js";
 import {
   evaluateCheckup, ROAD_REPORT_INTRO, ROAD_REPORT_NOTICE, ROAD_REPORT_CTA_TITLE, ROAD_TAGLINE, ROAD_CTA_LINK,
 } from "./checkup-report.js";
@@ -122,7 +124,7 @@ function buildEmail(report) {
   return {text,html};
 }
 
-async function verifyTurnstile(request, token, secret) {
+async function verifyTurnstile(request, token, secret, action = "road_checkup_email") {
   const body = new FormData();
   body.set("secret", secret);
   body.set("response", token);
@@ -137,7 +139,7 @@ async function verifyTurnstile(request, token, secret) {
     const result = await response.json();
     return result.success === true &&
       result.hostname === "roadwealth.com.br" &&
-      result.action === "road_checkup_email";
+      result.action === action;
   } catch {
     return false;
   }
@@ -153,9 +155,9 @@ export default {
         siteKey: env.TURNSTILE_SITE_KEY || null,
       });
     }
-    if (url.pathname !== "/api/checkup-email") {
-      return env.ASSETS.fetch(request);
-    }
+    const isCheckup = url.pathname === "/api/checkup-email";
+    const isSimulation = url.pathname === "/api/ir-email";
+    if (!isCheckup && !isSimulation) return env.ASSETS.fetch(request);
 
     if (request.method !== "POST") return json({ error: "Método não permitido." }, 405);
     if (request.headers.get("Origin") !== ORIGIN) {
@@ -187,10 +189,15 @@ export default {
     if (payload.consent !== true) {
       return json({ error: "É necessário autorizar o envio do resultado." }, 400);
     }
-    const report = evaluateCheckup(payload.answers, payload.profile);
-    if (!report) return json({ error: "Respostas do Check-up incompletas." }, 400);
+    const contact = parseContact(payload);
+    if (!contact) return json({ error: "Confira o nome e o telefone informados." }, 400);
+    const report = isCheckup
+      ? evaluateCheckup(payload.answers, payload.profile)
+      : calculateIr(payload.inputs);
+    if (!report) return json({ error: isCheckup ? "Respostas do Check-up incompletas." : "Dados da simulação inválidos." }, 400);
     const token = typeof payload.turnstileToken === "string" ? payload.turnstileToken : "";
-    if (!token || token.length > 2048 || !(await verifyTurnstile(request, token, env.TURNSTILE_SECRET_KEY))) {
+    const action = isCheckup ? "road_checkup_email" : "road_simulator_email";
+    if (!token || token.length > 2048 || !(await verifyTurnstile(request, token, env.TURNSTILE_SECRET_KEY, action))) {
       return json({ error: "Verificação de segurança inválida. Tente novamente." }, 403);
     }
 
@@ -207,21 +214,26 @@ export default {
     }
 
     try {
-      const message = buildEmail(report);
-      const pdf = await generateCheckupPdf(report);
+      const message = isCheckup ? buildEmail(report) : buildIrEmail(report, contact.name);
+      const attachments = isCheckup ? [{
+        filename: "Diagnostico-Check-up-ROAD.pdf",
+        type: "application/pdf",
+        disposition: "attachment",
+        content: await generateCheckupPdf(report),
+      }] : [];
       await env.EMAIL.send({
         from: { email: "contato@roadwealth.com.br", name: "ROAD Wealth" },
-        to: email,
+        to: contact.email,
         replyTo: "contato@roadwealth.com.br",
-        subject: "Seu resultado — Check-up ROAD",
+        subject: isCheckup ? "Seu resultado — Check-up ROAD" : "Sua simulação — IR e Doações | ROAD Wealth",
         ...message,
-        attachments: [{
-          filename: "Diagnostico-Check-up-ROAD.pdf",
-          type: "application/pdf",
-          disposition: "attachment",
-          content: pdf,
-        }],
+        ...(attachments.length ? {attachments} : {}),
       });
+      try {
+        await saveLeadEvent(env,contact,isCheckup?"checkup":"ir_doacoes",isCheckup?payload.profile:null);
+      } catch (dbError) {
+        console.error("ROAD lead registration failed",dbError?.code||"UNKNOWN");
+      }
       return json({ success: true, message: "Solicitação de envio recebida." }, 202);
     } catch (error) {
       console.error("Check-up email send failed", error?.code || "UNKNOWN");
