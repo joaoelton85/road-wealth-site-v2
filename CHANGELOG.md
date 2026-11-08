@@ -1,5 +1,12 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 64.4 — 07/11/2026
+
+- Rodapé mobile: alinhados pela margem inicial os textos "Rua Pater Josef Stefan, 1249" e "Colônia Vitória", preservando o endereço em duas linhas.
+- O endereço continua na coluna direita junto aos canais, com alinhamento interno à esquerda; desktop e demais elementos intactos.
+- Teste responsivo de 320 e 390 px passou a conferir o alinhamento real dos caracteres, além da ausência de transbordamento.
+
+
 ## Revisão 64.3 — 07/11/2026
 
 - Rodapé mobile: endereço em **exatamente duas linhas** — `Rua Pater Josef Stefan, 1249` e `Colônia Vitória · Entre Rios · Guarapuava/PR`.
