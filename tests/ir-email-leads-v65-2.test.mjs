@@ -93,9 +93,11 @@ test("notificação interna automática sem D1 identifica permissão comercial",
 
 test("script inline da calculadora compila e os dois formulários têm campos opcionais",()=>{
   const ir=readFileSync(new URL("../src/pages/calculadora-ir.astro",import.meta.url),"utf8");
-  const inline=ir.match(/<script is:inline>([\\s\\S]*?)<\\/script>/);
-  assert.ok(inline,"script inline encontrado");
-  assert.doesNotThrow(()=>new Script(inline[1]),"script da página sem erro de sintaxe");
+  const start=ir.indexOf("<script is:inline>");
+  const end=ir.indexOf("</script>",start);
+  assert.ok(start>=0 && end>start,"script inline encontrado");
+  const inline=ir.slice(start+"<script is:inline>".length,end);
+  assert.doesNotThrow(()=>new Script(inline),"script da página sem erro de sintaxe");
   assert.match(ir,/id="ir-email-name"/);
   assert.match(ir,/id="ir-email-phone"/);
   assert.match(ir,/id="ir-email-marketing"/);
