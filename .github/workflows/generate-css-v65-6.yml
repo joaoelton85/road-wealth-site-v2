@@ -1,0 +1,31 @@
+name: Gerar CSS consolidado V65.6
+
+on:
+  push:
+    branches:
+      - feature/v65-6-css-consolidado
+    paths:
+      - scripts/consolidate-css-v65-6.mjs
+
+permissions:
+  contents: write
+
+jobs:
+  generate-css:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Consolidar estilos mantendo ordem da cascata
+        run: node scripts/consolidate-css-v65-6.mjs
+      - name: Registrar CSS consolidado na branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/styles/road-legacy-consolidated.css
+          git diff --cached --quiet || (git commit -m "V65.6: consolidar CSS importado preservando cascata" && git push origin HEAD:feature/v65-6-css-consolidado)

@@ -102,7 +102,7 @@ test("mobile: rodapé legal e Check-up são preservados",()=>{
   assert.match(styles,/#checkup-road\.section/);
   assert.match(styles,/scroll-margin-top:0!important/);
   assert.match(styles,/\.footer-link-short\{display:inline!important\}/);
-  assert.match(layout,/import "\.\.\/styles\/revision-62\.css"/);
+  assert.match(layout,/import "\.\.\/styles\/road-legacy-consolidated\.css"/);
   assert.match(footer,/footer-link-full/);
   assert.match(footer,/footer-link-short/);
 });

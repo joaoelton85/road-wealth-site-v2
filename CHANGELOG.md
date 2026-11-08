@@ -1,5 +1,14 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 65.6 — 08/11/2026
+- Consolidados os 50 arquivos CSS de revisões efetivamente importados no BaseLayout em `road-legacy-consolidated.css`, preservando a ordem exata e o conteúdo de cada regra.
+- Os arquivos históricos permanecem no repositório para auditoria, comparação e rollback, mas não são carregados individualmente no site.
+- `global.css`, os CSS dos componentes/páginas e a folha de tipografia do Brandbook permanecem separados para facilitar manutenção.
+- Verificador de build e testes ajustados à importação consolidada.
+- Incluída verificação comparativa de capturas desktop/mobile em relação à V65.5 para identificar diferenças visuais antes de integrar a alteração.
+- Cabeçalho, TradingView e lógica do site não foram editados.
+
+
 ## Revisão 65.5 — 08/11/2026
 - Fontes web recomendadas pelo Brandbook oficial: Questrial para títulos e Lato para corpo de texto, sem alterar fontes dos widgets TradingView.
 - Cores complementares permitidas documentadas no CSS global, com Cinza Pedra e preservação de Café e Areia como cores predominantes.
