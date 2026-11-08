@@ -4,9 +4,13 @@ on:
   push:
     branches:
       - fix/v65-6-2-mobile-text-fit
+  # Equivalência visual à baseline V65.6.1 é um teste histórico.
+  # Não compará-la com revisões de tipografia desktop ou conteúdo posteriores.
   pull_request:
     branches:
       - main
+    paths:
+      - src/styles/road-mobile-fit-v65-6-2.css
 
 permissions:
   contents: read
