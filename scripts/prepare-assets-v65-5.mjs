@@ -1,4 +1,4 @@
-// V65.5 — traz a cópia das marcas institucionais para o repositório e
+// V65.5 — sync de imagens aprovado: marca institucional e mandala, sem redesenho.\n// Traz a cópia das marcas institucionais para o repositório e
 // otimiza a mandala. É executado uma vez na branch de preparação, não em cada request.
 import {mkdir,readFile,writeFile} from "node:fs/promises";
 import path from "node:path";
