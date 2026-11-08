@@ -1,10 +1,13 @@
-// ROAD Wealth V61 — interpretação educativa, baseada somente nas respostas voluntárias.
-// Não inferir que desconhecimento signifique ausência ou inadequação comprovada.
+// ROAD Wealth — interpretação educativa, baseada nas respostas voluntárias.
+// As quatro áreas permanecem iguais; a quantidade de perguntas varia conforme o perfil.
+// Desconhecimento nunca é tratado como ausência comprovada de proteção ou planejamento.
+import { ROAD_CHECKUP_PROFILES, ROAD_CHECKUP_AREA_ORDER } from "./checkup-profiles.js";
+
 export const ROAD_AREAS = [
   { key: "investments", label: "Investimentos" },
   { key: "legacy", label: "Legado" },
-  { key: "strategy", label: "Estratégia" },
-  { key: "decisions", label: "Decisões" },
+  { key: "capital", label: "Capital" },
+  { key: "planning", label: "Planejamento" },
 ];
 export const ROAD_POINTS = { sim: 3, parcial: 2, nao: 1, naosei: 0 };
 export const ROAD_TAGLINE = "Seu patrimônio, seu caminho, seu legado.";
@@ -13,160 +16,170 @@ export const ROAD_REPORT_NOTICE = "Avaliação indicativa baseada em informaçõ
 export const ROAD_CTA_LINK = "https://wa.me/5542984242852?text=" +
   encodeURIComponent("Olá! Realizei o Check-up ROAD e gostaria de conversar sobre minha análise patrimonial.");
 
-export function roadStatus(total) {
-  if (total >= 10) return { label: "Bem estruturado", color: "#43726B", key: "good" };
-  if (total >= 7) return { label: "Em desenvolvimento", color: "#AF873A", key: "developing" };
+export function roadStatus(points) {
+  if (points >= 10) return { label: "Bem estruturado", color: "#43726B", key: "good" };
+  if (points >= 7) return { label: "Em desenvolvimento", color: "#AF873A", key: "developing" };
   return { label: "Merece atenção", color: "#B86D42", key: "attention" };
 }
 
-// Tema único só é apresentado quando existe, nas respostas, um ponto a esclarecer.
-// O texto explica relevância e consequências possíveis, sem presumir fatos não verificados.
 const THEMES = [
-  { id:"portfolio", area:"investments", keys:["investments-0","investments-3"], title:"Bons investimentos não garantem uma boa carteira",
+  { id:"portfolio", topic:"carteira", area:"investments", keys:["investments-0","investments-3"],
+    title:"Bons investimentos não garantem uma boa carteira",
     detail:"Uma carteira pode reunir boas aplicações e, ainda assim, não atender aos objetivos de quem investe. O resultado depende de como os ativos se combinam, dos riscos assumidos e da disponibilidade dos recursos nos momentos em que forem necessários." },
-  { id:"visibility", area:"investments", keys:["investments-1","investments-3"], title:"Conhecer o conjunto ajuda a enxergar os riscos",
+  { id:"visibility", topic:"visao-integrada", area:"investments", keys:["investments-1","investments-3"],
+    title:"Conhecer o conjunto ajuda a enxergar os riscos",
     detail:"Quando os investimentos estão distribuídos entre instituições, nem sempre é simples perceber a exposição total do patrimônio. Uma visão consolidada ajuda a reconhecer concentrações, compreender a distribuição dos recursos e tomar decisões com mais clareza." },
-  { id:"returns", area:"investments", keys:["investments-2"], title:"Rentabilidade não conta toda a história",
-    detail:"O crescimento dos investimentos precisa ser observado depois dos impostos e da inflação, considerando também os riscos assumidos. Mais importante do que o desempenho de uma aplicação isolada é entender como ela contribui para seus objetivos ao longo do tempo." },
-  { id:"succession", area:"legacy", keys:["legacy-0","legacy-1"], title:"Preservar o patrimônio também exige preparar sua continuidade",
-    detail:"Uma estrutura patrimonial pode funcionar bem hoje e exigir cuidados diferentes em uma sucessão. Conhecer os custos, organizar os recursos necessários e pensar na continuidade dos negócios contribui para proteger os ativos e trazer mais tranquilidade à família." },
-  { id:"protection", area:"legacy", keys:["legacy-2","legacy-3"], title:"A proteção precisa acompanhar a vida da família",
-    detail:"Mudanças na família, nos negócios e no patrimônio podem alterar as necessidades de proteção. Revisitar periodicamente as soluções existentes ajuda a perceber se elas continuam adequadas e se oferecem o suporte esperado nos momentos em que realmente importam." },
-  { id:"liquidity", area:"strategy", keys:["strategy-1"], title:"Liquidez também significa preservar escolhas",
-    detail:"Uma estrutura patrimonial precisa considerar recursos para compromissos e imprevistos. Quando essa necessidade não é planejada, pode comprometer a continuidade dos negócios e dificultar a permanência de ativos importantes no patrimônio da família. A organização ajuda a preservar alternativas." },
-  { id:"goals", area:"strategy", keys:["strategy-0","strategy-2"], title:"Construir patrimônio exige saber aonde se quer chegar",
-    detail:"Acumular recursos é importante, mas compreender o que se pretende alcançar ajuda a organizar melhor cada decisão. Objetivos claros permitem conciliar as necessidades de hoje com projetos familiares, aposentadoria e segurança financeira no futuro." },
-  { id:"credit", area:"decisions", keys:["decisions-1","strategy-3"], title:"Usar recursos próprios nem sempre é a melhor escolha",
-    detail:"Evitar uma dívida pode parecer vantajoso, mas empregar capital próprio também reduz a liquidez disponível. Comparar as alternativas exige observar o custo do financiamento, as oportunidades que ficam pelo caminho e o efeito da decisão sobre todo o patrimônio." },
-  { id:"integrated", area:"decisions", keys:["decisions-0","decisions-2","decisions-3"], title:"Uma boa decisão precisa considerar o patrimônio inteiro",
-    detail:"Comprar um imóvel, ampliar um negócio ou realizar um investimento relevante pode fazer sentido isoladamente. Mas essas escolhas também afetam liquidez, riscos e planos futuros. Considerar o conjunto ajuda a avaliar melhor as alternativas antes de decidir." },
+  { id:"returns", topic:"retorno", area:"investments", keys:["investments-2"],
+    title:"Rentabilidade não conta toda a história",
+    detail:"O crescimento dos investimentos precisa ser observado depois dos impostos e da inflação, considerando também os riscos assumidos. Mais importante do que o desempenho isolado é entender a contribuição de cada aplicação para os objetivos." },
+  { id:"succession", topic:"sucessao", area:"legacy", keys:["legacy-0"],
+    title:"A continuidade do patrimônio exige preparação",
+    detail:"Antecipar os custos de uma sucessão, o acesso aos recursos necessários e as responsabilidades familiares ajuda a preservar escolhas. Uma análise individualizada pode identificar oportunidades de organização e proteção." },
+  { id:"capital-own", topic:"credito", area:"capital", keys:["capital-0"],
+    title:"Usar recursos próprios nem sempre é a melhor escolha",
+    detail:"Mesmo quando há dinheiro disponível, linhas de crédito podem representar uma alternativa para realizar projetos e preservar recursos investidos. Vale comparar o custo efetivo, a liquidez e os riscos antes de decidir." },
+  { id:"capital-options", topic:"fontes-de-capital", area:"capital", keys:["capital-1"],
+    title:"Conhecer as fontes de recursos amplia as alternativas",
+    detail:"As condições de crédito variam conforme a finalidade, o perfil e a atividade. Conhecer as possibilidades existentes, inclusive linhas diferenciadas quando elegíveis, pode ampliar as escolhas para aquisições, projetos e expansão." },
 ];
 
-const COMBINATIONS = [
-  { id:"family-continuity", area:"legacy", keys:["legacy-1","strategy-1"], title:"A continuidade da família também depende de liquidez",
-    detail:"Patrimônio e recursos disponíveis não são a mesma coisa. Em momentos de transição, a falta de planejamento pode pressionar a continuidade dos negócios e a permanência de ativos importantes na família. Antecipar essas necessidades permite preservar mais escolhas." },
-  { id:"one-portfolio", area:"investments", keys:["investments-1","investments-3","decisions-0"], title:"O risco de uma decisão nem sempre aparece isoladamente",
-    detail:"Quando investimentos e decisões patrimoniais são analisados em partes, pode ficar mais difícil enxergar a exposição total. Observar as instituições, os ativos e as decisões em conjunto ajuda a perceber relações que uma análise isolada não mostraria." },
-  { id:"purpose", area:"strategy", keys:["investments-0","strategy-0"], title:"Investir bem começa por saber para quê",
-    detail:"Boas aplicações não substituem objetivos claros. Quando a carteira não é avaliada à luz dos projetos pessoais e familiares, fica mais difícil saber se o risco e o prazo de cada investimento fazem sentido. O ponto de partida é conectar escolhas e propósitos." },
-  { id:"properties-liquidity", area:"decisions", keys:["decisions-2","strategy-1"], title:"O valor do patrimônio não conta toda a história",
-    detail:"Imóveis e participações em negócios podem representar uma parte importante do patrimônio, mas nem todos os recursos estão disponíveis quando necessários. Considerar a liquidez junto das decisões sobre esses ativos ajuda a preservar a continuidade dos planos familiares." },
-  { id:"future", area:"strategy", keys:["strategy-0","strategy-2"], title:"O futuro fica mais claro quando os objetivos têm direção",
-    detail:"Projetos familiares e aposentadoria costumam exigir decisões em momentos diferentes. Relacionar o que já foi construído com as necessidades futuras ajuda a escolher prioridades e a acompanhar se o patrimônio permanece alinhado ao caminho desejado." },
+const FAMILY_THEMES = [
+  { id:"family-liquidity", topic:"liquidez-sucessoria", area:"legacy", keys:["legacy-1"],
+    title:"A continuidade da família também depende de liquidez",
+    detail:"Patrimônio e recursos disponíveis não são a mesma coisa. Planejar os recursos necessários em uma sucessão pode preservar ativos relevantes e evitar decisões precipitadas em momentos delicados." },
+  { id:"family-health", topic:"saude", area:"legacy", keys:["legacy-2"],
+    title:"Proteção médica também faz parte do patrimônio",
+    detail:"Avaliar a rede de referência e as alternativas de cobertura médica ajuda a buscar atendimento de alta qualidade sem expor a família a despesas de grande porte. A proteção deve acompanhar as necessidades e os objetivos familiares." },
+  { id:"family-insurance", topic:"seguro-de-bens", area:"legacy", keys:["legacy-3"],
+    title:"Seus bens também precisam de proteção",
+    detail:"Uma residência ou outro bem relevante pode representar anos de construção patrimonial. Revisar coberturas e riscos ajuda a identificar exposições que nem sempre aparecem na análise dos investimentos." },
+  { id:"family-review", topic:"revisao-protecao", area:"legacy", keys:["legacy-4"],
+    title:"A proteção deve acompanhar as mudanças da família",
+    detail:"Mudanças familiares, patrimoniais e profissionais podem exigir soluções de proteção diferentes. Uma revisão periódica ajuda a verificar se o que foi estruturado continua adequado." },
+  { id:"family-goals", topic:"objetivos", area:"planning", keys:["planning-0"],
+    title:"Objetivos claros dão direção ao patrimônio",
+    detail:"Conectar as decisões financeiras a prioridades e prazos ajuda a escolher com mais critério entre consumir, investir e realizar projetos. O planejamento começa pelo que a família deseja construir." },
+  { id:"family-budget", topic:"organizacao-financeira", area:"planning", keys:["planning-1"],
+    title:"A organização financeira dá sustentação aos planos",
+    detail:"Acompanhar receitas, despesas e compromissos permite identificar a capacidade de poupança e prever necessidades futuras, sem depender apenas da percepção sobre a renda disponível." },
+  { id:"family-future", topic:"planos-futuros", area:"planning", keys:["planning-2"],
+    title:"Os grandes compromissos começam antes de acontecer",
+    detail:"Aposentadoria, educação e aquisições relevantes exigem recursos em momentos diferentes. Antecipar essas necessidades permite adaptar os investimentos e reduzir riscos de desencontro entre prazo e objetivo." },
+  { id:"family-projects", topic:"projetos", area:"planning", keys:["planning-3"],
+    title:"Uma boa decisão precisa considerar o patrimônio inteiro",
+    detail:"Comprar um imóvel ou realizar um projeto pode fazer sentido isoladamente, mas também altera liquidez, riscos e planos futuros. Comparar cenários e alternativas ajuda a entender o impacto de cada escolha." },
+  { id:"family-integrated", topic:"integracao-patrimonial", area:"planning", keys:["planning-4"],
+    title:"Planejar também é conectar as decisões",
+    detail:"Investimentos, proteção, objetivos e projetos pessoais se relacionam. Um planejamento integrado permite acompanhar essas conexões e revisar escolhas quando a vida e o patrimônio mudam." },
 ];
 
-const POSITIVE_SIGNALS = {
-  "investments-0":"diretrizes para orientar os investimentos",
-  "investments-1":"conhecimento sobre a distribuição da carteira",
-  "investments-2":"acompanhamento dos resultados dos investimentos",
-  "investments-3":"uma visão conjunta dos investimentos",
-  "legacy-0":"atenção aos custos de uma eventual sucessão",
-  "legacy-1":"recursos pensados para a continuidade familiar",
-  "legacy-2":"cuidados com a proteção médica da família",
-  "legacy-3":"revisão das estruturas de proteção e sucessão",
-  "strategy-0":"objetivos financeiros organizados",
-  "strategy-1":"atenção às reservas e à liquidez",
-  "strategy-2":"planejamento para a formação patrimonial e aposentadoria",
-  "strategy-3":"integração de crédito e liquidez ao planejamento",
-  "decisions-0":"avaliação dos impactos de decisões relevantes",
-  "decisions-1":"comparação de alternativas de financiamento",
-  "decisions-2":"decisões sobre negócios e imóveis em conjunto com o patrimônio",
-  "decisions-3":"coordenação entre especialistas quando necessário",
-};
+const BUSINESS_THEMES = [
+  { id:"business-continuity", topic:"continuidade-empresa", area:"legacy", keys:["legacy-1"],
+    title:"A continuidade dos negócios merece preparação",
+    detail:"A ausência temporária ou definitiva de uma pessoa essencial pode afetar decisões e operações. A coordenação entre sócios, família e especialistas permite planejar alternativas antes de uma situação inesperada." },
+  { id:"business-insurance", topic:"seguro-de-bens", area:"legacy", keys:["legacy-2"],
+    title:"Proteger os bens produtivos é preservar capacidade de operar",
+    detail:"Imóveis, instalações, máquinas e estoques são parte da capacidade de geração de renda. Avaliar riscos e coberturas pode revelar oportunidades de proteção da atividade empresarial ou rural." },
+  { id:"business-health", topic:"saude", area:"legacy", keys:["legacy-3"],
+    title:"A proteção médica pode preservar escolhas familiares",
+    detail:"O acesso a atendimento de alta qualidade, inclusive em situações de alta complexidade, deve ser observado junto com os riscos de despesas médicas elevadas. Há soluções diferentes conforme o perfil da família." },
+  { id:"business-cash", topic:"tesouraria", area:"capital", keys:["capital-2"],
+    title:"O caixa também pode ser uma fonte de eficiência",
+    detail:"Os recursos temporariamente disponíveis podem ter condições de remuneração distintas entre instituições. Comparar alternativas considerando liquidez, custos, tributação e risco pode melhorar o resultado financeiro sem comprometer a operação." },
+  { id:"business-capital", topic:"gestao-capital", area:"capital", keys:["capital-3"],
+    title:"Caixa, investimentos e crédito devem conversar entre si",
+    detail:"Necessidades sazonais, projetos e compromissos financeiros exigem decisões conectadas. Relacionar prazos de recebimento, investimentos e fontes de crédito ajuda a reduzir custos e preservar flexibilidade." },
+  { id:"business-goals", topic:"objetivos", area:"planning", keys:["planning-0"],
+    title:"Família e negócios precisam de objetivos alinhados",
+    detail:"A atividade econômica e o patrimônio pessoal influenciam um ao outro. Alinhar prioridades permite organizar investimentos, retiradas, reinvestimentos e projetos sem perder de vista os planos familiares." },
+  { id:"business-projects", topic:"projetos", area:"planning", keys:["planning-1"],
+    title:"Uma oportunidade merece análise além do preço",
+    detail:"Aquisição de terras, expansão e novos projetos exigem avaliar retorno, riscos, capacidade operacional e alternativas de uso do capital. Uma análise estruturada pode mudar a percepção de atratividade." },
+  { id:"business-personal", topic:"patrimonio-empresa", area:"planning", keys:["planning-2"],
+    title:"As escolhas do negócio afetam o patrimônio familiar",
+    detail:"Alavancagem, garantias, concentração de ativos e reinvestimentos podem repercutir diretamente sobre os objetivos da família. Uma visão integrada ajuda a avaliar os riscos para ambos." },
+  { id:"business-review", topic:"revisao", area:"planning", keys:["planning-3"],
+    title:"O planejamento precisa acompanhar a realidade",
+    detail:"Mercados, custos, oportunidades e necessidades familiares mudam. Revisar periodicamente os planos do negócio e da família ajuda a identificar quando decisões anteriores precisam ser atualizadas." },
+];
 
-const isKnownGap=(v)=>v==="nao"||v==="parcial";
-const weight=(v)=>v==="nao"?4:v==="parcial"?2:v==="naosei"?1:0;
-// Assuntos editoriais: evita duas mensagens sobre a mesma questão apenas com títulos diferentes.
-const THEME_TOPIC = {
-  "one-portfolio":"visao-integrada", "integrated":"visao-integrada", "visibility":"visao-integrada",
-  "portfolio":"criterios-de-carteira", "purpose":"criterios-de-carteira",
-  "returns":"retornos", "succession":"sucessao", "protection":"protecao",
-  "liquidity":"liquidez", "family-continuity":"liquidez", "properties-liquidity":"liquidez",
-  "goals":"objetivos", "future":"objetivos", "credit":"credito",
-};
+const weight=v=>v==="nao"?4:v==="parcial"?2:v==="naosei"?1:0;
+const isKnownGap=v=>v==="nao"||v==="parcial";
 
-function uniqueThemes(answers) {
-  const candidates=[];
-  for(const theme of COMBINATIONS){
-    const missing=theme.keys.filter(k=>answers[k]!=="sim");
-    if(missing.length<2 || !missing.some(k=>isKnownGap(answers[k])))continue;
-    candidates.push({...theme,topic:THEME_TOPIC[theme.id],priority:3+missing.reduce((s,k)=>s+weight(answers[k]),0)});
-  }
-  for(const theme of THEMES){
-    const missing=theme.keys.filter(k=>answers[k]!=="sim");
-    if(!missing.length)continue;
-    candidates.push({...theme,topic:THEME_TOPIC[theme.id],priority:missing.reduce((s,k)=>s+weight(answers[k]),0)});
-  }
-  candidates.sort((a,b)=>b.priority-a.priority);
-  // Preferir áreas diferentes, assuntos diferentes e sinais de respostas distintos.
+function selectThemes(answers, profile) {
+  const themes=[...THEMES,...(profile==="empresarial"?BUSINESS_THEMES:FAMILY_THEMES)];
+  const candidates=themes
+    .map(theme=>{
+      const missing=theme.keys.filter(key=>answers[key]!=="sim");
+      return {...theme, priority:missing.reduce((sum,key)=>sum+weight(answers[key]),0),missing};
+    })
+    .filter(theme=>theme.missing.length && theme.missing.some(key=>isKnownGap(answers[key])))
+    .sort((a,b)=>b.priority-a.priority);
   const chosen=[];
-  for(const item of candidates){
+  // Primeiro, buscar temas e áreas distintos. Depois, completar sem duplicar assunto.
+  for(const theme of candidates) {
     if(chosen.length===2)break;
-    if(chosen.some(c=>c.topic===item.topic))continue;
-    if(chosen.length && chosen.some(c=>c.area===item.area))continue;
-    chosen.push(item);
+    if(chosen.some(item=>item.topic===theme.topic||item.area===theme.area))continue;
+    chosen.push(theme);
   }
-  // Se não houver outra área relevante, admitir a mesma área, mas nunca repetir o tema.
-  for(const item of candidates){
+  for(const theme of candidates) {
     if(chosen.length===2)break;
-    if(chosen.some(c=>c.topic===item.topic))continue;
-    chosen.push(item);
+    if(chosen.some(item=>item.topic===theme.topic||item.id===theme.id))continue;
+    chosen.push(theme);
   }
-  return chosen.slice(0,2).map(({title,detail})=>({title,detail}));
+  return chosen.map(({title,detail})=>({title,detail}));
 }
 
-function limitedAnalysis(answers) {
-  const positives=Object.keys(POSITIVE_SIGNALS)
-    .filter(k=>answers[k]==="sim"||answers[k]==="parcial")
-    .sort((a,b)=>ROAD_POINTS[answers[b]]-ROAD_POINTS[answers[a]])
+function limitedAnalysis(answers, profile) {
+  const definitions=ROAD_CHECKUP_PROFILES[profile].areas;
+  const positives=ROAD_CHECKUP_AREA_ORDER.flatMap(key=>
+    definitions[key].questions.map((q,index)=>({q,index,key,answer:answers[key+"-"+index]})))
+    .filter(item=>item.answer==="sim"||item.answer==="parcial")
+    .sort((a,b)=>ROAD_POINTS[b.answer]-ROAD_POINTS[a.answer])
     .slice(0,2)
-    .map(k=>POSITIVE_SIGNALS[k]);
-  const start={
-    title:"Conhecer o patrimônio pode ser mais simples do que parece",
-    detail:"Organizar os investimentos e a vida financeira pode trazer mais tranquilidade no futuro. Conhecer o que já existe também ajuda a preservar o patrimônio, mesmo em períodos de incerteza. Não é preciso resolver tudo de uma vez: começar a reunir informações já faz diferença.",
-  };
-  if(!positives.length)return [start,{
-    title:"O primeiro passo é ganhar clareza",
-    detail:"Suas respostas mostram que ainda faltam informações para uma leitura mais precisa. Conhecer a composição dos investimentos, os compromissos e os objetivos da família é um caminho possível para começar a organizar as próximas decisões.",
-  }];
-  const details=positives.length===1
-    ? "Você já indicou " + positives[0] + ". "
-    : "Você já indicou " + positives[0] + " e " + positives[1] + ". ";
-  return [start,{
-    title:"Há pontos positivos que merecem ser reconhecidos",
-    detail:details+"Esses elementos podem servir como ponto de partida. O próximo passo é entender como se conectam às demais partes do patrimônio, sem desconsiderar o que já foi construído.",
-  }];
+    .map(item=>item.q.replace(/^(Você|Sua família|Seu planejamento|Sua empresa ou atividade rural)\s*/i,"").replace(/[?]$/,"").toLowerCase());
+  const first={title:"Conhecer o patrimônio pode ser mais simples do que parece",
+    detail:"Organizar os investimentos e a vida financeira pode trazer mais tranquilidade no futuro. Conhecer o que já existe também ajuda a preservar o patrimônio, mesmo em períodos de incerteza. Não é preciso resolver tudo de uma vez: começar a reunir informações já faz diferença."};
+  if(!positives.length)return [first,{title:"O primeiro passo é ganhar clareza",
+    detail:"Suas respostas mostram que ainda faltam informações para uma leitura mais precisa. Conhecer a composição dos investimentos, os compromissos e os objetivos da família é um caminho possível para começar a organizar as próximas decisões."}];
+  return [first,{title:"Há pontos positivos que merecem ser reconhecidos",
+    detail:"Você já indicou aspectos positivos em sua organização patrimonial. "+(positives.length===2?"Entre eles, há sinais de atenção a mais de uma dimensão do planejamento. ":"")+"O próximo passo é entender como esses elementos se conectam ao restante do patrimônio, sem desconsiderar o que já foi construído."}];
 }
 
-export function evaluateCheckup(answers) {
-  if(!answers||typeof answers!=="object"||Array.isArray(answers)||Object.keys(answers).length!==16)return null;
+export function evaluateCheckup(answers, profile) {
+  const configuration=ROAD_CHECKUP_PROFILES[profile];
+  if(!configuration||!answers||typeof answers!=="object"||Array.isArray(answers))return null;
+  const expected=ROAD_CHECKUP_AREA_ORDER.flatMap(key=>
+    configuration.areas[key].questions.map((_,index)=>key+"-"+index));
+  if(expected.length!==16||Object.keys(answers).length!==16)return null;
+  if(!expected.every(key=>Object.prototype.hasOwnProperty.call(answers,key) &&
+       Object.prototype.hasOwnProperty.call(ROAD_POINTS,answers[key])))return null;
   let unknownCount=0;
-  const areas=[];
-  for(const {key,label} of ROAD_AREAS){
-    let points=0;
-    for(let i=0;i<4;i++){
-      const answer=answers[key+"-"+i];
-      if(!Object.prototype.hasOwnProperty.call(ROAD_POINTS,answer))return null;
+  const areas=ROAD_AREAS.map(({key,label})=>{
+    const questions=configuration.areas[key].questions;
+    const rawPoints=questions.reduce((sum,_,index)=>{
+      const answer=answers[key+"-"+index];
       if(answer==="naosei")unknownCount++;
-      points+=ROAD_POINTS[answer];
-    }
+      return sum+ROAD_POINTS[answer];
+    },0);
+    // Normalizar por quantidade de perguntas. A escala permanece entre 0 e 12.
+    const points=Math.round(rawPoints/questions.length*4*100)/100;
     const status=roadStatus(points);
-    areas.push({key,label,points,percentage:Math.round(points/12*10000)/100,
-      statusLabel:status.label,statusKey:status.key,color:status.color});
-  }
+    return {key,label,points,rawPoints,questionCount:questions.length,
+      percentage:Math.round(rawPoints/(questions.length*3)*10000)/100,
+      statusLabel:status.label,statusKey:status.key,color:status.color};
+  });
   const limited=unknownCount>=12;
-  let priorities;
-  if(limited) priorities=limitedAnalysis(answers);
-  else priorities=uniqueThemes(answers);
-  if(priorities.length===0) priorities=[
+  let priorities=limited?limitedAnalysis(answers,profile):selectThemes(answers,profile);
+  if(priorities.length===0)priorities=[
     {title:"O valor de manter uma estrutura coerente",
      detail:"Suas respostas indicam organização nas áreas avaliadas. Conforme o patrimônio e a família evoluem, vale continuar observando se as escolhas permanecem coerentes com os objetivos e as necessidades de cada etapa."},
     {title:"Planejar também é preservar boas decisões",
-     detail:"Investimentos, proteção, liquidez e decisões relevantes se relacionam. Uma revisão periódica permite acompanhar essas conexões e reconhecer quando mudanças na família ou nos negócios exigem uma nova avaliação."},
+     detail:"Investimentos, proteção, liquidez e decisões relevantes se relacionam. Uma revisão periódica permite acompanhar essas conexões e reconhecer quando mudanças na família ou nos negócios exigem uma nova avaliação."}
   ];
-  if(priorities.length===1) priorities.push({
+  if(priorities.length===1)priorities.push({
     title:"Preservar uma visão integrada",
-    detail:"Uma decisão patrimonial ganha contexto quando é observada junto das demais. Relacionar investimentos, proteção, liquidez e objetivos ajuda a preservar a organização do patrimônio ao longo do tempo.",
+    detail:"Uma decisão patrimonial ganha contexto quando é observada junto das demais. Relacionar investimentos, proteção, liquidez e objetivos ajuda a preservar a organização do patrimônio ao longo do tempo."
   });
-  return {areas,priorities,unknownCount,limited};
+  return {profile,profileLabel:configuration.label,areas,priorities,unknownCount,limited};
 }
