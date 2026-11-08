@@ -36,6 +36,13 @@ export async function saveLeadEvent(env, contact, origin, profile = null) {
     INSERT INTO road_lead_events (id, lead_id, origin, profile, event, created_at)
     VALUES (?, ?, ?, ?, 'email_sent', ?)
   `).bind(crypto.randomUUID(),lead.id,origin,profile,now).run();
+  if (contact.contactConsent) {
+    // Registro de finalidade específica, em evento separado, sem alterar o esquema D1 da V65.2.
+    await env.LEADS_DB.prepare(`
+      INSERT INTO road_lead_events (id, lead_id, origin, profile, event, created_at)
+      VALUES (?, ?, ?, ?, 'contact_requested', ?)
+    `).bind(crypto.randomUUID(),lead.id,origin,profile,now).run();
+  }
   return true;
 }
 
@@ -52,7 +59,7 @@ export async function notifyLead(env, contact, origin, profile = null) {
     "E-mail: " + contact.email,
     "Telefone: " + (contact.phone || "Não informado"),
     "Perfil: " + (profile || "Não aplicável"),
-    "Contato sobre o diagnóstico: " + (contact.contactConsent ? "SIM — aceite expresso" : "NÃO — sem autorização"),
+    "Contato sobre o resultado: " + (contact.contactConsent ? "SIM — aceite expresso" : "NÃO — sem autorização"),
     "Comunicações comerciais: " + marketing,
     "Registrado em: " + new Date().toISOString(),
     "",
