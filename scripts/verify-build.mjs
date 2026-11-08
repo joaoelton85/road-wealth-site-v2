@@ -33,7 +33,7 @@ const checks = [
       'import "../styles/revision-58.css";',
       'import "../styles/revision-64-3.css";',
       'import "../styles/revision-64-4.css";',
-      'const BUILD_VERSION = "65.2.0";',
+      'const BUILD_VERSION = "65.3.0";',
       'const isHome = Astro.url.pathname === "/";',
       '{isHome && <RoadHighlights />}',
       '<ContactLauncher />',
@@ -142,7 +142,7 @@ const checks = [
   },
   {
     file: "src/layouts/BaseLayout.astro",
-    required: ["syncDisclaimerSurface", "--road-disclaimer-bg", "const BUILD_VERSION = \"65.2.0\""],
+    required: ["syncDisclaimerSurface", "--road-disclaimer-bg", "const BUILD_VERSION = \"65.3.0\""],
   },
   {
     file: "src/components/MarketTicker.astro",
@@ -256,12 +256,12 @@ const checks = [
       '"term": "Diferimento / diferido"',
     ],
   },
-  { file: "dist/__road-build.json", required: ['"roadBuild": "65.2.0"'] },
+  { file: "dist/__road-build.json", required: ['"roadBuild": "65.3.0"'] },
   {
     file: "dist/index.html",
     required: [
-      'road-build" content="65.2.0"',
-      'data-road-build="65.2.0"',
+      'road-build" content="65.3.0"',
+      'data-road-build="65.3.0"',
       "DESTAQUE",
       "Conceitos, ferramentas e Glossário ROAD para entender melhor suas decisões.",
       "planning-step-number",
@@ -274,7 +274,7 @@ const checks = [
   {
     file: "dist/calculadora-ir/index.html",
     required: [
-      'road-build" content="65.2.0"',
+      'road-build" content="65.3.0"',
       "SIMULAÇÃO IRPF 2026",
       "Ficou em dúvida?",
       "Fale com a gente",
@@ -284,7 +284,7 @@ const checks = [
   {
     file: "dist/glossario/index.html",
     required: [
-      'road-build" content="65.2.0"',
+      'road-build" content="65.3.0"',
       "160 verbetes",
       "Pix",
       "Open Finance",
@@ -317,4 +317,4 @@ if (failures.length) {
   failures.forEach(failure => console.error(`- ${failure}`));
   process.exit(1);
 }
-console.log("ROAD build verification OK — Revisão 65.2");
+console.log("ROAD build verification OK — Revisão 65.3");
