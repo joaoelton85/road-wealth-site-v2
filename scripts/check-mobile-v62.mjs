@@ -29,6 +29,9 @@ try {
     // A entrada compacta da V63 ocupa apenas parte da tela. O modo de
     // leitura se aplica quando as perguntas alcançam os controles flutuantes.
     await page.locator("#open-checkup").click();
+    assert(await page.locator("#checkup-profile").isVisible(),"Seleção de perfil não exibida");
+    await page.locator('input[name="road-checkup-profile"][value="familiar"]').check();
+    await page.locator("#begin-profile-checkup").click();
     await page.locator("#checkup-flow").scrollIntoViewIfNeeded();
     await page.waitForFunction(() => document.body.classList.contains("road-mobile-reading-zone"));
     assert.equal(await page.locator("body.road-mobile-reading-zone").count(),1,

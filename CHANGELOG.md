@@ -1,5 +1,14 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 65 — 07/11/2026 (preparação, sem publicação)
+
+- Home: primeiro “Conheça a ROAD”, depois “Fazer Check-up Financeiro”; retirada a chamada “Como trabalhamos” do bloco principal.
+- Instituições financeiras após o bloco inicial; depois áreas de atuação e fases do relacionamento, mantendo conteúdo institucional restante.
+- Quatro áreas: Investimentos, Legado, Capital e Planejamento no site, na mandala e nos diagnósticos.
+- Check-up: percursos Patrimonial/Familiar e Empresarial/Agro, 16 perguntas específicas para cada um, com validação e normalização do diagnóstico.
+- E-mail e PDF: identificação do percurso e convite final aprovado, preservando o envio exclusivo por e-mail e a identidade marrom-café/areia.
+- Alterações preparadas em branch de revisão, sem deploy automático.
+
 ## Revisão 64.4 — 07/11/2026
 
 - Rodapé mobile: alinhados pela margem inicial os textos "Rua Pater Josef Stefan, 1249" e "Colônia Vitória", preservando o endereço em duas linhas.

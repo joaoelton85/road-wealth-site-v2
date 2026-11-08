@@ -22,23 +22,36 @@ import InstitutionPlatforms from "../components/InstitutionPlatforms.astro";
       <h1><span>Seu patrimônio,</span><span>seu legado,</span><span>seu caminho.</span></h1>
       <p class="lead">Consultoria de Investimentos e planejamento patrimonial para famílias e negócios com patrimônio no Brasil e no exterior.</p>
       <div class="actions">
-        <a class="btn btn--sand" href="/patrimonio/#checkup-road" aria-label="Iniciar o Check-up ROAD: 16 perguntas e análise por e-mail">Check-up ROAD</a>
-        <a class="btn btn--outline-light" href="/a-road/">Conheça a ROAD</a>
+        <a class="btn btn--sand" href="/a-road/">Conheça a ROAD</a>
+        <a class="btn btn--outline-light" href="/patrimonio/#checkup-road" aria-label="Iniciar o Check-up Financeiro: 16 perguntas e análise por e-mail">Fazer Check-up Financeiro</a>
       </div>
-      <a class="road-home-how-link" href="#como-trabalhamos">Como trabalhamos</a>
     </div>
   </section>
 
-  <section class="section section--sand home-intro" id="como-trabalhamos">
-    <div class="home-intro-grid">
-      <div>
-        <div class="eyebrow">O QUE FAZEMOS</div>
-        <h2>Proximidade para entender. Clareza para planejar. Cuidado para acompanhar.</h2>
-      </div>
-      <div class="home-intro-copy">
-        <p>Cada patrimônio tem uma história, objetivos e prioridades próprios. Por isso, nosso trabalho começa pela escuta e pelo entendimento da realidade de cada família ou negócio.</p>
-        <p>A partir daí, organizamos informações, construímos um planejamento e acompanhamos as decisões com transparência, responsabilidade e visão de longo prazo.</p>
-        <p class="home-trust-line">A confiança se constrói com proximidade, clareza e transparência em cada etapa.</p>
+  <section class="section section--white home-institutions" id="instituicoes">
+    <div class="section-intro">
+      <div class="eyebrow">CONSULTORIA INDEPENDENTE</div>
+      <h2>Seu patrimônio pode estar onde fizer sentido para você.</h2>
+      <p>A ROAD Wealth® acompanha investimentos mantidos em diferentes instituições, no Brasil e no exterior, organizando a análise de forma consolidada e orientada pelos objetivos do cliente.</p>
+    </div>
+    <InstitutionPlatforms />
+    <p class="home-network-note">A ROAD Wealth® integra a Rede Meu Patrimônio e conta com sua estrutura regulatória, tecnológica e institucional para a atividade de Consultoria de Investimentos.</p>
+    <div class="actions home-institutions-action"><a class="btn btn--primary" href="/investimentos/">Entenda como funciona a Consultoria</a></div>
+  </section>
+
+  <section class="section section--sand home-areas" id="patrimonio">
+    <div class="section-intro">
+      <div class="eyebrow">ÁREAS DE ATUAÇÃO</div>
+      <h2>Quatro áreas. Uma leitura integrada do patrimônio.</h2>
+      <p>Investimentos é o ponto de partida. As demais áreas ajudam a conectar proteção, planejamento e decisões relevantes para que o patrimônio seja observado como um todo.</p>
+    </div>
+    <div class="wealth-grid wealth-grid--visual">
+      <RoadMandala />
+      <div class="home-area-definitions">
+        <a class="home-area-definition" href="/investimentos/"><strong>Investimentos</strong><span>Como o patrimônio financeiro é investido.</span><small>Política de Investimentos, alocação, instituições, consolidação, acompanhamento e rebalanceamento.</small></a>
+        <a class="home-area-definition" href="/patrimonio/#legado"><strong>Legado</strong><span>Como o patrimônio é protegido e atravessa gerações.</span><small>Proteção familiar, sucessão, previdência, liquidez sucessória e continuidade patrimonial.</small></a>
+        <a class="home-area-definition" href="/patrimonio/#capital"><strong>Capital</strong><span>Como captar e utilizar os recursos de forma eficiente.</span><small>Capital próprio e de terceiros, crédito, mercado de capitais, tesouraria, liquidez e gestão de passivos.</small></a>
+        <a class="home-area-definition" href="/patrimonio/#planejamento"><strong>Planejamento</strong><span>Do cotidiano às grandes decisões patrimoniais.</span><small>Objetivos, organização financeira, aposentadoria, avaliação de projetos e planejamento familiar e empresarial.</small></a>
       </div>
     </div>
   </section>
@@ -58,32 +71,18 @@ import InstitutionPlatforms from "../components/InstitutionPlatforms.astro";
     </div>
   </section>
 
-  <section class="section section--sand home-areas" id="patrimonio">
-    <div class="section-intro">
-      <div class="eyebrow">ÁREAS DE ATUAÇÃO</div>
-      <h2>Quatro áreas. Uma leitura integrada do patrimônio.</h2>
-      <p>Investimentos é o ponto de partida. As demais áreas ajudam a conectar proteção, planejamento e decisões relevantes para que o patrimônio seja observado como um todo.</p>
-    </div>
-    <div class="wealth-grid wealth-grid--visual">
-      <RoadMandala />
-      <div class="home-area-definitions">
-        <a class="home-area-definition" href="/investimentos/"><strong>Investimentos</strong><span>Como o patrimônio financeiro é investido.</span><small>Política de Investimentos, alocação, instituições, consolidação, acompanhamento e rebalanceamento.</small></a>
-        <a class="home-area-definition" href="/patrimonio/#legado"><strong>Legado</strong><span>Como o patrimônio é protegido e atravessa gerações.</span><small>Proteção familiar, sucessão, previdência, liquidez sucessória e continuidade patrimonial.</small></a>
-        <a class="home-area-definition" href="/patrimonio/#estrategia"><strong>Estratégia</strong><span>Como os objetivos se transformam em um plano.</span><small>Planejamento financeiro, liquidez, aposentadoria, crédito, exposição internacional e organização dos recursos ao longo do tempo.</small></a>
-        <a class="home-area-definition" href="/patrimonio/#decisoes"><strong>Decisões</strong><span>Como avaliar escolhas que podem mudar o percurso.</span><small>Imóveis, financiamentos, negócios, endividamento, grandes aquisições e outras decisões relevantes vistas dentro do patrimônio como um todo.</small></a>
+  <section class="section section--sand home-intro" id="como-trabalhamos">
+    <div class="home-intro-grid">
+      <div>
+        <div class="eyebrow">O QUE FAZEMOS</div>
+        <h2>Proximidade para entender. Clareza para planejar. Cuidado para acompanhar.</h2>
+      </div>
+      <div class="home-intro-copy">
+        <p>Cada patrimônio tem uma história, objetivos e prioridades próprios. Por isso, nosso trabalho começa pela escuta e pelo entendimento da realidade de cada família ou negócio.</p>
+        <p>A partir daí, organizamos informações, construímos um planejamento e acompanhamos as decisões com transparência, responsabilidade e visão de longo prazo.</p>
+        <p class="home-trust-line">A confiança se constrói com proximidade, clareza e transparência em cada etapa.</p>
       </div>
     </div>
-  </section>
-
-  <section class="section section--white home-institutions" id="instituicoes">
-    <div class="section-intro">
-      <div class="eyebrow">CONSULTORIA INDEPENDENTE</div>
-      <h2>Seu patrimônio pode estar onde fizer sentido para você.</h2>
-      <p>A ROAD Wealth® acompanha investimentos mantidos em diferentes instituições, no Brasil e no exterior, organizando a análise de forma consolidada e orientada pelos objetivos do cliente.</p>
-    </div>
-    <InstitutionPlatforms />
-    <p class="home-network-note">A ROAD Wealth® integra a Rede Meu Patrimônio e conta com sua estrutura regulatória, tecnológica e institucional para a atividade de Consultoria de Investimentos.</p>
-    <div class="actions home-institutions-action"><a class="btn btn--primary" href="/investimentos/">Entenda como funciona a Consultoria</a></div>
   </section>
 
   <section class="section section--sand home-a-road" id="a-road">
