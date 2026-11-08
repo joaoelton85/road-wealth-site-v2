@@ -63,7 +63,7 @@ test("marca e rodapé do e-mail são preservados",async()=>{
   assert.match(msg.html,/Instagram @road\.wealth/);
   assert(msg.text.includes(ROAD_REPORT_CTA_TITLE.toUpperCase()));
   assert(msg.text.includes(ROAD_REPORT_NOTICE));
-  assert.match(msg.html,/Seu patrimônio, seu caminho, seu legado/);
+  assert.match(msg.html,/Seu patrimônio, seu legado, seu caminho/);
 });
 test("recomendações não repetem o mesmo título",()=>{
   const v=answers("sim");

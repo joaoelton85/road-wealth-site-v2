@@ -9,7 +9,7 @@ export function parseContact(payload) {
   if (name.length > 80 || /[\x00-\x1F\x7F]/.test(name)) return null;
   const phone = typeof payload.phone === "string" ? payload.phone.trim() : "";
   if (phone.length > 28 || (phone && (!/^[+()\d\s.-]+$/.test(phone) || phone.replace(/\D/g, "").length < 8 || phone.replace(/\D/g, "").length > 15))) return null;
-  return { email, name, phone, marketingConsent: payload.marketingConsent === true };
+  return { email, name, phone, contactConsent: payload.contactConsent === true, marketingConsent: payload.marketingConsent === true };
 }
 
 // Falha no CRM não impede o envio solicitado pelo visitante.
@@ -36,6 +36,13 @@ export async function saveLeadEvent(env, contact, origin, profile = null) {
     INSERT INTO road_lead_events (id, lead_id, origin, profile, event, created_at)
     VALUES (?, ?, ?, ?, 'email_sent', ?)
   `).bind(crypto.randomUUID(),lead.id,origin,profile,now).run();
+  if (contact.contactConsent) {
+    // Registro de finalidade específica, em evento separado, sem alterar o esquema D1 da V65.2.
+    await env.LEADS_DB.prepare(`
+      INSERT INTO road_lead_events (id, lead_id, origin, profile, event, created_at)
+      VALUES (?, ?, ?, ?, 'contact_requested', ?)
+    `).bind(crypto.randomUUID(),lead.id,origin,profile,now).run();
+  }
   return true;
 }
 
@@ -52,6 +59,7 @@ export async function notifyLead(env, contact, origin, profile = null) {
     "E-mail: " + contact.email,
     "Telefone: " + (contact.phone || "Não informado"),
     "Perfil: " + (profile || "Não aplicável"),
+    "Contato sobre o resultado: " + (contact.contactConsent ? "SIM — aceite expresso" : "NÃO — sem autorização"),
     "Comunicações comerciais: " + marketing,
     "Registrado em: " + new Date().toISOString(),
     "",

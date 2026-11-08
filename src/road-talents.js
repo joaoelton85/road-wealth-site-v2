@@ -92,7 +92,7 @@ export function talentInternalEmail(talent) {
 }
 export function talentAcknowledgementEmail(talent) {
   const heading="Recebemos sua apresentação.";
-  const bodyText="Olá, "+talent.name+".\n\nObrigado pelo interesse em fazer parte da ROAD Wealth. Recebemos sua apresentação e ela poderá ser considerada quando surgirem oportunidades compatíveis com seu perfil.\n\nO cadastro não significa a existência de uma vaga ou o início de um processo seletivo. Se desejarmos aprofundar a conversa, entraremos em contato pelos canais informados.\n\nSe quiser atualizar ou solicitar a exclusão de seus dados, escreva para contato@roadwealth.com.br.\n\nSeu patrimônio, seu caminho, seu legado.\nROAD Wealth";
+  const bodyText="Olá, "+talent.name+".\n\nObrigado pelo interesse em fazer parte da ROAD Wealth. Recebemos sua apresentação e ela poderá ser considerada quando surgirem oportunidades compatíveis com seu perfil.\n\nO cadastro não significa a existência de uma vaga ou o início de um processo seletivo. Se desejarmos aprofundar a conversa, entraremos em contato pelos canais informados.\n\nSe quiser atualizar ou solicitar a exclusão de seus dados, escreva para contato@roadwealth.com.br.\n\nSeu patrimônio, seu legado, seu caminho.\nROAD Wealth";
   const html='<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>'+
   '<body style="margin:0;padding:0;background:#F8F5F0;color:#483A2F;">'+
   '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"><tr><td align="center" style="padding:20px 10px;">'+
@@ -105,7 +105,7 @@ export function talentAcknowledgementEmail(talent) {
   '<p style="font:14px/1.7 Inter,Arial,sans-serif;color:#72665D;margin:19px 0;">Se quisermos conhecer melhor sua trajetória, entraremos em contato. Para atualizar ou solicitar a exclusão de seus dados, escreva para <a style="color:#483A2F;" href="mailto:'+CONTACT_EMAIL+'">'+CONTACT_EMAIL+'</a>.</p>'+
   '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-top:1px solid #E2D9D0;margin-top:22px;"><tr><td width="85" style="padding-top:18px;" valign="middle">'+
   '<img alt="ROAD Wealth" src="'+SITE+'/assets/road-logo-cafe-email.png" width="70" height="109" style="display:block;width:70px;height:109px;border:0;" /></td>'+
-  '<td style="padding:18px 0 0 10px;font:13px/1.6 Inter,Arial,sans-serif;color:#483A2F;" valign="middle">Seu patrimônio, seu caminho, seu legado.<p style="margin:8px 0 0;"><a href="'+SITE+'" style="color:#483A2F;">roadwealth.com.br</a></p></td></tr></table>'+
+  '<td style="padding:18px 0 0 10px;font:13px/1.6 Inter,Arial,sans-serif;color:#483A2F;" valign="middle">Seu patrimônio, seu legado, seu caminho.<p style="margin:8px 0 0;"><a href="'+SITE+'" style="color:#483A2F;">roadwealth.com.br</a></p></td></tr></table>'+
   '</td></tr></table></td></tr></table></body></html>';
   return {from:MAIL_FROM,to:talent.email,replyTo:CONTACT_EMAIL,subject:"Recebemos sua apresentação — ROAD Wealth",text:bodyText,html};
 }
