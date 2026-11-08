@@ -1,5 +1,14 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 65.5 — 08/11/2026
+- Fontes web recomendadas pelo Brandbook oficial: Questrial para títulos e Lato para corpo de texto, sem alterar fontes dos widgets TradingView.
+- Cores complementares permitidas documentadas no CSS global, com Cinza Pedra e preservação de Café e Areia como cores predominantes.
+- Logos das instituições referenciados por caminhos locais; atualização do componente inclui nota de titularidade. Arquivos gerados na branch por rotina auditável de sincronização de assets.
+- Mandala da home preparada para WebP otimizado, preservando imagem original PNG como fonte.
+- Metadados Open Graph (incluindo PNG com marca sobre Areia) e sitemap adicionados, mantendo robots.txt e noindex inalterados.
+- Nada foi alterado na lógica do painel TradingView.
+
+
 ## Revisão 65.4 — 08/11/2026
 - Conteúdo institucional: explicitação da atuação da ROAD no relacionamento e acompanhamento, e da atividade regulada de Consultoria de Investimentos no âmbito da Meu Patrimônio, consultoria credenciada na CVM.
 - Avisos Legais: seção de identificação da ROAD WEALTH LTDA, CNPJ 68.642.253/0001-00, endereço, canal de atendimento e referência regulatória já existente.
