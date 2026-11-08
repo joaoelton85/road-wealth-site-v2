@@ -7,7 +7,7 @@ const home=readFileSync("src/pages/index.astro","utf8");
 const css=readFileSync("src/styles/revision-63.css","utf8");
 const flow=page.slice(page.indexOf('<section class="section checkup-section"'),page.indexOf('<section class="section section--coffee cta-final"'));
 
-test("Abertura do Check-up é única, editorial e com botão antes do questionário",()=>{
+test("abertura é única, editorial e sem resultados na página",()=>{
   assert.equal((flow.match(/CHECK-UP ROAD/g)||[]).length,1);
   assert.equal((flow.match(/<h2>/g)||[]).length,1);
   assert.equal((flow.match(/id="open-checkup"/g)||[]).length,1);
@@ -16,25 +16,24 @@ test("Abertura do Check-up é única, editorial e com botão antes do questioná
   assert.doesNotMatch(flow,/checkup-invite|id="checkup-intro"|id="start-checkup"|checkup-meta|checkup-area-card/);
   assert(flow.indexOf('id="open-checkup"')<flow.indexOf('id="checkup"'));
 });
-
-test("Início deve ir diretamente às perguntas, sem segundo botão nem revelar resultados",()=>{
+test("escolha de perfil precede o fluxo de perguntas",()=>{
   assert.match(page,/function openCheckup\(\)\s*\{[\s\S]*?checkupStep=0/);
+  assert.match(page,/qs\('#checkup-profile'\)\.hidden=false/);
   assert.match(page,/qs\('#checkup-flow'\)\.hidden=false/);
+  assert.match(page,/begin-profile-checkup/);
   assert.match(page,/renderCheckup\(\)/);
   assert.doesNotMatch(page,/id="result"|scoreboard-grid|renderStepResult/);
   assert.match(page,/Concluir e receber por e-mail/);
-  assert.match(page,/qs\('#open-checkup'\)\.addEventListener\('click'/);
+  assert.match(page,/qs\('#open-checkup'\)\?\.addEventListener\('click'/);
 });
-
-test("Home tem apenas um acesso direto ao Check-up e nenhuma caixa de chamada duplicada",()=>{
+test("Home tem acesso único ao Check-up sem caixa duplicada",()=>{
   assert.equal((home.match(/href="\/patrimonio\/#checkup-road"/g)||[]).length,1);
   assert.match(home,/href="\/patrimonio\/#checkup-road"[^>]*>Check-up ROAD<\/a>/);
   assert.doesNotMatch(home,/road-home-checkup-access|road-home-checkup-eyebrow/);
   assert.match(home,/road-home-how-link/);
   assert.match(home,/Conheça a ROAD/);
 });
-
-test("Tipografia e posicionamento priorizam botão no celular",()=>{
+test("primeira tela mobile mantém espaço para o CTA",()=>{
   assert.match(css,/#checkup-road \.checkup-entry h2/);
   assert.match(css,/#checkup-road \.checkup-entry \.btn/);
   assert.match(css,/#checkup-road\.section/);
