@@ -1,0 +1,7035 @@
+/* ROAD Wealth — CSS consolidado V65.6
+ * Gerado por scripts/consolidate-css-v65-6.mjs; não editar diretamente.
+ * Ordem original preservada: 50 arquivos importados do BaseLayout.
+ * Fontes: v16.css, v17.css, v18.css, v19.css, v21.css, v23.css, v24.css, v25.css, v30.css, v31.css, v32.css, v35.css, v36.css, v37.css, v38.css, v40.css, v44.css, v52.css, v52-1.css, v52-2.css, v52-3.css, v52-4.css, v52-5.css, v52-6.css, v52-7.css, v52-8.css, v52-9.css, v52-10.css, v52-11.css, v52-12.css, v52-13.css, v52-14.css, v52-15.css, v52-16.css, v52-17.css, v52-18.css, v52-19.css, revision.css, revision-53.css, revision-53-1.css, revision-54.css, revision-55.css, revision-56.css, revision-58.css, revision-61.css, revision-62.css, revision-62-1.css, revision-63.css, revision-64-3.css, revision-64-4.css
+ * SHA256 das fontes: 24d7c62c6d0236a00a4cf47d65b7aefaff8b80f66e9586a1cb2f9d935811e26c
+ * CSS principal, módulos de páginas e tipografia Brandbook permanecem separados.
+ */
+
+/* === INÍCIO v16.css === */
+/* ROAD Wealth V16 — refinamentos sobre a base estável da V15. */
+:root{
+  color-scheme:only light;
+  --ticker-h:26px;
+  --sticky-top:112px;
+}
+html,body{background:var(--sand);color-scheme:only light}
+
+/* Ticker: apenas a faixa preta ocupa espaço. Fontes/atraso ficam sobre o fundo da página. */
+.market-ticker-shell{background:#090909;color:var(--sand)}
+.ticker-placeholder{gap:0;font-family:"Montserrat",Arial,sans-serif;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:rgba(243,236,227,.68)}
+.ticker-placeholder i,.ticker-placeholder span:not(:first-child){display:none}
+.market-ticker-note{
+  position:absolute;
+  top:calc(100% + 3px);
+  right:max(26px,calc((100vw - var(--ticker-max))/2));
+  z-index:3;
+  min-height:0;
+  display:block;
+  padding:0;
+  pointer-events:none;
+  font-family:"Inter",Arial,sans-serif;
+  font-size:7.8px;
+  line-height:1.15;
+  letter-spacing:.035em;
+  color:rgba(72,58,47,.72);
+  white-space:nowrap;
+  text-align:right;
+  background:transparent;
+  overflow:visible;
+}
+.market-ticker-note.is-on-dark{color:rgba(243,236,227,.72)}
+.market-ticker-note-compact{display:none}
+
+/* Home: mesma tipografia dos grandes títulos e centralização vertical real da faixa Café. */
+.intro-quote{
+  margin:0;
+  font-family:"Questrial","Montserrat",Arial,sans-serif;
+  font-size:clamp(36px,3.5vw,48px);
+  line-height:1.08;
+  letter-spacing:-.026em;
+  font-weight:400;
+}
+.home-story{display:flex;align-items:center;min-height:190px}
+.home-story .story-split{width:100%}
+.story-split{align-items:center}
+.story-split>*{align-self:center}
+.story-split .section-intro{margin:0;display:flex;align-items:center}
+.story-split .section-intro p{
+  margin:0;
+  font-family:"Inter",Arial,sans-serif;
+  font-size:18px;
+  line-height:1.5;
+  font-weight:400;
+}
+
+/* Chamadas editoriais: convites integrados ao site, sem aparência publicitária. */
+.road-callout{
+  padding:30px max(26px,calc((100vw - var(--max))/2));
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:center;
+  gap:42px;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.road-callout-copy{max-width:980px}
+.road-callout .eyebrow{margin-bottom:7px}
+.road-callout h3{
+  font-family:"Questrial","Montserrat",Arial,sans-serif;
+  font-size:clamp(27px,2.3vw,36px);
+  line-height:1.12;
+  letter-spacing:-.02em;
+  margin:0 0 8px;
+  font-weight:400;
+}
+.road-callout p{font-family:"Inter",Arial,sans-serif;font-size:15px;line-height:1.55;margin:0;max-width:860px}
+.road-callout-action{display:flex;justify-content:flex-end}
+.road-callout-button{white-space:nowrap}
+.road-callout--sand{background:var(--sand);color:var(--coffee)}
+.road-callout--sand .road-callout-button{background:var(--coffee);color:var(--sand)}
+.road-callout--petrol{background:var(--petrol);color:var(--sand);border-color:rgba(243,236,227,.18)}
+.road-callout--petrol p{color:rgba(243,236,227,.8)}
+.road-callout--petrol .road-callout-button{background:var(--sand);color:var(--coffee)}
+
+/* Onde estamos: texto uniforme e vídeo leve sobre Entre Rios. */
+.presence-copy-wide p,.presence-copy-wide .lead{font-family:"Inter",Arial,sans-serif;font-size:16px;line-height:1.6;font-weight:400}
+.presence-video{
+  margin-top:30px;
+  padding-top:26px;
+  border-top:1px solid rgba(243,236,227,.18);
+  max-width:900px;
+  display:grid;
+  grid-template-columns:.72fr 1.28fr;
+  gap:30px;
+  align-items:center;
+}
+.presence-video-copy h3{font-family:"Questrial","Montserrat",Arial,sans-serif;font-size:30px;line-height:1.16;margin:0 0 10px}
+.presence-video-copy p{font-family:"Inter",Arial,sans-serif;font-size:16px;line-height:1.6;margin:0}
+.youtube-lite,.youtube-lite-frame{width:100%;aspect-ratio:16/9;border:0;border-radius:12px;overflow:hidden;background:#090909;display:block}
+.youtube-lite{position:relative;padding:0;cursor:pointer}
+.youtube-lite img{width:100%;height:100%;display:block;object-fit:cover;opacity:.86;transition:opacity .18s ease,transform .25s ease}
+.youtube-lite:hover img{opacity:.72;transform:scale(1.015)}
+.youtube-lite-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:58px;height:58px;border-radius:50%;display:grid;place-items:center;padding-left:4px;background:rgba(9,9,9,.84);color:var(--sand);font-size:20px;border:1px solid rgba(243,236,227,.5);box-shadow:0 10px 30px rgba(0,0,0,.24)}
+
+/* Rodapé preto + Areia: encerramento visual separado das seções Café. */
+.footer{background:#090909;color:var(--sand);border-top:1px solid rgba(243,236,227,.16)}
+
+@media(max-width:1000px){
+  :root{--ticker-h:26px;--sticky-top:108px}
+  .road-callout{grid-template-columns:1fr;gap:18px}
+  .road-callout-action{justify-content:flex-start}
+}
+@media(max-width:760px){
+  .presence-video{grid-template-columns:1fr;gap:16px}
+  .presence-video-copy h3{font-size:27px}
+}
+@media(max-width:680px){
+  .market-ticker-note{display:none}
+}
+@media(min-width:681px) and (max-width:1280px){
+  .market-ticker-note{font-size:7.4px}
+  .market-ticker-note-full{display:none}
+  .market-ticker-note-compact{display:inline}
+}
+@media(prefers-color-scheme:dark){
+  html,body{background:var(--sand);color:var(--coffee)}
+}
+/* === FIM v16.css === */
+
+
+/* === INÍCIO v17.css === */
+/* ROAD Wealth V17 — reconciliação de versão e refinamentos de interface. */
+
+/* Ticker: MERCADOS permanece sempre visível; a fita TradingView ocupa somente a área restante. */
+.market-ticker-row{
+  display:flex;
+  align-items:stretch;
+  height:26px;
+  background:#090909;
+}
+.market-ticker-label{
+  flex:0 0 96px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 12px;
+  border-right:1px solid rgba(243,236,227,.18);
+  background:#090909;
+  color:rgba(243,236,227,.82);
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:8.5px;
+  line-height:1;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+.market-ticker-track{
+  position:relative;
+  flex:1 1 auto;
+  min-width:0;
+  height:26px;
+  overflow:hidden;
+  background:#090909;
+}
+.market-ticker-track .ticker-placeholder{
+  inset:0;
+  padding:0;
+  background:#090909;
+}
+.market-ticker-track .market-ticker-viewport{
+  inset:0;
+}
+
+/* CTA de contato: textual e discreto, sem cápsula/círculo. */
+.nav .nav-cta{
+  border:0;
+  border-radius:0;
+  padding:0;
+  background:transparent;
+  color:var(--coffee);
+}
+.nav .nav-cta:hover,
+.nav .nav-cta.is-active{
+  background:transparent;
+  color:var(--coffee);
+  text-decoration:underline;
+  text-underline-offset:5px;
+}
+
+/* O contato flutuante foi removido do componente na V17. */
+.floating-contact{display:none!important}
+
+@media(max-width:1000px){
+  .nav .nav-cta{justify-self:start}
+}
+@media(max-width:680px){
+  .market-ticker-label{
+    flex-basis:74px;
+    padding:0 8px;
+    font-size:7.6px;
+    letter-spacing:.10em;
+  }
+}
+/* === FIM v17.css === */
+
+
+/* === INÍCIO v18.css === */
+/* ROAD Wealth V18 — mobile, banners e encerramento visual. */
+
+/* O documento termina em preto; o conteúdo principal mantém sua própria superfície Areia. */
+html,
+body{
+  background:#090909;
+}
+main{
+  background:var(--sand);
+}
+.footer{
+  background:#090909;
+  color:var(--sand);
+  border-top:1px solid rgba(243,236,227,.16);
+  padding-bottom:calc(10px + env(safe-area-inset-bottom, 0px));
+}
+
+/* Banners editoriais: bloco interno claramente destacado, sem aparência de anúncio genérico. */
+.road-callout{
+  display:block;
+  padding:18px max(26px,calc((100vw - var(--max))/2));
+  border:0;
+  background:var(--sand);
+}
+.road-callout-panel{
+  position:relative;
+  width:100%;
+  min-height:142px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:center;
+  gap:42px;
+  padding:26px 30px 26px 34px;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 12px 34px rgba(36,31,27,.08);
+}
+.road-callout-panel::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:4px;
+  background:currentColor;
+  opacity:.55;
+}
+.road-callout-copy{max-width:920px}
+.road-callout .eyebrow{margin-bottom:7px}
+.road-callout h3{
+  font-family:"Questrial","Montserrat",Arial,sans-serif;
+  font-size:clamp(29px,2.4vw,38px);
+  line-height:1.12;
+  letter-spacing:-.02em;
+  margin:0 0 8px;
+  font-weight:400;
+}
+.road-callout p{
+  font-family:"Inter",Arial,sans-serif;
+  font-size:15.5px;
+  line-height:1.55;
+  margin:0;
+  max-width:820px;
+}
+.road-callout-action{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+}
+.road-callout-button{white-space:nowrap}
+
+.road-callout--petrol{color:var(--sand)}
+.road-callout--petrol .road-callout-panel{
+  background:var(--petrol);
+  border:1px solid rgba(243,236,227,.12);
+}
+.road-callout--petrol .road-callout-panel::before{background:var(--sand)}
+.road-callout--petrol p{color:rgba(243,236,227,.82)}
+.road-callout--petrol .road-callout-button{background:var(--sand);color:var(--coffee)}
+
+.road-callout--sand{color:var(--coffee)}
+.road-callout--sand .road-callout-panel{
+  background:#fff;
+  border:1px solid rgba(72,58,47,.16);
+}
+.road-callout--sand .road-callout-panel::before{background:var(--coffee)}
+.road-callout--sand .road-callout-button{background:var(--coffee);color:var(--sand)}
+
+/* Onde estamos: o vídeo entra sozinho, sem título adicional, comentário ou barra separadora. */
+.presence-video{
+  margin-top:24px;
+  padding-top:0;
+  border-top:0;
+  max-width:900px;
+  display:block;
+}
+.presence-video .youtube-lite,
+.presence-video .youtube-lite-frame{
+  width:100%;
+}
+
+/* Mobile ticker: restaura a altura estável anterior e reduz o espaço fixo de MERCADOS. */
+@media(max-width:680px){
+  .market-ticker-row{
+    height:30px;
+    align-items:stretch;
+  }
+  .market-ticker-track{
+    height:30px;
+  }
+  .market-ticker-label{
+    flex:0 0 58px;
+    padding:0 5px;
+    font-size:6.9px;
+    letter-spacing:.075em;
+  }
+  .market-ticker-scale-frame{
+    top:-3px;
+    width:135.14%;
+    height:52px;
+    transform:scale(.74);
+    transform-origin:left top;
+  }
+  .market-ticker-track .market-ticker-viewport{
+    height:30px;
+  }
+  .footer{
+    padding-bottom:calc(14px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+@media(max-width:1000px){
+  .road-callout{
+    padding-top:14px;
+    padding-bottom:14px;
+  }
+  .road-callout-panel{
+    grid-template-columns:1fr;
+    gap:18px;
+    min-height:0;
+  }
+  .road-callout-action{justify-content:flex-start}
+}
+
+@media(max-width:680px){
+  .road-callout{padding:12px 14px}
+  .road-callout-panel{
+    padding:22px 20px 22px 23px;
+    border-radius:16px;
+  }
+  .road-callout h3{font-size:clamp(27px,8vw,34px)}
+  .road-callout p{font-size:15px}
+  .road-callout-button{white-space:normal}
+}
+/* === FIM v18.css === */
+
+
+/* === INÍCIO v19.css === */
+/* ROAD Wealth V19 — ticker responsivo e convites contextuais. */
+
+/* Ticker: três zonas estáveis — identificação, cotações e atribuição TradingView. */
+.market-ticker-row{
+  display:grid;
+  grid-template-columns:96px minmax(0,1fr) 96px;
+  align-items:stretch;
+  height:26px;
+  background:#090909;
+}
+.market-ticker-label,
+.market-ticker-brand{
+  position:relative;
+  z-index:4;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-width:0;
+  background:#090909;
+  color:rgba(243,236,227,.82);
+  white-space:nowrap;
+}
+.market-ticker-label{
+  padding:0 12px;
+  border-right:1px solid rgba(243,236,227,.18);
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:8.5px;
+  line-height:1;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.market-ticker-brand{
+  padding:0 10px;
+  border-left:1px solid rgba(243,236,227,.18);
+  text-decoration:none;
+  font-family:"Inter",Arial,sans-serif;
+  font-size:9px;
+  line-height:1;
+  letter-spacing:-.01em;
+  opacity:.82;
+}
+.market-ticker-brand:hover{opacity:1}
+.market-ticker-track{
+  position:relative;
+  min-width:0;
+  height:26px;
+  overflow:hidden;
+  background:#090909;
+}
+.market-ticker-track .market-ticker-viewport,
+.market-ticker-track .ticker-placeholder{
+  inset:0;
+}
+.market-ticker-track .ticker-placeholder{
+  padding:0;
+  background:#090909;
+}
+
+/* Desktop preserva a compactação que já estava estável. */
+@media(min-width:681px){
+  .market-ticker-scale-frame{
+    left:0;
+    top:-4px;
+    width:131.58%;
+    height:52px;
+    transform:scale(.76);
+    transform-origin:left top;
+  }
+}
+
+/* Mobile retrato: sem escala CSS no iframe. O widget usa modo compacto nativo
+   e é apenas recortado verticalmente, preservando proporções de texto e números. */
+@media(max-width:680px){
+  .market-ticker-row{
+    grid-template-columns:58px minmax(0,1fr) 68px;
+    height:38px;
+  }
+  .market-ticker-track{height:38px}
+  .market-ticker-label{
+    padding:0 5px;
+    font-size:6.9px;
+    letter-spacing:.075em;
+  }
+  .market-ticker-brand{
+    padding:0 5px;
+    font-size:7.8px;
+    letter-spacing:-.02em;
+  }
+  .market-ticker-scale-frame{
+    left:0;
+    top:-7px;
+    width:100%;
+    height:52px;
+    transform:none;
+  }
+  .market-ticker-track .market-ticker-viewport{height:38px}
+}
+
+/* Em telas internas, o banner continua editorial e aparece como um único convite
+   relacionado ao conteúdo da página, sem repetição excessiva. */
+.road-callout + .section--coffee,
+.road-callout + .checkup-section{
+  margin-top:0;
+}
+
+@media(max-width:680px){
+  .road-callout{
+    padding-left:14px;
+    padding-right:14px;
+  }
+  .road-callout-panel{
+    gap:16px;
+  }
+  .road-callout-action .btn{
+    width:100%;
+    min-height:44px;
+  }
+}
+/* === FIM v19.css === */
+
+
+/* === INÍCIO v21.css === */
+/* ROAD Wealth V21 — ticker mobile próprio e estabilidade visual. */
+
+.market-ticker-row--desktop{
+  grid-template-columns:96px minmax(0,1fr);
+}
+.market-ticker-mobile{
+  display:none;
+}
+
+@media(max-width:680px){
+  .market-ticker-row--desktop{
+    display:none;
+  }
+  .market-ticker-mobile{
+    width:100%;
+    height:34px;
+    display:grid;
+    grid-template-columns:58px minmax(0,1fr) auto;
+    align-items:center;
+    gap:0;
+    padding:0;
+    border:0;
+    background:#090909;
+    color:var(--sand);
+    text-align:left;
+    cursor:pointer;
+  }
+  .market-ticker-mobile-label{
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-right:1px solid rgba(243,236,227,.18);
+    font-family:"Montserrat",Arial,sans-serif;
+    font-size:6.9px;
+    letter-spacing:.075em;
+  }
+  .market-ticker-mobile-copy{
+    min-width:0;
+    padding:0 10px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    font-family:"Inter",Arial,sans-serif;
+    font-size:10px;
+    color:rgba(243,236,227,.78);
+  }
+  .market-ticker-mobile-action{
+    padding:0 10px;
+    white-space:nowrap;
+    font-family:"Montserrat",Arial,sans-serif;
+    font-size:8px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:rgba(243,236,227,.88);
+  }
+  .market-ticker-note{display:none}
+}
+/* === FIM v21.css === */
+
+
+/* === INÍCIO v23.css === */
+/* ROAD Wealth V23 — ticker mobile ao vivo com Web Component TradingView. */
+
+.market-ticker-mobile-live{
+  display:none;
+}
+
+@media(max-width:680px){
+  .market-ticker-row--desktop{
+    display:none;
+  }
+
+  .market-ticker-mobile{
+    display:none!important;
+  }
+
+  .market-ticker-mobile-live{
+    display:grid;
+    grid-template-columns:58px minmax(0,1fr);
+    align-items:stretch;
+    min-height:42px;
+    background:#090909;
+    color:var(--sand);
+  }
+
+  .market-ticker-mobile-label{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0 5px;
+    border-right:1px solid rgba(243,236,227,.18);
+    background:#090909;
+    font-family:"Montserrat",Arial,sans-serif;
+    font-size:6.9px;
+    line-height:1;
+    letter-spacing:.075em;
+    white-space:nowrap;
+  }
+
+  .market-ticker-mobile-widget{
+    min-width:0;
+    min-height:42px;
+    background:#090909;
+    color-scheme:dark;
+    --tv-widget-background-color:#090909;
+    --tv-widget-text-color:#F3ECE3;
+    --tv-widget-price-text-color:#F3ECE3;
+    --tv-widget-font-family:"Inter",Arial,sans-serif;
+  }
+
+  .market-ticker-mobile-widget tv-ticker-tape{
+    display:block;
+    width:100%;
+    min-height:42px;
+  }
+
+  .market-ticker-mobile-placeholder{
+    min-height:42px;
+    display:flex;
+    align-items:center;
+    padding:0 10px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    font-family:"Inter",Arial,sans-serif;
+    font-size:9px;
+    color:rgba(243,236,227,.72);
+    background:#090909;
+  }
+
+  .market-ticker-note{display:none}
+}
+/* === FIM v23.css === */
+
+
+/* === INÍCIO v24.css === */
+/* ROAD Wealth V24 — ticker mobile com espaço ampliado por indicador. */
+
+@media(max-width:680px){
+  .market-ticker-mobile-live{
+    grid-template-columns:64px minmax(0,1fr);
+    min-height:54px;
+  }
+
+  .market-ticker-mobile-label{
+    padding:0 6px;
+    font-size:7px;
+    letter-spacing:.08em;
+  }
+
+  .market-ticker-mobile-window{
+    min-width:0;
+    overflow:hidden;
+    background:#090909;
+  }
+
+  .market-ticker-mobile-widget{
+    min-width:0;
+    min-height:54px;
+    overflow:visible;
+    background:#090909;
+  }
+
+  .market-ticker-mobile-widget tv-ticker-tape{
+    display:block;
+    width:100%;
+    min-height:54px;
+  }
+
+  .market-ticker-mobile-placeholder{
+    min-height:54px;
+    display:flex;
+    align-items:center;
+    padding:0 14px;
+    white-space:nowrap;
+    font-family:"Inter",Arial,sans-serif;
+    font-size:10px;
+    color:rgba(243,236,227,.70);
+    background:#090909;
+  }
+}
+/* === FIM v24.css === */
+
+
+/* === INÍCIO v25.css === */
+/* ROAD Wealth V25 — ticker mobile no mesmo embed legado estável do desktop. */
+
+@media(min-width:681px){
+  .market-ticker-shell.is-desktop-ticker-ready .market-ticker-viewport{
+    opacity:1;
+    visibility:visible;
+  }
+
+  .market-ticker-shell.is-desktop-ticker-ready .market-ticker-placeholder--desktop{
+    opacity:0;
+    visibility:hidden;
+  }
+
+  .market-ticker-shell.is-desktop-ticker-error .market-ticker-placeholder--desktop{
+    color:rgba(243,236,227,.58);
+  }
+}
+
+@media(max-width:680px){
+  .market-ticker-mobile-live{
+    grid-template-columns:64px minmax(0,1fr);
+    min-height:54px;
+  }
+
+  .market-ticker-mobile-label{
+    padding:0 6px;
+    font-size:7px;
+    letter-spacing:.08em;
+  }
+
+  .market-ticker-mobile-window{
+    position:relative;
+    min-width:0;
+    height:54px;
+    overflow:hidden;
+    background:#090909;
+  }
+
+  .market-ticker-mobile-viewport{
+    position:absolute;
+    inset:0;
+    height:54px;
+    overflow:hidden;
+    background:#090909;
+    opacity:0;
+    visibility:hidden;
+    transition:opacity .14s ease;
+  }
+
+  .market-ticker-shell.is-mobile-ticker-ready .market-ticker-mobile-viewport{
+    opacity:1;
+    visibility:visible;
+  }
+
+  .market-ticker-mobile-widget,
+  .market-ticker-mobile-widget .tradingview-widget-container__widget,
+  .market-ticker-mobile-widget iframe{
+    display:block;
+    width:100%!important;
+    height:54px!important;
+    min-height:54px!important;
+    border:0!important;
+    background:#090909!important;
+  }
+
+  .market-ticker-mobile-widget{
+    position:relative;
+    min-width:0;
+    overflow:hidden;
+  }
+
+  .market-ticker-mobile-placeholder{
+    position:absolute;
+    inset:0;
+    z-index:2;
+    min-height:54px;
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    padding:0 14px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-family:"Inter",Arial,sans-serif;
+    font-size:10px;
+    line-height:1;
+    letter-spacing:0;
+    text-transform:none;
+    color:rgba(243,236,227,.70);
+    background:#090909;
+    transition:opacity .12s ease;
+  }
+
+  .market-ticker-shell.is-mobile-ticker-ready .market-ticker-mobile-placeholder{
+    opacity:0;
+    visibility:hidden;
+  }
+
+  .market-ticker-shell.is-mobile-ticker-error .market-ticker-mobile-placeholder{
+    color:rgba(243,236,227,.58);
+  }
+
+  .market-ticker-note{display:none}
+}
+/* === FIM v25.css === */
+
+
+/* === INÍCIO v30.css === */
+/* ROAD Wealth V30 — faixa editorial de destaques e reforço da identificação do ticker. */
+
+.market-ticker-label{
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:.10em;
+}
+
+.road-highlights{
+  position:relative;
+  z-index:3;
+  background:var(--sand);
+  color:var(--coffee);
+  border-bottom:1px solid rgba(72,58,47,.16);
+}
+
+.road-highlights__inner{
+  min-height:64px;
+  display:grid;
+  grid-template-columns:126px minmax(0,1fr) auto;
+  align-items:stretch;
+  padding:0 max(26px,calc((100vw - var(--max))/2));
+}
+
+.road-highlights__label{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:2px;
+  padding-right:18px;
+  border-right:1px solid rgba(72,58,47,.18);
+  font-family:"Montserrat",Arial,sans-serif;
+  line-height:1;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+}
+
+.road-highlights__label span{
+  font-size:8px;
+  font-weight:500;
+  opacity:.62;
+}
+
+.road-highlights__label strong{
+  font-size:10px;
+  font-weight:600;
+}
+
+.road-highlights__stage{
+  position:relative;
+  min-width:0;
+  min-height:64px;
+  overflow:hidden;
+}
+
+.road-highlights__slide{
+  position:absolute;
+  inset:0;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:center;
+  gap:22px;
+  padding:9px 22px;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(5px);
+  pointer-events:none;
+  transition:opacity .28s ease,transform .28s ease,visibility .28s ease;
+}
+
+.road-highlights__slide.is-active{
+  opacity:1;
+  visibility:visible;
+  transform:none;
+  pointer-events:auto;
+}
+
+.road-highlights__copy{
+  min-width:0;
+  display:grid;
+  grid-template-columns:auto minmax(0,auto) minmax(160px,1fr);
+  align-items:center;
+  gap:12px;
+}
+
+.road-highlights__kicker{
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:8.5px;
+  font-weight:600;
+  line-height:1.1;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+.road-highlights__title{
+  min-width:0;
+  font-family:"Questrial",Arial,sans-serif;
+  font-size:14px;
+  line-height:1.2;
+  font-weight:400;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.road-highlights__text{
+  min-width:0;
+  color:rgba(72,58,47,.68);
+  font-family:"Inter",Arial,sans-serif;
+  font-size:10.5px;
+  line-height:1.25;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.road-highlights__cta{
+  appearance:none;
+  border:0;
+  background:transparent;
+  color:var(--coffee);
+  padding:4px 0;
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:9px;
+  font-weight:600;
+  line-height:1.15;
+  letter-spacing:.035em;
+  text-transform:uppercase;
+  white-space:nowrap;
+  text-decoration:none;
+  cursor:pointer;
+}
+
+.road-highlights__cta:hover,
+.road-highlights__cta:focus-visible{
+  text-decoration:underline;
+  text-underline-offset:4px;
+}
+
+.road-highlights__controls{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  padding-left:12px;
+}
+
+.road-highlights__arrow{
+  width:24px;
+  height:24px;
+  display:grid;
+  place-items:center;
+  border:0;
+  background:transparent;
+  color:rgba(72,58,47,.66);
+  padding:0;
+  font:400 20px/1 Arial,sans-serif;
+  cursor:pointer;
+}
+
+.road-highlights__arrow:hover,
+.road-highlights__arrow:focus-visible{
+  color:var(--coffee);
+}
+
+.road-highlights__dots{
+  display:flex;
+  align-items:center;
+  gap:4px;
+}
+
+.road-highlights__dots span{
+  width:4px;
+  height:4px;
+  border-radius:50%;
+  background:rgba(72,58,47,.24);
+  transition:transform .2s ease,background .2s ease;
+}
+
+.road-highlights__dots span.is-active{
+  background:var(--coffee);
+  transform:scale(1.25);
+}
+
+@media(max-width:1000px){
+  .road-highlights__copy{
+    grid-template-columns:auto minmax(0,1fr);
+  }
+  .road-highlights__text{display:none}
+}
+
+@media(max-width:680px){
+  .market-ticker-mobile-live{
+    grid-template-columns:78px minmax(0,1fr);
+  }
+
+  .market-ticker-mobile-label{
+    padding:0 8px;
+    font-size:10px;
+    font-weight:600;
+    letter-spacing:.075em;
+  }
+
+  .road-highlights__inner{
+    min-height:72px;
+    grid-template-columns:72px minmax(0,1fr) 30px;
+    padding:0 12px;
+  }
+
+  .road-highlights__label{
+    padding-right:9px;
+  }
+
+  .road-highlights__label span{
+    font-size:6.8px;
+    letter-spacing:.06em;
+  }
+
+  .road-highlights__label strong{
+    font-size:9px;
+  }
+
+  .road-highlights__stage{
+    min-height:72px;
+  }
+
+  .road-highlights__slide{
+    grid-template-columns:minmax(0,1fr);
+    gap:3px;
+    padding:8px 10px;
+    align-content:center;
+  }
+
+  .road-highlights__copy{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:3px;
+  }
+
+  .road-highlights__kicker{
+    font-size:7.2px;
+    letter-spacing:.055em;
+  }
+
+  .road-highlights__title{
+    width:100%;
+    font-size:12.5px;
+    line-height:1.14;
+    white-space:normal;
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+  }
+
+  .road-highlights__cta{
+    justify-self:start;
+    padding:1px 0;
+    font-size:7.6px;
+  }
+
+  .road-highlights__controls{
+    flex-direction:column;
+    justify-content:center;
+    gap:2px;
+    padding-left:0;
+  }
+
+  .road-highlights__arrow{
+    width:28px;
+    height:22px;
+    font-size:18px;
+  }
+
+  .road-highlights__dots{
+    display:none;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .road-highlights__slide,
+  .road-highlights__dots span{
+    transition:none;
+  }
+}
+/* === FIM v30.css === */
+
+
+/* === INÍCIO v31.css === */
+/* ROAD Wealth V31 — destaque integrado ao cabeçalho mobile e refinamento da faixa desktop. */
+
+.road-highlights--mobile{
+  display:none;
+}
+
+/* Desktop: mantém a faixa abaixo dos indicadores, agora em Café + Areia. */
+.road-highlights--desktop{
+  background:var(--coffee);
+  color:var(--sand);
+  border-bottom:1px solid rgba(243,236,227,.16);
+}
+
+.road-highlights--desktop .road-highlights__label{
+  color:var(--sand);
+  font-size:11.5px;
+  font-weight:600;
+  letter-spacing:.085em;
+  border-right-color:rgba(243,236,227,.18);
+}
+
+.road-highlights--desktop .road-highlights__kicker{
+  color:rgba(243,236,227,.82);
+  font-size:9.5px;
+}
+
+.road-highlights--desktop .road-highlights__title{
+  color:var(--sand);
+  font-size:15px;
+}
+
+.road-highlights--desktop .road-highlights__text{
+  color:rgba(243,236,227,.70);
+  font-size:11.2px;
+}
+
+.road-highlights--desktop .road-highlights__cta{
+  color:var(--sand);
+  font-size:9.5px;
+}
+
+.road-highlights--desktop .road-highlights__arrow{
+  color:rgba(243,236,227,.72);
+}
+
+.road-highlights--desktop .road-highlights__arrow:hover,
+.road-highlights--desktop .road-highlights__arrow:focus-visible{
+  color:var(--sand);
+}
+
+.road-highlights--desktop .road-highlights__dots span{
+  background:rgba(243,236,227,.30);
+}
+
+.road-highlights--desktop .road-highlights__dots span.is-active{
+  background:var(--sand);
+}
+
+@media(max-width:680px){
+  .site-header{
+    gap:10px;
+  }
+
+  .road-highlights--desktop{
+    display:none;
+  }
+
+  .road-highlights--mobile{
+    display:block;
+    flex:1 1 auto;
+    min-width:0;
+    height:50px;
+    background:var(--coffee);
+    color:var(--sand);
+    border-radius:10px;
+    overflow:hidden;
+    border:1px solid rgba(72,58,47,.08);
+  }
+
+  .road-highlights-mobile__stage{
+    position:relative;
+    width:100%;
+    height:100%;
+  }
+
+  .road-highlights-mobile__slide{
+    appearance:none;
+    position:absolute;
+    inset:0;
+    width:100%;
+    min-width:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:flex-start;
+    gap:2px;
+    padding:6px 10px;
+    border:0;
+    background:transparent;
+    color:var(--sand);
+    text-align:left;
+    text-decoration:none;
+    cursor:pointer;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(4px);
+    pointer-events:none;
+    transition:opacity .24s ease,transform .24s ease,visibility .24s ease;
+  }
+
+  .road-highlights-mobile__slide.is-active{
+    opacity:1;
+    visibility:visible;
+    transform:none;
+    pointer-events:auto;
+  }
+
+  .road-highlights-mobile__label{
+    font-family:"Montserrat",Arial,sans-serif;
+    font-size:10.5px;
+    font-weight:600;
+    line-height:1;
+    letter-spacing:.07em;
+    text-transform:uppercase;
+    color:rgba(243,236,227,.88);
+    white-space:nowrap;
+  }
+
+  .road-highlights-mobile__slide strong{
+    display:block;
+    width:100%;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    font-family:"Montserrat",Arial,sans-serif;
+    font-size:11.5px;
+    font-weight:500;
+    line-height:1.15;
+    letter-spacing:.015em;
+    color:var(--sand);
+  }
+
+  .nav-toggle{
+    flex:0 0 40px;
+    margin-left:0;
+  }
+}
+
+@media(max-width:380px){
+  .site-header{
+    gap:8px;
+    padding-left:14px;
+    padding-right:14px;
+  }
+
+  .road-highlights--mobile{
+    height:48px;
+  }
+
+  .road-highlights-mobile__label{
+    font-size:9.8px;
+  }
+
+  .road-highlights-mobile__slide strong{
+    font-size:10.8px;
+  }
+}
+
+@media(min-width:681px){
+  .road-highlights--desktop{
+    display:block;
+  }
+
+  .road-highlights--mobile{
+    display:none!important;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .road-highlights-mobile__slide{
+    transition:none;
+  }
+}
+/* === FIM v31.css === */
+
+
+/* === INÍCIO v32.css === */
+/* ROAD Wealth V32 — destaque unificado e hero fotográfico responsivo. */
+
+/* V31 colocava o destaque dentro do cabeçalho mobile. A V32 devolve o header
+   ao arranjo institucional e usa uma única peça de destaque abaixo dos mercados. */
+@media(max-width:680px){
+  .site-header{gap:24px}
+  .nav-toggle{margin-left:auto}
+}
+
+.road-highlights{
+  display:block;
+  flex-shrink:0;
+  padding:8px max(26px,calc((100vw - var(--max))/2));
+  background:var(--sand);
+  color:var(--coffee);
+  border:0;
+}
+
+.road-highlights__inner{
+  width:100%;
+  min-height:50px;
+  display:grid;
+  grid-template-columns:124px minmax(0,1fr) 50px;
+  align-items:stretch;
+  padding:0;
+  overflow:hidden;
+  border:1px solid rgba(72,58,47,.18);
+  border-radius:10px;
+  background:var(--sand);
+}
+
+.road-highlights__label{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 16px;
+  border:0;
+  background:var(--coffee);
+  color:var(--sand);
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:11.5px;
+  font-weight:600;
+  line-height:1;
+  letter-spacing:.085em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+.road-highlights__stage{
+  position:relative;
+  min-width:0;
+  min-height:50px;
+  overflow:hidden;
+  background:var(--sand);
+}
+
+.road-highlights__slide{
+  appearance:none;
+  position:absolute;
+  inset:0;
+  width:100%;
+  min-width:0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  padding:0 18px;
+  border:0;
+  background:transparent;
+  color:var(--coffee);
+  text-align:left;
+  text-decoration:none;
+  cursor:pointer;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(4px);
+  pointer-events:none;
+  transition:opacity .24s ease,transform .24s ease,visibility .24s ease;
+  font-family:"Questrial","Montserrat",Arial,sans-serif;
+  font-size:15px;
+  font-weight:400;
+  line-height:1.2;
+}
+
+.road-highlights__slide.is-active{
+  opacity:1;
+  visibility:visible;
+  transform:none;
+  pointer-events:auto;
+}
+
+.road-highlights__slide > span:first-child{
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.road-highlights__arrow{
+  flex:none;
+  color:rgba(72,58,47,.62);
+  font-family:"Inter",Arial,sans-serif;
+  font-size:16px;
+  line-height:1;
+  transition:transform .16s ease,color .16s ease;
+}
+
+.road-highlights__slide:hover .road-highlights__arrow,
+.road-highlights__slide:focus-visible .road-highlights__arrow{
+  color:var(--coffee);
+  transform:translateX(3px);
+}
+
+.road-highlights__dots{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  padding:0 10px;
+  border-left:1px solid rgba(72,58,47,.13);
+  background:var(--sand);
+}
+
+.road-highlights__dots button{
+  width:5px;
+  height:5px;
+  flex:none;
+  padding:0;
+  border:0;
+  border-radius:50%;
+  background:rgba(72,58,47,.24);
+  cursor:pointer;
+  transition:transform .18s ease,background .18s ease;
+}
+
+.road-highlights__dots button.is-active{
+  background:var(--coffee);
+  transform:scale(1.3);
+}
+
+.road-highlights__dots button:focus-visible{
+  outline:1px solid var(--coffee);
+  outline-offset:3px;
+}
+
+/* Home: a fotografia é conteúdo visual; textos e CTAs continuam HTML e usam a
+   tipografia oficial já carregada no site. */
+.hero--road-photo{
+  position:relative;
+  isolation:isolate;
+  min-height:clamp(520px,64vh,760px);
+  overflow:hidden;
+  justify-content:flex-end;
+  padding-top:clamp(62px,7vw,108px);
+  padding-bottom:clamp(52px,6vw,88px);
+  background:var(--coffee);
+  color:var(--sand);
+}
+
+.hero-road-photo__media,
+.hero-road-photo__veil{
+  position:absolute;
+  inset:0;
+}
+
+.hero-road-photo__media{
+  z-index:-3;
+  overflow:hidden;
+  background:var(--coffee);
+}
+
+.hero-road-photo__media img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 52%;
+  filter:saturate(.72) sepia(.10) contrast(.96) brightness(.80);
+  transform:scale(1.002);
+}
+
+.hero-road-photo__veil{
+  z-index:-2;
+  background:
+    radial-gradient(ellipse at 61% 31%,rgba(243,236,227,.18) 0%,rgba(243,236,227,.08) 14%,rgba(243,236,227,0) 34%),
+    linear-gradient(90deg,rgba(36,31,27,.84) 0%,rgba(36,31,27,.62) 31%,rgba(36,31,27,.28) 56%,rgba(36,31,27,.08) 80%),
+    linear-gradient(0deg,rgba(36,31,27,.76) 0%,rgba(36,31,27,.32) 43%,rgba(36,31,27,.04) 74%);
+}
+
+.hero-road-photo__content{
+  width:min(780px,62vw);
+  position:relative;
+  z-index:1;
+}
+
+.hero--road-photo .eyebrow{
+  margin-bottom:12px;
+  color:rgba(243,236,227,.78);
+}
+
+.hero--road-photo h1{
+  max-width:820px;
+  margin-bottom:20px;
+  color:var(--sand);
+  text-wrap:balance;
+  text-shadow:0 2px 22px rgba(36,31,27,.22);
+}
+
+.hero--road-photo .lead{
+  max-width:690px;
+  margin-bottom:28px;
+  color:rgba(243,236,227,.90);
+  text-shadow:0 2px 16px rgba(36,31,27,.18);
+}
+
+.hero--road-photo .btn--sand{
+  border:1px solid rgba(243,236,227,.78);
+}
+
+.hero--road-photo .btn--outline-light{
+  background:rgba(36,31,27,.10);
+  backdrop-filter:blur(3px);
+  -webkit-backdrop-filter:blur(3px);
+}
+
+@media(max-width:1000px){
+  .hero--road-photo{
+    min-height:clamp(520px,62vh,690px);
+  }
+  .hero-road-photo__content{
+    width:min(720px,78vw);
+  }
+}
+
+@media(max-width:680px){
+  .road-highlights{
+    padding:7px 12px;
+  }
+
+  .road-highlights__inner{
+    min-height:46px;
+    grid-template-columns:88px minmax(0,1fr) 34px;
+    border-color:rgba(72,58,47,.16);
+    border-radius:8px;
+  }
+
+  .road-highlights__label{
+    padding:0 8px;
+    font-size:10.5px;
+    letter-spacing:.06em;
+  }
+
+  .road-highlights__stage{
+    min-height:46px;
+  }
+
+  .road-highlights__slide{
+    padding:0 11px;
+    gap:8px;
+    font-size:13.5px;
+  }
+
+  .road-highlights__arrow{
+    font-size:14px;
+  }
+
+  .road-highlights__dots{
+    gap:4px;
+    padding:0 6px;
+  }
+
+  .road-highlights__dots button{
+    width:4px;
+    height:4px;
+  }
+
+  .hero--road-photo{
+    min-height:clamp(540px,68svh,700px);
+    padding:38px 18px 42px;
+  }
+
+  .hero-road-photo__media img{
+    object-position:35% center;
+    filter:saturate(.70) sepia(.10) contrast(.96) brightness(.78);
+  }
+
+  .hero-road-photo__veil{
+    background:
+      radial-gradient(ellipse at 58% 29%,rgba(243,236,227,.15) 0%,rgba(243,236,227,.06) 16%,rgba(243,236,227,0) 35%),
+      linear-gradient(90deg,rgba(36,31,27,.62) 0%,rgba(36,31,27,.38) 58%,rgba(36,31,27,.14) 100%),
+      linear-gradient(0deg,rgba(36,31,27,.88) 0%,rgba(36,31,27,.58) 38%,rgba(36,31,27,.12) 73%);
+  }
+
+  .hero-road-photo__content{
+    width:100%;
+    max-width:560px;
+    margin-top:auto;
+  }
+
+  .hero--road-photo h1{
+    max-width:560px;
+    margin-bottom:16px;
+  }
+
+  .hero--road-photo .lead{
+    max-width:520px;
+    margin-bottom:22px;
+    font-size:16px;
+    line-height:1.48;
+  }
+
+  .hero--road-photo .actions{
+    gap:8px;
+  }
+
+  .hero--road-photo .btn{
+    min-height:40px;
+    padding:0 14px;
+    font-size:11.5px;
+  }
+}
+
+@media(max-width:380px){
+  .road-highlights{
+    padding-left:10px;
+    padding-right:10px;
+  }
+
+  .road-highlights__inner{
+    grid-template-columns:82px minmax(0,1fr) 30px;
+  }
+
+  .road-highlights__label{
+    font-size:9.8px;
+  }
+
+  .road-highlights__slide{
+    padding:0 9px;
+    font-size:12.7px;
+  }
+
+  .road-highlights__dots{
+    padding:0 5px;
+  }
+
+  .hero--road-photo{
+    min-height:560px;
+    padding-left:16px;
+    padding-right:16px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .road-highlights__slide,
+  .road-highlights__arrow,
+  .road-highlights__dots button{
+    transition:none;
+  }
+}
+/* === FIM v32.css === */
+
+
+/* === INÍCIO v35.css === */
+/* ROAD Wealth V35 — refinamento do topo, destaques, hero e contato da Home. */
+
+:root{
+  --road-top-label-w:124px;
+}
+
+/* MERCADOS e DESTAQUE compartilham o mesmo eixo e a mesma largura visual. */
+.market-ticker-label{
+  flex:0 0 var(--road-top-label-w);
+  width:var(--road-top-label-w);
+  padding:0 14px;
+  justify-content:flex-start;
+  font-size:11.5px;
+  font-weight:600;
+  letter-spacing:.095em;
+}
+
+.road-highlights{
+  display:block;
+  width:100%;
+  padding:0;
+  background:var(--sand);
+  color:var(--coffee);
+  border:0;
+  position:relative;
+  z-index:3;
+}
+
+.road-highlights__inner{
+  width:100%;
+  min-height:58px;
+  display:grid;
+  grid-template-columns:var(--road-top-label-w) minmax(0,1fr);
+  align-items:stretch;
+  padding:0;
+  overflow:hidden;
+  border:0;
+  border-radius:0;
+  background:var(--sand);
+  box-shadow:
+    inset 0 1px 0 rgba(72,58,47,.10),
+    inset 0 -1px 0 rgba(72,58,47,.10);
+}
+
+.road-highlights__label{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:center;
+  gap:7px;
+  min-width:0;
+  padding:0 14px;
+  border:0;
+  background:var(--coffee);
+  color:var(--sand);
+}
+
+.road-highlights__label .road-highlights__label-text{
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:11.5px;
+  font-weight:600;
+  line-height:1;
+  letter-spacing:.095em;
+  text-transform:uppercase;
+  white-space:nowrap;
+  opacity:1;
+}
+
+.road-highlights__dots{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:5px;
+  padding:0;
+  border:0;
+  background:transparent;
+}
+
+.road-highlights__dots button{
+  width:5px;
+  height:5px;
+  flex:none;
+  padding:0;
+  border:0;
+  border-radius:50%;
+  background:rgba(243,236,227,.38);
+  cursor:pointer;
+  transition:transform .18s ease,background .18s ease;
+}
+
+.road-highlights__dots button.is-active{
+  background:var(--sand);
+  transform:scale(1.35);
+}
+
+.road-highlights__dots button:focus-visible{
+  outline:1px solid rgba(243,236,227,.82);
+  outline-offset:3px;
+}
+
+.road-highlights__stage{
+  position:relative;
+  min-width:0;
+  min-height:58px;
+  overflow:hidden;
+  background:var(--sand);
+}
+
+.road-highlights__slide{
+  appearance:none;
+  position:absolute;
+  inset:0;
+  width:100%;
+  min-width:0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  padding:0 30px 0 26px;
+  border:0;
+  background:transparent;
+  color:var(--coffee);
+  text-align:left;
+  text-decoration:none;
+  cursor:pointer;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(4px);
+  pointer-events:none;
+  transition:opacity .24s ease,transform .24s ease,visibility .24s ease;
+  font-family:"Questrial","Montserrat",Arial,sans-serif;
+  font-size:17px;
+  font-weight:400;
+  line-height:1.25;
+  isolation:isolate;
+}
+
+.road-highlights__slide::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  top:0;
+  right:26px;
+  bottom:0;
+  width:min(46%,620px);
+  background-repeat:no-repeat;
+  background-position:right center;
+  background-size:contain;
+  opacity:.11;
+  pointer-events:none;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 38%,#000 100%);
+  mask-image:linear-gradient(90deg,transparent 0%,#000 38%,#000 100%);
+}
+
+.road-highlights__slide[data-highlight-kind="checkup"]::before{
+  background-image:url("/assets/highlight-checkup-v35.svg");
+}
+.road-highlights__slide[data-highlight-kind="ir"]::before{
+  background-image:url("/assets/highlight-ir-v35.svg");
+}
+.road-highlights__slide[data-highlight-kind="markets"]::before{
+  background-image:url("/assets/highlight-markets-v35.svg");
+}
+
+.road-highlights__slide.is-active{
+  opacity:1;
+  visibility:visible;
+  transform:none;
+  pointer-events:auto;
+}
+
+.road-highlights__slide-copy{
+  position:relative;
+  z-index:1;
+  min-width:0;
+  max-width:1120px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.road-highlights__arrow{
+  position:relative;
+  z-index:1;
+  flex:none;
+  color:rgba(72,58,47,.62);
+  font-family:"Inter",Arial,sans-serif;
+  font-size:19px;
+  line-height:1;
+  transition:transform .16s ease,color .16s ease;
+}
+
+.road-highlights__slide:hover .road-highlights__arrow,
+.road-highlights__slide:focus-visible .road-highlights__arrow{
+  color:var(--coffee);
+  transform:translateX(3px);
+}
+
+/* Nota do mercado passa a ficar imediatamente abaixo do Destaque, dentro do topo fixo. */
+.road-market-note{
+  display:flex!important;
+  min-height:14px;
+  padding:1px 18px 2px;
+  justify-content:flex-end;
+  background:var(--sand);
+  color:rgba(72,58,47,.62);
+  border:0;
+  font-size:7.6px;
+  line-height:1.1;
+}
+
+/* Hero: a Foto 1 aprovada ocupa a parte visual; o Café protege a leitura à esquerda. */
+.hero--road-photo{
+  min-height:clamp(540px,65vh,760px);
+  padding-top:clamp(68px,7vw,110px);
+  padding-bottom:clamp(56px,6vw,90px);
+  background:var(--coffee);
+}
+
+.hero-road-photo__media{
+  background:var(--coffee);
+}
+
+.hero-road-photo__media img{
+  position:absolute;
+  top:0;
+  right:0;
+  width:73%;
+  height:100%;
+  object-fit:cover;
+  object-position:50% 58%;
+  filter:saturate(.82) sepia(.05) contrast(.97) brightness(.91);
+  transform:none;
+}
+
+.hero-road-photo__veil{
+  background:
+    radial-gradient(ellipse at 54% 33%,rgba(243,236,227,.17) 0%,rgba(243,236,227,.07) 15%,rgba(243,236,227,0) 34%),
+    linear-gradient(90deg,var(--coffee) 0%,rgba(72,58,47,.97) 23%,rgba(72,58,47,.78) 37%,rgba(36,31,27,.34) 54%,rgba(36,31,27,.08) 76%),
+    linear-gradient(0deg,rgba(36,31,27,.48) 0%,rgba(36,31,27,.18) 42%,rgba(36,31,27,.02) 74%);
+}
+
+.hero-road-photo__content{
+  width:min(650px,42vw);
+}
+
+.hero--road-photo h1{
+  max-width:650px;
+}
+
+/* A última seção da Home volta à alternância Areia/Café. */
+.home-contact{
+  color:var(--coffee);
+  border-top:1px solid rgba(72,58,47,.12);
+}
+
+.home-contact .lead,
+.home-contact a,
+.home-contact .social-link{
+  color:var(--coffee);
+}
+
+.home-contact .social-link{
+  border-color:rgba(72,58,47,.32);
+}
+
+.home-contact .btn--ghost{
+  border-color:rgba(72,58,47,.28);
+}
+
+@media(max-width:1000px){
+  :root{--road-top-label-w:108px}
+
+  .market-ticker-label,
+  .road-highlights__label{
+    padding-left:12px;
+    padding-right:12px;
+  }
+
+  .market-ticker-label,
+  .road-highlights__label .road-highlights__label-text{
+    font-size:10.5px;
+  }
+
+  .road-highlights__slide{
+    font-size:15.5px;
+    padding-left:20px;
+    padding-right:22px;
+  }
+
+  .hero-road-photo__media img{
+    width:78%;
+  }
+
+  .hero-road-photo__content{
+    width:min(610px,51vw);
+  }
+}
+
+@media(max-width:680px){
+  :root{--road-top-label-w:78px}
+
+  .market-ticker-mobile-live{
+    grid-template-columns:var(--road-top-label-w) minmax(0,1fr);
+  }
+
+  .market-ticker-mobile-label{
+    padding:0 8px;
+    justify-content:flex-start;
+    font-size:10px;
+    font-weight:600;
+    letter-spacing:.065em;
+  }
+
+  .road-highlights__inner{
+    min-height:50px;
+    grid-template-columns:var(--road-top-label-w) minmax(0,1fr);
+  }
+
+  .road-highlights__label{
+    gap:5px;
+    padding:0 8px;
+  }
+
+  .road-highlights__label .road-highlights__label-text{
+    font-size:9.8px;
+    letter-spacing:.055em;
+  }
+
+  .road-highlights__dots{
+    gap:4px;
+  }
+
+  .road-highlights__dots button{
+    width:4px;
+    height:4px;
+  }
+
+  .road-highlights__stage{
+    min-height:50px;
+  }
+
+  .road-highlights__slide{
+    padding:0 11px;
+    gap:8px;
+    font-size:12.8px;
+    line-height:1.18;
+  }
+
+  .road-highlights__slide-copy{
+    white-space:normal;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+    overflow:hidden;
+  }
+
+  .road-highlights__slide::before{
+    right:6px;
+    width:52%;
+    opacity:.085;
+  }
+
+  .road-highlights__arrow{
+    font-size:14px;
+  }
+
+  .road-market-note{
+    display:flex!important;
+    min-height:12px;
+    padding:1px 10px 2px;
+    font-size:6.8px;
+  }
+
+  .market-ticker-note-full{display:none!important}
+  .market-ticker-note-compact{display:inline!important}
+
+  .hero--road-photo{
+    min-height:clamp(550px,69svh,700px);
+    padding:42px 18px 42px;
+  }
+
+  .hero-road-photo__media img{
+    width:100%;
+    height:100%;
+    object-position:33% 55%;
+    filter:saturate(.80) sepia(.04) contrast(.98) brightness(.83);
+  }
+
+  .hero-road-photo__veil{
+    background:
+      radial-gradient(ellipse at 44% 27%,rgba(243,236,227,.12) 0%,rgba(243,236,227,.05) 16%,rgba(243,236,227,0) 36%),
+      linear-gradient(90deg,rgba(36,31,27,.64) 0%,rgba(36,31,27,.42) 54%,rgba(36,31,27,.13) 100%),
+      linear-gradient(0deg,rgba(36,31,27,.90) 0%,rgba(36,31,27,.58) 40%,rgba(36,31,27,.10) 73%);
+  }
+
+  .hero-road-photo__content{
+    width:100%;
+    max-width:560px;
+  }
+}
+
+@media(max-width:380px){
+  :root{--road-top-label-w:74px}
+
+  .road-highlights__label .road-highlights__label-text,
+  .market-ticker-mobile-label{
+    font-size:9.4px;
+  }
+
+  .road-highlights__slide{
+    font-size:12.2px;
+  }
+
+  .hero-road-photo__media img{
+    object-position:32% 55%;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .road-highlights__slide,
+  .road-highlights__arrow,
+  .road-highlights__dots button{
+    transition:none;
+  }
+}
+/* === FIM v35.css === */
+
+
+/* === INÍCIO v36.css === */
+/* ROAD Wealth V36 — uniformização visual entre MERCADOS e DESTAQUE. */
+
+:root{
+  --road-top-label-w:124px;
+  --road-top-label-font:11.5px;
+  --road-top-label-weight:600;
+  --road-top-label-spacing:.095em;
+  --road-highlight-pager-w:58px;
+}
+
+/* Os dois rótulos passam a usar exatamente a mesma métrica tipográfica e eixo. */
+.market-ticker-label,
+.road-highlights__label{
+  width:var(--road-top-label-w);
+  min-width:var(--road-top-label-w);
+  padding:0 14px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:var(--road-top-label-font);
+  font-weight:var(--road-top-label-weight);
+  line-height:1;
+  letter-spacing:var(--road-top-label-spacing);
+  text-transform:uppercase;
+  white-space:nowrap;
+  box-sizing:border-box;
+}
+
+.market-ticker-label{
+  flex:0 0 var(--road-top-label-w);
+}
+
+.road-highlights__inner{
+  grid-template-columns:var(--road-top-label-w) var(--road-highlight-pager-w) minmax(0,1fr);
+}
+
+/* DESTAQUE fica sozinho no Café; a navegação passa para o Areia, integrada ao banner. */
+.road-highlights__label{
+  background:var(--coffee);
+  color:var(--sand);
+  border:0;
+}
+
+.road-highlights__pager{
+  min-width:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 10px;
+  background:var(--sand);
+  border:0;
+}
+
+.road-highlights__dots{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  padding:0;
+  margin:0;
+  border:0;
+  background:transparent;
+}
+
+.road-highlights__dots button{
+  width:5px;
+  height:5px;
+  flex:none;
+  padding:0;
+  border:0;
+  border-radius:50%;
+  background:rgba(72,58,47,.24);
+  cursor:pointer;
+}
+
+.road-highlights__dots button.is-active{
+  background:var(--coffee);
+  transform:scale(1.3);
+}
+
+.road-highlights__dots button:focus-visible{
+  outline:1px solid var(--coffee);
+  outline-offset:3px;
+}
+
+/* O conteúdo continua sendo um único banner por vez. */
+.road-highlights__stage{
+  min-width:0;
+  overflow:hidden;
+}
+
+.road-highlights__slide{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+.road-highlights__slide.is-active{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+}
+
+@media(max-width:1000px){
+  :root{
+    --road-top-label-w:108px;
+    --road-top-label-font:10.5px;
+    --road-highlight-pager-w:52px;
+  }
+
+  .market-ticker-label,
+  .road-highlights__label{
+    padding-left:12px;
+    padding-right:12px;
+  }
+}
+
+@media(max-width:680px){
+  :root{
+    --road-top-label-w:78px;
+    --road-top-label-font:10px;
+    --road-top-label-spacing:.065em;
+    --road-highlight-pager-w:42px;
+  }
+
+  .market-ticker-mobile-live{
+    grid-template-columns:var(--road-top-label-w) minmax(0,1fr);
+  }
+
+  .market-ticker-mobile-label,
+  .road-highlights__label{
+    width:var(--road-top-label-w);
+    min-width:var(--road-top-label-w);
+    padding:0 8px;
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    font-family:"Montserrat",Arial,sans-serif;
+    font-size:var(--road-top-label-font);
+    font-weight:var(--road-top-label-weight);
+    line-height:1;
+    letter-spacing:var(--road-top-label-spacing);
+    text-transform:uppercase;
+    white-space:nowrap;
+    box-sizing:border-box;
+  }
+
+  .road-highlights__inner{
+    grid-template-columns:var(--road-top-label-w) var(--road-highlight-pager-w) minmax(0,1fr);
+  }
+
+  .road-highlights__pager{
+    padding:0 6px;
+  }
+
+  .road-highlights__dots{
+    gap:4px;
+  }
+
+  .road-highlights__dots button{
+    width:4px;
+    height:4px;
+  }
+}
+
+@media(max-width:380px){
+  :root{
+    --road-top-label-w:74px;
+    --road-top-label-font:9.4px;
+    --road-highlight-pager-w:38px;
+  }
+
+  .market-ticker-mobile-label,
+  .road-highlights__label{
+    padding-left:7px;
+    padding-right:7px;
+  }
+}
+/* === FIM v36.css === */
+
+
+/* === INÍCIO v37.css === */
+/* ROAD Wealth V37 — ticker estável, destaques integrados e hero editorial. */
+
+:root{
+  --road-top-label-w:124px;
+  --road-top-label-font:11.5px;
+  --road-top-label-weight:600;
+  --road-top-label-spacing:.095em;
+  --road-tv-slot-w:43px;
+}
+
+/* Topo: cada peça define o próprio fundo; a legenda B3 pode ficar realmente sem faixa. */
+.site-top-stack{
+  background:transparent;
+}
+
+/* MERCADOS e DESTAQUE compartilham exatamente a mesma tipografia e eixo. */
+.market-ticker-label,
+.road-highlights__label{
+  width:var(--road-top-label-w);
+  min-width:var(--road-top-label-w);
+  padding:0 14px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  box-sizing:border-box;
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:var(--road-top-label-font);
+  font-weight:var(--road-top-label-weight);
+  line-height:1;
+  letter-spacing:var(--road-top-label-spacing);
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+/* Ticker único: a mesma geometria no desktop e no mobile, sempre em uma linha. */
+.market-ticker-shell--unified{
+  background:#090909;
+  color:var(--sand);
+  overflow:hidden;
+}
+
+.market-ticker-row--unified{
+  display:grid!important;
+  grid-template-columns:var(--road-top-label-w) minmax(0,1fr) var(--road-tv-slot-w);
+  align-items:stretch;
+  width:100%;
+  height:28px;
+  overflow:hidden;
+  background:#090909;
+}
+
+.market-ticker-row--unified .market-ticker-label{
+  height:28px;
+  background:#090909;
+  color:rgba(243,236,227,.86);
+  border-right:1px solid rgba(243,236,227,.12);
+}
+
+.market-ticker-row--unified .market-ticker-track{
+  position:relative;
+  min-width:0;
+  width:100%;
+  height:28px;
+  overflow:hidden;
+  background:#090909;
+}
+
+.market-ticker-row--unified .ticker-placeholder{
+  inset:0;
+  height:28px;
+  padding:0 12px;
+  justify-content:flex-start;
+  background:#090909;
+  color:rgba(243,236,227,.72);
+}
+
+.market-ticker-shell.is-unified-ticker-ready .market-ticker-viewport{
+  opacity:1;
+  visibility:visible;
+}
+
+.market-ticker-shell.is-unified-ticker-ready .market-ticker-placeholder--unified{
+  opacity:0;
+  visibility:hidden;
+}
+
+/* A fita mantém o comportamento desktop já estável; apenas o contêiner externo muda. */
+.market-ticker-row--unified .market-ticker-viewport{
+  inset:0;
+  height:28px;
+  background:#090909;
+}
+
+.market-ticker-row--unified .market-ticker-scale-frame{
+  top:-4px;
+  width:131.58%;
+  height:52px;
+  transform:scale(.76);
+  transform-origin:left top;
+  background:#090909;
+}
+
+.market-ticker-brand{
+  width:var(--road-tv-slot-w);
+  min-width:var(--road-tv-slot-w);
+  height:28px;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  background:#090909;
+  border-left:1px solid rgba(243,236,227,.10);
+  pointer-events:none;
+}
+
+.market-ticker-brand svg{
+  display:block;
+  width:35px;
+  height:19px;
+}
+
+.market-ticker-brand__stroke{
+  fill:rgba(243,236,227,.82);
+}
+
+.market-ticker-brand__fill{
+  fill:#090909;
+}
+
+/* Não há mais widget mobile alternativo nem fallback compact. */
+.market-ticker-mobile-live{
+  display:none!important;
+}
+
+/* Destaques: bloco Café contínuo, sem foto e sem fundo Areia. */
+.road-highlights{
+  width:100%;
+  padding:0;
+  margin:0;
+  background:var(--coffee);
+  color:var(--sand);
+  border:0;
+  box-shadow:none;
+}
+
+.road-highlights__inner{
+  width:100%;
+  min-height:56px;
+  display:grid;
+  grid-template-columns:var(--road-top-label-w) minmax(0,1fr);
+  align-items:stretch;
+  padding:0;
+  overflow:hidden;
+  border:0;
+  border-radius:0;
+  background:var(--coffee);
+  box-shadow:none;
+}
+
+.road-highlights__label{
+  min-height:56px;
+  background:var(--coffee);
+  color:var(--sand);
+  border:0;
+}
+
+.road-highlights__stage{
+  position:relative;
+  min-width:0;
+  min-height:56px;
+  overflow:hidden;
+  background:
+    linear-gradient(90deg,#483A2F 0%,#4D3F34 45%,#5A4A3E 100%);
+}
+
+.road-highlights__pager{
+  position:absolute;
+  z-index:4;
+  left:14px;
+  top:50%;
+  transform:translateY(-50%);
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  padding:0;
+  margin:0;
+  background:transparent;
+  border:0;
+}
+
+.road-highlights__dots{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:5px;
+  padding:0;
+  margin:0;
+  background:transparent;
+  border:0;
+}
+
+.road-highlights__dots button{
+  width:5px;
+  height:5px;
+  flex:none;
+  padding:0;
+  border:0;
+  border-radius:50%;
+  background:rgba(243,236,227,.38);
+  cursor:pointer;
+  transition:transform .18s ease,background .18s ease;
+}
+
+.road-highlights__dots button.is-active{
+  background:var(--sand);
+  transform:scale(1.3);
+}
+
+.road-highlights__dots button:focus-visible{
+  outline:1px solid rgba(243,236,227,.84);
+  outline-offset:3px;
+}
+
+.road-highlights__slide{
+  padding:0 26px 0 58px;
+  color:var(--sand);
+  background:transparent!important;
+  font-size:16px;
+  line-height:1.2;
+}
+
+.road-highlights__slide::before{
+  content:none!important;
+  display:none!important;
+  background-image:none!important;
+}
+
+.road-highlights__slide-copy{
+  max-width:1180px;
+  color:var(--sand);
+}
+
+.road-highlights__arrow{
+  color:rgba(243,236,227,.68);
+}
+
+.road-highlights__slide:hover .road-highlights__arrow,
+.road-highlights__slide:focus-visible .road-highlights__arrow{
+  color:var(--sand);
+}
+
+/* A informação de atraso não cria mais uma faixa entre Destaques e Hero. */
+.road-market-note{
+  position:absolute;
+  right:12px;
+  bottom:-11px;
+  z-index:8;
+  width:auto;
+  min-height:0;
+  height:auto;
+  padding:0;
+  margin:0;
+  display:block!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  color:rgba(72,58,47,.68);
+  font-size:7px;
+  line-height:1;
+  letter-spacing:.025em;
+  text-align:right;
+  white-space:nowrap;
+  pointer-events:none;
+}
+
+.road-market-note.is-on-dark{
+  color:rgba(243,236,227,.72);
+  text-shadow:0 1px 3px rgba(0,0,0,.34);
+}
+
+.road-market-note:not(.is-on-dark){
+  text-shadow:0 1px 2px rgba(243,236,227,.82);
+}
+
+.market-ticker-note-full,
+.market-ticker-note-compact{
+  display:inline!important;
+}
+
+/* Hero: título editorial em três linhas e conjunto deslocado para cima no desktop. */
+.hero--road-photo h1{
+  max-width:600px;
+  line-height:.98;
+  text-wrap:balance;
+}
+
+.hero--road-photo h1 span{
+  display:block;
+}
+
+@media(min-width:681px){
+  .hero--road-photo{
+    justify-content:flex-start;
+    padding-top:clamp(54px,5vw,78px);
+    padding-bottom:clamp(48px,5vw,72px);
+  }
+
+  .hero-road-photo__content{
+    width:min(620px,44vw);
+  }
+
+  .hero--road-photo .lead{
+    max-width:610px;
+  }
+}
+
+@media(max-width:1000px){
+  :root{
+    --road-top-label-w:108px;
+    --road-top-label-font:10.5px;
+    --road-tv-slot-w:41px;
+  }
+
+  .market-ticker-label,
+  .road-highlights__label{
+    padding-left:12px;
+    padding-right:12px;
+  }
+
+  .road-highlights__slide{
+    padding-left:54px;
+    font-size:15px;
+  }
+}
+
+@media(max-width:680px){
+  :root{
+    --road-top-label-w:78px;
+    --road-top-label-font:10px;
+    --road-top-label-spacing:.065em;
+    --road-tv-slot-w:39px;
+  }
+
+  .market-ticker-row--unified{
+    grid-template-columns:var(--road-top-label-w) minmax(0,1fr) var(--road-tv-slot-w);
+    height:30px;
+  }
+
+  .market-ticker-row--unified .market-ticker-label,
+  .market-ticker-row--unified .market-ticker-track,
+  .market-ticker-row--unified .ticker-placeholder,
+  .market-ticker-brand{
+    height:30px;
+  }
+
+  .market-ticker-label,
+  .road-highlights__label{
+    padding-left:8px;
+    padding-right:8px;
+  }
+
+  .market-ticker-row--unified .market-ticker-scale-frame{
+    top:-3px;
+    width:135.14%;
+    height:52px;
+    transform:scale(.74);
+  }
+
+  .market-ticker-brand svg{
+    width:31px;
+    height:auto;
+  }
+
+  .road-highlights__inner{
+    min-height:50px;
+  }
+
+  .road-highlights__label,
+  .road-highlights__stage{
+    min-height:50px;
+  }
+
+  .road-highlights__pager{
+    left:10px;
+  }
+
+  .road-highlights__dots{
+    gap:4px;
+  }
+
+  .road-highlights__dots button{
+    width:4px;
+    height:4px;
+  }
+
+  .road-highlights__slide{
+    padding:0 11px 0 45px;
+    gap:7px;
+    font-size:12.6px;
+    line-height:1.16;
+  }
+
+  .road-highlights__slide-copy{
+    white-space:normal;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+    overflow:hidden;
+  }
+
+  .road-market-note{
+    right:8px;
+    bottom:-10px;
+    font-size:6.6px;
+  }
+
+  .hero--road-photo h1{
+    line-height:1;
+  }
+}
+
+@media(max-width:380px){
+  :root{
+    --road-top-label-w:74px;
+    --road-top-label-font:9.4px;
+    --road-tv-slot-w:37px;
+  }
+
+  .market-ticker-label,
+  .road-highlights__label{
+    padding-left:7px;
+    padding-right:7px;
+  }
+
+  .market-ticker-brand svg{
+    width:29px;
+  }
+
+  .road-highlights__slide{
+    padding-left:42px;
+    font-size:12.1px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .road-highlights__slide,
+  .road-highlights__arrow,
+  .road-highlights__dots button{
+    transition:none;
+  }
+}
+/* === FIM v37.css === */
+
+
+/* === INÍCIO v38.css === */
+/* ROAD Wealth V38 — ticker mobile dedicado, topo refinado e nova alternância da Home. */
+
+/* MERCADOS e DESTAQUE permanecem um mesmo sistema visual e ficam centralizados. */
+.market-ticker-label,
+.market-ticker-mobile-label,
+.road-highlights__label{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+/* Desktop: preserva o widget legado que já estava estável. */
+@media(min-width:681px){
+  .market-ticker-row--desktop{
+    display:flex!important;
+  }
+
+  .market-ticker-mobile-live{
+    display:none!important;
+  }
+
+  .market-ticker-shell.is-desktop-ticker-ready .market-ticker-viewport{
+    opacity:1;
+    visibility:visible;
+  }
+
+  .market-ticker-shell.is-desktop-ticker-ready .market-ticker-placeholder--desktop{
+    opacity:0;
+    visibility:hidden;
+  }
+}
+
+/* Mobile: widget horizontal compacto próprio. O Web Component define a própria altura; não o recortamos em 34px. */
+@media(max-width:680px){
+  .market-ticker-row--desktop{
+    display:none!important;
+  }
+
+  .market-ticker-mobile-live{
+    display:grid!important;
+    grid-template-columns:var(--road-top-label-w) minmax(0,1fr);
+    width:100%;
+    min-height:44px;
+    height:auto;
+    overflow:hidden;
+    background:#090909;
+  }
+
+  .market-ticker-mobile-label{
+    width:var(--road-top-label-w);
+    min-width:var(--road-top-label-w);
+    min-height:44px;
+    height:auto;
+    padding:0 7px;
+    box-sizing:border-box;
+    border-right:1px solid rgba(243,236,227,.12);
+    background:#090909;
+    color:rgba(243,236,227,.86);
+    font-family:"Montserrat",Arial,sans-serif;
+    font-size:var(--road-top-label-font);
+    font-weight:var(--road-top-label-weight);
+    line-height:1;
+    letter-spacing:var(--road-top-label-spacing);
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+
+  .market-ticker-mobile-window{
+    position:relative;
+    min-width:0;
+    width:100%;
+    min-height:44px;
+    height:auto;
+    overflow:hidden;
+    background:#090909;
+  }
+
+  .market-ticker-mobile-widget{
+    display:block;
+    width:100%;
+    height:auto;
+    min-height:44px;
+    overflow:visible;
+    background:#090909;
+  }
+
+  .market-ticker-mobile-placeholder{
+    height:44px;
+    min-height:44px;
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    padding:0 12px;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    background:#090909;
+    color:rgba(243,236,227,.72);
+    font-family:"Inter",Arial,sans-serif;
+    font-size:10px;
+    line-height:1;
+  }
+}
+
+/* Destaque: palavra centralizada; bolinhas permanecem no banner, ao lado do rótulo. */
+.road-highlights__label{
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center;
+  padding-left:10px!important;
+  padding-right:10px!important;
+}
+
+.road-highlights__pager{
+  left:12px;
+}
+
+.road-highlights__slide{
+  padding-left:50px;
+}
+
+/* A legenda técnica continua sem fundo ou faixa própria. */
+.road-market-note{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+
+/* Inversão cromática após o Hero. O Hero permanece intacto. */
+.home-story.section--sand{
+  background:var(--sand);
+  color:var(--coffee);
+}
+
+.home-story .section-intro p{
+  color:var(--coffee);
+}
+
+.home-a-road.section--coffee{
+  background:var(--coffee);
+  color:var(--sand);
+}
+
+.home-a-road .lead,
+.home-a-road .road-teaser-card p{
+  color:rgba(243,236,227,.82);
+}
+
+.home-a-road .road-teaser-card{
+  border-top-color:rgba(243,236,227,.22);
+}
+
+.home-a-road .text-btn{
+  color:var(--sand);
+}
+
+.road-callout--coffee{
+  background:var(--coffee);
+  color:var(--sand);
+}
+
+.road-callout--coffee .road-callout-panel{
+  background:rgba(243,236,227,.035);
+  border:1px solid rgba(243,236,227,.16);
+  box-shadow:none;
+}
+
+.road-callout--coffee .road-callout-panel::before{
+  background:var(--sand);
+}
+
+.road-callout--coffee p{
+  color:rgba(243,236,227,.82);
+}
+
+.road-callout--coffee .road-callout-button{
+  background:var(--sand);
+  color:var(--coffee);
+}
+
+.home-investments.section--sand{
+  background:var(--sand);
+  color:var(--coffee);
+}
+
+.home-investments .pillars article{
+  border-top-color:rgba(72,58,47,.18);
+}
+
+.home-investments .pillars article:first-child{
+  border-top:0;
+}
+
+.home-contact.section--coffee{
+  background:var(--coffee);
+  color:var(--sand);
+  border-top-color:rgba(243,236,227,.18);
+}
+
+.home-contact.section--coffee .lead,
+.home-contact.section--coffee a,
+.home-contact.section--coffee .social-link{
+  color:var(--sand);
+}
+
+.home-contact.section--coffee .social-link{
+  border-color:rgba(243,236,227,.32);
+}
+
+.home-contact.section--coffee .btn--outline-light{
+  border-color:rgba(243,236,227,.48);
+  color:var(--sand);
+}
+
+@media(max-width:680px){
+  .road-highlights__pager{
+    left:9px;
+  }
+
+  .road-highlights__slide{
+    padding-left:43px;
+  }
+}
+
+@media(max-width:380px){
+  .road-highlights__pager{
+    left:8px;
+  }
+
+  .road-highlights__slide{
+    padding-left:40px;
+  }
+}
+/* === FIM v38.css === */
+
+
+/* === INÍCIO v40.css === */
+/* ROAD Wealth V40 — revisão editorial da Home e refinamento visual do topo. */
+
+:root{
+  --road-highlight-deep:#352B23;
+  --road-highlight-deeper:#2F261F;
+}
+
+/* Destaques: transição mais suave entre o ticker preto e o Hero Café. */
+.road-highlights{
+  background:var(--road-highlight-deep);
+}
+
+.road-highlights__inner{
+  background:var(--road-highlight-deep);
+}
+
+.road-highlights__label{
+  background:var(--road-highlight-deeper)!important;
+  color:var(--sand);
+}
+
+.road-highlights__stage{
+  background:linear-gradient(90deg,var(--road-highlight-deeper) 0%,var(--road-highlight-deep) 42%,#40342B 100%)!important;
+}
+
+.road-highlights__slide,
+.road-highlights__slide-copy{
+  color:var(--sand);
+}
+
+.road-highlights__dots button{
+  background:rgba(243,236,227,.34);
+}
+
+.road-highlights__dots button.is-active{
+  background:var(--sand);
+}
+
+.road-highlights__arrow{
+  color:rgba(243,236,227,.68);
+}
+
+.road-highlights__slide:hover .road-highlights__arrow,
+.road-highlights__slide:focus-visible .road-highlights__arrow{
+  color:var(--sand);
+}
+
+/* Hero: mantém a fotografia e reforça a leitura editorial do novo lema. */
+.hero--road-photo h1{
+  max-width:600px;
+}
+
+.hero--road-photo .lead{
+  max-width:650px;
+}
+
+/* Home — abertura objetiva e acolhedora. */
+.home-intro-grid{
+  display:grid;
+  grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);
+  gap:54px;
+  align-items:start;
+}
+
+.home-intro-grid h2{
+  max-width:720px;
+}
+
+.home-intro-copy{
+  max-width:720px;
+}
+
+.home-intro-copy p{
+  margin:0 0 14px;
+  font-size:16.5px;
+  line-height:1.62;
+}
+
+.home-trust-line{
+  margin-top:22px!important;
+  padding-top:18px;
+  border-top:1px solid rgba(72,58,47,.18);
+  font-family:"Questrial","Montserrat",Arial,sans-serif;
+  font-size:20px!important;
+  line-height:1.35!important;
+}
+
+/* Processo de planejamento. */
+.home-planning{
+  border-top:1px solid rgba(72,58,47,.08);
+}
+
+.planning-steps{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:0;
+  margin-top:30px;
+  border-top:1px solid rgba(72,58,47,.18);
+  border-bottom:1px solid rgba(72,58,47,.18);
+}
+
+.planning-steps article{
+  min-width:0;
+  padding:20px 18px 22px;
+  border-right:1px solid rgba(72,58,47,.14);
+}
+
+.planning-steps article:first-child{
+  padding-left:0;
+}
+
+.planning-steps article:last-child{
+  border-right:0;
+  padding-right:0;
+}
+
+.planning-steps span{
+  display:block;
+  margin-bottom:14px;
+  color:rgba(72,58,47,.52);
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:10px;
+  letter-spacing:.12em;
+}
+
+.planning-steps h3{
+  margin-bottom:7px;
+  font-size:18px;
+}
+
+.planning-steps p{
+  margin:0;
+  color:rgba(72,58,47,.76);
+  font-size:13.5px;
+  line-height:1.5;
+}
+
+/* Áreas: definição editorial explícita sem perder a mandala aprovada. */
+.home-area-definitions{
+  display:grid;
+  gap:0;
+  border-top:1px solid rgba(72,58,47,.18);
+}
+
+.home-area-definition{
+  display:grid;
+  grid-template-columns:120px minmax(0,.8fr) minmax(0,1.2fr);
+  gap:18px;
+  align-items:start;
+  padding:15px 0;
+  border-bottom:1px solid rgba(72,58,47,.18);
+  text-decoration:none;
+  color:var(--coffee);
+}
+
+.home-area-definition strong{
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:14px;
+  font-weight:600;
+}
+
+.home-area-definition span{
+  font-family:"Questrial","Montserrat",Arial,sans-serif;
+  font-size:17px;
+  line-height:1.3;
+}
+
+.home-area-definition small{
+  color:rgba(72,58,47,.68);
+  font-family:"Inter",Arial,sans-serif;
+  font-size:12.5px;
+  line-height:1.5;
+}
+
+.home-area-definition:hover strong{
+  text-decoration:underline;
+  text-underline-offset:4px;
+}
+
+/* Instituições também aparecem na Home para tornar a proposta multiplaforma evidente. */
+.home-institutions .platforms-block{
+  display:grid;
+  gap:34px;
+  margin-top:26px;
+  color:var(--coffee);
+}
+
+.home-institutions .platform-group{
+  display:grid;
+  gap:18px;
+}
+
+.home-institutions .platform-group-title{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  color:var(--coffee);
+}
+
+.home-institutions .platform-group-title i{
+  display:block;
+  height:1px;
+  flex:1;
+  background:rgba(72,58,47,.22);
+}
+
+.home-institutions .platform-grid{
+  display:grid;
+  gap:18px 24px;
+  align-items:center;
+}
+
+.home-institutions .platform-grid--national{
+  grid-template-columns:repeat(12,minmax(0,1fr));
+}
+
+.home-institutions .platform-grid--national .platform-logo-cell{
+  grid-column:span 2;
+}
+
+.home-institutions .platform-grid--national .platform-logo-cell:nth-child(7){
+  grid-column:2 / span 2;
+}
+
+.home-institutions .platform-grid--international{
+  grid-template-columns:repeat(5,minmax(0,1fr));
+}
+
+.home-institutions .platform-logo-cell{
+  min-height:70px;
+  display:grid;
+  place-items:center;
+  padding:8px 10px;
+  overflow:hidden;
+}
+
+.home-institutions .platform-logo{
+  display:block;
+  max-width:154px;
+  max-height:46px;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+}
+
+.home-institutions .platform-fallback{
+  color:var(--coffee);
+  font-family:"Inter",Arial,sans-serif;
+  font-size:12px;
+  font-weight:600;
+  text-align:center;
+}
+
+.home-institutions-action{
+  margin-top:30px;
+}
+
+/* A ROAD teaser volta ao claro para não criar peso excessivo depois dos logos. */
+.home-a-road.section--sand{
+  background:var(--sand);
+  color:var(--coffee);
+}
+
+.home-a-road.section--sand .road-teaser-card{
+  border-top-color:rgba(72,58,47,.18);
+}
+
+@media(max-width:1100px){
+  .planning-steps{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+
+  .planning-steps article{
+    border-bottom:1px solid rgba(72,58,47,.14);
+  }
+
+  .planning-steps article:nth-child(3){
+    border-right:0;
+  }
+
+  .planning-steps article:nth-last-child(-n+2){
+    border-bottom:0;
+  }
+
+  .home-area-definition{
+    grid-template-columns:110px minmax(0,1fr);
+  }
+
+  .home-area-definition small{
+    grid-column:2;
+  }
+
+  .home-institutions .platform-grid,
+  .home-institutions .platform-grid--national,
+  .home-institutions .platform-grid--international{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .home-institutions .platform-grid--national .platform-logo-cell,
+  .home-institutions .platform-grid--national .platform-logo-cell:nth-child(7){
+    grid-column:auto;
+  }
+}
+
+@media(max-width:760px){
+  .home-intro-grid{
+    grid-template-columns:1fr;
+    gap:26px;
+  }
+
+  .home-trust-line{
+    font-size:18px!important;
+  }
+
+  .planning-steps{
+    grid-template-columns:1fr;
+    border-bottom:0;
+  }
+
+  .planning-steps article,
+  .planning-steps article:first-child,
+  .planning-steps article:last-child{
+    padding:16px 0;
+    border-right:0;
+    border-bottom:1px solid rgba(72,58,47,.14);
+  }
+
+  .planning-steps article:nth-last-child(-n+2){
+    border-bottom:1px solid rgba(72,58,47,.14);
+  }
+
+  .planning-steps article:last-child{
+    border-bottom:0;
+  }
+
+  .home-area-definition{
+    grid-template-columns:1fr;
+    gap:5px;
+    padding:16px 0;
+  }
+
+  .home-area-definition small{
+    grid-column:auto;
+  }
+
+  .home-institutions .platform-grid,
+  .home-institutions .platform-grid--national,
+  .home-institutions .platform-grid--international{
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+  }
+
+  .home-institutions .platform-logo-cell{
+    min-height:60px;
+  }
+
+  .home-institutions .platform-logo{
+    max-width:128px;
+    max-height:38px;
+  }
+}
+/* === FIM v40.css === */
+
+
+/* === INÍCIO v44.css === */
+/* ROAD Wealth V44 — acabamento mobile, Conhecimento e links de privacidade. */
+
+/* Conhecimento: textos explicativos passam a seguir uma escala deliberada e consistente. */
+.knowledge-page > .lead{
+  font-family:"Inter",Arial,sans-serif;
+  font-size:17px;
+  line-height:1.55;
+  font-weight:400;
+}
+
+.knowledge-page-item p{
+  font-family:"Inter",Arial,sans-serif;
+  font-size:16.5px;
+  line-height:1.55;
+  font-weight:400;
+}
+
+/* Rodapé: links institucionais reais, sem ruído visual adicional. */
+.footer-links a{
+  color:inherit;
+  text-decoration:none;
+}
+
+.footer-links a:hover,
+.footer-links a:focus-visible{
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+
+/* Mobile/tablet: o cabeçalho e o menu aberto precisam ficar acima de Mercados e Destaque. */
+@media(max-width:1000px){
+  .site-header{
+    z-index:12;
+  }
+
+  .nav{
+    z-index:20;
+  }
+
+  .nav.open{
+    z-index:20;
+  }
+}
+
+@media(max-width:680px){
+  .knowledge-page > .lead,
+  .knowledge-page-item p{
+    font-size:16.5px;
+    line-height:1.55;
+  }
+}
+/* === FIM v44.css === */
+
+
+/* === INÍCIO v52.css === */
+/* ROAD Wealth V52 — consolida a relação editorial ROAD + Rede Meu Patrimônio sobre a base V51 estável. */
+
+/* Home: melhor aproveitamento da largura editorial. */
+.home-planning > .section-intro,
+.home-areas > .section-intro,
+.home-institutions > .section-intro,
+.home-planning > .section-intro h2,
+.home-areas > .section-intro h2,
+.home-institutions > .section-intro h2,
+.home-planning > .section-intro p,
+.home-areas > .section-intro p,
+.home-institutions > .section-intro p{
+  width:100%;
+  max-width:none;
+}
+
+/* Planejamento: 01–05 como marcadores visuais fortes. */
+.planning-steps article,
+.planning-steps article:first-child,
+.planning-steps article:last-child{
+  min-height:200px;
+  padding:22px 20px 23px;
+}
+.planning-steps .planning-step-number{
+  display:block;
+  margin:0 0 16px;
+  color:var(--coffee);
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:38px;
+  font-weight:500;
+  line-height:.95;
+  letter-spacing:.01em;
+  font-variant-numeric:tabular-nums;
+  opacity:1;
+}
+
+/* Plataformas: logos monocromáticos com caixa óptica uniforme. */
+.home-institutions .platform-grid{
+  align-items:center;
+  gap:16px 22px;
+}
+.home-institutions .platform-logo-cell{
+  min-height:64px;
+  height:64px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:8px 12px;
+  overflow:hidden;
+}
+.home-institutions .platform-logo{
+  display:block;
+  width:min(100%,140px);
+  height:40px;
+  max-width:140px;
+  max-height:40px;
+  object-fit:contain;
+  filter:grayscale(1) saturate(0) brightness(.46) contrast(1.12)!important;
+  opacity:.84!important;
+}
+
+/* Destaque: mesma malha estrutural de MERCADOS. */
+.road-highlights__inner{
+  grid-template-columns:var(--road-top-label-w) minmax(0,1fr);
+}
+.road-highlights__label{
+  width:var(--road-top-label-w);
+  min-width:var(--road-top-label-w);
+  padding-left:14px!important;
+  padding-right:14px!important;
+}
+.road-highlights__label-text{
+  display:block;
+  width:100%;
+  text-align:center;
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:11.5px;
+  font-weight:600;
+  line-height:1;
+  letter-spacing:.095em;
+  text-transform:uppercase;
+}
+.road-highlights__stage{min-width:0}
+.road-highlights__slide{padding-right:30px}
+
+/* Contatos institucionais: mesma escala em Home, Contato e Onde estamos. */
+main .road-contact-info,
+main .contact-address,
+main .presence-address .contact-lines{
+  font-family:"Inter",Arial,sans-serif;
+  font-size:14.5px;
+  line-height:1.62;
+  font-weight:400;
+}
+main .road-contact-info{
+  margin-top:24px;
+  color:rgba(243,236,227,.82);
+}
+main .road-contact-info strong,
+main .contact-address > strong,
+main .presence-address > strong{
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:14px;
+  line-height:1.4;
+  font-weight:500;
+}
+main .road-contact-info p,
+main .contact-address p{
+  margin:7px 0 0;
+  font:inherit;
+}
+main .road-contact-info a,
+main .contact-address a,
+main .presence-address a{
+  font-family:"Inter",Arial,sans-serif;
+  font-size:inherit;
+  color:inherit;
+}
+main .road-contact-socials{margin-top:20px}
+.footer,.footer-links,.footer small{font-family:"Inter",Arial,sans-serif}
+
+/* Ritmo vertical: menos vazio sem perder a leitura boutique. */
+.page-hero{padding-bottom:28px}
+@media(min-width:681px){
+  .hero--road-photo{
+    min-height:clamp(440px,50vh,570px);
+    padding-top:clamp(46px,4.4vw,68px);
+    padding-bottom:clamp(34px,3vw,48px);
+  }
+  .home-intro,
+  .home-planning,
+  .home-areas,
+  .home-institutions,
+  .home-a-road,
+  .home-contact{
+    padding-top:42px;
+    padding-bottom:42px;
+  }
+}
+
+/* Calculadora: metadados simples e CTA consistente. */
+.ir-simulation-head{
+  margin:0 0 20px;
+  padding:0 0 15px;
+  background:transparent;
+  border:0;
+  border-bottom:1px solid var(--line);
+}
+.ir-simulation-head .eyebrow{margin-bottom:5px}
+.ir-simulation-head p{
+  margin:0;
+  font-family:"Inter",Arial,sans-serif;
+  font-size:12.5px;
+  line-height:1.45;
+  letter-spacing:.01em;
+  color:var(--muted);
+}
+.ir-result-contact{font-family:"Inter",Arial,sans-serif}
+.ir-result-contact a{
+  font-family:"Montserrat",Arial,sans-serif;
+  font-weight:500;
+}
+
+@media(max-width:1100px){
+  .planning-steps article,
+  .planning-steps article:first-child,
+  .planning-steps article:last-child{min-height:0}
+}
+@media(max-width:680px){
+  .road-highlights__label{
+    padding-left:8px!important;
+    padding-right:8px!important;
+  }
+  .road-highlights__label-text{
+    font-size:9.5px;
+    letter-spacing:.07em;
+  }
+  .road-highlights__slide{padding-right:12px}
+  .planning-steps .planning-step-number{
+    margin-bottom:10px;
+    font-size:30px;
+  }
+  .planning-steps article,
+  .planning-steps article:first-child,
+  .planning-steps article:last-child{
+    min-height:0;
+    padding:17px 0;
+  }
+  .home-institutions .platform-logo-cell{
+    height:58px;
+    min-height:58px;
+  }
+  .home-institutions .platform-logo{
+    width:min(100%,124px);
+    height:36px;
+    max-width:124px;
+    max-height:36px;
+  }
+  main .road-contact-info,
+  main .contact-address,
+  main .presence-address .contact-lines{font-size:14px}
+}
+
+
+/* V50 — padronização tipográfica da Home. */
+.home-intro-copy,
+.home-intro-copy p,
+.home-intro-copy .home-trust-line{
+  font-family:inherit!important;
+}
+.home-intro-copy .home-trust-line{
+  font-size:16.5px!important;
+  line-height:1.62!important;
+  font-weight:400;
+}
+
+/* As etapas usam uma única família: nome em negrito, explicação em peso regular. */
+.planning-steps h3,
+.planning-steps p{
+  font-family:inherit!important;
+  font-size:13.5px;
+  line-height:1.5;
+}
+.planning-steps h3{
+  margin-bottom:6px;
+  font-weight:600;
+}
+
+/* Endereços e contatos herdam a tipografia corrente do site, sem família exclusiva. */
+main .road-contact-info,
+main .contact-address,
+main .presence-address .contact-lines,
+main .road-contact-info strong,
+main .contact-address > strong,
+main .presence-address > strong,
+main .road-contact-info a,
+main .contact-address a,
+main .presence-address a{
+  font-family:inherit!important;
+}
+main .road-contact-info,
+main .contact-address,
+main .presence-address .contact-lines{
+  font-size:15px;
+  line-height:1.6;
+}
+main .road-contact-info strong,
+main .contact-address > strong,
+main .presence-address > strong{
+  font-size:15px;
+  line-height:1.5;
+  font-weight:600;
+}
+
+/* Destaques: bolinhas saem da lateral e passam para o centro, abaixo da chamada. */
+.road-highlights__stage{
+  min-height:66px;
+}
+.road-highlights__pager{
+  position:absolute;
+  z-index:4;
+  left:50%!important;
+  top:auto!important;
+  bottom:7px;
+  transform:translateX(-50%)!important;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0;
+  margin:0;
+}
+.road-highlights__dots{
+  justify-content:center;
+  gap:7px;
+}
+.road-highlights__slide{
+  padding:0 30px 0 26px!important;
+}
+
+@media(max-width:680px){
+  .road-highlights__stage{
+    min-height:62px;
+  }
+  .road-highlights__pager{
+    left:50%!important;
+    top:auto!important;
+    bottom:5px;
+    transform:translateX(-50%)!important;
+  }
+  .road-highlights__dots{
+    gap:6px;
+  }
+  .road-highlights__slide{
+    padding:0 12px!important;
+  }
+}
+
+
+/* V51 — endosso institucional da Rede Meu Patrimônio.
+   Os SVGs são oficiais e não recebem filtros, recoloração ou deformação. */
+.footer-brand-group{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  min-width:0;
+}
+.footer-road-brand{
+  display:flex;
+  align-items:center;
+  flex:none;
+}
+.footer-road-brand img{
+  display:block;
+  width:48px;
+  height:auto;
+  max-height:76px;
+}
+.footer-network-endorsement{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:4px;
+  padding-left:18px;
+  border-left:1px solid rgba(243,236,227,.22);
+}
+.footer-network-endorsement span{
+  font-family:inherit;
+  font-size:8.5px;
+  line-height:1;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:rgba(243,236,227,.58);
+}
+.footer-network-endorsement img{
+  display:block;
+  width:148px;
+  max-width:100%;
+  height:auto;
+  filter:none!important;
+  opacity:1!important;
+}
+
+.road-network-endorsement{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:22px;
+  max-width:720px;
+  margin-top:28px;
+  padding-top:22px;
+  border-top:1px solid rgba(72,58,47,.18);
+}
+.road-network-endorsement p{
+  margin:0;
+  font-family:inherit;
+  font-size:14.5px;
+  line-height:1.5;
+  color:rgba(72,58,47,.78);
+}
+.road-network-endorsement img{
+  display:block;
+  width:180px;
+  max-width:42%;
+  height:auto;
+  filter:none!important;
+  opacity:1!important;
+}
+
+@media(max-width:1000px){
+  .footer-brand-group{
+    justify-content:flex-start;
+  }
+}
+@media(max-width:680px){
+  .footer-road-brand img{
+    width:42px;
+    max-height:66px;
+  }
+  .footer-brand-group{
+    gap:14px;
+  }
+  .footer-network-endorsement{
+    padding-left:14px;
+  }
+  .footer-network-endorsement img{
+    width:136px;
+  }
+  .road-network-endorsement{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:12px;
+  }
+  .road-network-endorsement img{
+    width:170px;
+    max-width:80%;
+  }
+}
+
+
+/* V52 — composição ROAD + Rede Meu Patrimônio no cabeçalho. */
+.header-brand-group{
+  display:flex;
+  align-items:center;
+  align-self:stretch;
+  gap:18px;
+  min-width:0;
+}
+.header-network-endorsement{
+  display:flex;
+  align-items:center;
+  padding-left:18px;
+  border-left:1px solid rgba(72,58,47,.22);
+}
+.header-network-endorsement img{
+  display:block;
+  width:142px;
+  max-width:100%;
+  height:auto;
+  filter:none!important;
+  opacity:1!important;
+}
+.site-header{
+  grid-template-columns:auto minmax(0,1fr);
+}
+.nav{
+  margin-left:clamp(34px,5vw,92px);
+}
+
+/* Rodapé: apenas as duas assinaturas oficiais, sem texto adicional. */
+.footer-network-endorsement{
+  flex-direction:row;
+  align-items:center;
+  gap:0;
+}
+.footer-network-endorsement span{display:none}
+
+/* Home: uma linha de contexto, sem transformar a MP em protagonista. */
+.home-network-note{
+  max-width:900px;
+  margin:22px 0 0;
+  padding-top:18px;
+  border-top:1px solid rgba(72,58,47,.16);
+  font-size:14px;
+  line-height:1.58;
+  color:rgba(72,58,47,.72);
+}
+
+/* A ROAD — capítulo da Rede. */
+.road-network-chapter .chapter-heading{max-width:1120px}
+.road-network-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+  max-width:1180px;
+  margin-top:28px;
+}
+.road-network-grid article{
+  padding:20px;
+  border:1px solid rgba(72,58,47,.15);
+  border-radius:14px;
+  background:rgba(255,255,255,.52);
+}
+.road-network-grid h3{
+  margin:7px 0 8px;
+  font-size:20px;
+}
+.road-network-grid p{
+  margin:0;
+  font-size:14.5px;
+  line-height:1.58;
+}
+.road-network-tech{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:center;
+  gap:36px;
+  max-width:1180px;
+  margin-top:28px;
+  padding:24px 0;
+  border-top:1px solid rgba(72,58,47,.16);
+  border-bottom:1px solid rgba(72,58,47,.16);
+}
+.road-network-tech h3{
+  margin:6px 0 8px;
+  font-size:24px;
+}
+.road-network-tech p{
+  margin:0;
+  max-width:820px;
+  font-size:15px;
+  line-height:1.58;
+}
+.road-network-tech img{
+  display:block;
+  width:190px;
+  height:auto;
+  filter:none!important;
+  opacity:1!important;
+}
+.road-network-numbers{
+  max-width:1180px;
+  margin-top:26px;
+}
+.road-network-stats{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin-top:14px;
+}
+.road-network-stats>div{
+  padding:18px 0;
+  border-top:1px solid rgba(72,58,47,.18);
+}
+.road-network-stats strong,
+.road-network-stats span{
+  display:block;
+}
+.road-network-stats strong{
+  font-family:"Questrial","Montserrat",Arial,sans-serif;
+  font-size:32px;
+  font-weight:400;
+  line-height:1.05;
+}
+.road-network-stats span{
+  margin-top:6px;
+  font-size:13.5px;
+  line-height:1.45;
+  color:rgba(72,58,47,.68);
+}
+.road-network-source{
+  margin:8px 0 12px;
+  font-size:11.5px;
+  color:rgba(72,58,47,.56);
+}
+.road-network-link{display:inline-flex}
+
+/* Investimentos — explica as duas camadas sem alterar a voz principal da ROAD. */
+.network-structure-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1.1fr) minmax(340px,.9fr);
+  gap:58px;
+  align-items:start;
+  max-width:1180px;
+}
+.network-structure-layout h2{max-width:760px}
+.network-structure-layout>div:first-child>p:not(.lead){
+  max-width:760px;
+  font-size:15px;
+  line-height:1.58;
+}
+.network-structure-cards{
+  display:grid;
+  gap:10px;
+}
+.network-structure-cards article{
+  padding:16px 18px;
+  border:1px solid var(--line);
+  border-radius:13px;
+  background:var(--sand);
+}
+.network-structure-cards strong,
+.network-structure-cards span{
+  display:block;
+}
+.network-structure-cards strong{
+  margin-bottom:5px;
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.network-structure-cards span{
+  font-size:14px;
+  line-height:1.5;
+}
+
+@media(max-width:1180px){
+  .header-network-endorsement img{width:126px}
+  .nav{margin-left:24px}
+}
+@media(max-width:1000px){
+  .header-network-endorsement{display:none}
+  .road-network-grid{grid-template-columns:1fr}
+  .road-network-tech{grid-template-columns:1fr}
+  .road-network-tech img{width:170px}
+  .network-structure-layout{grid-template-columns:1fr;gap:28px}
+}
+@media(max-width:680px){
+  .road-network-stats{grid-template-columns:1fr}
+  .road-network-stats>div{padding:14px 0}
+  .road-network-stats strong{font-size:28px}
+}
+/* === FIM v52.css === */
+
+
+/* === INÍCIO v52-1.css === */
+/* ROAD Wealth V52.1 — chancela Coruja oficial + avisos regulatórios. */
+
+/* Abandona a composição extensa criada na V52.
+   Header e footer passam a usar exclusivamente os arquivos oficiais Coruja,
+   sem texto adicional, sem remontagem e sem alteração de cor. */
+.header-brand-group{
+  gap:14px!important;
+}
+.header-network-endorsement{
+  display:flex!important;
+  align-items:center!important;
+  padding-left:0!important;
+  border-left:0!important;
+}
+.header-network-endorsement img{
+  display:block!important;
+  width:120px!important;
+  max-width:120px!important;
+  height:auto!important;
+  object-fit:contain!important;
+  filter:none!important;
+  opacity:1!important;
+}
+.nav{
+  margin-left:clamp(30px,4vw,76px)!important;
+}
+
+.footer-brand-group{
+  gap:16px!important;
+}
+.footer-network-endorsement{
+  display:flex!important;
+  align-items:center!important;
+  padding-left:0!important;
+  border-left:0!important;
+}
+.footer-network-endorsement img{
+  display:block!important;
+  width:120px!important;
+  max-width:120px!important;
+  height:auto!important;
+  object-fit:contain!important;
+  filter:none!important;
+  opacity:1!important;
+}
+
+/* Disclaimer curto: uma faixa própria, com leitura controlada e alinhamento limpo. */
+.footer-regulatory-note{
+  grid-column:1 / -1;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:24px;
+  padding-top:8px;
+  border-top:1px solid rgba(243,236,227,.16);
+  color:rgba(243,236,227,.58);
+  font-size:9.5px;
+  line-height:1.45;
+}
+.footer-regulatory-note p{
+  margin:0;
+  max-width:980px;
+}
+.footer-regulatory-note a{
+  flex:none;
+  white-space:nowrap;
+  color:rgba(243,236,227,.72);
+  text-decoration:none;
+}
+.footer-regulatory-note a:hover{
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+
+/* Página de avisos legais: largura curta para evitar linhas excessivamente longas. */
+.legal-hero .lead{
+  max-width:840px;
+}
+.legal-shell{
+  display:flex;
+  justify-content:center;
+}
+.legal-content{
+  width:min(100%,980px);
+}
+.legal-block{
+  padding:28px 0;
+  border-top:1px solid var(--line);
+}
+.legal-block:first-child{
+  padding-top:0;
+  border-top:0;
+}
+.legal-block h2{
+  margin:7px 0 12px;
+  max-width:780px;
+  font-size:clamp(27px,3.2vw,39px);
+}
+.legal-block p{
+  margin:0;
+  max-width:860px;
+  font-size:15px;
+  line-height:1.68;
+}
+.legal-block--reference .text-btn{
+  display:inline-flex;
+  margin-top:14px;
+}
+
+@media(max-width:1180px){
+  .nav{
+    margin-left:22px!important;
+  }
+}
+@media(max-width:1000px){
+  .site-header{
+    gap:14px!important;
+  }
+  .header-brand-group{
+    gap:12px!important;
+    flex:1 1 auto;
+    min-width:0;
+  }
+  .header-network-endorsement{
+    display:flex!important;
+  }
+  .header-network-endorsement img{
+    width:120px!important;
+    max-width:120px!important;
+  }
+  .footer-regulatory-note{
+    flex-direction:column;
+    gap:5px;
+  }
+}
+@media(max-width:680px){
+  .header-brand-group{
+    gap:10px!important;
+  }
+  .header-network-endorsement img{
+    width:120px!important;
+    max-width:120px!important;
+  }
+  .footer-brand-group{
+    gap:12px!important;
+  }
+  .footer-network-endorsement img{
+    width:120px!important;
+    max-width:120px!important;
+  }
+  .footer-regulatory-note{
+    font-size:9px;
+    line-height:1.5;
+  }
+  .legal-block{
+    padding:22px 0;
+  }
+  .legal-block p{
+    font-size:14px;
+    line-height:1.62;
+  }
+}
+/* === FIM v52-1.css === */
+
+
+/* === INÍCIO v52-2.css === */
+/* ROAD Wealth V52.3 — chancela Box em proporção secundária (~40% da altura visual da ROAD). */
+
+/* ROAD permanece como marca principal.
+   A assinatura Box da Rede é reduzida para funcionar como chancela,
+   alinhada pela base inferior do conjunto ROAD / WEALTH. */
+.header-brand-group,
+.footer-brand-group{
+  align-items:flex-end!important;
+}
+
+.header-network-endorsement,
+.footer-network-endorsement{
+  display:flex!important;
+  align-items:flex-end!important;
+  align-self:flex-end!important;
+  padding-left:0!important;
+  border-left:0!important;
+}
+
+.header-network-endorsement img,
+.footer-network-endorsement img{
+  display:block!important;
+  width:68px!important;
+  max-width:68px!important;
+  height:auto!important;
+  object-fit:contain!important;
+  filter:none!important;
+  opacity:1!important;
+}
+
+.header-brand-group{gap:10px!important}
+.footer-brand-group{gap:12px!important}
+
+@media(max-width:680px){
+  .header-network-endorsement img,
+  .footer-network-endorsement img{
+    width:60px!important;
+    max-width:60px!important;
+  }
+  .header-brand-group{gap:8px!important}
+  .footer-brand-group{gap:10px!important}
+}
+/* === FIM v52-2.css === */
+
+
+/* === INÍCIO v52-3.css === */
+/* ROAD Wealth V52.4 — normalização editorial das inclusões da Rede Meu Patrimônio. */
+
+/* Home: o contexto institucional usa a mesma malha e escala editorial da seção. */
+.home-network-note{
+  width:100%!important;
+  max-width:none!important;
+  margin:22px 0 0!important;
+  padding-top:18px!important;
+  font-family:inherit!important;
+  font-size:17px!important;
+  line-height:1.6!important;
+  font-weight:400!important;
+  text-align:left!important;
+}
+
+/* A ROAD / A Rede: corpo de texto segue a tipografia editorial já usada na página. */
+.road-network-grid p,
+.road-network-tech p{
+  font-family:inherit!important;
+  font-size:16px!important;
+  line-height:1.58!important;
+  font-weight:400!important;
+}
+.road-network-grid h3,
+.road-network-tech h3{
+  font-size:23px!important;
+  line-height:1.25!important;
+  font-weight:400!important;
+}
+.road-network-tech img{
+  width:120px!important;
+  max-width:120px!important;
+  height:auto!important;
+  filter:none!important;
+  opacity:1!important;
+}
+.road-network-stats span{
+  font-family:inherit!important;
+  font-size:14px!important;
+  line-height:1.5!important;
+}
+
+/* Investimentos: remove medidas tipográficas próprias do bloco novo. */
+.network-structure-layout>div:first-child>p:not(.lead){
+  max-width:none!important;
+  font-family:inherit!important;
+  font-size:16px!important;
+  line-height:1.58!important;
+  font-weight:400!important;
+}
+.network-structure-cards span{
+  font-family:inherit!important;
+  font-size:16px!important;
+  line-height:1.5!important;
+  font-weight:400!important;
+}
+
+/* Avisos legais: volta ao mesmo eixo horizontal das demais páginas. */
+.legal-shell{
+  display:block!important;
+}
+.legal-content{
+  width:100%!important;
+  max-width:none!important;
+}
+.legal-block h2{
+  max-width:1120px!important;
+  font-size:clamp(36px,3.5vw,48px)!important;
+  line-height:1.08!important;
+}
+.legal-block p{
+  max-width:1120px!important;
+  font-family:inherit!important;
+  font-size:16px!important;
+  line-height:1.6!important;
+  font-weight:400!important;
+}
+
+/* Rodapé regulatório: mantém hierarquia secundária, sem estreitar o texto artificialmente. */
+.footer-regulatory-note{
+  font-family:inherit!important;
+  font-size:11px!important;
+  line-height:1.5!important;
+}
+.footer-regulatory-note p{
+  flex:1 1 auto!important;
+  max-width:none!important;
+}
+
+@media(max-width:680px){
+  .home-network-note{
+    font-size:16px!important;
+    line-height:1.58!important;
+  }
+  .road-network-grid p,
+  .road-network-tech p,
+  .network-structure-layout>div:first-child>p:not(.lead),
+  .network-structure-cards span,
+  .legal-block p{
+    font-size:15px!important;
+  }
+  .legal-block h2{
+    font-size:clamp(32px,9vw,42px)!important;
+  }
+}
+/* === FIM v52-3.css === */
+
+
+/* === INÍCIO v52-4.css === */
+/* ROAD Wealth V52.5 — teste cromático do topo + correção visual do teaser A ROAD. */
+
+.site-header{
+  background:rgba(72,58,47,.98)!important;
+  color:var(--sand)!important;
+}
+.site-header .nav{color:var(--sand)}
+.site-header .nav .nav-cta{
+  border-color:rgba(243,236,227,.42)!important;
+  color:var(--sand)!important;
+}
+.site-header .nav .nav-cta:hover,
+.site-header .nav .nav-cta.is-active{
+  background:var(--sand)!important;
+  color:var(--coffee)!important;
+}
+.site-header .nav-toggle{
+  color:var(--sand)!important;
+  border-color:rgba(243,236,227,.42)!important;
+}
+
+.road-highlights,
+.road-highlights__inner,
+.road-highlights__label,
+.road-highlights__stage{
+  background:var(--sand)!important;
+  color:var(--coffee)!important;
+}
+.road-highlights__inner{
+  box-shadow:inset 0 1px 0 rgba(72,58,47,.10),inset 0 -1px 0 rgba(72,58,47,.10)!important;
+}
+.road-highlights__stage{background-image:none!important}
+.road-highlights__label,
+.road-highlights__label-text,
+.road-highlights__slide,
+.road-highlights__slide-copy{color:var(--coffee)!important}
+.road-highlights__arrow{color:rgba(72,58,47,.62)!important}
+.road-highlights__slide:hover .road-highlights__arrow,
+.road-highlights__slide:focus-visible .road-highlights__arrow{color:var(--coffee)!important}
+.road-highlights__dots button{background:rgba(72,58,47,.26)!important}
+.road-highlights__dots button.is-active{background:var(--coffee)!important}
+.road-highlights__dots button:focus-visible{outline-color:var(--coffee)!important}
+
+.home-a-road.section--sand .lead,
+.home-a-road.section--sand .road-teaser-card p{
+  color:rgba(72,58,47,.80)!important;
+}
+.home-a-road.section--sand .text-btn{color:var(--coffee)!important}
+.home-a-road.section--sand .road-teaser-card{border-top-color:rgba(72,58,47,.18)!important}
+
+@media(max-width:1000px){
+  .site-header .nav{color:var(--coffee)!important}
+  .site-header .nav .nav-cta{
+    border-color:rgba(72,58,47,.28)!important;
+    color:var(--coffee)!important;
+  }
+  .site-header .nav .nav-cta:hover,
+  .site-header .nav .nav-cta.is-active{
+    background:var(--coffee)!important;
+    color:var(--sand)!important;
+  }
+}
+/* === FIM v52-4.css === */
+
+
+/* === INÍCIO v52-5.css === */
+/* ROAD Wealth V52.6 — revisão "Cabeçalho Café". */
+
+/* Destaques: Areia esmaecido com referência visual ao Hero, preservando o arranjo. */
+.road-highlights{
+  background:
+    linear-gradient(rgba(243,236,227,.88),rgba(243,236,227,.88)),
+    url("/assets/road-hero-caminho-v35.webp") center 58% / cover no-repeat!important;
+  border-bottom:1px solid var(--coffee)!important;
+}
+.road-highlights__inner,
+.road-highlights__label,
+.road-highlights__stage{
+  background:transparent!important;
+}
+.road-highlights__label{
+  border-right:1px solid var(--coffee)!important;
+}
+.road-highlights__inner{
+  box-shadow:none!important;
+}
+
+/* A ROAD: bloco editorial simples, sem segunda coluna nem textos concorrentes. */
+.road-teaser--simple{
+  display:block!important;
+  max-width:1180px;
+}
+.road-teaser--simple h2{
+  max-width:1080px;
+  margin-bottom:20px;
+}
+.home-a-road-link{
+  display:inline-flex;
+  padding:0;
+  font-family:"Montserrat",Arial,sans-serif!important;
+  font-size:13px!important;
+  line-height:1.4!important;
+  font-weight:500!important;
+  letter-spacing:.01em;
+}
+
+/* Encerramento: superfície principal Café; apenas o disclaimer final permanece preto. */
+html,
+body{
+  background:var(--coffee)!important;
+}
+.footer{
+  background:var(--coffee)!important;
+  color:var(--sand)!important;
+  border-top:1px solid #090909!important;
+  border-bottom:1px solid var(--sand)!important;
+}
+.footer-regulatory-note{
+  position:relative;
+  background:#090909!important;
+  border-top:0!important;
+  color:rgba(243,236,227,.66)!important;
+  padding-top:10px!important;
+  padding-bottom:10px!important;
+  box-shadow:0 0 0 100vmax #090909;
+  clip-path:inset(0 -100vmax);
+}
+.footer-regulatory-note a{
+  color:rgba(243,236,227,.78)!important;
+}
+
+@media(max-width:680px){
+  .road-highlights{
+    background:
+      linear-gradient(rgba(243,236,227,.90),rgba(243,236,227,.90)),
+      url("/assets/road-hero-caminho-v35.webp") center 58% / cover no-repeat!important;
+  }
+  .road-teaser--simple h2{
+    margin-bottom:16px;
+  }
+  .home-a-road-link{
+    font-size:12.5px!important;
+  }
+}
+/* === FIM v52-5.css === */
+
+
+/* === INÍCIO v52-6.css === */
+/* ROAD Wealth V52.7 — fechamento compacto da revisão Cabeçalho Café. */
+
+/* O bloco grande de Contato sai da Home; informações permanentes passam ao rodapé. */
+.footer{
+  grid-template-columns:auto minmax(300px,1.2fr) minmax(360px,1fr)!important;
+  column-gap:28px!important;
+  row-gap:12px!important;
+  padding-top:14px!important;
+  padding-bottom:calc(12px + env(safe-area-inset-bottom, 0px))!important;
+  background:var(--coffee)!important;
+  color:var(--sand)!important;
+  border-top:1px solid #090909!important;
+  border-bottom:1px solid var(--sand)!important;
+}
+
+.footer-contact{
+  display:flex;
+  align-items:center;
+  gap:8px 16px;
+  flex-wrap:wrap;
+  min-width:0;
+  font-family:inherit;
+  font-size:11px;
+  line-height:1.45;
+  color:rgba(243,236,227,.78);
+}
+.footer-address{
+  flex-basis:100%;
+  color:rgba(243,236,227,.72);
+}
+.footer-contact-link{
+  appearance:none;
+  border:0;
+  padding:0;
+  margin:0;
+  background:transparent;
+  color:var(--sand);
+  font:inherit;
+  text-decoration:none;
+  cursor:pointer;
+}
+.footer-contact-link:hover,
+.footer-contact-link:focus-visible{
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+
+.footer-links{
+  justify-content:flex-end;
+}
+.footer-instagram{
+  color:inherit;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+}
+
+.footer > small{
+  grid-column:1 / -1;
+  max-width:none!important;
+  padding-top:2px;
+}
+
+.footer-regulatory-note{
+  grid-column:1 / -1;
+  position:static!important;
+  background:transparent!important;
+  border-top:1px solid rgba(243,236,227,.20)!important;
+  color:rgba(243,236,227,.62)!important;
+  padding-top:10px!important;
+  padding-bottom:0!important;
+  box-shadow:none!important;
+  clip-path:none!important;
+}
+.footer-regulatory-note a{
+  color:rgba(243,236,227,.78)!important;
+}
+
+@media(max-width:1000px){
+  .footer{
+    grid-template-columns:auto 1fr!important;
+  }
+  .footer-contact{
+    align-self:center;
+  }
+  .footer-links{
+    grid-column:1 / -1;
+    justify-content:flex-start;
+  }
+}
+
+@media(max-width:680px){
+  .footer{
+    grid-template-columns:1fr!important;
+    gap:12px!important;
+    padding-top:16px!important;
+  }
+  .footer-contact,
+  .footer-links{
+    grid-column:auto;
+  }
+  .footer-contact{
+    gap:7px 14px;
+  }
+  .footer-address{
+    line-height:1.5;
+  }
+  .footer > small{
+    grid-column:auto;
+  }
+  .footer-regulatory-note{
+    grid-column:auto;
+  }
+}
+/* === FIM v52-6.css === */
+
+
+/* === INÍCIO v52-7.css === */
+/* ROAD Wealth V52.8 — transparência real da faixa Destaques sobre o Hero. */
+
+:root{
+  --road-highlight-overlay-h:67px;
+}
+
+/* A faixa deixa de carregar uma cópia da imagem: passa a ser apenas Areia translúcido. */
+.road-highlights{
+  background:rgba(243,236,227,.82)!important;
+  border-bottom:1px solid var(--coffee)!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+.road-highlights__inner,
+.road-highlights__label,
+.road-highlights__stage{
+  background:transparent!important;
+  background-image:none!important;
+}
+.road-highlights__label{
+  border-right:1px solid var(--coffee)!important;
+}
+
+/* Na Home, o Hero real sobe exatamente a altura da faixa para continuar por trás dela.
+   O padding e a altura são compensados para preservar a posição do conteúdo e o ritmo da página. */
+.hero--road-photo{
+  margin-top:calc(-1 * var(--road-highlight-overlay-h));
+}
+
+@media(min-width:681px){
+  .hero--road-photo{
+    min-height:calc(clamp(440px,50vh,570px) + var(--road-highlight-overlay-h));
+    padding-top:calc(clamp(46px,4.4vw,68px) + var(--road-highlight-overlay-h));
+  }
+}
+
+@media(max-width:680px){
+  :root{
+    --road-highlight-overlay-h:63px;
+  }
+  .road-highlights{
+    background:rgba(243,236,227,.84)!important;
+  }
+  .hero--road-photo{
+    min-height:calc(clamp(550px,69svh,700px) + var(--road-highlight-overlay-h));
+    padding-top:calc(42px + var(--road-highlight-overlay-h));
+    padding-bottom:42px;
+  }
+}
+/* === FIM v52-7.css === */
+
+
+/* === INÍCIO v52-8.css === */
+/* ROAD Wealth V52.9 — Destaques fora do sticky; legenda B3 acima do ticker. */
+
+/* A parte fixa termina na barra de indicadores. */
+.site-top-stack{
+  background:var(--coffee)!important;
+}
+
+/* A legenda técnica passa a ocupar uma microfaixa imediatamente acima do ticker. */
+.site-top-stack .road-market-note{
+  position:relative!important;
+  inset:auto!important;
+  right:auto!important;
+  bottom:auto!important;
+  width:100%!important;
+  min-height:13px!important;
+  height:13px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  margin:0!important;
+  padding:0 max(26px,calc((100vw - var(--ticker-max))/2))!important;
+  background:var(--coffee)!important;
+  border:0!important;
+  box-shadow:none!important;
+  color:rgba(243,236,227,.62)!important;
+  font-size:7px!important;
+  line-height:1!important;
+  letter-spacing:.025em!important;
+  text-align:right!important;
+  text-shadow:none!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  pointer-events:none!important;
+  transform:none!important;
+}
+
+/* A classe dinâmica antiga não altera mais a leitura da legenda. */
+.site-top-stack .road-market-note.is-on-dark{
+  color:rgba(243,236,227,.62)!important;
+  text-shadow:none!important;
+}
+
+@media(max-width:680px){
+  .site-top-stack .road-market-note{
+    min-height:11px!important;
+    height:11px!important;
+    padding:0 8px!important;
+    font-size:6.2px!important;
+    display:flex!important;
+  }
+}
+/* === FIM v52-8.css === */
+
+
+/* === INÍCIO v52-9.css === */
+/* ROAD Wealth V52.10 — refinamento da Home e reorganização do fechamento. */
+
+/* Destaques: mais transparência e sem seta decorativa. */
+.road-highlights{
+  background:rgba(243,236,227,.72)!important;
+}
+.road-highlights__slide{
+  justify-content:flex-start!important;
+}
+.road-highlights__arrow{
+  display:none!important;
+}
+
+/* A linha vertical existe somente na própria faixa Destaques. */
+.road-highlights__label{
+  border-right:1px solid var(--coffee)!important;
+}
+.market-ticker-row--unified .market-ticker-label,
+.market-ticker-mobile-label{
+  border-right:0!important;
+}
+
+/* Home: encerra os blocos mais perto do conteúdo. */
+.home-planning{
+  padding-bottom:0!important;
+}
+.home-planning .planning-steps{
+  margin-bottom:0!important;
+}
+.home-areas{
+  padding-bottom:18px!important;
+}
+.home-areas .wealth-grid--visual{
+  margin-bottom:0!important;
+}
+
+/* A ROAD: título institucional forte, explicação em escala editorial. */
+.road-teaser--simple h2{
+  max-width:none!important;
+  margin-bottom:10px!important;
+}
+.home-a-road-copy{
+  max-width:820px;
+  margin:0 0 16px;
+  color:rgba(72,58,47,.80);
+  font-family:inherit;
+  font-size:17px;
+  line-height:1.58;
+  font-weight:400;
+}
+
+/* Disclaimer: faixa clara e fina, separada do rodapé. */
+.site-regulatory-disclaimer{
+  flex:0 0 auto;
+  padding:9px max(26px,calc((100vw - var(--max))/2));
+  background:var(--sand);
+  color:rgba(72,58,47,.72);
+  border-top:1px solid rgba(72,58,47,.14);
+  border-bottom:1px solid rgba(72,58,47,.18);
+  font-family:"Inter",Arial,sans-serif;
+  font-size:10.5px;
+  line-height:1.45;
+}
+.site-regulatory-disclaimer p{
+  margin:0;
+}
+.site-regulatory-disclaimer a{
+  color:var(--coffee);
+  text-decoration:none;
+  white-space:nowrap;
+}
+.site-regulatory-disclaimer a:hover,
+.site-regulatory-disclaimer a:focus-visible{
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+
+/* Rodapé Café compacto e organizado em duas linhas. */
+.footer{
+  display:block!important;
+  padding:14px max(26px,calc((100vw - var(--max))/2)) calc(12px + env(safe-area-inset-bottom,0px))!important;
+  background:var(--coffee)!important;
+  color:var(--sand)!important;
+  border-top:0!important;
+  border-bottom:1px solid var(--sand)!important;
+  min-height:0!important;
+}
+
+.footer-primary{
+  display:grid;
+  grid-template-columns:auto minmax(360px,1fr) auto;
+  align-items:center;
+  gap:32px;
+}
+
+.footer-contact{
+  display:block!important;
+  min-width:0;
+  font-size:11px;
+  line-height:1.45;
+  color:rgba(243,236,227,.76);
+}
+.footer-address{
+  display:block;
+  color:rgba(243,236,227,.68);
+}
+.footer-contact-actions{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:6px 16px;
+  margin-top:5px;
+}
+.footer-contact-link{
+  appearance:none;
+  border:0;
+  padding:0;
+  margin:0;
+  background:transparent;
+  color:var(--sand);
+  font:inherit;
+  text-decoration:none;
+  cursor:pointer;
+}
+.footer-contact-link:hover,
+.footer-contact-link:focus-visible{
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+
+.footer-socials{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:16px;
+  white-space:nowrap;
+  font-size:11px;
+}
+.footer-instagram{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  color:inherit;
+  text-decoration:none;
+}
+
+.footer-meta{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px 30px;
+  margin-top:12px;
+  padding-top:10px;
+  border-top:1px solid rgba(243,236,227,.18);
+}
+.footer-links{
+  display:flex!important;
+  align-items:center;
+  justify-content:flex-start!important;
+  gap:8px 16px!important;
+  flex-wrap:wrap;
+  font-size:10.5px!important;
+}
+.footer-meta small{
+  flex:none;
+  max-width:none!important;
+  padding:0!important;
+  font-size:10.5px!important;
+  opacity:.62;
+  white-space:nowrap;
+}
+
+/* O disclaimer antigo não integra mais o footer. */
+.footer-regulatory-note{
+  display:none!important;
+}
+
+@media(max-width:1000px){
+  .footer-primary{
+    grid-template-columns:auto minmax(0,1fr);
+    gap:18px 26px;
+  }
+  .footer-socials{
+    grid-column:1 / -1;
+    justify-content:flex-start;
+  }
+}
+
+@media(max-width:680px){
+  .road-highlights{
+    background:rgba(243,236,227,.76)!important;
+  }
+  .home-areas{
+    padding-bottom:14px!important;
+  }
+  .home-a-road-copy{
+    font-size:16px;
+    line-height:1.55;
+  }
+  .site-regulatory-disclaimer{
+    padding:8px 18px;
+    font-size:9.8px;
+    line-height:1.45;
+  }
+  .site-regulatory-disclaimer a{
+    white-space:normal;
+  }
+  .footer{
+    padding:15px 18px calc(12px + env(safe-area-inset-bottom,0px))!important;
+  }
+  .footer-primary{
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+  .footer-socials{
+    grid-column:auto;
+    justify-content:flex-start;
+  }
+  .footer-contact-actions{
+    gap:5px 14px;
+  }
+  .footer-meta{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:8px;
+    margin-top:12px;
+    padding-top:10px;
+  }
+  .footer-meta small{
+    white-space:normal;
+  }
+}
+/* === FIM v52-9.css === */
+
+
+/* === INÍCIO v52-10.css === */
+/* ROAD Wealth V52.11 — cabeçalho mais compacto e rodapé com canais visuais. */
+
+:root{
+  --header-h:72px;
+}
+
+/* Cabeçalho menor sem reduzir as marcas; conjunto óptico apoiado mais abaixo. */
+.site-header{
+  height:var(--header-h)!important;
+  min-height:var(--header-h)!important;
+  padding-top:3px!important;
+  padding-bottom:3px!important;
+}
+.header-brand-group{
+  align-self:center!important;
+  transform:translateY(4px);
+}
+.site-header .nav{
+  align-self:center;
+  transform:translateY(2px);
+}
+
+/* A microinformação B3 permanece independente e não interfere na posição das marcas. */
+.site-top-stack .road-market-note{
+  flex:none!important;
+}
+
+/* A ROAD mantém a mesma hierarquia editorial dos demais títulos. */
+.home-a-road .road-teaser--simple h2{
+  text-transform:none!important;
+}
+
+/* Disclaimer apenas informativo, sem CTA ou link duplicado. */
+.site-regulatory-disclaimer p{
+  max-width:none;
+}
+.site-regulatory-disclaimer a{
+  display:none!important;
+}
+
+/* Rodapé: marca + endereço/canais; links legais e copyright centralizados. */
+.footer-primary{
+  grid-template-columns:auto minmax(0,1fr)!important;
+  gap:28px!important;
+}
+.footer-contact{
+  min-width:0;
+}
+.footer-contact-actions{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end;
+  flex-wrap:wrap;
+  gap:8px 10px!important;
+  margin-top:6px!important;
+}
+
+.footer-channel{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  min-height:28px;
+  margin:0;
+  padding:4px 6px;
+  border:0;
+  background:transparent;
+  color:var(--sand);
+  font-family:inherit;
+  font-size:10.5px;
+  line-height:1.2;
+  text-decoration:none;
+  cursor:pointer;
+  white-space:nowrap;
+}
+.footer-channel:hover,
+.footer-channel:focus-visible{
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+.footer-channel-icon{
+  display:block;
+  width:17px;
+  height:17px;
+  flex:none;
+}
+
+.footer-channel--whatsapp{
+  min-height:32px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:var(--sand);
+  color:var(--coffee);
+  text-decoration:none!important;
+}
+.footer-channel--whatsapp:hover,
+.footer-channel--whatsapp:focus-visible{
+  text-decoration:none;
+  box-shadow:inset 0 0 0 1px rgba(72,58,47,.25);
+}
+
+.footer-meta{
+  display:flex!important;
+  flex-direction:column;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:7px!important;
+  margin-top:11px!important;
+  padding-top:9px!important;
+}
+.footer-links{
+  width:100%;
+  justify-content:center!important;
+  text-align:center;
+}
+.footer-meta small{
+  width:100%;
+  text-align:center;
+  white-space:normal!important;
+}
+
+@media(max-width:1000px){
+  .footer-contact-actions{
+    justify-content:flex-start;
+  }
+}
+
+@media(max-width:680px){
+  :root{
+    --header-h:64px;
+  }
+  .site-header{
+    height:var(--header-h)!important;
+    min-height:var(--header-h)!important;
+    padding-top:2px!important;
+    padding-bottom:2px!important;
+  }
+  .header-brand-group{
+    transform:translateY(3px);
+  }
+  .site-header .nav{
+    transform:none;
+  }
+  .site-header .nav:not(.open){
+    top:64px!important;
+  }
+  .nav.open{
+    top:64px!important;
+  }
+  .footer-primary{
+    grid-template-columns:1fr!important;
+    gap:12px!important;
+  }
+  .footer-contact-actions{
+    justify-content:flex-start;
+    gap:7px 8px!important;
+  }
+  .footer-channel{
+    font-size:10.3px;
+  }
+  .footer-links{
+    gap:7px 13px!important;
+  }
+}
+/* === FIM v52-10.css === */
+
+
+/* === INÍCIO v52-11.css === */
+/* ROAD Wealth V52.12 — refinamento mobile de Planejamento e Áreas de atuação. */
+
+@media(max-width:680px){
+  /* A mandala mantém seu tamanho; reduzimos apenas o vazio entre a figura e as definições. */
+  .home-areas .wealth-grid--visual{
+    gap:12px!important;
+  }
+
+  /* A etapa 5 recupera a borda de encerramento e a seção termina exatamente nela. */
+  .home-planning{
+    padding-bottom:0!important;
+  }
+  .home-planning .planning-steps{
+    margin-bottom:0!important;
+    border-bottom:0!important;
+  }
+  .home-planning .planning-steps article:last-child{
+    border-bottom:1px solid rgba(72,58,47,.18)!important;
+  }
+}
+/* === FIM v52-11.css === */
+
+
+/* === INÍCIO v52-12.css === */
+/* ROAD Wealth V52.13 — rodapé único e compacto + fechamento mobile. */
+
+/* Desktop: uma única composição horizontal, sem segundo andar visual. */
+.footer{
+  display:block!important;
+  padding:9px max(26px,calc((100vw - var(--max))/2)) calc(9px + env(safe-area-inset-bottom,0px))!important;
+  min-height:0!important;
+}
+
+.footer-primary{
+  display:grid!important;
+  grid-template-columns:auto minmax(250px,1fr) auto minmax(330px,auto)!important;
+  align-items:center!important;
+  gap:16px 24px!important;
+}
+
+.footer-address-block{
+  min-width:0;
+}
+.footer-address{
+  display:block;
+  font-size:10.5px;
+  line-height:1.4;
+  color:rgba(243,236,227,.72);
+}
+
+.footer-channels{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:6px 8px;
+  flex-wrap:nowrap;
+}
+
+.footer-meta{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-end!important;
+  justify-content:center!important;
+  gap:4px!important;
+  margin:0!important;
+  padding:0!important;
+  border-top:0!important;
+  min-width:0;
+}
+.footer-links{
+  width:auto!important;
+  display:flex!important;
+  justify-content:flex-end!important;
+  gap:5px 11px!important;
+  flex-wrap:wrap;
+  font-size:9.8px!important;
+  line-height:1.25;
+  text-align:right;
+}
+.footer-meta small{
+  width:auto!important;
+  margin:0!important;
+  padding:0!important;
+  font-size:9.5px!important;
+  line-height:1.25;
+  text-align:right!important;
+  white-space:nowrap!important;
+}
+
+.footer-channel{
+  min-height:26px!important;
+  padding:3px 5px!important;
+  font-size:9.8px!important;
+}
+.footer-channel-icon{
+  width:15px!important;
+  height:15px!important;
+}
+.footer-channel--whatsapp{
+  min-height:28px!important;
+  padding:5px 9px!important;
+}
+
+/* Larguras intermediárias: mantém compacto sem forçar encavalamento. */
+@media(max-width:1280px) and (min-width:681px){
+  .footer-primary{
+    grid-template-columns:auto minmax(0,1fr) auto!important;
+  }
+  .footer-meta{
+    grid-column:2 / -1;
+    align-items:flex-start!important;
+  }
+  .footer-links{
+    justify-content:flex-start!important;
+    text-align:left;
+  }
+  .footer-meta small{
+    text-align:left!important;
+  }
+}
+
+/* Mobile: logos à esquerda; endereço e ícones à direita; legais no mesmo bloco. */
+@media(max-width:680px){
+  .home-areas{
+    padding-bottom:0!important;
+  }
+  .home-areas .home-area-definitions{
+    margin-bottom:0!important;
+  }
+  .home-areas .home-area-definition:last-child{
+    border-bottom:1px solid rgba(72,58,47,.18)!important;
+  }
+
+  .footer{
+    padding:10px 18px calc(9px + env(safe-area-inset-bottom,0px))!important;
+  }
+  .footer-primary{
+    grid-template-columns:auto minmax(0,1fr)!important;
+    grid-template-areas:
+      "brand address"
+      "brand channels"
+      "legal legal"!important;
+    align-items:start!important;
+    gap:7px 14px!important;
+  }
+  .footer-brand-group{
+    grid-area:brand;
+    align-self:start!important;
+  }
+  .footer-address-block{
+    grid-area:address;
+    align-self:end;
+  }
+  .footer-address{
+    font-size:9.8px;
+    line-height:1.42;
+  }
+  .footer-channels{
+    grid-area:channels;
+    justify-content:flex-start;
+    gap:6px;
+  }
+  .footer-channel{
+    width:28px;
+    height:28px;
+    min-height:28px!important;
+    padding:4px!important;
+    justify-content:center;
+    border-radius:50%;
+  }
+  .footer-channel span{
+    display:none!important;
+  }
+  .footer-channel-icon{
+    width:19px!important;
+    height:19px!important;
+  }
+  .footer-channel--whatsapp{
+    width:28px;
+    min-height:28px!important;
+    padding:4px!important;
+    background:transparent!important;
+    color:var(--sand)!important;
+    box-shadow:none!important;
+  }
+
+  .footer-meta{
+    grid-area:legal;
+    width:100%;
+    align-items:center!important;
+    gap:4px!important;
+    margin-top:3px!important;
+    padding-top:7px!important;
+    border-top:1px solid rgba(243,236,227,.16)!important;
+  }
+  .footer-links{
+    width:100%!important;
+    justify-content:center!important;
+    gap:4px 10px!important;
+    font-size:9.2px!important;
+    line-height:1.25;
+    text-align:center;
+  }
+  .footer-meta small{
+    width:100%!important;
+    font-size:9px!important;
+    text-align:center!important;
+    white-space:normal!important;
+  }
+
+  .mobile-utility{
+    transition:opacity .18s ease,transform .18s ease,visibility .18s ease!important;
+  }
+  .mobile-utility.is-footer-visible{
+    opacity:0!important;
+    visibility:hidden!important;
+    pointer-events:none!important;
+    transform:translateY(10px)!important;
+  }
+}
+/* === FIM v52-12.css === */
+
+
+/* === INÍCIO v52-13.css === */
+/* ROAD Wealth V52.14 — compactação final do rodapé desktop + alinhamento mobile. */
+
+/* Desktop: marcas à esquerda; endereço + legais + copyright no centro; canais à direita. */
+.footer{
+  padding-top:7px!important;
+  padding-bottom:calc(7px + env(safe-area-inset-bottom,0px))!important;
+}
+.footer-primary{
+  display:grid!important;
+  grid-template-columns:auto minmax(360px,1fr) auto!important;
+  grid-template-areas:
+    "brand address channels"
+    "brand legal channels"!important;
+  align-items:center!important;
+  column-gap:28px!important;
+  row-gap:3px!important;
+}
+.footer-brand-group{
+  grid-area:brand;
+  align-self:center!important;
+}
+.footer-address-block{
+  grid-area:address;
+  align-self:end!important;
+}
+.footer-channels{
+  grid-area:channels;
+  align-self:center!important;
+  justify-self:end;
+}
+.footer-meta{
+  grid-area:legal;
+  align-self:start!important;
+  align-items:flex-start!important;
+  justify-content:flex-start!important;
+  gap:3px!important;
+  margin:0!important;
+  padding:0!important;
+  border-top:0!important;
+}
+.footer-links{
+  width:auto!important;
+  justify-content:flex-start!important;
+  text-align:left!important;
+  gap:4px 11px!important;
+}
+.footer-meta small{
+  width:auto!important;
+  text-align:left!important;
+  white-space:nowrap!important;
+}
+
+/* Notebooks/tablets: mantém o mesmo raciocínio, permitindo quebra natural dos canais. */
+@media(max-width:1280px) and (min-width:681px){
+  .footer-primary{
+    grid-template-columns:auto minmax(0,1fr)!important;
+    grid-template-areas:
+      "brand address"
+      "brand channels"
+      "brand legal"!important;
+    row-gap:4px!important;
+  }
+  .footer-channels{
+    justify-self:start;
+    flex-wrap:wrap;
+  }
+  .footer-meta{
+    align-items:flex-start!important;
+  }
+}
+
+/* Mobile: coluna direita realmente alinhada à borda direita. */
+@media(max-width:680px){
+  .footer{
+    padding:9px 18px calc(8px + env(safe-area-inset-bottom,0px))!important;
+  }
+  .footer-primary{
+    grid-template-columns:auto minmax(0,1fr)!important;
+    grid-template-areas:
+      "brand address"
+      "brand channels"
+      "legal legal"!important;
+    column-gap:14px!important;
+    row-gap:6px!important;
+  }
+  .footer-address-block{
+    justify-self:end!important;
+    width:min(100%,280px);
+    align-self:end!important;
+    text-align:right!important;
+  }
+  .footer-address{
+    text-align:right!important;
+  }
+  .footer-channels{
+    justify-self:end!important;
+    justify-content:flex-end!important;
+    width:100%;
+  }
+  .footer-meta{
+    align-items:center!important;
+    justify-content:center!important;
+    padding-top:6px!important;
+  }
+  .footer-links{
+    justify-content:center!important;
+    text-align:center!important;
+  }
+  .footer-meta small{
+    text-align:center!important;
+    white-space:normal!important;
+  }
+}
+/* === FIM v52-13.css === */
+
+
+/* === INÍCIO v52-14.css === */
+/* ROAD Wealth V52.15 — redistribuição final do rodapé desktop/mobile. */
+
+/* Desktop amplo: endereço permanece após as marcas; legais centralizados; canais no extremo direito. */
+@media(min-width:1281px){
+  .footer-primary{
+    grid-template-columns:auto minmax(360px,1fr) minmax(360px,auto) auto!important;
+    grid-template-areas:"brand address legal channels"!important;
+    align-items:center!important;
+    column-gap:28px!important;
+    row-gap:0!important;
+  }
+  .footer-address-block{
+    grid-area:address;
+    align-self:center!important;
+  }
+  .footer-meta{
+    grid-area:legal;
+    justify-self:center!important;
+    align-self:center!important;
+    align-items:center!important;
+    justify-content:center!important;
+    text-align:center!important;
+    gap:3px!important;
+  }
+  .footer-links{
+    justify-content:center!important;
+    text-align:center!important;
+  }
+  .footer-meta small{
+    text-align:center!important;
+  }
+  .footer-channels{
+    grid-area:channels;
+    justify-self:end!important;
+    align-self:center!important;
+  }
+}
+
+/* Mobile: dá mais território à coluna direita e ancora endereço/canais no lado direito. */
+@media(max-width:680px){
+  .footer-primary{
+    grid-template-columns:minmax(118px,.82fr) minmax(0,1.18fr)!important;
+    column-gap:12px!important;
+  }
+  .footer-address-block{
+    width:min(100%,250px)!important;
+    margin-top:9px!important;
+    margin-left:auto!important;
+    justify-self:end!important;
+    align-self:start!important;
+    text-align:right!important;
+  }
+  .footer-address{
+    text-align:right!important;
+  }
+  .footer-channels{
+    width:max-content!important;
+    max-width:100%!important;
+    margin-left:auto!important;
+    justify-self:end!important;
+    justify-content:flex-end!important;
+    gap:8px!important;
+  }
+}
+/* === FIM v52-14.css === */
+
+
+/* === INÍCIO v52-15.css === */
+/* ROAD Wealth V52.16 — correção do breakpoint do rodapé desktop. */
+
+/* Desktop/notebook: mesma composição em três zonas desde 681px.
+   Evita que desktops com zoom/DPI caiam no arranjo intermediário antigo. */
+@media(min-width:681px){
+  .footer-primary{
+    grid-template-columns:auto minmax(0,1fr) auto!important;
+    grid-template-areas:
+      "brand address channels"
+      "brand legal channels"!important;
+    align-items:center!important;
+    column-gap:28px!important;
+    row-gap:3px!important;
+  }
+
+  .footer-brand-group{
+    grid-area:brand!important;
+    align-self:center!important;
+  }
+
+  .footer-address-block{
+    grid-area:address!important;
+    align-self:end!important;
+    justify-self:start!important;
+    width:auto!important;
+    margin:0!important;
+    text-align:left!important;
+  }
+
+  .footer-address{
+    text-align:left!important;
+  }
+
+  .footer-meta{
+    grid-area:legal!important;
+    align-self:start!important;
+    justify-self:center!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:3px!important;
+    margin:0!important;
+    padding:0!important;
+    border-top:0!important;
+    text-align:center!important;
+  }
+
+  .footer-links{
+    justify-content:center!important;
+    text-align:center!important;
+  }
+
+  .footer-meta small{
+    text-align:center!important;
+    white-space:nowrap!important;
+  }
+
+  .footer-channels{
+    grid-area:channels!important;
+    align-self:center!important;
+    justify-self:end!important;
+    justify-content:flex-end!important;
+    flex-wrap:nowrap!important;
+    width:auto!important;
+    margin:0!important;
+  }
+}
+/* === FIM v52-15.css === */
+
+
+/* === INÍCIO v52-16.css === */
+/* ROAD Wealth V52.17 — corrige corte das marcas no cabeçalho desktop. */
+
+@media(min-width:681px){
+  /* Mantém o cabeçalho compacto, mas remove o deslocamento vertical que empurrava
+     ROAD + Rede Meu Patrimônio para dentro da borda inferior do topo. */
+  .header-brand-group{
+    transform:translateY(0)!important;
+  }
+}
+/* === FIM v52-16.css === */
+
+
+/* === INÍCIO v52-17.css === */
+/* ROAD Wealth V52.18 — legenda B3 transparente e restauração óptica das marcas. */
+
+@media(min-width:681px){
+  /* Restaura o posicionamento aprovado antes da V52.17. */
+  .header-brand-group{
+    transform:translateY(4px)!important;
+  }
+}
+
+/* A legenda técnica não possui mais superfície própria.
+   O Café percebido passa a vir do próprio topo/sticky abaixo dela. */
+.site-top-stack .road-market-note{
+  background:transparent!important;
+}
+/* === FIM v52-17.css === */
+
+
+/* === INÍCIO v52-18.css === */
+/* ROAD Wealth V52.19 — refinamento desktop do rodapé. */
+
+@media(min-width:681px){
+  /* Endereço alinhado à direita, levemente elevado e com respiro antes do WhatsApp. */
+  .footer-address-block{
+    justify-self:stretch!important;
+    align-self:end!important;
+    width:100%!important;
+    padding-right:8px!important;
+    text-align:right!important;
+    transform:translateY(-2px);
+  }
+
+  .footer-address{
+    display:block;
+    text-align:right!important;
+  }
+
+  /* Legais e copyright assentam mais próximos da borda inferior. */
+  .footer-meta{
+    align-self:end!important;
+    transform:translateY(3px);
+  }
+
+  /* Separadores discretos entre os três links legais. */
+  .footer-links a + a::before{
+    content:"•";
+    display:inline-block;
+    margin:0 10px 0 0;
+    color:rgba(243,236,227,.46);
+    text-decoration:none;
+  }
+}
+/* === FIM v52-18.css === */
+
+
+/* === INÍCIO v52-19.css === */
+/* ROAD Wealth V52.20 — endereço no extremo direito do rodapé desktop. */
+
+@media(min-width:1001px){
+  /* Desktop: marcas à esquerda; legais no centro inferior;
+     endereço realmente no extremo direito, com canais logo abaixo. */
+  .footer-primary{
+    grid-template-columns:auto minmax(0,1fr) auto!important;
+    grid-template-areas:
+      "brand . address"
+      "brand legal channels"!important;
+    align-items:center!important;
+    column-gap:28px!important;
+    row-gap:4px!important;
+  }
+
+  .footer-address-block{
+    grid-area:address!important;
+    justify-self:end!important;
+    align-self:end!important;
+    width:auto!important;
+    max-width:560px;
+    margin:0!important;
+    padding-right:0!important;
+    text-align:right!important;
+    transform:translateY(-1px);
+  }
+
+  .footer-address{
+    text-align:right!important;
+    white-space:nowrap;
+  }
+
+  .footer-channels{
+    grid-area:channels!important;
+    justify-self:end!important;
+    align-self:start!important;
+    justify-content:flex-end!important;
+    width:auto!important;
+    margin:0!important;
+    transform:translateY(3px);
+  }
+
+  .footer-meta{
+    grid-area:legal!important;
+    justify-self:center!important;
+    align-self:end!important;
+    transform:translateY(3px);
+  }
+}
+/* === FIM v52-19.css === */
+
+
+/* === INÍCIO revision.css === */
+/* ROAD Wealth — Revisão institucional e de interface — 09/10/2026. */
+
+/* Rodapé desktop: o endereço começa no mesmo eixo óptico do ícone do WhatsApp. */
+@media(min-width:1001px){
+  .footer-address-block{
+    justify-self:stretch!important;
+    width:100%!important;
+    max-width:none!important;
+    padding-left:9px!important;
+    padding-right:0!important;
+    text-align:left!important;
+  }
+  .footer-address{
+    text-align:left!important;
+  }
+  .footer-channels{
+    justify-self:stretch!important;
+    justify-content:flex-start!important;
+    width:100%!important;
+  }
+}
+
+/* A ROAD: capítulos claros e dimensionados pelo conteúdo, sem andares vazios. */
+.road-story-carousel .chapter-section{
+  flex:0 0 auto!important;
+  min-height:0!important;
+  padding-top:36px!important;
+  padding-bottom:36px!important;
+}
+.road-story-carousel .chapter-heading{
+  max-width:1240px!important;
+}
+.road-story-carousel .chapter-heading--wide{
+  max-width:1400px!important;
+}
+.road-story-carousel .chapter-section h1,
+.road-story-carousel .chapter-section h2{
+  max-width:1320px!important;
+}
+.road-story-carousel .chapter-heading .narrative{
+  max-width:1080px!important;
+  margin-top:14px!important;
+}
+.road-story-carousel .narrative p{
+  margin-bottom:12px;
+}
+.road-story-carousel .chapter-support{
+  max-width:1080px!important;
+}
+.chapter-section--consultoria .consult-flow{
+  margin-top:24px!important;
+}
+.chapter-section--consultoria .flow-box{
+  min-height:0!important;
+  padding:16px!important;
+  background:#fff!important;
+  color:var(--coffee)!important;
+  border:1px solid rgba(72,58,47,.14)!important;
+  box-shadow:none!important;
+}
+.chapter-section--consultoria .flow-box span{
+  background:var(--coffee)!important;
+  color:var(--sand)!important;
+}
+.chapter-section--consultoria .flow-box small{
+  color:rgba(72,58,47,.72)!important;
+}
+.road-network-grid{
+  max-width:1400px!important;
+  margin-top:22px!important;
+  gap:12px!important;
+}
+.road-network-grid article{
+  background:rgba(255,255,255,.62)!important;
+  border-color:rgba(72,58,47,.14)!important;
+}
+.road-network-tech{
+  max-width:1400px!important;
+  margin-top:22px!important;
+  padding-top:22px!important;
+  gap:28px!important;
+}
+.road-network-tech-brand{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  justify-self:end;
+  width:min(230px,100%);
+  padding:0;
+  border-radius:0;
+  background:transparent;
+}
+.road-network-tech-brand img{
+  display:block;
+  width:210px!important;
+  max-width:100%!important;
+  height:auto!important;
+}
+.road-network-numbers{
+  max-width:1400px!important;
+  margin-top:22px!important;
+  padding-top:22px!important;
+}
+.team{margin-top:22px!important}
+.symbol-construction{padding-top:22px!important;margin-top:22px!important}
+.career-form{margin-top:22px!important}
+
+@media(max-width:760px){
+  .road-story-carousel .chapter-section{
+    padding-top:30px!important;
+    padding-bottom:30px!important;
+  }
+  .road-network-tech-brand{
+    justify-self:start;
+    width:190px;
+  }
+}
+
+/* Investimentos: melhor aproveitamento textual e fechamento sem painel de contato redundante. */
+.network-structure-section{
+  padding-top:38px!important;
+  padding-bottom:38px!important;
+}
+.network-structure-layout{
+  max-width:1400px!important;
+  gap:42px!important;
+  align-items:start!important;
+}
+.network-structure-layout > div:first-child{
+  max-width:1080px;
+}
+.network-structure-section h2{
+  max-width:1050px;
+}
+.network-structure-section .lead{
+  max-width:1020px;
+}
+.investment-principles{
+  margin-bottom:0!important;
+}
+@media(min-width:1001px){
+  .network-structure-layout{
+    grid-template-columns:minmax(0,1.35fr) minmax(300px,.65fr)!important;
+  }
+}
+@media(max-width:1000px){
+  .network-structure-section{
+    padding-top:34px!important;
+    padding-bottom:34px!important;
+  }
+}
+
+/* Página de contato: mantém o quadro somente aqui, em superfície clara. */
+.contact-page--light{
+  background:var(--sand)!important;
+  color:var(--coffee)!important;
+  padding-top:42px!important;
+  padding-bottom:42px!important;
+}
+.contact-page--light h1{
+  max-width:1240px;
+}
+.contact-page--light .lead{
+  color:rgba(72,58,47,.78)!important;
+  max-width:900px;
+}
+.contact-page--light .contact-page-grid{
+  max-width:1280px!important;
+  gap:64px!important;
+  margin-top:28px!important;
+}
+.contact-page--light .contact-address{
+  border-top-color:rgba(72,58,47,.18)!important;
+  color:rgba(72,58,47,.78)!important;
+}
+.contact-page--light .contact-address strong{
+  color:var(--coffee)!important;
+}
+.contact-page--light .social-link{
+  color:var(--coffee)!important;
+  border-color:rgba(72,58,47,.34)!important;
+  background:transparent!important;
+}
+@media(max-width:800px){
+  .contact-page--light{
+    padding-top:32px!important;
+    padding-bottom:32px!important;
+  }
+  .contact-page--light .contact-page-grid{
+    gap:28px!important;
+    margin-top:24px!important;
+  }
+}
+
+/* Mensagem global: discreta, contextual e fora do rodapé. */
+.contact-launcher{
+  position:fixed;
+  right:22px;
+  bottom:20px;
+  z-index:47;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:9px;
+  transition:opacity .18s ease,transform .18s ease,visibility .18s ease;
+}
+.contact-launcher-toggle{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:8px;
+  width:46px;
+  height:46px;
+  padding:0 12px;
+  overflow:hidden;
+  border:1px solid rgba(243,236,227,.18);
+  border-radius:999px;
+  background:var(--petrol);
+  color:var(--sand);
+  box-shadow:0 10px 28px rgba(36,31,27,.18);
+  cursor:pointer;
+  transition:width .2s ease,transform .18s ease,box-shadow .18s ease;
+}
+.contact-launcher-icon{
+  display:block;
+  width:21px;
+  height:21px;
+  flex:0 0 21px;
+}
+.contact-launcher-label{
+  max-width:0;
+  overflow:hidden;
+  opacity:0;
+  white-space:nowrap;
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:11px;
+  letter-spacing:.02em;
+  transition:max-width .2s ease,opacity .16s ease;
+}
+@media(min-width:681px) and (hover:hover){
+  .contact-launcher-toggle:hover,
+  .contact-launcher-toggle:focus-visible,
+  .contact-launcher.is-open .contact-launcher-toggle{
+    width:146px;
+    transform:translateY(-1px);
+    box-shadow:0 13px 32px rgba(36,31,27,.22);
+  }
+  .contact-launcher-toggle:hover .contact-launcher-label,
+  .contact-launcher-toggle:focus-visible .contact-launcher-label,
+  .contact-launcher.is-open .contact-launcher-label{
+    max-width:96px;
+    opacity:1;
+  }
+}
+.contact-launcher-panel{
+  width:220px;
+  padding:10px;
+  border:1px solid rgba(72,58,47,.14);
+  border-radius:15px;
+  background:rgba(243,236,227,.98);
+  color:var(--coffee);
+  box-shadow:0 16px 42px rgba(36,31,27,.18);
+}
+.contact-launcher-panel[hidden]{display:none!important}
+.contact-launcher-heading{
+  padding:4px 7px 9px;
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:11px;
+  letter-spacing:.035em;
+}
+.contact-launcher-action{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  min-height:36px;
+  padding:8px 7px;
+  border:0;
+  border-top:1px solid rgba(72,58,47,.12);
+  background:transparent;
+  color:var(--coffee);
+  text-decoration:none;
+  text-align:left;
+  cursor:pointer;
+  font-family:"Inter",Arial,sans-serif;
+  font-size:12px;
+}
+.contact-launcher-action:hover,
+.contact-launcher-action:focus-visible{
+  background:rgba(72,58,47,.05);
+}
+.contact-launcher.is-footer-visible{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transform:translateY(10px);
+}
+@media(max-width:680px){
+  .contact-launcher{
+    right:14px;
+    bottom:14px;
+  }
+  .contact-launcher-toggle{
+    width:44px;
+    height:44px;
+    padding:0 11px;
+  }
+  .contact-launcher-label{display:none!important}
+  .contact-launcher-panel{
+    width:min(220px,calc(100vw - 28px));
+  }
+}
+
+
+/* A ROAD — correção da malha horizontal dos capítulos.
+   Uma única largura útil para título, texto e blocos estruturais. */
+.road-story-carousel .chapter-section{
+  --road-chapter-text-measure:min(100%,1480px);
+}
+
+.road-story-carousel .chapter-heading,
+.road-story-carousel .chapter-heading--wide{
+  width:100%!important;
+  max-width:none!important;
+  margin-left:0!important;
+  margin-right:0!important;
+}
+
+.road-story-carousel .chapter-section h1,
+.road-story-carousel .chapter-section h2{
+  width:100%!important;
+  max-width:none!important;
+}
+
+.road-story-carousel .chapter-heading > .lead,
+.road-story-carousel .chapter-heading .narrative,
+.road-story-carousel .chapter-heading .editorial-copy,
+.road-story-carousel .chapter-support,
+.road-story-carousel .presence-copy-wide{
+  width:var(--road-chapter-text-measure)!important;
+  max-width:var(--road-chapter-text-measure)!important;
+}
+
+.road-story-carousel .chapter-heading .narrative p,
+.road-story-carousel .chapter-heading .editorial-copy p,
+.road-story-carousel .presence-copy-wide p,
+.road-story-carousel .presence-copy-wide .lead{
+  width:100%!important;
+  max-width:none!important;
+}
+
+/* Blocos principais começam e terminam no mesmo eixo do capítulo. */
+.road-story-carousel .consult-flow,
+.road-story-carousel .origin-layout,
+.road-story-carousel .symbol-construction,
+.road-story-carousel .team,
+.road-story-carousel .road-network-grid,
+.road-story-carousel .road-network-tech,
+.road-story-carousel .road-network-numbers,
+.road-story-carousel .career-form{
+  width:100%!important;
+  max-width:none!important;
+  margin-left:0!important;
+  margin-right:0!important;
+}
+
+/* A seção Quem somos deixa de terminar antes do restante da página. */
+.road-story-carousel .team{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+}
+
+/* Consultoria e Rede usam a largura inteira sem criar uma segunda régua interna. */
+.road-story-carousel .consult-flow{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+}
+.road-story-carousel .road-network-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+}
+.road-story-carousel .road-network-tech{
+  grid-template-columns:minmax(0,1fr) auto!important;
+}
+
+/* Faça parte acompanha a mesma largura dos demais capítulos. */
+.road-story-carousel .career-form{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+}
+
+@media(max-width:1100px){
+  .road-story-carousel .team,
+  .road-story-carousel .consult-flow,
+  .road-story-carousel .career-form{
+    grid-template-columns:1fr 1fr!important;
+  }
+}
+
+@media(max-width:760px){
+  .road-story-carousel .chapter-section{
+    --road-chapter-text-measure:100%;
+  }
+
+  .road-story-carousel .consult-flow,
+  .road-story-carousel .team,
+  .road-story-carousel .road-network-grid,
+  .road-story-carousel .road-network-tech,
+  .road-story-carousel .career-form{
+    grid-template-columns:1fr!important;
+  }
+}
+
+
+/* Revisão — faixa segura para a aba Mercados & Ferramentas. */
+
+/* A aba vertical ocupa a lateral direita no desktop.
+   O conteúdo editorial termina antes dessa faixa para impedir sobreposição
+   de títulos, textos, cards e formulários extensos. */
+@media(min-width:1001px){
+  :root{
+    --road-utility-safe-right:76px;
+  }
+
+  main .section{
+    padding-right:calc(max(26px,calc((100vw - var(--max))/2)) + var(--road-utility-safe-right))!important;
+  }
+
+  .site-regulatory-disclaimer{
+    padding-right:calc(max(26px,calc((100vw - var(--max))/2)) + var(--road-utility-safe-right))!important;
+  }
+}
+
+/* Em tablet/mobile a aba lateral é substituída pelo botão inferior,
+   portanto não reservamos largura adicional. */
+@media(max-width:1000px){
+  :root{
+    --road-utility-safe-right:0px;
+  }
+}
+/* === FIM revision.css === */
+
+
+/* === INÍCIO revision-53.css === */
+/* ROAD Wealth — Revisão 53 — 09/10/2026. */
+
+/* 1. Reserva lateral justa: nunca soma uma faixa fixa à margem natural.
+   Em desktop usa somente o maior valor entre a margem normal e 60px. */
+@media(min-width:1001px){
+  :root{
+    --road-utility-safe-right:60px;
+  }
+
+  main .section,
+  .site-regulatory-disclaimer{
+    padding-right:max(var(--road-utility-safe-right),calc((100vw - var(--max))/2))!important;
+  }
+}
+
+/* 2. Botão global de mensagem como ícone direto, sem cápsula/círculo visível. */
+.contact-launcher-toggle{
+  position:relative!important;
+  width:46px!important;
+  height:46px!important;
+  padding:10px!important;
+  overflow:visible!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:var(--petrol)!important;
+  box-shadow:none!important;
+}
+.contact-launcher-icon{
+  width:26px!important;
+  height:26px!important;
+  flex:0 0 26px!important;
+}
+.contact-launcher-label{
+  position:absolute!important;
+  right:38px!important;
+  top:50%!important;
+  max-width:none!important;
+  padding:4px 7px;
+  border-radius:7px;
+  background:rgba(243,236,227,.90);
+  color:var(--petrol);
+  opacity:0!important;
+  transform:translateY(-50%) translateX(4px);
+  pointer-events:none;
+  transition:opacity .16s ease,transform .16s ease!important;
+}
+@media(min-width:681px) and (hover:hover){
+  .contact-launcher-toggle:hover,
+  .contact-launcher-toggle:focus-visible,
+  .contact-launcher.is-open .contact-launcher-toggle{
+    width:46px!important;
+    transform:translateY(-1px)!important;
+    box-shadow:none!important;
+  }
+  .contact-launcher-toggle:hover .contact-launcher-label,
+  .contact-launcher-toggle:focus-visible .contact-launcher-label,
+  .contact-launcher.is-open .contact-launcher-label{
+    max-width:none!important;
+    opacity:1!important;
+    transform:translateY(-50%) translateX(0)!important;
+  }
+}
+@media(max-width:680px){
+  .contact-launcher-toggle{
+    width:44px!important;
+    height:44px!important;
+    padding:9px!important;
+  }
+  .contact-launcher-icon{
+    width:26px!important;
+    height:26px!important;
+  }
+}
+
+/* 3. Disclaimer contextual: o JS define as variáveis a partir do último bloco visível. */
+.site-regulatory-disclaimer{
+  background:var(--road-disclaimer-bg,var(--sand))!important;
+  color:var(--road-disclaimer-fg,rgba(72,58,47,.72))!important;
+  border-top:1px solid var(--road-disclaimer-line,rgba(72,58,47,.14))!important;
+  border-bottom:0!important;
+  transition:background-color .18s ease,color .18s ease,border-color .18s ease;
+}
+
+/* 4. A Rede: cards mais claros e com separação óptica discreta. */
+.road-network-grid article{
+  background:#fff!important;
+  border-color:rgba(72,58,47,.16)!important;
+  box-shadow:0 5px 18px rgba(36,31,27,.045)!important;
+}
+
+/* 5. Rodapé desktop: bloco legal centralizado verticalmente na altura total. */
+@media(min-width:1001px){
+  .footer-meta{
+    grid-area:auto!important;
+    grid-column:2!important;
+    grid-row:1 / 3!important;
+    align-self:center!important;
+    justify-self:center!important;
+    transform:none!important;
+  }
+}
+/* === FIM revision-53.css === */
+
+
+/* === INÍCIO revision-53-1.css === */
+/* ROAD Wealth — Revisão 53.1 — botão de mensagem sólido. */
+
+.contact-launcher-toggle{
+  border:0!important;
+  border-radius:11px!important;
+  background:var(--petrol)!important;
+  color:var(--sand)!important;
+  box-shadow:none!important;
+}
+
+.contact-launcher-label{
+  background:var(--petrol)!important;
+  color:var(--sand)!important;
+  border:0!important;
+}
+
+.contact-launcher-toggle:hover,
+.contact-launcher-toggle:focus-visible,
+.contact-launcher.is-open .contact-launcher-toggle{
+  background:var(--petrol)!important;
+  color:var(--sand)!important;
+}
+
+@media(max-width:680px){
+  .contact-launcher-toggle{
+    border-radius:10px!important;
+  }
+}
+/* === FIM revision-53-1.css === */
+
+
+/* === INÍCIO revision-54.css === */
+/* ROAD Wealth — Revisão 54 — 22/10/2026. */
+
+/* DESTAQUES: somente Home e controles sempre acima do slide no desktop. */
+.road-highlights__pager{
+  z-index:10!important;
+  pointer-events:auto!important;
+}
+.road-highlights__dots,
+.road-highlights__dots button{
+  pointer-events:auto!important;
+}
+.road-highlights__slide{
+  z-index:1;
+}
+.road-highlights__slide.is-active{
+  z-index:2;
+}
+
+/* A Rede: usa exatamente o mesmo logo branco do cabeçalho e rodapé.
+   O suporte Café existe apenas para garantir contraste do SVG branco. */
+.road-network-tech-brand{
+  width:min(248px,100%)!important;
+  padding:10px 12px!important;
+  border-radius:10px!important;
+  background:var(--coffee)!important;
+}
+.road-network-tech-brand img{
+  display:block!important;
+  width:210px!important;
+  max-width:100%!important;
+  height:auto!important;
+  filter:none!important;
+  opacity:1!important;
+}
+
+/* Cabeçalho: pequeno respiro óptico antes da faixa de indicadores.
+   Remove o deslocamento para baixo que aproximava os logos da faixa seguinte. */
+.header-brand-group{
+  transform:translateY(0)!important;
+}
+
+@media(max-width:680px){
+  .road-network-tech-brand{
+    width:min(220px,100%)!important;
+    padding:9px 11px!important;
+  }
+  .road-network-tech-brand img{
+    width:188px!important;
+  }
+}
+/* === FIM revision-54.css === */
+
+
+/* === INÍCIO revision-55.css === */
+/* ROAD Wealth — Revisão 55 — 22/10/2026. */
+
+/* Rodapé mobile: compacta a margem inferior sem somar toda a área segura
+   do iPhone ao preenchimento do componente. Mantém um respiro discreto. */
+@media(max-width:680px){
+  .footer{
+    padding-bottom:calc(6px + min(env(safe-area-inset-bottom, 0px), 12px))!important;
+  }
+}
+/* === FIM revision-55.css === */
+
+
+/* === INÍCIO revision-56.css === */
+/* ROAD Wealth — Revisão 56 — 22/10/2026.
+   Tipografia proporcional do topo mobile, sem modificar o widget TradingView. */
+
+@media(max-width:680px){
+  :root{
+    --road-top-label-w:100px;
+    --road-top-label-font:12px;
+    --road-top-label-spacing:.055em;
+  }
+
+  /* Mesmo peso, tamanho e eixo nas duas etiquetas do topo. */
+  .market-ticker-mobile-label,
+  .road-highlights__label .road-highlights__label-text{
+    font-size:var(--road-top-label-font)!important;
+    font-weight:600!important;
+    letter-spacing:var(--road-top-label-spacing)!important;
+  }
+}
+
+@media(max-width:380px){
+  :root{
+    --road-top-label-w:94px;
+    --road-top-label-font:11.25px;
+  }
+}
+/* === FIM revision-56.css === */
+
+
+/* === INÍCIO revision-58.css === */
+/* ROAD Wealth — V58 — chat WhatsApp e correções pontuais do rodapé. */
+
+/* No rodapé, o seletor .footer a herdava cor areia do tema.
+   Para links WhatsApp em fundo areia, precisamos de texto café. */
+.footer a.footer-channel--whatsapp{
+  background:var(--sand)!important;
+  color:var(--coffee)!important;
+  text-decoration:none!important;
+}
+.footer a.footer-channel--whatsapp .footer-channel-icon{color:inherit!important}
+
+/* Mantém o ícone acessível e acima do rodapé, sem encobrir os canais. */
+.contact-launcher,
+.contact-launcher.is-footer-visible{
+  bottom:calc(20px + var(--road-footer-overlap,0px))!important;
+  opacity:1!important;visibility:visible!important;
+  pointer-events:auto!important;transform:none!important;
+  flex-direction:column-reverse!important;
+}
+.contact-launcher-panel{
+  box-sizing:border-box;
+  width:min(338px,calc(100vw - 28px))!important;
+  max-height:max(180px,calc(100dvh - 125px - var(--road-footer-overlap,0px)));
+  padding:16px!important;
+  overflow-y:auto;
+}
+.contact-launcher-top{display:flex;justify-content:space-between;align-items:start;gap:10px;margin-bottom:12px}
+.contact-launcher-brand{font:600 16px "Montserrat",Arial,sans-serif;color:var(--coffee)}
+.contact-launcher-heading{padding:4px 0 0!important;font-size:11px;color:rgba(72,58,47,.78)}
+.contact-launcher-close{display:grid;place-items:center;width:30px;height:30px;flex:0 0 30px;border:1px solid rgba(72,58,47,.2);border-radius:50%;background:transparent;color:var(--coffee);font-size:20px;cursor:pointer}
+.contact-launcher-welcome{margin:0 0 14px!important;padding:12px;border-radius:11px;background:rgba(72,58,47,.065);font-size:13px}
+.contact-launcher-field-label{display:block;margin-bottom:6px;color:var(--coffee);font-size:11px;font-weight:600}
+.contact-launcher-message{box-sizing:border-box;display:block;width:100%;min-height:88px;padding:10px 12px;border:1px solid rgba(72,58,47,.28);border-radius:10px;background:#fff;color:var(--coffee);font:13px/1.5 "Inter",Arial,sans-serif;resize:vertical}
+.contact-launcher-message:focus-visible{outline:2px solid var(--petrol);outline-offset:1px}
+.contact-launcher-panel .contact-launcher-send{
+  box-sizing:border-box;
+  display:flex;justify-content:center;align-items:center;
+  width:100%;min-height:43px;margin-top:10px;padding:10px 12px;
+  border:0;border-radius:10px;background:var(--petrol);
+  color:var(--sand)!important;text-align:center;text-decoration:none!important;
+  font:600 12px "Montserrat",Arial,sans-serif;
+}
+.contact-launcher-panel .contact-launcher-send:hover,
+.contact-launcher-panel .contact-launcher-send:focus-visible{filter:brightness(1.1);background:var(--petrol)}
+.contact-launcher-send[aria-disabled="true"]{opacity:.48;cursor:not-allowed}
+.contact-launcher-note{margin:9px 0 12px!important;color:rgba(72,58,47,.76);font-size:10.5px;line-height:1.45}
+.contact-launcher-alternatives{display:flex;flex-wrap:wrap;gap:14px;padding-top:10px;border-top:1px solid rgba(72,58,47,.14)}
+.contact-launcher-alternatives .contact-launcher-action{width:auto;min-height:24px;padding:3px 0;border:0;font-size:11px;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:680px){
+  .footer a.footer-channel--whatsapp{background:transparent!important;color:var(--sand)!important;box-shadow:none!important}
+  .contact-launcher,.contact-launcher.is-footer-visible{bottom:calc(14px + var(--road-footer-overlap,0px))!important}
+  .contact-launcher-panel{padding:14px!important}
+}
+/* === FIM revision-58.css === */
+
+
+/* === INÍCIO revision-61.css === */
+/* ROAD Wealth — V61. Ajustes isolados, preservando o restante do layout. */
+
+/* Contato: uma linha de canais no desktop, compacto e responsivo. */
+#contato.cta-final{
+  padding-top:29px!important;
+  padding-bottom:20px!important;
+  min-height:0!important;
+}
+#contato.cta-final h2{margin:0 0 10px}
+#contato.cta-final .lead{margin:0 0 18px}
+#contato .road-contact-channels{
+  display:flex;
+  align-items:center;
+  flex-wrap:nowrap;
+  gap:10px;
+  margin:0;
+  padding:0;
+}
+#contato .road-contact-channels .btn,
+#contato .road-contact-channels .social-link{
+  min-height:42px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  white-space:nowrap;
+  margin:0;
+  box-sizing:border-box;
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:12px;
+  line-height:1.25;
+}
+#contato .road-contact-channels .social-link{
+  color:var(--sand);
+  background:transparent;
+  border:1px solid rgba(243,236,227,.6);
+  padding:10px 14px;
+}
+#contato .road-contact-channels .social-link:hover,
+#contato .road-contact-channels .social-link:focus-visible{
+  background:rgba(243,236,227,.09);
+}
+@media(max-width:760px){
+  #contato.cta-final{padding-top:26px!important;padding-bottom:22px!important}
+  #contato .road-contact-channels{flex-wrap:wrap;gap:9px}
+  #contato .road-contact-channels .btn,
+  #contato .road-contact-channels .social-link{min-height:40px}
+}
+
+/* Rodapé desktop: marca à esquerda, legais alinhados pela BASE, canais à direita. */
+@media(min-width:1201px){
+  .footer-primary{
+    display:grid!important;
+    grid-template-columns:auto minmax(250px,1fr) auto!important;
+    grid-template-areas:"brand legal right"!important;
+    align-items:end!important;
+    column-gap:30px!important;
+    row-gap:0!important;
+  }
+  .footer-brand-group{
+    grid-area:brand!important;
+    justify-self:start!important;
+    align-self:end!important;
+  }
+  .footer-right{
+    grid-area:right!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:flex-end!important;
+    justify-content:flex-end!important;
+    gap:6px!important;
+    margin:0!important;
+    padding:0!important;
+    align-self:end!important;
+    min-width:0;
+  }
+  .footer-meta{
+    grid-area:legal!important;
+    grid-column:auto!important;
+    grid-row:auto!important;
+    align-self:end!important;
+    justify-self:center!important;
+    align-items:center!important;
+    justify-content:flex-end!important;
+    transform:none!important;
+    margin:0!important;
+    padding:0!important;
+    gap:3px!important;
+  }
+  .footer-links{justify-content:center!important;text-align:center!important}
+  .footer-meta small{text-align:center!important}
+  .footer-address-block{
+    grid-area:auto!important;
+    align-self:auto!important;
+    justify-self:auto!important;
+    width:auto!important;
+    margin:0!important;
+    padding:0!important;
+    transform:none!important;
+    text-align:right!important;
+  }
+  .footer-address{text-align:right!important}
+  .footer-channels{
+    grid-area:auto!important;
+    width:auto!important;
+    max-width:100%;
+    margin:0!important;
+    justify-self:auto!important;
+    align-self:auto!important;
+    justify-content:flex-end!important;
+    flex-wrap:nowrap!important;
+    gap:6px!important;
+  }
+}
+/* Notebooks: evita esmagar as três colunas e mantém os contatos juntos. */
+@media(min-width:681px) and (max-width:1200px){
+  .footer-primary{
+    display:grid!important;
+    grid-template-columns:auto minmax(0,1fr)!important;
+    grid-template-areas:"brand right" "legal legal"!important;
+    align-items:end!important;
+    column-gap:20px!important;
+    row-gap:6px!important;
+  }
+  .footer-brand-group{grid-area:brand!important;align-self:end!important}
+  .footer-right{
+    grid-area:right!important;
+    align-self:end!important;
+    display:flex!important;
+    flex-direction:column!important;
+    gap:5px!important;
+    align-items:flex-end!important;
+    min-width:0;
+  }
+  .footer-address-block{
+    grid-area:auto!important;
+    transform:none!important;
+    align-self:auto!important;
+    margin:0!important;
+    padding:0!important;
+    text-align:right!important;
+  }
+  .footer-address{text-align:right!important}
+  .footer-channels{
+    grid-area:auto!important;
+    align-self:auto!important;
+    justify-content:flex-end!important;
+    flex-wrap:wrap!important;
+  }
+  .footer-meta{
+    grid-area:legal!important;
+    grid-column:auto!important;
+    grid-row:auto!important;
+    justify-self:center!important;
+    align-self:end!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:3px!important;
+    transform:none!important;
+    margin:0!important;
+    padding:0!important;
+    border-top:0!important;
+  }
+  .footer-links{justify-content:center!important;text-align:center!important}
+  .footer-meta small{text-align:center!important;white-space:normal!important}
+}
+@media(max-width:680px){
+  .footer-primary{
+    display:grid!important;
+    grid-template-columns:minmax(118px,.82fr) minmax(0,1.18fr)!important;
+    grid-template-areas:"brand right" "legal legal"!important;
+    align-items:start!important;
+    gap:7px 12px!important;
+  }
+  .footer-brand-group{grid-area:brand!important;align-self:start!important}
+  .footer-right{
+    grid-area:right!important;
+    min-width:0;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:flex-end!important;
+    justify-content:flex-start!important;
+    gap:6px!important;
+  }
+  .footer-address-block{
+    grid-area:auto!important;
+    align-self:auto!important;
+    width:100%!important;
+    margin:0!important;
+    padding:0!important;
+    text-align:right!important;
+  }
+  .footer-channels{
+    grid-area:auto!important;
+    align-self:auto!important;
+    margin:0!important;
+    justify-content:flex-end!important;
+    max-width:100%!important;
+  }
+  .footer-meta{
+    grid-area:legal!important;
+    grid-column:auto!important;
+    grid-row:auto!important;
+    align-self:end!important;
+    justify-self:center!important;
+    transform:none!important;
+    width:100%;
+  }
+}
+/* === FIM revision-61.css === */
+
+
+/* === INÍCIO revision-62.css === */
+/* ROAD Wealth V62 — ajustes visualmente isolados do site.
+   O relatório HTML do Check-up é tratado no Worker, não nesta folha. */
+
+/* Chamada fixa de Check-up na abertura da Home: após os dois botões originais. */
+.road-home-checkup-access{
+  max-width:465px;
+  margin-top:22px;
+  padding:13px 16px 14px;
+  border-left:2px solid rgba(243,236,227,.9);
+  background:rgba(36,31,27,.28);
+  color:var(--sand);
+  text-align:left;
+}
+.road-home-checkup-eyebrow{
+  display:block;
+  font:600 10px/1.3 "Montserrat",Arial,sans-serif;
+  letter-spacing:.14em;
+  color:rgba(243,236,227,.82);
+  margin-bottom:6px;
+}
+.road-home-checkup-access p{
+  margin:0 0 5px;
+  font:400 13px/1.5 "Inter",Arial,sans-serif;
+  color:rgba(243,236,227,.88);
+}
+.road-home-checkup-access p strong{
+  font:500 15px/1.35 "Montserrat",Arial,sans-serif;
+  color:var(--sand);
+}
+.road-home-checkup-access a{
+  display:inline-block;
+  margin-top:7px;
+  color:var(--sand);
+  font:600 12px/1.5 "Montserrat",Arial,sans-serif;
+  text-decoration:underline;
+  text-underline-offset:4px;
+}
+.road-home-checkup-access a:focus-visible{outline:2px solid var(--sand);outline-offset:4px}
+
+.footer-link-short{display:none}
+.footer-link-full{display:inline}
+
+/* Rodapé: versão compacta no celular, preservando logos originais e links completos no desktop. */
+@media(max-width:680px){
+  .footer{padding:10px 15px calc(9px + env(safe-area-inset-bottom,0px))!important}
+  .footer-primary{
+    display:grid!important;
+    grid-template-columns:minmax(110px,auto) minmax(0,1fr)!important;
+    grid-template-areas:"brand right" "legal legal"!important;
+    gap:6px 10px!important;
+    align-items:start!important;
+  }
+  .footer-brand-group{
+    grid-area:brand!important;
+    align-self:center!important;
+    justify-self:start!important;
+    align-items:flex-end!important;
+    gap:8px!important;
+  }
+  .footer-road-brand img{width:38px!important;height:auto!important;max-height:64px!important}
+  .footer-network-endorsement img{width:54px!important;max-width:54px!important;height:auto!important}
+  .footer-right{
+    grid-area:right!important;
+    width:100%!important;
+    min-width:0!important;
+    align-self:center!important;
+    justify-self:stretch!important;
+    align-items:flex-end!important;
+    gap:6px!important;
+  }
+  .footer-address-block{
+    width:100%!important;
+    margin:0!important;
+    padding:0!important;
+    align-self:auto!important;
+    justify-self:stretch!important;
+    text-align:right!important;
+  }
+  .footer-address{
+    display:block;
+    font:400 9.6px/1.36 "Inter",Arial,sans-serif!important;
+    text-align:right!important;
+    white-space:normal!important;
+    overflow-wrap:normal;
+  }
+  .footer-neighborhood{display:block}
+  .footer-address-separator{display:none}
+  .footer-channels{
+    width:auto!important;
+    margin:0!important;
+    padding:0!important;
+    align-self:auto!important;
+    justify-self:end!important;
+    gap:4px 7px!important;
+    flex-wrap:nowrap!important;
+  }
+  .footer-channel{
+    width:29px!important;
+    height:29px!important;
+    min-height:29px!important;
+    padding:4px!important;
+  }
+  .footer-channel-icon{width:19px!important;height:19px!important}
+  .footer-meta{
+    grid-area:legal!important;
+    width:100%!important;
+    align-self:end!important;
+    justify-self:center!important;
+    align-items:center!important;
+    justify-content:flex-end!important;
+    gap:4px!important;
+    margin:0!important;
+    padding:7px 0 0!important;
+    border-top:1px solid rgba(243,236,227,.18)!important;
+    transform:none!important;
+  }
+  .footer-links{
+    width:100%!important;
+    display:flex!important;
+    flex-wrap:nowrap!important;
+    justify-content:center!important;
+    gap:5px!important;
+    text-align:center!important;
+    font-size:10px!important;
+    line-height:1.35!important;
+  }
+  .footer-links a{white-space:nowrap!important}
+  .footer-links a+a::before{content:"•";display:inline-block;margin:0 5px 0 0!important;color:rgba(243,236,227,.5)}
+  .footer-link-full{display:none!important}
+  .footer-link-short{display:inline!important}
+  .footer-meta small{
+    display:block!important;
+    width:100%!important;
+    font:400 9.4px/1.35 "Inter",Arial,sans-serif!important;
+    text-align:center!important;
+    white-space:normal!important;
+    opacity:.7;
+  }
+  /* Check-up é uma seção em largura total, sem contêiner deslocado ou rolagem compensada em dobro. */
+  #checkup-road.section{
+    display:block;
+    width:100%!important;
+    max-width:100%!important;
+    margin:0!important;
+    padding:29px 19px 34px!important;
+    border:0!important;
+    border-radius:0!important;
+    box-sizing:border-box!important;
+    scroll-margin-top:0!important;
+    overflow:visible!important;
+  }
+  #checkup-road .checkup-shell,
+  #checkup-road .section-intro{
+    width:100%!important;
+    max-width:100%!important;
+    margin-left:0!important;
+    margin-right:0!important;
+    padding-left:0!important;
+    padding-right:0!important;
+    transform:none!important;
+  }
+  #checkup-road .section-intro{margin-top:0!important;margin-bottom:20px!important}
+  #checkup-road .section-intro h2{
+    font-size:clamp(28px,7.3vw,34px)!important;
+    line-height:1.13!important;
+    letter-spacing:-.025em!important;
+    overflow-wrap:normal!important;
+    margin:0 0 15px!important;
+  }
+  #checkup-road .section-intro p{
+    font-size:15.5px!important;
+    line-height:1.58!important;
+    overflow-wrap:break-word!important;
+    margin:0!important;
+  }
+  #checkup-road .checkup-invite{
+    width:100%!important;
+    max-width:100%!important;
+    box-sizing:border-box!important;
+    padding:18px!important;
+    border-radius:14px!important;
+    margin:0!important;
+  }
+  #checkup-road .checkup-head h3{font-size:23px!important}
+  #checkup-road .checkup{max-width:100%;min-width:0}
+  #checkup-road .road-checkup-email{max-width:100%;min-width:0}
+
+  .road-home-checkup-access{
+    max-width:100%;
+    margin-top:19px;
+    padding:11px 13px 12px;
+  }
+  .road-home-checkup-access p{font-size:12px;line-height:1.46}
+  .road-home-checkup-access p strong{font-size:14px}
+  .road-home-checkup-access a{font-size:12px}
+  /* Os atalhos flutuantes não devem cobrir leitura, Check-up ou texto regulatório. */
+  body.road-mobile-reading-zone .mobile-utility,
+  body.road-mobile-reading-zone .contact-launcher:not(.is-open){
+    opacity:0!important;
+    visibility:hidden!important;
+    pointer-events:none!important;
+    transform:translateY(12px)!important;
+  }
+}
+@media(max-width:360px){
+  .footer-primary{grid-template-columns:minmax(100px,auto) minmax(0,1fr)!important;column-gap:7px!important}
+  .footer-brand-group{gap:6px!important}
+  .footer-road-brand img{width:35px!important}
+  .footer-network-endorsement img{width:50px!important;max-width:50px!important}
+  .footer-address{font-size:9px!important}
+  .footer-links{font-size:9.4px!important;gap:3px!important}
+  .footer-links a+a::before{margin:0 4px 0 0!important}
+}
+/* === FIM revision-62.css === */
+
+
+/* === INÍCIO revision-62-1.css === */
+/* Marcas no cabeçalho mobile, alinhadas pela base. */
+@media(max-width:680px){
+  :root{--header-h:86px}
+  .site-header{
+    box-sizing:border-box!important;
+    height:var(--header-h)!important;
+    min-height:var(--header-h)!important;
+    padding:10px 18px!important;
+    display:flex!important;
+    align-items:center!important;
+    gap:12px!important;
+  }
+  .site-header .header-brand-group{
+    display:flex!important;
+    flex:0 1 auto!important;
+    min-width:0!important;
+    height:auto!important;
+    align-self:center!important;
+    align-items:flex-end!important;
+    justify-content:flex-start!important;
+    gap:10px!important;
+    /* Mesmo ajuste óptico do desktop, sem mover o painel de cotações. */
+    transform:translateY(4px)!important;
+  }
+  .site-header .brand{
+    display:flex!important;
+    align-items:flex-end!important;
+    align-self:flex-end!important;
+    height:auto!important;
+    min-height:0!important;
+    flex:0 0 auto!important;
+  }
+  .site-header .brand img{
+    display:block!important;
+    width:46px!important;
+    max-width:46px!important;
+    height:auto!important;
+    max-height:72px!important;
+    object-fit:contain!important;
+  }
+  .site-header .header-network-endorsement{
+    display:flex!important;
+    align-items:flex-end!important;
+    align-self:flex-end!important;
+    min-height:0!important;
+  }
+  .site-header .header-network-endorsement img{
+    display:block!important;
+    width:60px!important;
+    max-width:60px!important;
+    height:auto!important;
+    object-fit:contain!important;
+  }
+  .site-header .nav-toggle{
+    flex:0 0 40px!important;
+    margin-left:auto!important;
+    align-self:center!important;
+  }
+  /* Menu ancorado na nova altura, não na posição fixa antiga de 64px. */
+  .site-header .nav,
+  .site-header .nav:not(.open),
+  .site-header .nav.open{top:100%!important}
+}
+/* === FIM revision-62-1.css === */
+
+
+/* === INÍCIO revision-63.css === */
+/* ROAD Wealth V63 — entrada editorial única do Check-up, sem cartões duplicados.
+   CTA visível logo após a descrição, inclusive no mobile. */
+
+#checkup-road .checkup-entry{
+  width:100%;
+  max-width:810px;
+  margin:0;
+  padding:0;
+  text-align:left;
+}
+#checkup-road .checkup-entry .eyebrow{
+  margin-bottom:12px;
+}
+#checkup-road .checkup-entry h2{
+  max-width:770px;
+  margin:0 0 14px;
+  font-family:"Questrial",Arial,sans-serif;
+  font-weight:400;
+  font-size:clamp(30px,3.5vw,43px);
+  line-height:1.13;
+  letter-spacing:-.025em;
+  color:var(--coffee);
+}
+#checkup-road .checkup-entry p{
+  max-width:700px;
+  margin:0 0 18px;
+  color:var(--coffee);
+  font-family:"Inter",Arial,sans-serif;
+  font-size:16px;
+  line-height:1.56;
+}
+#checkup-road .checkup-entry p strong{
+  font-weight:600;
+}
+#checkup-road .checkup-entry .btn{
+  margin:0;
+  min-height:44px;
+}
+#checkup-road #checkup{
+  scroll-margin-top:calc(var(--sticky-top) + 12px);
+}
+#checkup-road #checkup-flow,
+#checkup-road #checkup-final{
+  scroll-margin-top:calc(var(--sticky-top) + 12px);
+}
+.road-home-how-link{
+  display:inline-block;
+  margin-top:13px;
+  font:500 12px/1.4 "Montserrat",Arial,sans-serif;
+  color:var(--sand);
+  text-decoration:underline;
+  text-underline-offset:4px;
+}
+.road-home-how-link:hover,.road-home-how-link:focus-visible{
+  color:#fff;
+}
+@media(max-width:680px){
+  #checkup-road.section{
+    scroll-margin-top:calc(var(--sticky-top) + 6px)!important;
+    padding-top:19px!important;
+    padding-bottom:26px!important;
+  }
+  #checkup-road .checkup-entry{
+    width:100%;
+    max-width:100%;
+    padding:0!important;
+    margin:0!important;
+  }
+  #checkup-road .checkup-entry .eyebrow{
+    margin-bottom:11px;
+  }
+  #checkup-road .checkup-entry h2{
+    font-size:clamp(28px,7.3vw,32px)!important;
+    line-height:1.13!important;
+    letter-spacing:-.025em!important;
+    max-width:100%;
+    margin:0 0 14px!important;
+  }
+  #checkup-road .checkup-entry p{
+    font-size:15px!important;
+    line-height:1.53!important;
+    margin:0 0 17px!important;
+  }
+  #checkup-road .checkup-entry .btn{
+    width:auto;
+    min-height:44px;
+    max-width:100%;
+  }
+  #checkup-road #checkup{
+    padding-top:17px!important;
+    margin-top:19px!important;
+  }
+  #checkup-road #checkup-flow,#checkup-road #checkup-final{
+    scroll-margin-top:calc(var(--sticky-top) + 14px)!important;
+  }
+  .hero--road-photo .actions{
+    margin-bottom:0;
+  }
+  .road-home-how-link{
+    margin-top:10px;
+  }
+}
+/* === FIM revision-63.css === */
+
+
+/* === INÍCIO revision-64-3.css === */
+/* ROAD Wealth V64.3 — endereço do rodapé mobile em exatamente duas linhas.
+   Apenas o endereço muda; estrutura, logos, contatos e desktop permanecem intactos. */
+@media(max-width:680px){
+  .footer-address .footer-address-street,
+  .footer-address .footer-address-locality{
+    display:block;
+    white-space:nowrap!important;
+  }
+  .footer-address .footer-neighborhood{display:inline!important}
+  .footer-address .footer-address-separator{display:none!important}
+}
+/* Em 320 px, garantir que a localidade inteira caiba na coluna direita. */
+@media(max-width:360px){
+  .footer-address .footer-address-locality{
+    font-size:clamp(8.5px,2.7vw,9px)!important;
+    letter-spacing:-.01em;
+  }
+}
+/* === FIM revision-64-3.css === */
+
+
+/* === INÍCIO revision-64-4.css === */
+/* ROAD Wealth V64.4 — alinhar a margem inicial das duas linhas do endereço mobile.
+   O bloco segue ancorado à direita; apenas o texto interno muda de eixo. */
+@media(max-width:680px){
+  .footer-right .footer-address-block{
+    width:100%!important;
+    max-width:100%!important;
+    text-align:left!important;
+  }
+  .footer-right .footer-address{
+    width:max-content;
+    max-width:100%;
+    margin-left:auto;
+    margin-right:0;
+    text-align:left!important;
+  }
+  .footer-address .footer-address-street,
+  .footer-address .footer-address-locality{
+    text-align:left!important;
+  }
+}
+/* === FIM revision-64-4.css === */
