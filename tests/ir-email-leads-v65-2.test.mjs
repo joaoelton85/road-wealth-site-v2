@@ -21,7 +21,8 @@ async function exercise(body=payload,opts={}){
     EMAIL:{send:async msg=>{messages.push(msg);return {messageId:"test"};}},
     TURNSTILE_SECRET_KEY:"secret",TURNSTILE_SITE_KEY:"public",
     CHECKUP_EMAIL_RATE_LIMIT:{limit:async()=>({success:opts.rate!==false})},
-    ...(opts.db===false?{}:{LEADS_DB:db})
+    ...(opts.db===false?{}:{LEADS_DB:db}),
+    ...(opts.notify===true?{LEAD_NOTIFICATIONS:"enabled"}:{})
   };
   try{
     const req=new Request("https://roadwealth.com.br/api/ir-email",{
@@ -76,4 +77,14 @@ test("bloqueia dados inconsistentes, token inválido e limite",async()=>{
   assert.equal((await exercise(payload,{action:"road_checkup_email"})).status,403);
   assert.equal((await exercise(payload,{turnstile:false})).status,403);
   assert.equal((await exercise(payload,{rate:false})).status,429);
+});
+
+test("notificação interna automática sem D1 identifica permissão comercial",async()=>{
+  const r=await exercise(payload,{db:false,notify:true});
+  assert.equal(r.status,202);
+  assert.equal(r.messages.length,2);
+  assert.equal(r.messages[1].to,"contato@roadwealth.com.br");
+  assert.match(r.messages[1].subject,/Novo contato/);
+  assert.match(r.messages[1].text,/NÃO — somente envio do resultado/);
+  assert.doesNotMatch(r.messages[1].text,/120000|15000|Diagnóstico completo/);
 });
