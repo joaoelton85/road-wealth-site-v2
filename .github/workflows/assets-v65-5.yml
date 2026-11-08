@@ -1,0 +1,33 @@
+name: Preparar arquivos locais da marca V65.5
+
+on:
+  push:
+    branches:
+      - feature/v65-5-identidade-assets-seo
+    paths:
+      - scripts/prepare-assets-v65-5.mjs
+
+permissions:
+  contents: write
+
+jobs:
+  cache-assets:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Instalar dependências
+        run: npm install --no-audit --no-fund
+      - name: Gerar arquivos PNG e WebP e baixar marcas aprovadas
+        run: node scripts/prepare-assets-v65-5.mjs
+      - name: Registrar arquivos na branch V65.5
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/assets/platforms public/assets/road-og.png public/assets/road-areas-approved.webp
+          git diff --cached --quiet || (git commit -m "V65.5: logos locais, mandala WebP e Open Graph PNG" && git push origin HEAD:feature/v65-5-identidade-assets-seo)
