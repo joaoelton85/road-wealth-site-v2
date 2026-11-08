@@ -34,6 +34,7 @@
     }
   ],
   "vars": {
-    "TURNSTILE_SITE_KEY": "0x4AAAAAAF3d2CGykyL2vS6i"
+    "TURNSTILE_SITE_KEY": "0x4AAAAAAF3d2CGykyL2vS6i",
+    "LEAD_NOTIFICATIONS": "enabled"
   }
 }
