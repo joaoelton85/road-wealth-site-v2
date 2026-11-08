@@ -1,0 +1,18 @@
+/* ROAD Wealth V64.3 — endereço do rodapé mobile em exatamente duas linhas.
+   Apenas o endereço muda; estrutura, logos, contatos e desktop permanecem intactos. */
+@media(max-width:680px){
+  .footer-address .footer-address-street,
+  .footer-address .footer-address-locality{
+    display:block;
+    white-space:nowrap!important;
+  }
+  .footer-address .footer-neighborhood{display:inline!important}
+  .footer-address .footer-address-separator{display:none!important}
+}
+/* Em 320 px, garantir que a localidade inteira caiba na coluna direita. */
+@media(max-width:360px){
+  .footer-address .footer-address-locality{
+    font-size:clamp(8.5px,2.7vw,9px)!important;
+    letter-spacing:-.01em;
+  }
+}
