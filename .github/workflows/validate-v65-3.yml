@@ -1,0 +1,38 @@
+name: Validar V65.3 — Faça Parte da ROAD
+
+on:
+  push:
+    branches:
+      - feature/v65-3-banco-talentos
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate-talents:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Instalar dependências
+        run: npm install --no-audit --no-fund
+      - name: Testes de e-mail, consentimento e API
+        run: npm test
+      - name: Compilação e verificação de integridade
+        run: npm run build
+      - name: Validar Worker sem publicar
+        run: npx wrangler deploy --dry-run --outdir .wrangler-v65-3
+      - name: Instalar Chromium para teste de formulário
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Testar formulário Faça Parte mobile e desktop
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4321 >/tmp/road-v65-3-preview.log 2>&1 &
+          for i in {1..30}; do curl -fsS http://127.0.0.1:4321/ >/dev/null && break || sleep 1; done
+          node scripts/check-career-v65-3.mjs
