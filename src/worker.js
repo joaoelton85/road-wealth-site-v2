@@ -1,6 +1,6 @@
 import { generateCheckupPdf } from "./checkup-pdf.js";
 import {
-  evaluateCheckup, ROAD_REPORT_INTRO, ROAD_REPORT_NOTICE, ROAD_TAGLINE, ROAD_CTA_LINK,
+  evaluateCheckup, ROAD_REPORT_INTRO, ROAD_REPORT_NOTICE, ROAD_REPORT_CTA_TITLE, ROAD_TAGLINE, ROAD_CTA_LINK,
 } from "./checkup-report.js";
 
 // Check-up ROAD — endpoint de envio seguro. Nenhum resultado é exibido no site.
@@ -55,7 +55,7 @@ function buildEmail(report) {
     "",
     "O diagnóstico completo, com a análise das suas respostas, está no PDF anexo.",
     "",
-    "APROFUNDE SEU DIAGNÓSTICO",
+    ROAD_REPORT_CTA_TITLE.toUpperCase(),
     ROAD_REPORT_NOTICE,
     "Converse com a ROAD: "+ROAD_CTA_LINK,
     "",
@@ -98,7 +98,7 @@ function buildEmail(report) {
     '<p style="font-family:Inter,Arial,Helvetica,sans-serif;font-size:15px;line-height:1.65;margin:20px 0;color:'+COLORS.coffee+';">O diagnóstico completo, com a análise das suas respostas, está no <strong>PDF anexo</strong>.</p>' +
 
     '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"><tr><td style="border-top:1px solid '+COLORS.separator+';padding-top:21px;">' +
-    '<h2 style="font-family:Montserrat,Arial,Helvetica,sans-serif;font-size:20px;line-height:1.3;font-weight:600;margin:0 0 10px;color:'+COLORS.coffee+';">Aprofunde seu diagnóstico</h2>' +
+    '<h2 style="font-family:Montserrat,Arial,Helvetica,sans-serif;font-size:20px;line-height:1.3;font-weight:600;margin:0 0 10px;color:'+COLORS.coffee+';">'+escapeHtml(ROAD_REPORT_CTA_TITLE)+'</h2>' +
     '<p style="font-family:Inter,Arial,Helvetica,sans-serif;font-size:14px;line-height:1.65;color:'+COLORS.muted+';margin:0 0 19px;">'+escapeHtml(ROAD_REPORT_NOTICE)+'</p>' +
     '<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td bgcolor="'+COLORS.sand+'" style="background-color:'+COLORS.sand+';padding:13px 18px;border:1px solid '+COLORS.coffee+';border-radius:4px;">' +
     '<a href="'+escapeHtml(ROAD_CTA_LINK)+'" style="font-family:Montserrat,Arial,Helvetica,sans-serif;font-size:14px;font-weight:600;color:'+COLORS.coffee+';text-decoration:underline;text-underline-offset:3px;display:inline-block;">Conversar com a ROAD</a></td></tr></table>' +

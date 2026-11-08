@@ -12,7 +12,8 @@ export const ROAD_AREAS = [
 export const ROAD_POINTS = { sim: 3, parcial: 2, nao: 1, naosei: 0 };
 export const ROAD_TAGLINE = "Seu patrimônio, seu caminho, seu legado.";
 export const ROAD_REPORT_INTRO = "Este Check-up oferece uma primeira leitura da organização patrimonial, construída a partir das suas respostas. Ele não mede evolução nem substitui uma avaliação individualizada.";
-export const ROAD_REPORT_NOTICE = "Avaliação indicativa baseada em informações autodeclaradas. Para compreender melhor a situação do patrimônio, é necessário considerar objetivos, composição dos ativos, liquidez e circunstâncias familiares.";
+export const ROAD_REPORT_CTA_TITLE = "O próximo passo: um planejamento para você e sua família";
+export const ROAD_REPORT_NOTICE = "Este Check-up é um primeiro olhar sobre a organização do seu patrimônio. Mas cada família tem sua própria história, seus objetivos e suas prioridades. Ao conhecermos melhor sua realidade — sua idade, composição familiar, patrimônio, renda e planos para o futuro —, poderemos realizar um diagnóstico mais preciso, identificar oportunidades e construir um planejamento financeiro e patrimonial que faça sentido para você. Convidamos você a continuar essa conversa com a ROAD e descobrir como podemos ajudar a organizar, proteger e planejar o futuro do seu patrimônio e da sua família.";
 export const ROAD_CTA_LINK = "https://wa.me/5542984242852?text=" +
   encodeURIComponent("Olá! Realizei o Check-up ROAD e gostaria de conversar sobre minha análise patrimonial.");
 

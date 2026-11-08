@@ -1,5 +1,5 @@
 import { base64, metadata, glyphs } from "./pdf-assets/checkup-base.js";
-import { ROAD_REPORT_INTRO, ROAD_REPORT_NOTICE, ROAD_TAGLINE } from "./checkup-report.js";
+import { ROAD_REPORT_INTRO, ROAD_REPORT_NOTICE, ROAD_REPORT_CTA_TITLE, ROAD_TAGLINE } from "./checkup-report.js";
 
 // The base already contains the three brand fonts and the vector logo. Only the
 // text and drawing commands vary per report. No font parsing or network I/O
@@ -112,8 +112,15 @@ export function generateCheckupPdf(report) {
     y += 13;
   }
   rect(LEFT, y, WIDTH, 1, SAND);
-  text("Aprofunde seu diagnóstico", LEFT, y + 26, "Questrial", 18);
-  paragraph(ROAD_REPORT_NOTICE, LEFT, y + 45, "Inter", 10, WIDTH, 14);
+  const headingEnd = paragraph(ROAD_REPORT_CTA_TITLE, LEFT, y + 24, "Questrial", 16, WIDTH, 19, COFFEE);
+  // Ajusta a entrelinha do convite, se necessário, para respeitar o rodapé fixo.
+  let inviteSize = 9.25;
+  let inviteLeading = 12;
+  while (inviteSize > 7.5 && headingEnd + 6 + linesFor(ROAD_REPORT_NOTICE, "Inter", inviteSize, WIDTH).length * inviteLeading > 754) {
+    inviteSize -= 0.25;
+    inviteLeading -= 0.2;
+  }
+  paragraph(ROAD_REPORT_NOTICE, LEFT, headingEnd + 6, "Inter", inviteSize, WIDTH, inviteLeading);
 
   rect(LEFT, 770, WIDTH, 1, SAND);
   text("Conversar com a ROAD", LEFT, 799, "Montserrat", 10, COFFEE);

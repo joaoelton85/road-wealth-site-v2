@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 import worker from "../src/worker.js";
-import { evaluateCheckup } from "../src/checkup-report.js";
+import { evaluateCheckup, ROAD_REPORT_CTA_TITLE, ROAD_REPORT_NOTICE } from "../src/checkup-report.js";
 import { ROAD_CHECKUP_PROFILES, ROAD_CHECKUP_AREA_ORDER } from "../src/checkup-profiles.js";
 
 const read=p=>readFileSync(p,"utf8");
@@ -61,6 +61,8 @@ test("marca e rodapé do e-mail são preservados",async()=>{
   assert.match(msg.html,/road-logo-cafe-email\.png" width="70" height="109"/);
   assert.match(msg.html,/roadwealth\.com\.br/);
   assert.match(msg.html,/Instagram @road\.wealth/);
+  assert(msg.text.includes(ROAD_REPORT_CTA_TITLE));
+  assert(msg.text.includes(ROAD_REPORT_NOTICE));
   assert.match(msg.html,/Seu patrimônio, seu caminho, seu legado/);
 });
 test("recomendações não repetem o mesmo título",()=>{
