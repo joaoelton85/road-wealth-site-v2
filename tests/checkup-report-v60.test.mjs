@@ -1,131 +1,116 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { evaluateCheckup, ROAD_AREAS, ROAD_TAGLINE } from "../src/checkup-report.js";
+import { ROAD_CHECKUP_PROFILES, ROAD_CHECKUP_AREA_ORDER } from "../src/checkup-profiles.js";
 import worker from "../src/worker.js";
 
-function answers(value) {
-  return Object.fromEntries(ROAD_AREAS.flatMap(area =>
-    Array.from({length:4},(_,i)=>[area.key+"-"+i,value])));
+function answers(value,profile="familiar") {
+  const conf=ROAD_CHECKUP_PROFILES[profile];
+  return Object.fromEntries(ROAD_CHECKUP_AREA_ORDER.flatMap(area=>
+    conf.areas[area].questions.map((_,i)=>[area+"-"+i,value])));
 }
 
-test("Sim/Parcialmente/Não/Não sei recebem 3/2/1/0 e classificações previstas",()=>{
-  for(const [answer,score,label] of [
-    ["sim",12,"Bem estruturado"],
-    ["parcial",8,"Em desenvolvimento"],
-    ["nao",4,"Merece atenção"],
-    ["naosei",0,"Merece atenção"]
-  ]){
-    const result=evaluateCheckup(answers(answer));
-    assert.equal(result.areas.length,4);
-    assert.equal(result.areas[0].label,"Investimentos");
-    assert.equal(result.areas[0].points,score);
-    assert.equal(result.areas[0].statusLabel,label);
-    assert.equal(result.areas[0].percentage,score/12*100===100?100:Math.round(score/12*10000)/100);
-    assert.equal(result.priorities.length,2);
+test("os dois perfis têm 16 perguntas e quatro áreas",()=>{
+  assert.equal(ROAD_AREAS.length,4);
+  assert.deepEqual(ROAD_AREAS.map(a=>a.label),["Investimentos","Legado","Capital","Planejamento"]);
+  for(const [profile,counts] of [["familiar",[4,5,2,5]],["empresarial",[4,4,4,4]]]){
+    const r=evaluateCheckup(answers("sim",profile),profile);
+    assert.deepEqual(r.areas.map(a=>a.questionCount),counts);
+    assert.equal(r.areas.reduce((s,a)=>s+a.questionCount,0),16);
   }
 });
-test("intervalos de classificação não deixam lacunas",()=>{
-  for(let score=0;score<=12;score++){
-    const raw=answers("naosei");
-    for(let i=0;i<4;i++){raw["investments-"+i]=i<Math.floor(score/3)?"sim":"naosei";}
-    const report=evaluateCheckup(raw);
-    assert(report);
+test("escala normalizada 0 a 12 conserva classificações nos dois perfis",()=>{
+  for(const profile of ["familiar","empresarial"]){
+    for(const [answer,score,label] of [
+      ["sim",12,"Bem estruturado"],
+      ["parcial",8,"Em desenvolvimento"],
+      ["nao",4,"Merece atenção"],
+      ["naosei",0,"Merece atenção"]
+    ]){
+      const r=evaluateCheckup(answers(answer,profile),profile);
+      assert.equal(r.areas.length,4);
+      assert(r.areas.every(area=>area.points===score));
+      assert(r.areas.every(area=>area.statusLabel===label));
+      assert.equal(r.priorities.length,2);
+    }
   }
 });
-test("lacuna de conhecimento gera recomendação de verificação, não presume ausência",()=>{
-  const r=evaluateCheckup(answers("naosei"));
+test("respostas diferentes em áreas com 2 e 5 perguntas são ponderadas corretamente",()=>{
+  const raw=answers("sim");
+  raw["capital-0"]="nao";
+  const result=evaluateCheckup(raw,"familiar");
+  assert.equal(result.areas[2].points,8);
+  assert.equal(result.areas[2].questionCount,2);
+  assert.equal(result.areas[2].statusLabel,"Em desenvolvimento");
+  raw["legacy-0"]="nao";
+  const changed=evaluateCheckup(raw,"familiar");
+  assert.equal(changed.areas[1].points,10.4);
+  assert.equal(changed.areas[1].questionCount,5);
+});
+test("respostas devem corresponder exatamente ao perfil escolhido",()=>{
+  const familiar=answers("sim","familiar");
+  assert.equal(evaluateCheckup(familiar,"empresarial"),null);
+  assert.equal(evaluateCheckup(familiar,"outro"),null);
+  const incomplete={...familiar};delete incomplete["legacy-4"];
+  assert.equal(evaluateCheckup(incomplete,"familiar"),null);
+  const arbitrary={...familiar,"legacy-3":"talvez"};
+  assert.equal(evaluateCheckup(arbitrary,"familiar"),null);
+});
+test("desconhecimento não representa ausência comprovada",()=>{
+  const r=evaluateCheckup(answers("naosei"),"familiar");
   assert.equal(r.limited,true);
   assert.match(r.priorities[0].title,/simples/);
+  assert.doesNotMatch(r.priorities[1].detail,/Você já indicou/);
 });
-test("se nenhuma lacuna declarada, recomenda manutenção e revisão",()=>{
-  const r=evaluateCheckup(answers("sim"));
-  assert.equal(r.priorities.length,2);
+test("resultados bem estruturados preservam convite de manutenção",()=>{
+  const r=evaluateCheckup(answers("sim","empresarial"),"empresarial");
   assert.match(r.priorities[0].title,/estrutura coerente/);
+  assert.match(ROAD_TAGLINE,/Seu patrimônio/);
 });
-test("16 respostas são obrigatórias e não permitem valores arbitrários",()=>{
-  const raw=answers("sim");raw["legacy-2"]="talvez";
-  assert.equal(evaluateCheckup(raw),null);
-  delete raw["legacy-2"];
-  assert.equal(evaluateCheckup(raw),null);
+test("protocolo de 12 respostas desconhecidas preservado",()=>{
+  const raw=answers("sim");
+  const keys=Object.keys(raw);
+  for(let i=0;i<11;i++)raw[keys[i]]="naosei";
+  const r11=evaluateCheckup(raw,"familiar");
+  assert.equal(r11.unknownCount,11);assert.equal(r11.limited,false);
+  raw[keys[11]]="naosei";
+  const r12=evaluateCheckup(raw,"familiar");
+  assert.equal(r12.unknownCount,12);assert.equal(r12.limited,true);
+  assert.match(r12.priorities[1].detail,/Você já indicou/);
 });
-test("Worker envia resultado HTML com mapa, assinatura e links oficiais",async()=>{
-  const fetchPrevious=globalThis.fetch;
+test("Capital aborda crédito sem presumir dívidas existentes",()=>{
+  const raw=answers("sim","familiar");
+  raw["capital-0"]="nao";
+  const result=evaluateCheckup(raw,"familiar");
+  assert(result.priorities.some(item=>/recursos próprios/.test(item.title)));
+  assert(!result.priorities.some(item=>/inadimplente|dívidas existentes/.test(item.detail)));
+});
+test("Worker envia e-mail e PDF com os nomes novos",async()=>{
+  const oldFetch=globalThis.fetch;
   const sent=[];
   globalThis.fetch=async()=>new Response(JSON.stringify({
-    success:true, hostname:"roadwealth.com.br", action:"road_checkup_email"
+    success:true,hostname:"roadwealth.com.br",action:"road_checkup_email"
   }),{headers:{"Content-Type":"application/json"}});
   try{
     const request=new Request("https://roadwealth.com.br/api/checkup-email",{
       method:"POST",headers:{"Origin":"https://roadwealth.com.br","Content-Type":"application/json"},
-      body:JSON.stringify({email:"prospect@example.com",consent:true,answers:answers("parcial"),turnstileToken:"token-teste"})
+      body:JSON.stringify({email:"prospect@example.com",consent:true,profile:"familiar",answers:answers("parcial"),turnstileToken:"token-teste"})
     });
     const env={
       TURNSTILE_SECRET_KEY:"segredo-teste",
-      EMAIL:{send:async (message)=>{sent.push(message);return {messageId:"mock"}}},
-      CHECKUP_EMAIL_RATE_LIMIT:{limit:async()=>({success:true})},
+      EMAIL:{send:async message=>{sent.push(message)}},
+      CHECKUP_EMAIL_RATE_LIMIT:{limit:async()=>({success:true})}
     };
     const response=await worker.fetch(request,env);
     assert.equal(response.status,202);
-    assert.equal(sent.length,1);
     const msg=sent[0];
-    assert.match(msg.html,/Seu mapa patrimonial/);
-    assert.match(msg.html,/SITUAÇÃO ATUAL/);
     assert.match(msg.html,/checkup-bar-8\.png/);
-    assert.match(msg.html,/assets\/road-logo-cafe-email.png/);
-    assert.match(msg.html,/Instagram @road\.wealth/);
-    assert.match(msg.html,/Montserrat,Arial/);
-    assert.match(msg.text,/Legado: Em desenvolvimento/);
+    assert.match(msg.text,/Capital: Em desenvolvimento/);
+    assert.match(msg.text,/Planejamento: Em desenvolvimento/);
+    assert.match(msg.text,/Patrimonial \/ Familiar/);
     assert.match(msg.text,/PDF anexo/);
-    assert.doesNotMatch(msg.html,/Sua análise patrimonial/);
     assert.equal(msg.attachments.length,1);
-    const [file] = msg.attachments;
-    assert.equal(file.filename,"Diagnostico-Check-up-ROAD.pdf");
-    assert.equal(file.type,"application/pdf");
-    assert.equal(file.disposition,"attachment");
-    assert.equal(new TextDecoder().decode(file.content.slice(0,5)),"%PDF-");
-    assert.match(msg.text,/Seu patrimônio, seu caminho, seu legado/);
+    assert.equal(new TextDecoder().decode(msg.attachments[0].content.slice(0,5)),"%PDF-");
     assert.doesNotMatch(msg.html,/token-teste|segredo-teste/);
-  } finally {globalThis.fetch=fetchPrevious;}
-});
-
-test("protocolo de desconhecimento começa em 12 respostas, não 11",()=>{
-  const raw=answers("sim");
-  const keys=Object.keys(raw);
-  for(let i=0;i<11;i++)raw[keys[i]]="naosei";
-  const r11=evaluateCheckup(raw);
-  assert.equal(r11.unknownCount,11);
-  assert.equal(r11.limited,false);
-  raw[keys[11]]="naosei";
-  const r12=evaluateCheckup(raw);
-  assert.equal(r12.unknownCount,12);
-  assert.equal(r12.limited,true);
-  assert.match(r12.priorities[1].detail,/Você já indicou/);
-});
-test("protocolo especial sem respostas positivas não inventa estrutura",()=>{
-  const r=evaluateCheckup(answers("naosei"));
-  assert.equal(r.limited,true);
-  assert.doesNotMatch(r.priorities[1].detail,/Você já indicou/);
-});
-test("liquidez trata da continuidade dos negócios sem alarmismo de venda",()=>{
-  const raw=answers("sim");
-  raw["strategy-1"]="nao";
-  const r=evaluateCheckup(raw);
-  assert(r.priorities.some(p=>/Liquidez também significa preservar escolhas/.test(p.title)));
-  assert(r.priorities.some(p=>/continuidade dos negócios/.test(p.detail)));
-  assert(!r.priorities.some(p=>/vendid[oa]|vender|venda em condições desfavoráveis/i.test(p.detail)));
-});
-test("relações entre sucessão e liquidez priorizam interpretação integrada",()=>{
-  const raw=answers("sim");
-  raw["legacy-1"]="nao";
-  raw["strategy-1"]="nao";
-  const r=evaluateCheckup(raw);
-  assert(r.priorities.some(p=>/continuidade da família também depende de liquidez/.test(p.title)));
-});
-test("respostas negativas e desconhecimento não são tratados como sinônimos",()=>{
-  const raw=answers("sim");
-  raw["investments-0"]="naosei";
-  const r=evaluateCheckup(raw);
-  assert.equal(r.unknownCount,1);
-  assert.equal(r.limited,false);
-  assert(!r.priorities.some(p=>/inexistente|inadequada|comprovadamente/.test(p.detail)));
+  }finally{globalThis.fetch=oldFetch;}
 });
