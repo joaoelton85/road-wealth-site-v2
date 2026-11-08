@@ -1,5 +1,12 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 64.3 — 07/11/2026
+
+- Rodapé mobile: endereço em **exatamente duas linhas** — `Rua Pater Josef Stefan, 1249` e `Colônia Vitória · Entre Rios · Guarapuava/PR`.
+- Ajustada a apresentação em telas compactas (320 px), sem quebrar o segundo trecho nem alterar a composição do desktop, logotipos ou canais.
+- Teste de navegador atualizado para conferir texto e ausência de transbordamento em 320 e 390 px.
+
+
 ## Revisão 64.2 — 07/11/2026
 
 - No rodapé mobile, Colônia Vitória ocupa uma linha própria entre a rua e a localidade.
