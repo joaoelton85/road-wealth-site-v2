@@ -103,7 +103,7 @@ export function buildIrEmail(report,name="") {
     disclaimer+alert,"",
     "Com informações adicionais sobre seu contexto familiar e patrimonial, a ROAD pode aprofundar esta análise.",
     "Converse com a ROAD: "+ORIGIN+"/contato/","",
-    "Seu patrimônio, seu caminho, seu legado."
+    "Seu patrimônio, seu legado, seu caminho."
   ].join("\n");
   const tableRows=rows.map(([label,value],i)=>
     '<tr><td style="padding:10px 12px;border-bottom:1px solid '+LINE+';font:13px Inter,Arial,sans-serif;color:'+MUTED+';">'+safe(label)+'</td><td align="right" style="padding:10px 12px;border-bottom:1px solid '+LINE+';font:600 13px Montserrat,Arial,sans-serif;color:'+COFFEE+';">'+safe(value)+'</td></tr>').join("");
@@ -122,7 +122,7 @@ export function buildIrEmail(report,name="") {
     '<a href="'+ORIGIN+'/contato/" style="font:600 14px Montserrat,Arial,sans-serif;color:'+COFFEE+';">Conversar com a ROAD</a>'+
     '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin-top:22px;border-top:1px solid '+LINE+';"><tr><td style="padding-top:20px;width:79px;" valign="middle">'+
     '<img alt="ROAD Wealth" src="'+ORIGIN+'/assets/road-logo-cafe-email.png" width="70" height="109" style="display:block;width:70px;height:109px;" /></td>'+
-    '<td valign="middle" style="font:13px/1.6 Inter,Arial,sans-serif;color:'+COFFEE+';padding:20px 0 0 12px;">Seu patrimônio, seu caminho, seu legado.<p style="margin:8px 0 0;"><a href="'+ORIGIN+'" style="color:'+COFFEE+';">roadwealth.com.br</a></p></td></tr></table>'+
+    '<td valign="middle" style="font:13px/1.6 Inter,Arial,sans-serif;color:'+COFFEE+';padding:20px 0 0 12px;">Seu patrimônio, seu legado, seu caminho.<p style="margin:8px 0 0;"><a href="'+ORIGIN+'" style="color:'+COFFEE+';">roadwealth.com.br</a></p></td></tr></table>'+
     '</td></tr></table></td></tr></table></body></html>';
   return {text,html};
 }
