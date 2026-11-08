@@ -1,0 +1,38 @@
+name: Validar V65.4 — Conteúdo e conformidade
+
+on:
+  push:
+    branches:
+      - feature/v65-4-conteudo-regulatorio-comercial
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate-v65-4:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Instalar dependências
+        run: npm install --no-audit --no-fund
+      - name: Testes de regressão e conteúdo
+        run: npm test
+      - name: Compilar e verificar
+        run: npm run build
+      - name: Verificar Worker sem publicar
+        run: npx wrangler deploy --dry-run --outdir .wrangler-v65-4
+      - name: Instalar navegador para smoke test
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Verificar layout responsivo sem publicar
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4321 >/tmp/road-v65-4-preview.log 2>&1 &
+          for i in {1..30}; do curl -fsS http://127.0.0.1:4321/ >/dev/null && break || sleep 1; done
+          node scripts/check-v65-4.mjs
