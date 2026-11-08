@@ -1,4 +1,4 @@
-// V65.6: mescla SOMENTE os arquivos de revisão realmente importados pelo
+// V65.6: geração aprovada — mescla SOMENTE os arquivos de revisão realmente importados pelo
 // BaseLayout, mantendo a ordem exata da cascata e os arquivos de origem para
 // auditoria/rollback. Não altera conteúdo de nenhuma regra CSS.
 import {readFile,writeFile} from "node:fs/promises";
