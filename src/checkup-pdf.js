@@ -84,6 +84,7 @@ export function generateCheckupPdf(report) {
   rect(LEFT, 154, WIDTH, 1, SAND);
 
   text("Seu mapa patrimonial", LEFT, 186, "Questrial", 22);
+  text("PERCURSO: " + report.profileLabel, LEFT, 201, "Montserrat", 7.5, MUTED);
   const caption = "SITUAÇÃO ATUAL";
   text(caption, LEFT + WIDTH - measure(caption, "Montserrat", 8), 185, "Montserrat", 8, MUTED);
   let y = 214;
