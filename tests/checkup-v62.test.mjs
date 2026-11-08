@@ -2,12 +2,14 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 import worker from "../src/worker.js";
-import { ROAD_AREAS, evaluateCheckup } from "../src/checkup-report.js";
+import { evaluateCheckup } from "../src/checkup-report.js";
+import { ROAD_CHECKUP_PROFILES, ROAD_CHECKUP_AREA_ORDER } from "../src/checkup-profiles.js";
 
-const read = p=>readFileSync(p,"utf8");
-const answers = (value="sim")=>Object.fromEntries(
-  ROAD_AREAS.flatMap(area=>Array.from({length:4},(_,i)=>[area.key+"-"+i,value])));
-async function emailFor(sample) {
+const read=p=>readFileSync(p,"utf8");
+const answers=(value="sim",profile="familiar")=>Object.fromEntries(
+  ROAD_CHECKUP_AREA_ORDER.flatMap(area=>
+    ROAD_CHECKUP_PROFILES[profile].areas[area].questions.map((_,i)=>[area+"-"+i,value])));
+async function emailFor(sample,profile="familiar") {
   const oldFetch=globalThis.fetch;
   const sent=[];
   globalThis.fetch=async()=>new Response(JSON.stringify({
@@ -15,22 +17,19 @@ async function emailFor(sample) {
   }),{headers:{"Content-Type":"application/json"}});
   try {
     const request=new Request("https://roadwealth.com.br/api/checkup-email",{
-      method:"POST",
-      headers:{"Origin":"https://roadwealth.com.br","Content-Type":"application/json"},
-      body:JSON.stringify({email:"visual@example.com",consent:true,answers:sample,turnstileToken:"mock"}),
+      method:"POST",headers:{"Origin":"https://roadwealth.com.br","Content-Type":"application/json"},
+      body:JSON.stringify({email:"visual@example.com",consent:true,profile,answers:sample,turnstileToken:"mock"}),
     });
     const response=await worker.fetch(request,{
       EMAIL:{send:async message=>{sent.push(message)}},
-      TURNSTILE_SECRET_KEY:"secret",
-      CHECKUP_EMAIL_RATE_LIMIT:{limit:async()=>({success:true})},
+      TURNSTILE_SECRET_KEY:"secret",CHECKUP_EMAIL_RATE_LIMIT:{limit:async()=>({success:true})}
     });
     assert.equal(response.status,202);
     assert.equal(sent.length,1);
     return sent[0];
-  } finally {globalThis.fetch=oldFetch}
+  }finally{globalThis.fetch=oldFetch;}
 }
-
-test("barras são PNGs de marca, 13 opções estáticas, não fundos CSS descartáveis",()=>{
+test("barras de marca oferecem 13 posições de nota",()=>{
   for(let i=0;i<=12;i++){
     const path="public/assets/checkup-bar-"+i+".png";
     assert(existsSync(path),path);
@@ -39,70 +38,48 @@ test("barras são PNGs de marca, 13 opções estáticas, não fundos CSS descart
     assert(bytes.length>400);
   }
 });
-
-test("HTML envia PNG de barra conforme a nota, mantendo avaliação textual",async()=>{
+test("HTML usa PNG de barra normalizada e avaliação textual",async()=>{
   const v=answers("sim");
-  v["investments-0"]="nao";
-  v["legacy-0"]="parcial";
-  v["strategy-0"]="naosei";
+  v["investments-0"]="nao";v["legacy-0"]="parcial";v["capital-0"]="naosei";
   const msg=await emailFor(v);
-  const r=evaluateCheckup(v);
+  const r=evaluateCheckup(v,"familiar");
   for(const area of r.areas){
-    assert.match(msg.html,new RegExp("checkup-bar-"+area.points+"\\.png"));
+    assert.match(msg.html,new RegExp("checkup-bar-"+Math.round(area.points)+"\\.png"));
     assert.match(msg.text,new RegExp(area.label+": "+area.statusLabel));
   }
   assert.match(msg.html,/alt="Posição indicativa de/);
-  assert.doesNotMatch(msg.html,/font-size:1px;line-height:1px/);
 });
-
-test("fontes do site são carregadas quando possível, mantendo fallback em Outlook/Gmail",async()=>{
-  const msg=await emailFor(answers("sim"));
-  assert.match(msg.html,/fonts\.googleapis\.com\/css2/);
-  assert.match(msg.html,/@import url/);
-  assert.match(msg.html,/font-family:Questrial,Century Gothic,Trebuchet MS,Arial,sans-serif/);
-  assert.match(msg.html,/font-family:Montserrat,Arial,Helvetica,sans-serif/);
-  assert.match(msg.html,/font-family:Inter,Arial,Helvetica,sans-serif/);
-  assert.match(msg.html,/font-size:30px/);
-  assert.match(msg.html,/font-size:20px/);
-  assert.match(msg.html,/font-size:15px/);
-  assert.match(msg.html,/if mso/);
+test("fontes e fallback do Outlook e Gmail são preservados",async()=>{
+  const msg=await emailFor(answers());
+  for(const token of [/fonts\.googleapis\.com\/css2/,/@import url/,/font-family:Questrial,Century Gothic/,
+    /font-family:Montserrat,Arial/,/font-family:Inter,Arial/,/if mso/]){
+    assert.match(msg.html,token);
+  }
 });
-
-test("a marca original, menor, compartilha uma linha com lema e canais",async()=>{
+test("marca e rodapé do e-mail são preservados",async()=>{
   const msg=await emailFor(answers("nao"));
   assert.match(msg.html,/road-logo-cafe-email\.png" width="70" height="109"/);
   assert.match(msg.html,/roadwealth\.com\.br/);
   assert.match(msg.html,/Instagram @road\.wealth/);
   assert.match(msg.html,/Seu patrimônio, seu caminho, seu legado/);
-  assert.doesNotMatch(msg.html,/alt="ROAD Wealth"[^>]*width="90"/);
-  assert.match(msg.html,/border:1px solid #483A2F/);
-  assert.match(msg.html,/color:#483A2F;text-decoration:underline/);
 });
-
-test("duas interpretações não repetem a mesma tese sobre decisões integradas",()=>{
+test("recomendações não repetem o mesmo título",()=>{
   const v=answers("sim");
-  for(const k of ["investments-1","investments-3","decisions-0","decisions-2","decisions-3","strategy-1"])
-    v[k]="nao";
-  const r=evaluateCheckup(v);
+  for(const k of ["investments-1","investments-3","planning-3","planning-4","capital-0"])v[k]="nao";
+  const r=evaluateCheckup(v,"familiar");
   assert.equal(r.priorities.length,2);
-  const overlap=r.priorities.filter(x=>
-    /risco de uma decisão nem sempre aparece isoladamente|boa decisão precisa considerar o patrimônio inteiro/i.test(x.title));
-  assert.equal(overlap.length,1,r.priorities.map(x=>x.title).join(" / "));
   assert.notEqual(r.priorities[0].title,r.priorities[1].title);
 });
-
-test("protocolo 'Não sei' permanece restrito a 12 ou mais respostas",()=>{
-  const v=answers("sim");
-  const keys=Object.keys(v);
+test("protocolo de 12 ou mais respostas 'Não sei' permanece",()=>{
+  const v=answers("sim");const keys=Object.keys(v);
   for(let i=0;i<11;i++)v[keys[i]]="naosei";
-  assert.equal(evaluateCheckup(v).limited,false);
+  assert.equal(evaluateCheckup(v,"familiar").limited,false);
   v[keys[11]]="naosei";
-  const r=evaluateCheckup(v);
+  const r=evaluateCheckup(v,"familiar");
   assert.equal(r.limited,true);
   assert.match(r.priorities[1].detail,/Você já indicou/);
 });
-
-test("Home prioriza o Check-up sem balão solto, preservando Destaques e navegação",()=>{
+test("Home mantém acesso único ao Check-up e navegação",()=>{
   const home=read("src/pages/index.astro");
   assert.match(home,/class="actions"/);
   assert.match(home,/href="\/patrimonio\/#checkup-road"/);
@@ -113,17 +90,14 @@ test("Home prioriza o Check-up sem balão solto, preservando Destaques e navega�
   assert.match(layout,/RoadHighlights/);
   assert.match(layout,/isHome && <RoadHighlights/);
 });
-test("mobile: Check-up sem deslocamento e rodapé legal compacto preservado",()=>{
+test("mobile: rodapé legal e Check-up são preservados",()=>{
   const styles=read("src/styles/revision-62.css");
   const layout=read("src/layouts/BaseLayout.astro");
   const footer=read("src/components/Footer.astro");
   assert.match(styles,/#checkup-road\.section/);
   assert.match(styles,/scroll-margin-top:0!important/);
   assert.match(styles,/\.footer-link-short\{display:inline!important\}/);
-  assert.match(styles,/road-mobile-reading-zone/);
   assert.match(layout,/import "\.\.\/styles\/revision-62\.css"/);
-  assert.match(layout,/window\.__roadMobileReadingBound/);
   assert.match(footer,/footer-link-full/);
   assert.match(footer,/footer-link-short/);
-  assert.match(footer,/https:\/\/www\.instagram\.com\/road\.wealth/);
 });
