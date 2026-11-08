@@ -2,6 +2,9 @@
 
 O envio dos resultados usa **Cloudflare Email Sending**, binding `EMAIL`, já existente; sem Resend e sem serviço novo de e-mail.
 
+## Notificações internas já disponíveis
+O binding `EMAIL` também pode enviar uma notificação interna para `contato@roadwealth.com.br` com nome, e-mail, telefone, origem, data e indicador de aceite de marketing, mas **sem valores ou respostas**. A variável `LEAD_NOTIFICATIONS=enabled` está prevista no `wrangler.jsonc`; uma falha de notificação interna não bloqueia o resultado do visitante. Este registro na caixa de e-mail é transitório, não substitui CRM ou D1; não enviar ofertas a pessoas sem aceite expresso.
+
 ## Ativação do cadastro no Cloudflare D1
 1. No projeto Cloudflare correto, criar um banco D1 chamado `road-leads` (ou reutilizar um banco dedicado existente):
    `npx wrangler d1 create road-leads`
