@@ -47,6 +47,8 @@ function buildEmail(report) {
     "",
     ROAD_REPORT_INTRO,
     "",
+    "PERCURSO: "+report.profileLabel,
+    "",
     "SEU MAPA PATRIMONIAL — SITUAÇÃO ATUAL",
     ...report.areas.map(area=>area.label+": "+area.statusLabel),
     ...(report.limited ? ["Esta avaliação é limitada pelas informações disponíveis. As classificações podem refletir desconhecimento, e não problemas comprovados."] : []),
@@ -82,6 +84,7 @@ function buildEmail(report) {
     '<p style="font-family:Montserrat,Arial,Helvetica,sans-serif;font-size:12px;font-weight:600;letter-spacing:2px;color:#9A8371;margin:0 0 12px;">ROAD WEALTH · CHECK-UP</p>' +
     '<h1 style="font-family:Questrial,Century Gothic,Trebuchet MS,Arial,sans-serif;font-size:30px;font-weight:400;line-height:1.17;letter-spacing:-.02em;margin:0 0 17px;color:'+COLORS.coffee+';">Seu Check-up ROAD</h1>' +
     '<p style="font-family:Inter,Arial,Helvetica,sans-serif;font-size:15px;font-weight:400;line-height:1.65;margin:0 0 23px;color:'+COLORS.muted+';">'+escapeHtml(ROAD_REPORT_INTRO)+'</p>' +
+    '<p style="font-family:Inter,Arial,Helvetica,sans-serif;font-size:12px;font-weight:600;letter-spacing:.03em;margin:0 0 18px;color:'+COLORS.coffee+';">Percurso: '+escapeHtml(report.profileLabel)+'</p>' +
 
     '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="'+COLORS.sand+'" style="background-color:'+COLORS.sand+';">' +
     '<tr><td class="road-email-map" style="padding:20px 20px 18px;">' +
@@ -184,7 +187,7 @@ export default {
     if (payload.consent !== true) {
       return json({ error: "É necessário autorizar o envio do resultado." }, 400);
     }
-    const report = evaluateCheckup(payload.answers);
+    const report = evaluateCheckup(payload.answers, payload.profile);
     if (!report) return json({ error: "Respostas do Check-up incompletas." }, 400);
     const token = typeof payload.turnstileToken === "string" ? payload.turnstileToken : "";
     if (!token || token.length > 2048 || !(await verifyTurnstile(request, token, env.TURNSTILE_SECRET_KEY))) {
