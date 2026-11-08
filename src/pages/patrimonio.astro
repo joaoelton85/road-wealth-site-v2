@@ -76,11 +76,19 @@ import "../styles/patrimonio.css";
               <form id="road-checkup-email-form">
                 <label for="road-result-email">Seu e-mail</label>
                 <input id="road-result-email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="254" placeholder="voce@exemplo.com" required />
+                <label for="road-result-name">Nome <span class="optional">(opcional)</span></label>
+                <input id="road-result-name" name="name" type="text" autocomplete="name" maxlength="80" placeholder="Como podemos chamar você?" />
+                <label for="road-result-phone">Telefone <span class="optional">(opcional)</span></label>
+                <input id="road-result-phone" name="phone" type="tel" autocomplete="tel" maxlength="28" placeholder="(00) 00000-0000" />
                 <label class="road-checkup-consent" for="road-result-consent">
                   <input id="road-result-consent" name="consent" type="checkbox" required />
                   <span>Autorizo a ROAD a enviar o resultado deste Check-up para o e-mail informado.</span>
                 </label>
-                <p class="checkup-note">O endereço será utilizado para este envio. Consulte nossa <a href="/privacidade/">Política de Privacidade</a>.</p>
+                <label class="road-checkup-consent" for="road-result-marketing">
+                  <input id="road-result-marketing" name="marketingConsent" type="checkbox" />
+                  <span>Quero receber comunicações da ROAD sobre investimentos e planejamento patrimonial. (Opcional)</span>
+                </label>
+                <p class="checkup-note">O e-mail e os dados opcionais serão usados no envio e registro desta solicitação. Comunicações comerciais dependem do aceite acima. Consulte nossa <a href="/privacidade/">Política de Privacidade</a>.</p>
                 <div id="road-checkup-turnstile" aria-label="Verificação de segurança"></div>
                 <button id="road-checkup-email-submit" class="btn btn--primary" type="submit">Receber minha análise</button>
                 <p id="road-checkup-email-feedback" class="road-checkup-email-feedback" role="status" aria-live="polite"></p>
@@ -283,7 +291,7 @@ import "../styles/patrimonio.css";
           const response=await fetch('/api/checkup-email',{
             method:'POST',
             headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({email,consent:qs('#road-result-consent').checked,profile,answers,turnstileToken:verificationToken}),
+            body:JSON.stringify({email,name:qs('#road-result-name').value.trim(),phone:qs('#road-result-phone').value.trim(),marketingConsent:qs('#road-result-marketing').checked,consent:qs('#road-result-consent').checked,profile,answers,turnstileToken:verificationToken}),
             signal:controller.signal
           });
           let result={};
