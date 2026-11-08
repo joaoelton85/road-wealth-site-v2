@@ -4,9 +4,13 @@ on:
   push:
     branches:
       - feature/v65-6-css-consolidado
+  # Comparação V65.5 x V65.6 só é aplicável quando o bundle CSS consolidado muda.
+  # Revisões posteriores de conteúdo não podem ser comparadas pixel a pixel à V65.5.
   pull_request:
     branches:
       - main
+    paths:
+      - src/styles/road-legacy-consolidated.css
 
 permissions:
   contents: read

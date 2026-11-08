@@ -1,5 +1,8 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 65.6.1 — 08/11/2026
+- Removida da seção pública de remuneração a referência à faixa de 0,40% a 0,75% ao ano. O percentual e as condições são apresentados individualmente ao interessado, na proposta, e formalizados em contrato. Demais textos, cards, layout e TradingView preservados.
+
 ## Revisão 65.6 — 08/11/2026
 - Consolidados os 50 arquivos CSS de revisões efetivamente importados no BaseLayout em `road-legacy-consolidated.css`, preservando a ordem exata e o conteúdo de cada regra.
 - Os arquivos históricos permanecem no repositório para auditoria, comparação e rollback, mas não são carregados individualmente no site.

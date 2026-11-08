@@ -28,7 +28,8 @@ test("avisos e privacidade identificam a pessoa jurídica e canal sem identifica
 });
 test("remuneração, público e início estão claros sem prometer devolução absoluta",()=>{
   assert.match(inv,/id="remuneracao"/);
-  assert.match(inv,/0,40% e 0,75%/);
+  assert.match(inv,/percentual aplicável e as condições de cobrança são apresentados individualmente na proposta/);
+  assert.doesNotMatch(inv,/0,40%|0,75%|0[.,]40\\s*%|0[.,]75\\s*%/);
   assert.match(inv,/instituição, do produto e do contrato/);
   assert.doesNotMatch(inv,/100%|sem conflito de interesses|predominante em mercados mais maduros/i);
   assert.match(inv,/id="para-quem"/);
