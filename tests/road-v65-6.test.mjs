@@ -35,6 +35,6 @@ test("fontes de CSS são preservadas integralmente com checksum verificável",()
 test("código TradingView, layout e indexação permanecem intactos",()=>{
   assert.match(read("src/components/MarketTicker.astro"),/tradingview/i);
   assert.match(layout,/B3 · 15 min de atraso/);
-  assert.match(layout,/noindex,nofollow/);
-  assert.equal(read("public/robots.txt").trim(),"User-agent: *\nDisallow: /");
+  assert.doesNotMatch(layout,/<meta name="robots" content="noindex/);
+  assert.equal(read("public/robots.txt").trim(),"User-agent: *\nAllow: /\nSitemap: https://roadwealth.com.br/sitemap-index.xml");
 });
