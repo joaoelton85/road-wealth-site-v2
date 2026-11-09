@@ -233,6 +233,11 @@ const checks = [
       '"term": "Diferimento / diferido"',
     ],
   },
+  { file: "public/robots.txt", required: ["User-agent: *", "Allow: /", "Sitemap: https://roadwealth.com.br/sitemap-index.xml"], forbidden: ["Disallow: /"] },
+  { file: "dist/robots.txt", required: ["User-agent: *", "Allow: /", "Sitemap: https://roadwealth.com.br/sitemap-index.xml"] },
+  { file: "dist/sitemap-index.xml", required: ["<sitemapindex", "https://roadwealth.com.br/sitemap-0.xml"] },
+  { file: "dist/sitemap-0.xml", required: ["<urlset", "https://roadwealth.com.br/"] },
+  { file: "src/layouts/BaseLayout.astro", required: ['rel="canonical" href={socialUrl}', 'rel="sitemap" type="application/xml" href="/sitemap-index.xml"'], forbidden: ['content="noindex,nofollow"'] },
   { file: "dist/__road-build.json", required: ['"roadBuild": "65.7.0"'] },
   {
     file: "dist/index.html",
