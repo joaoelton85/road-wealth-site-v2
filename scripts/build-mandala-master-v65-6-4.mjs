@@ -1,5 +1,5 @@
 /**
- * ROAD V65.6.4 — mandala master: reconstrução completa em 1254×1254.
+ * ROAD V65.6.4 — mandala master: reconstrução completa em 1254×1254 (aprovação).
  * Não usa manchas/máscaras para cobrir texto pré-existente.
  * Reutiliza a imagem oficial do símbolo sem distorção.
  * Montserrat 400 original é usada só para renderizar o PNG,
