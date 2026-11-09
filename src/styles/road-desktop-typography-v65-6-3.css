@@ -1,6 +1,6 @@
 /* ROAD V65.6.3 — recuperação cirúrgica das fontes de V65.4
-   para a navegação institucional, rótulos do topo e chamadas de Destaques.
-   Fontes locais com apelidos próprios: NÃO ativar Inter/Montserrat nos
+   para a navegação institucional, rótulos do topo e etiquetas de Destaques.
+   Fontes locais com apelidos próprios: NÃO ativar Montserrat nos
    demais estilos legados. Preserva o Brandbook (Questrial/Lato) no corpo,
    além da versão mobile e do painel/iframe TradingView. */
 @font-face{
@@ -15,13 +15,6 @@
   src:url("@fontsource/montserrat/files/montserrat-latin-600-normal.woff2") format("woff2");
   font-style:normal;
   font-weight:600;
-  font-display:swap;
-}
-@font-face{
-  font-family:"ROAD Inter Destaques";
-  src:url("@fontsource/inter/files/inter-latin-400-normal.woff2") format("woff2");
-  font-style:normal;
-  font-weight:400;
   font-display:swap;
 }
 @media(min-width:1001px){
@@ -40,13 +33,6 @@
     font-family:"ROAD Montserrat Menu",Montserrat,Arial,sans-serif;
     font-weight:600;
   }
-  /* Era Inter 400 antes da V65.5; dar maior destaque às chamadas,
-     mantendo textos, altura da faixa e comportamento dos slides. */
-  .road-highlights__slide,
-  .road-highlights__slide-copy{
-    font-family:"ROAD Inter Destaques",Inter,Arial,sans-serif;
-    font-weight:400;
-    font-size:clamp(17px,1.42vw,19px);
-    line-height:1.25;
-  }
+  /* V65.6.4: mantida a fonte antiga dos rótulos do topo,
+     sem aumentar o texto rotativo de Destaques (volta à V65.6.2). */
 }
