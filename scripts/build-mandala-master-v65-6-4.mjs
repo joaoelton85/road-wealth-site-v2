@@ -4,7 +4,7 @@
  * Reutiliza a imagem oficial do símbolo sem distorção.
  * Montserrat 400 original é usada só para renderizar o PNG,
  * sem incluir arquivos de fontes nos resultados entregues.
- * A imagem NÃO será ativada no site antes da validação do usuário.
+ * A imagem NÃO será ativada no site antes da validação do usuário. Execução idempotente.
  */
 import {readFile,writeFile} from "node:fs/promises";
 import {chromium} from "playwright";
