@@ -31,7 +31,6 @@ try{
     const result=await page.evaluate(async()=>{
       await document.fonts.load('500 13px "ROAD Montserrat Menu"');
       await document.fonts.load('600 12px "ROAD Montserrat Menu"');
-      await document.fonts.load('400 18px "ROAD Inter Destaques"');
       const sel=x=>document.querySelector(x);
       const style=x=>getComputedStyle(sel(x));
       const nav=sel(".nav-main");
@@ -53,7 +52,7 @@ try{
         copyWidth:text.getBoundingClientRect().width,
         copyScroll:text.scrollWidth,
         slideHeight:slide.getBoundingClientRect().height,
-        fontsReady:document.fonts.check('500 13px "ROAD Montserrat Menu"')&&document.fonts.check('400 18px "ROAD Inter Destaques"'),
+        fontsReady:document.fonts.check('500 13px "ROAD Montserrat Menu"'),
         pageWidth:document.documentElement.scrollWidth,
         viewport:document.documentElement.clientWidth
       };
@@ -62,9 +61,9 @@ try{
     assert.match(result.navFont,/ROAD Montserrat Menu/);
     assert.match(result.tickerFont,/ROAD Montserrat Menu/);
     assert.match(result.labelFont,/ROAD Montserrat Menu/);
-    assert.match(result.copyFont,/ROAD Inter Destaques/);
+    assert.doesNotMatch(result.copyFont,/ROAD Inter Destaques/);
     assert.equal(result.fontsReady,true,"fontes carregadas no desktop");
-    assert.ok(result.copySize>16.9 && result.copySize<=19.01,"Destaques maior: "+result.copySize);
+    assert.ok(Math.abs(result.copySize-16)<.1,"Destaques padrão anterior: "+result.copySize);
     assert.ok(result.navBounds.left>=-2 && result.navBounds.right<=result.navBounds.headerRight+2,"menu ultrapassou o cabeçalho");
     assert.ok(result.pageWidth<=result.viewport+2,"scroll horizontal desktop");
     assert.ok(result.slideHeight>0 && result.copyWidth>0,"texto Destaques visível");
@@ -86,5 +85,5 @@ try{
     await Promise.all([a.close(),b.close()]);
   }
   assert.deepEqual(errors,[]);
-  console.log("ROAD V65.6.3 TYPOGRAPHY — desktop fonts restored; mobile unchanged.");
+  console.log("ROAD V65.6.4 TYPOGRAPHY — Destaques 16px, desktop menu unchanged; mobile unchanged.");
 }finally{await browser.close();}
