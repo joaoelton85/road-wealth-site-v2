@@ -11,8 +11,8 @@ import "../styles/road-legacy-consolidated.css";
 import "../styles/road-typography-v65-5.css";
 import "../styles/road-mobile-fit-v65-6-2.css";
 import "../styles/road-desktop-typography-v65-6-3.css";
-const BUILD_VERSION = "65.6.4";
-const { title = "ROAD Wealth®", description = "ROAD Wealth — planejamento patrimonial e acompanhamento de investimentos, escritório integrante da Rede Meu Patrimônio.", active = "", noindex = true } = Astro.props;
+const BUILD_VERSION = "65.7.0";
+const { title = "ROAD Wealth®", description = "ROAD Wealth — planejamento patrimonial e acompanhamento de investimentos, escritório integrante da Rede Meu Patrimônio.", active = "" } = Astro.props;
 const isHome = Astro.url.pathname === "/";
 const socialUrl = "https://roadwealth.com.br" + Astro.url.pathname;
 ---
@@ -36,7 +36,8 @@ const socialUrl = "https://roadwealth.com.br" + Astro.url.pathname;
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Marca oficial ROAD Wealth sobre fundo Areia" />
     <meta name="twitter:card" content="summary_large_image" />
-    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    <link rel="canonical" href={socialUrl} />
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
     <link rel="icon" href="/assets/favicon.ico" />
     <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
     <link rel="preconnect" href="https://s3.tradingview.com" crossorigin />

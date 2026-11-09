@@ -19,7 +19,8 @@ try{
       assert.match(box.titleFont,/Questrial/);
       assert.match(box.bodyFont,/Lato/);
       assert.match(await page.locator('meta[property="og:image"]').getAttribute("content"),/road-og.png/);
-      assert.equal(await page.locator('meta[name="robots"]').getAttribute("content"),"noindex,nofollow");
+      assert.equal(await page.locator('meta[name="robots"]').count(),0);
+      assert.equal(await page.locator('link[rel="canonical"]').getAttribute("href"),"https://roadwealth.com.br"+route);
       if(route==="/"){
         const img=page.locator('img[src="/assets/road-areas-approved.webp"]');
         assert.equal(await img.count(),1);

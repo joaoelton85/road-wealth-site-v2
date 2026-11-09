@@ -26,7 +26,7 @@ test("fontes com aliases locais não alteram os nomes de fontes no legado",()=>{
   assert.match(layout,/road-mobile-fit-v65-6-2\.css/);
   assert.match(layout,/road-desktop-typography-v65-6-3\.css/);
   assert.match(layout,/B3 · 15 min de atraso/);
-  assert.match(layout,/const BUILD_VERSION = "65\.6\.4"/);
+  assert.match(layout,/const BUILD_VERSION = "65\.7\.0"/);
 });
 test("conteúdo dos destaques e navegação não é reescrito",()=>{
   const slides=read("src/components/RoadHighlights.astro");

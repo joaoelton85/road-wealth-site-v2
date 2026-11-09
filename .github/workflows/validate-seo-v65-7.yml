@@ -1,0 +1,31 @@
+name: Validar V65.7 — SEO e leitura por bots
+
+on:
+  push:
+    branches:
+      - feature/v65-7-open-search-indexing
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  verify-seo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Instalar dependências oficiais
+        run: npm install --no-audit --no-fund
+      - name: Verificar código e regressões
+        run: npm test
+      - name: Gerar páginas e sitemap em modo produção
+        run: npm run build
+      - name: Confirmar sitemap, canonical e liberação dos robôs em HTML gerado
+        run: node scripts/check-public-seo-v65-7.mjs
+      - name: Validar Worker sem publicar
+        run: npx wrangler deploy --dry-run --outdir .wrangler-v65-7

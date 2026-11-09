@@ -19,15 +19,18 @@ test("paleta central utiliza Cafe, Areia e complementares do Brandbook",()=>{
   for(const color of ["#483A2F","#F3ECE3","#43726B","#3A4950","#9B9B9B"])assert.ok(css.includes(color),color);
   assert.match(css,/Nunca aplicar estas cores para recolorir o logo/);
 });
-test("metatags e sitemap nao alteram noindex/robots",()=>{
+test("Open Graph e canonical mantidos com indexação liberada e sitemap automático",()=>{
   const lay=read("src/layouts/BaseLayout.astro");
   assert.match(lay,/property="og:image" content="https:\/\/roadwealth.com.br\/assets\/road-og.png"/);
   assert.match(lay,/property="og:description"/);
   assert.match(lay,/property="og:title"/);
   assert.match(lay,/name="twitter:card"/);
-  assert.match(lay,/noindex,nofollow/);
-  assert.equal(read("public/robots.txt").trim(),"User-agent: *\nDisallow: /");
-  assert.match(read("public/sitemap.xml"),/<loc>https:\/\/roadwealth.com.br\/investimentos\/<\/loc>/);
+  assert.match(lay,/rel="canonical" href=\{socialUrl\}/);
+  assert.match(lay,/rel="sitemap" type="application\/xml" href="\/sitemap-index\.xml"/);
+  assert.doesNotMatch(lay,/<meta name="robots" content="noindex/);
+  assert.equal(read("public/robots.txt").trim(),"User-agent: *\nAllow: /\nSitemap: https://roadwealth.com.br/sitemap-index.xml");
+  assert.match(read("astro.config.mjs"),/integrations: \[/);
+  assert.match(read("astro.config.mjs"),/sitemap\(\{/);
 });
 test("marcas locais, titularidade e mandala WebP",()=>{
   const institutions=read("src/components/InstitutionPlatforms.astro");
