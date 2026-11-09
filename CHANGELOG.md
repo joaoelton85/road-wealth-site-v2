@@ -1,5 +1,14 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 65.7 — 09/11/2026
+- Site liberado para robôs de busca e agentes de IA: `public/robots.txt` passa a permitir rastreamento e informa o sitemap oficial.
+- Removido o bloqueio padrão de `noindex,nofollow` do layout compartilhado (válido em todas as páginas institucionais).
+- Instalado `@astrojs/sitemap` com `site` no domínio institucional; geração de `sitemap-index.xml` e `sitemap-0.xml` na compilação, excluindo página 404.
+- Retirada a lista manual legada `public/sitemap.xml`, agora substituída por sitemap automatizado.
+- `canonical` em todas as páginas referenciando o domínio oficial, incluindo quando visualizadas pelo endereço workers.dev.
+- Sem mudanças em TradingView, imagens, identidade visual, e-mails, Check-up ou integrações de Cloudflare.
+
+
 ## Revisão 65.6.4 — 09/11/2026
 - O conteúdo rotativo da faixa Destaques volta ao estilo e tamanho de texto anterior à V65.6.3. A fonte Montserrat recuperada do cabeçalho e dos rótulos Mercados/Destaque permanece.
 - A mandala da home não foi encolhida, nem substituída sem avaliação. Gerada uma arte master 1254×1254 totalmente reconstruída, com símbolo oficial, fonte Montserrat original, arcos e texto em camadas limpas, sem degradês retangulares de correção.
