@@ -11,14 +11,15 @@ test("tipografia anterior restaurada só nos destinos solicitados",()=>{
   assert.match(css,/\.site-header \.nav-main > a/);
   assert.match(css,/\.market-ticker-row--desktop \.market-ticker-label/);
   assert.match(css,/\.road-highlights__label \.road-highlights__label-text/);
-  assert.doesNotMatch(css,/\\.road-highlights__slide-copy|font-size:clamp\\(17px,1\\.42vw,19px\\)/);
+  assert.ok(!css.includes(".road-highlights__slide-copy"),"Não alterar o texto de Destaques");
+  assert.ok(!css.includes("font-size:clamp(17px"),"Não ampliar Destaques");
   assert.doesNotMatch(css,/(?:\.tradingview-widget-container|\.road-tv-theme|\.market-ticker-viewport|\.ticker-placeholder)\s*\{/);
 });
 test("fontes com aliases locais não alteram os nomes de fontes no legado",()=>{
   assert.match(css,/font-family:"ROAD Montserrat Menu"/);
   assert.doesNotMatch(css,/font-family:"ROAD Inter Destaques"/);
   assert.match(css,/@fontsource\/montserrat\/files\/montserrat-latin-500-normal\.woff2/);
-  assert.doesNotMatch(css,/@fontsource\\/inter/);
+  assert.ok(!css.includes("@fontsource/inter"));
   assert.ok(pkg.dependencies["@fontsource/montserrat"]);
   assert.ok(!pkg.dependencies["@fontsource/inter"]);
   assert.match(layout,/road-typography-v65-5\.css/);
