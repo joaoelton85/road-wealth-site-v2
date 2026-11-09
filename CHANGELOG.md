@@ -1,5 +1,12 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 65.6.4 — 09/11/2026
+- O conteúdo rotativo da faixa Destaques volta ao estilo e tamanho de texto anterior à V65.6.3. A fonte Montserrat recuperada do cabeçalho e dos rótulos Mercados/Destaque permanece.
+- A mandala da home não foi encolhida, nem substituída sem avaliação. Gerada uma arte master 1254×1254 totalmente reconstruída, com símbolo oficial, fonte Montserrat original, arcos e texto em camadas limpas, sem degradês retangulares de correção.
+- Arquivos de avaliação: road-mandala-master-1254.svg (vetor) e road-mandala-master-1254.png (prévia fiel). A troca da mandala publicada e eventual redução dependem de validação específica.
+- Componentes de Mercado, TradingView, menu e mobile permanecem fora do escopo.
+
+
 ## Revisão 65.6.3 — 08/11/2026
 - Recuperada a Montserrat da V65.4 exclusivamente para os quatro itens de navegação do cabeçalho e os rótulos Mercados e Destaque no desktop.
 - Recuperada a Inter para os textos dos slides de Destaques, ampliados de 16 px para até 19 px (aproximadamente 18 px em 1280 px), sem mudar seu conteúdo e os controles.
