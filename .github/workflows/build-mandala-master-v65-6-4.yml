@@ -32,4 +32,9 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add public/assets/road-mandala-master-1254.svg public/assets/road-mandala-master-1254.png
-          git diff --cached --quiet || (git commit -m "V65.6.4: reconstruir mandala master 1254×1254 para avaliação" && git push origin HEAD:fix/v65-6-4-highlights-mandala-master)
+          if ! git diff --cached --quiet; then
+            git commit -m "V65.6.4: reconstruir mandala master 1254×1254 para avaliação"
+            git fetch origin fix/v65-6-4-highlights-mandala-master
+            git rebase origin/fix/v65-6-4-highlights-mandala-master
+            git push origin HEAD:fix/v65-6-4-highlights-mandala-master
+          fi
