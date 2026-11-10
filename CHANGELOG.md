@@ -1,5 +1,11 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 65.8 — 10/11/2026
+
+- Rodapé Desktop (acima de 1200px): alinhamento vertical pelo centro dos três grupos — marcas, links legais e endereço/redes sociais.
+- Preservados o posicionamento horizontal de cada grupo, os espaçamentos internos, o copyright e a tipografia.
+- Breakpoints de notebook, tablet e celular sem alteração; CSS isolado carregado após o tema consolidado.
+
 ## Revisão 65.7 — 09/11/2026
 - Site liberado para robôs de busca e agentes de IA: `public/robots.txt` passa a permitir rastreamento e informa o sitemap oficial.
 - Removido o bloqueio padrão de `noindex,nofollow` do layout compartilhado (válido em todas as páginas institucionais).
