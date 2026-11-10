@@ -22,8 +22,10 @@ try{
       assert.equal(await page.locator('meta[name="robots"]').count(),0);
       assert.equal(await page.locator('link[rel="canonical"]').getAttribute("href"),"https://roadwealth.com.br"+route);
       if(route==="/"){
-        const img=page.locator('img[src="/assets/road-areas-approved.webp"]');
+        const img=page.locator('img[src="/assets/road-mandala-master-1254.webp"]');
         assert.equal(await img.count(),1);
+        assert.equal(await page.locator(".road-mandala-names").count(),0,"Sem sobreposição de nomes");
+        assert.equal(await page.locator("img[src='/assets/road-areas-approved.webp']").count(),0,"Sem imagem antiga");
         await img.evaluate(el=>el.decode());
         assert.equal(await img.evaluate(el=>el.naturalWidth>0),true);
         const logos=page.locator('.platform-logo');

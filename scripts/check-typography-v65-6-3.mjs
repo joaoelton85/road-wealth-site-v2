@@ -76,6 +76,12 @@ try{
     const b=await browser.newPage(context);
     await visit(a,before+"/");
     await visit(b,after+"/");
+    // A mandala foi substituída propositalmente na V65.9.
+    // Mantém-se a comparação pixel a pixel do restante do layout mobile,
+    // mas mascara-se a arte aprovada nos DOIS estados, sem alterar sua geometria.
+    for(const page of [a,b]){
+      await page.locator(".road-mandala").evaluate(el=>{ el.style.visibility="hidden"; });
+    }
     for(const selector of [".site-top-stack",".road-highlights","main"]){
       const [aa,bb]=await Promise.all([a.locator(selector).screenshot({animations:"disabled"}),b.locator(selector).screenshot({animations:"disabled"})]);
       await sameImage(aa,bb,selector+" "+width+"px");
