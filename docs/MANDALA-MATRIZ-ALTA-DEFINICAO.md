@@ -26,6 +26,6 @@ não ativam qualquer imagem nova no site público.
 
 ## Revisão de visibilidade do símbolo
 
-A transparência do símbolo central passou de 83,5% para 62% (opacidade de 16,5% para 38%).
+A transparência do símbolo central passou de 83,5% para 40% (opacidade de 16,5% para 60%).
 O restante da composição é preservado e as duas exportações 1254/2508px são feitas
 com a mesma fonte Montserrat 400 a partir da matriz SVG, sem alterações ao site público.
