@@ -1,5 +1,5 @@
 /**
- * ROAD — exportações WebP para o site derivadas apenas da matriz de alta definição
+ * ROAD — exportações WebP de alta qualidade para o site derivadas apenas da matriz de alta definição
  * aprovada, sem redimensionar a imagem antiga ou sobrepor textos.
  * Fontes, cor, símbolo e transparência já estão rasterizados nos PNGs mestres.
  */
@@ -14,7 +14,7 @@ for (const size of sizes) {
   const info=await sharp(input).metadata();
   if(info.format!=="png"||info.width!==size||info.height!==size)
     throw Error("Matriz inválida: "+input+" "+JSON.stringify(info));
-  await sharp(input).webp({lossless:true,effort:6}).toFile(output);
+  await sharp(input).webp({quality:94,smartSubsample:true,effort:6}).toFile(output);
   const webp=await sharp(output).metadata();
   if(webp.format!=="webp"||webp.width!==size||webp.height!==size)
     throw Error("Exportação WebP inválida: "+output);
