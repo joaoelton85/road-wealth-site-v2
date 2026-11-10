@@ -1,0 +1,41 @@
+name: Mandala ROAD — matriz alta definição (revisão sem publicar)
+on:
+  push:
+    branches:
+      - feature/mandala-matriz-alta-definicao
+    paths:
+      - scripts/build-mandala-highdef.mjs
+      - .github/workflows/build-mandala-highdef.yml
+
+permissions:
+  contents: write
+
+jobs:
+  matriz-hd:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Instalar ferramentas de renderização
+        run: |
+          npm ci --no-audit --no-fund
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Exportar PNG 2508px a partir da matriz SVG limpa
+        run: node scripts/build-mandala-highdef.mjs
+      - name: Registrar exportação na branch para avaliação, sem publicar
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/assets/road-mandala-master-2508.png
+          if ! git diff --cached --quiet; then
+            git commit -m "Mandala ROAD: PNG 2508px da matriz SVG única para revisão"
+            git fetch origin feature/mandala-matriz-alta-definicao
+            git rebase origin/feature/mandala-matriz-alta-definicao
+            git push origin HEAD:feature/mandala-matriz-alta-definicao
+          fi
