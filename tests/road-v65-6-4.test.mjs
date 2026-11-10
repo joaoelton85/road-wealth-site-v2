@@ -29,11 +29,15 @@ test("matriz exportada em PNG original sem redução prévia",async()=>{
   assert.equal(meta.format,"png");
   assert.ok(statSync(new URL("../"+png,import.meta.url)).size>100000);
 });
-test("o site ainda não usa a nova matriz enquanto ela não for aprovada",()=>{
+test("matriz aprovada em peça única substitui a anterior sem remendos",()=>{
   const component=read("src/components/RoadMandala.astro");
-  assert.match(component,/road-areas-approved\.webp/);
-  assert.doesNotMatch(component,/road-mandala-master-1254/);
+  assert.ok(component.includes("road-mandala-master-1254.webp"));
+  assert.ok(component.includes("road-mandala-master-2508.webp"));
+  assert.ok(!component.includes("road-areas-approved.webp"));
+  assert.ok(!component.includes("road-mandala-names"));
+  assert.ok(!component.includes("<svg"));
 });
+
 test("Destaques: remover aumento sem desfazer a Montserrat no menu e rótulos",()=>{
   const css=read("src/styles/road-desktop-typography-v65-6-3.css");
   assert.match(css,/ROAD Montserrat Menu/);

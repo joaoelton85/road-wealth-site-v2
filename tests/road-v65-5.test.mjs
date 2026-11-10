@@ -36,7 +36,8 @@ test("marcas locais, titularidade e mandala WebP",()=>{
   const institutions=read("src/components/InstitutionPlatforms.astro");
   assert.match(institutions,/const base = '\/assets\/platforms\//);
   assert.match(institutions,/As marcas exibidas pertencem aos respectivos titulares/);
-  assert.match(read("src/components/RoadMandala.astro"),/road-areas-approved.webp/);
+  assert.ok(read("src/components/RoadMandala.astro").includes("road-mandala-master-1254.webp"));
+  assert.ok(!read("src/components/RoadMandala.astro").includes("road-areas-approved.webp"));
 });
 test("imagens otimizadas sao PNG ou WebP reais e sao locais",async()=>{
   const pngs=[
@@ -52,10 +53,12 @@ test("imagens otimizadas sao PNG ou WebP reais e sao locais",async()=>{
   const og=await sharp("public/assets/road-og.png").metadata();
   assert.equal(og.width,1200);
   assert.equal(og.height,630);
-  const webp="public/assets/road-areas-approved.webp";
+  const webp="public/assets/road-mandala-master-1254.webp";
   assert.ok(existsSync(webp));
   const w=await sharp(webp).metadata();
   assert.equal(w.format,"webp");
-  assert.ok(statSync(webp).size<statSync("public/assets/road-areas-approved.png").size);
+  assert.equal(w.width,1254);
+  assert.equal(w.height,1254);
+  assert.ok(statSync(webp).size<statSync("public/assets/road-mandala-master-1254.png").size);
   assert.equal(existsSync("public/assets/road-areas-approved.png"),true,"PNG de referência preservado");
 });

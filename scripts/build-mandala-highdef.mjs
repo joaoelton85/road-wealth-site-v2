@@ -54,7 +54,7 @@ try{
         throw Error("Tipografia e limites inconsistentes: "+JSON.stringify(info));
       const png=await page.locator("svg").screenshot({animations:"disabled",type:"png"});
       await writeFile(OUTPUT,png);
-      console.log("ROAD MANDALA HD: "+PX+" x "+PX+"; fonte única Montserrat 400; logo em 38% de opacidade.");
+      console.log("ROAD MANDALA HD: "+PX+" x "+PX+"; fonte única Montserrat 400; logo em 60% de opacidade.");
       console.log("Títulos: "+JSON.stringify(info));
       console.log("Exportação: "+OUTPUT+" ("+png.length+" bytes)");
     }finally{await page.close();}

@@ -29,3 +29,11 @@ não ativam qualquer imagem nova no site público.
 A transparência do símbolo central passou de 83,5% para 40% (opacidade de 16,5% para 60%).
 O restante da composição é preservado e as duas exportações 1254/2508px são feitas
 com a mesma fonte Montserrat 400 a partir da matriz SVG, sem alterações ao site público.
+
+## Publicação da arte aprovada
+
+Em 10/11/2026, a matriz com marca central a 60% de opacidade foi aprovada.
+O componente do site passa a utilizar as exportações WebP de 1254 e 2508 px
+em `srcset`, derivadas das matrizes PNG sem alteração do desenho.
+Os arquivos SVG e PNG de alta definição ficam preservados como originais.
+O antigo `road-areas-approved.webp` fica arquivado e não é utilizado pelo componente.
