@@ -1,0 +1,19 @@
+/* ROAD V65.8 — alinhamento de três grupos no rodapé Desktop.
+   Uma referência vertical comum para marcas, informações legais e contatos.
+   Preserva a distribuição horizontal e não interfere no Mobile/notebook. */
+@media (min-width:1201px) {
+  .footer .footer-primary {
+    align-items: center !important;
+  }
+
+  .footer .footer-primary > .footer-brand-group,
+  .footer .footer-primary > .footer-meta,
+  .footer .footer-primary > .footer-right {
+    align-self: center !important;
+  }
+
+  .footer .footer-primary > .footer-meta,
+  .footer .footer-primary > .footer-right {
+    justify-content: center !important;
+  }
+}
