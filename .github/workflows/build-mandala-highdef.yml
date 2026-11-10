@@ -5,6 +5,7 @@ on:
       - feature/mandala-matriz-alta-definicao
     paths:
       - scripts/build-mandala-highdef.mjs
+      - scripts/optimize-mandala-web.mjs
       - public/assets/road-mandala-master-1254.svg
       - .github/workflows/build-mandala-highdef.yml
 
@@ -29,13 +30,15 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Exportar PNGs 1254px e 2508px a partir da matriz SVG limpa
         run: node scripts/build-mandala-highdef.mjs
+      - name: Exportar WebP lossless para Desktop e Mobile
+        run: node scripts/optimize-mandala-web.mjs
       - name: Registrar exportação na branch para avaliação, sem publicar
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/assets/road-mandala-master-1254.png public/assets/road-mandala-master-2508.png
+          git add public/assets/road-mandala-master-1254.png public/assets/road-mandala-master-2508.png public/assets/road-mandala-master-1254.webp public/assets/road-mandala-master-2508.webp
           if ! git diff --cached --quiet; then
-            git commit -m "Mandala ROAD: prévias 1254 e 2508 px com símbolo mais visível"
+            git commit -m "Mandala ROAD: exportações 1254 e 2508 px PNG e WebP lossless"
             git fetch origin feature/mandala-matriz-alta-definicao
             git rebase origin/feature/mandala-matriz-alta-definicao
             git push origin HEAD:feature/mandala-matriz-alta-definicao
