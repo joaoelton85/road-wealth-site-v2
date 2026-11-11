@@ -1,5 +1,12 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 65.9 — 10/11/2026
+
+- Mandala aprovada substituiu a antiga imagem com remendos: os quatro títulos agora compartilham uma única matriz e a mesma tipografia Montserrat 400.
+- Símbolo central em 60% de opacidade; exportações WebP de 1254 e 2508px, selecionadas conforme a resolução da tela.
+- Matrizes SVG e PNG em alta definição preservadas para futuras alterações e impressão.
+- Removidos do componente retângulos, sobreposições e legendas isoladas, mantendo layout e responsividade originais.
+
 ## Revisão 65.8 — 10/11/2026
 
 - Rodapé Desktop (acima de 1200px): alinhamento vertical pelo centro dos três grupos — marcas, links legais e endereço/redes sociais.
