@@ -1,0 +1,36 @@
+name: Validar V65.11 — Alinhamento Desktop de Mercados e Destaques
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  desktop-top-alignment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Instalar dependências e executar regressões
+        run: |
+          npm install --no-audit --no-fund
+          npm test
+          npm run build
+          npx wrangler deploy --dry-run --outdir .wrangler-v65-11
+      - name: Instalar navegador de teste
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Verificar geometria Desktop e preservação Mobile
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4321 >/tmp/road-v65-11-preview.log 2>&1 &
+          for i in {1..45}; do
+            if curl -fsS http://127.0.0.1:4321/ >/dev/null 2>&1; then break; fi
+            sleep 1
+          done
+          node scripts/check-top-content-v65-11.mjs
