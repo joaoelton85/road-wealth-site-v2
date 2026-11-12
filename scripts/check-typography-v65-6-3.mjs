@@ -76,6 +76,12 @@ try{
     const b=await browser.newPage(context);
     await visit(a,before+"/");
     await visit(b,after+"/");
+    // A fita externa do TradingView carrega em momentos diferentes nas duas
+    // prévias. Ocultá-la SÓ durante a captura elimina falsos positivos, sem
+    // mudar seu tamanho nem o conteúdo da página real.
+    for (const page of [a,b]) {
+      await page.locator(".market-ticker-shell").evaluate(el=>{el.style.visibility="hidden";});
+    }
     // A mandala foi substituída propositalmente na V65.9.
     // Mantém-se a comparação pixel a pixel do restante do layout mobile,
     // mas mascara-se a arte aprovada nos DOIS estados, sem alterar sua geometria.
