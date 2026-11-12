@@ -15,10 +15,10 @@ jobs:
   validate-desktop-type:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout baseline V65.6.2
+      - name: Checkout baseline estável (main)
         uses: actions/checkout@v4
         with:
-          ref: 62ea2f694cba47985b71993fb2a21aa9aed360de
+          ref: main
           path: baseline
       - name: Checkout revisão
         uses: actions/checkout@v4
@@ -47,7 +47,7 @@ jobs:
       - name: Verificar fontes antigas no desktop e mobile intacto
         working-directory: candidate
         run: |
-          (cd ../baseline && npm run preview -- --host 127.0.0.1 --port 4321 >/tmp/road-v65-6-2-preview.log 2>&1) &
+          (cd ../baseline && npm run preview -- --host 127.0.0.1 --port 4321 >/tmp/road-main-preview.log 2>&1) &
           (npm run preview -- --host 127.0.0.1 --port 4322 >/tmp/road-v65-6-3-preview.log 2>&1) &
           for i in {1..45}; do
             curl -fsS http://127.0.0.1:4321/ >/dev/null 2>&1 && curl -fsS http://127.0.0.1:4322/ >/dev/null 2>&1 && break

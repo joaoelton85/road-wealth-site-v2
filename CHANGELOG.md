@@ -1,5 +1,12 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 65.11 — 12/11/2026
+
+- Exclusivamente no Desktop (>1000px), o começo do conteúdo dos indicadores MERCADOS e o texto rotativo dos DESTAQUES usam o mesmo eixo, alinhado 14px à direita do limite do logotipo Rede Meu Patrimônio.
+- Rótulos MERCADOS e DESTAQUE não são deslocados; os controles dos destaques permanecem na área original.
+- Preservados o componente e a configuração do widget TradingView, a legenda B3 · 15 min e a versão Mobile/Tablet (até 1000px).
+- CSS isolado carregado após o tema; verificações de geometria no navegador e regressão responsiva.
+
 ## Revisão 65.10 — 12/11/2026
 
 - Check-up ROAD: após a aceitação do envio ao visitante, a caixa contato@roadwealth.com.br recebe cópia integral do diagnóstico (mesmo resumo HTML/texto e PDF anexo), com identificação, perfil e autorizações informadas.
