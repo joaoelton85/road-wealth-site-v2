@@ -88,7 +88,26 @@ try{
     for(const page of [a,b]){
       await page.locator(".road-mandala").evaluate(el=>{ el.style.visibility="hidden"; });
     }
-    for(const selector of [".site-top-stack",".road-highlights","main"]){
+    // O topo contém um iframe externo, que não pode ser comparado por pixels
+    // entre dois carregamentos independentes. Compara-se sua geometria e
+    // tipografia, mantendo comparação pixel a pixel nos blocos estáticos.
+    const topGeometry=async page=>page.evaluate(()=>{
+      const selectors=[".site-top-stack",".site-header",".header-brand-group",
+        ".site-header .brand img",".site-header .header-network-endorsement img",
+        ".market-ticker-mobile-label",".site-top-stack .road-market-note"];
+      return selectors.map(selector=>{
+        const node=document.querySelector(selector);
+        if(!node) return {selector,exists:false};
+        const bounds=node.getBoundingClientRect(),style=getComputedStyle(node);
+        return {selector,exists:true,
+          x:Math.round(bounds.x*10)/10,y:Math.round(bounds.y*10)/10,
+          w:Math.round(bounds.width*10)/10,h:Math.round(bounds.height*10)/10,
+          font:style.fontFamily,color:style.color};
+      });
+    });
+    assert.deepEqual(await topGeometry(a),await topGeometry(b),
+      "Geometria e tipografia do topo Mobile devem permanecer idênticas");
+    for(const selector of [".road-highlights","main"]){
       const [aa,bb]=await Promise.all([a.locator(selector).screenshot({animations:"disabled"}),b.locator(selector).screenshot({animations:"disabled"})]);
       await sameImage(aa,bb,selector+" "+width+"px");
     }
