@@ -23,4 +23,31 @@
   .road-highlights__stage > .road-highlights__slide {
     padding-left: var(--road-content-desktop-indent) !important;
   }
+
+  /* O divisor acompanha a extremidade da marca. A coluna que centraliza
+     cada rótulo continua com a largura original. */
+  .market-ticker-row--desktop,
+  .road-highlights__inner {
+    position: relative;
+  }
+
+  .market-ticker-row--desktop > .market-ticker-label,
+  .road-highlights__inner > .road-highlights__label {
+    border-right-color: transparent !important;
+  }
+
+  .market-ticker-row--desktop::after,
+  .road-highlights__inner::after {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    left: calc(var(--road-content-desktop-start) - 14px - 1px);
+    width: 1px;
+    background: var(--coffee);
+    pointer-events: none;
+  }
+
+  .market-ticker-row--desktop::after {
+    background: rgba(243, 236, 227, .18);
+  }
 }
