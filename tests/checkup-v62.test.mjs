@@ -25,7 +25,9 @@ async function emailFor(sample,profile="familiar") {
       TURNSTILE_SECRET_KEY:"secret",CHECKUP_EMAIL_RATE_LIMIT:{limit:async()=>({success:true})}
     });
     assert.equal(response.status,202);
-    assert.equal(sent.length,1);
+    assert.equal(sent.length,2,"Check-up deve enviar ao cliente e à ROAD");
+    assert.equal(sent[0].to,"visual@example.com");
+    assert.equal(sent[1].to,"contato@roadwealth.com.br");
     return sent[0];
   }finally{globalThis.fetch=oldFetch;}
 }
