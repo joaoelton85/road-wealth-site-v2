@@ -125,6 +125,60 @@ function buildEmail(report) {
   return {text,html};
 }
 
+
+// Cópia interna do diagnóstico solicitado: mesma análise e mesmo PDF entregues ao
+// visitante, acompanhados apenas de identificação e permissões de atendimento.
+// Não equivale a consentimento para contato comercial ou marketing.
+function buildCheckupInternalCopy(report, contact, customerMessage, attachments) {
+  const metadata = [
+    ["Nome", contact.name || "Não informado"],
+    ["E-mail", contact.email],
+    ["Telefone", contact.phone || "Não informado"],
+    ["Percurso", report.profileLabel],
+    ["Contato sobre o resultado", contact.contactConsent ? "SIM — autorizado" : "NÃO — não autorizado"],
+    ["Comunicações gerais", contact.marketingConsent ? "SIM — autorizado" : "NÃO — não autorizado"],
+  ];
+  const plainInfo = [
+    "CÓPIA INTERNA — CHECK-UP ROAD",
+    "Este e-mail contém o mesmo diagnóstico e PDF enviados ao visitante.",
+    ...metadata.map(([label,value]) => label + ": " + value),
+    "",
+    "O envio do Check-up NÃO autoriza contato posterior nem comunicações comerciais.",
+    "Respeite as escolhas opcionais do visitante.",
+    "",
+    "===== DIAGNÓSTICO ENVIADO AO VISITANTE =====",
+    customerMessage.text,
+  ].join("\n");
+  const infoRows = metadata.map(([label,value]) =>
+    '<tr><td style="padding:3px 12px 3px 0;font-weight:600;">' + escapeHtml(label) +
+    '</td><td style="padding:3px 0;">' + escapeHtml(value) + '</td></tr>'
+  ).join("");
+  const infoHtml =
+    '<table role="presentation" cellspacing="0" cellpadding="0" border="0" ' +
+    'style="width:100%;background:#F3ECE3;color:#483A2F;font:13px/1.5 Arial,sans-serif;">' +
+    '<tr><td style="padding:16px 20px;">' +
+    '<strong style="font-size:14px;">CÓPIA INTERNA — CHECK-UP ROAD</strong>' +
+    '<p style="margin:6px 0 12px;">Diagnóstico completo enviado ao visitante, com PDF anexo.</p>' +
+    '<table role="presentation" cellspacing="0" cellpadding="0" border="0">' + infoRows + '</table>' +
+    '<p style="margin:12px 0 0;"><strong>Atenção:</strong> o envio do diagnóstico não autoriza ' +
+    'contato comercial ou comunicações sem a permissão correspondente.</p>' +
+    '</td></tr></table>';
+  // Insere identificação no começo do corpo, preservando TODO o relatório HTML.
+  const internalHtml = customerMessage.html.replace(/(<body\\b[^>]*>)/i,
+    (_, openTag) => openTag + infoHtml);
+  if (internalHtml === customerMessage.html) throw new Error("ROAD_INTERNAL_EMAIL_HTML_INVALID");
+  return {
+    from: { email: "contato@roadwealth.com.br", name: "ROAD Wealth" },
+    to: "contato@roadwealth.com.br",
+    replyTo: "contato@roadwealth.com.br",
+    subject: "[ROAD] Diagnóstico completo — Check-up " + report.profileLabel + " — " + contact.email,
+    text: plainInfo,
+    html: internalHtml,
+    // Os bytes do PDF são copiados para evitar que o primeiro envio os consuma.
+    attachments: attachments.map(({content,...meta}) => ({...meta,content:new Uint8Array(content)})),
+  };
+}
+
 async function verifyTurnstile(request, token, secret, action = "road_checkup_email") {
   const body = new FormData();
   body.set("secret", secret);
@@ -291,9 +345,17 @@ export default {
           console.error("ROAD lead registration failed",dbError?.code||"UNKNOWN");
         }
         try {
-          await notifyLead(env,contact,isCheckup?"checkup":"ir_doacoes",isCheckup?payload.profile:null);
+          if (isCheckup) {
+            // Só encaminhar internamente após a aceitação do envio ao cliente.
+            // Falha na cópia interna não solicita reenvio ao cliente nem duplica relatórios.
+            await env.EMAIL.send(buildCheckupInternalCopy(report, contact, message, attachments));
+          } else {
+            // A calculadora mantém apenas o aviso mínimo, sem valores fiscais.
+            await notifyLead(env,contact,"ir_doacoes");
+          }
         } catch (notifyError) {
-          console.error("ROAD lead notification failed",notifyError?.code||"UNKNOWN");
+          console.error(isCheckup?"ROAD checkup internal copy failed":"ROAD lead notification failed",
+            notifyError?.code||"UNKNOWN");
         }
       };
       // No Worker real, a gravação e o aviso interno seguem via waitUntil sem

@@ -1,5 +1,13 @@
 # CHANGELOG — ROAD Wealth
 
+## Revisão 65.10 — 12/11/2026
+
+- Check-up ROAD: após a aceitação do envio ao visitante, a caixa contato@roadwealth.com.br recebe cópia integral do diagnóstico (mesmo resumo HTML/texto e PDF anexo), com identificação, perfil e autorizações informadas.
+- Notificação mínima separada do Check-up substituída por uma única cópia interna completa; a Calculadora de IR e Doações permanece com aviso mínimo, sem compartilhamento dos valores.
+- Falhas no envio interno são registradas sem prejudicar o envio concluído ao visitante, evitando reenvio e duplicação.
+- Formulário e Política de Privacidade atualizados para transparência sobre o recebimento e o armazenamento do PDF em caixas de e-mail institucionais. Contato comercial e marketing permanecem opcionais e independentes.
+- Mantidos Turnstile, limite de solicitações e a política de não salvar respostas qualitativas na base D1.
+
 ## Revisão 65.9 — 10/11/2026
 
 - Mandala aprovada substituiu a antiga imagem com remendos: os quatro títulos agora compartilham uma única matriz e a mesma tipografia Montserrat 400.
