@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import worker from "../src/worker.js";
+import {readFileSync} from "node:fs";
 import { ROAD_CHECKUP_PROFILES, ROAD_CHECKUP_AREA_ORDER } from "../src/checkup-profiles.js";
 
 function answers(value="sim",profile="familiar") {
@@ -24,7 +25,7 @@ async function exercise(payload,opts={}){
     action:opts.action||"road_checkup_email"
   }),{headers:{"Content-Type":"application/json"}});
   const env={
-    EMAIL:{send:async(message)=>{sent.push(message);return {messageId:"test-message"}}},
+    EMAIL:{send:async(message)=>{sent.push(message);if ((opts.failCustomer && sent.length === 1) || (opts.failInternal && message.to === "contato@roadwealth.com.br")) throw Object.assign(new Error("Simulated send failure"),{code:"TEST_FAILURE"});return {messageId:"test-message"}}},
     TURNSTILE_SECRET_KEY:"test-secret",TURNSTILE_SITE_KEY:"test-sitekey",
     CHECKUP_EMAIL_RATE_LIMIT:{limit:async()=>({success:opts.allowRate!==false})}
   };
@@ -36,7 +37,7 @@ async function exercise(payload,opts={}){
 test("PF: envia o resumo com áreas e perfil corretos",async()=>{
   const out=await exercise(validPayload());
   assert.equal(out.status,202);
-  assert.equal(out.sent.length,1);
+  assert.equal(out.sent.length,2);
   const msg=out.sent[0];
   assert.equal(msg.to,"teste@example.com");
   assert.match(msg.text,/Investimentos: Bem estruturado/);
@@ -46,6 +47,60 @@ test("PF: envia o resumo com áreas e perfil corretos",async()=>{
   assert.match(msg.html,/Percurso: Patrimonial \/ Familiar/);
   assert.doesNotMatch(msg.text,/Estratégia:|Decisões:/);
   assert.doesNotMatch(msg.text,/mock-token/);
+});
+test("ROAD recebe o mesmo diagnóstico completo, com o PDF e identificação",async()=>{
+  const payload={...validPayload(),name:"Ana Ribeiro",phone:"(42) 99999-9999",contactConsent:false,marketingConsent:false};
+  const out=await exercise(payload);
+  assert.equal(out.status,202);
+  assert.equal(out.sent.length,2,"Um e-mail para o visitante e uma cópia interna");
+  const [customer, internal]=out.sent;
+  assert.equal(customer.to,"teste@example.com");
+  assert.equal(internal.to,"contato@roadwealth.com.br");
+  assert.match(internal.subject,/Diagnóstico completo.*Patrimonial \/ Familiar.*teste@example.com/);
+  assert.match(internal.text,/Ana Ribeiro/);
+  assert.match(internal.text,/\(42\) 99999-9999/);
+  assert.match(internal.text,/Contato sobre o resultado: NÃO/);
+  assert.match(internal.text,/Comunicações gerais: NÃO/);
+  assert(internal.text.includes(customer.text),"Relatório textual deve estar completo");
+  assert(internal.html.includes("Seu mapa patrimonial"));
+  assert(internal.html.includes("Ana Ribeiro"));
+  assert(internal.html.includes("Diagnóstico completo"));
+  assert(internal.html.includes("Converse com a ROAD") || internal.html.includes("Conversar com a ROAD"));
+  assert.equal(customer.attachments.length,1);
+  assert.equal(internal.attachments.length,1);
+  assert.equal(internal.attachments[0].filename,customer.attachments[0].filename);
+  assert.deepEqual(internal.attachments[0].content, customer.attachments[0].content);
+  assert.equal(internal.attachments[0].type,"application/pdf");
+});
+test("Não envia cópia interna se o envio ao cliente falhar",async()=>{
+  const out=await exercise(validPayload(),{failCustomer:true});
+  assert.equal(out.status,503);
+  assert.equal(out.sent.length,1);
+  assert.equal(out.sent[0].to,"teste@example.com");
+});
+test("Falha na cópia interna não altera sucesso do cliente nem provoca reenvio",async()=>{
+  const out=await exercise(validPayload(),{failInternal:true});
+  assert.equal(out.status,202);
+  assert.equal(out.sent.length,2);
+  assert.equal(out.sent[0].to,"teste@example.com");
+});
+test("Sem aceite de contato ou marketing, o diagnóstico ainda chega à ROAD",async()=>{
+  const out=await exercise({...validPayload("empresarial"),contactConsent:false,marketingConsent:false});
+  assert.equal(out.status,202);
+  assert.equal(out.sent[1].to,"contato@roadwealth.com.br");
+  assert.match(out.sent[1].subject,/Empresarial \/ Agro/);
+  assert.match(out.sent[1].text,/Comunicações gerais: NÃO/);
+});
+test("Política e formulário informam claramente que ROAD recebe cópia",()=>{
+  const path=new URL("../src/pages/patrimonio.astro",import.meta.url);
+  const policy=new URL("../src/pages/privacidade.astro",import.meta.url);
+  const form=readFileSync(path,"utf8");
+  const privacy=readFileSync(policy,"utf8");
+  assert.match(form,/ROAD também receberá uma cópia do diagnóstico/);
+  assert.doesNotMatch(form,/enviado exclusivamente/);
+  assert.match(privacy,/cópia integral do mesmo diagnóstico e PDF/);
+  assert.match(privacy,/Receber o resultado não autoriza/);
+  assert.match(privacy,/sem cópia de valores fiscais/);
 });
 test("Empresarial / Agro: envia seu próprio perfil",async()=>{
   const out=await exercise(validPayload("empresarial"));

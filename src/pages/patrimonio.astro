@@ -71,7 +71,7 @@ import "../styles/patrimonio.css";
           <p>Obrigado por concluir as 16 perguntas. Informe seu e-mail para receber o resumo das quatro áreas e o diagnóstico completo em PDF anexo.</p><p id="checkup-finished-profile" class="checkup-finished-profile"></p>
           <div class="delivery-box road-checkup-delivery">
             <h4>Receba sua análise por e-mail</h4>
-            <p>Seu diagnóstico será enviado exclusivamente para o endereço informado. Ele não será exibido nesta página.</p>
+            <p>Seu diagnóstico será enviado ao e-mail informado. A ROAD receberá uma cópia do relatório e do PDF para análise interna. O resultado não será exibido nesta página.</p>
             <div class="road-checkup-email" id="road-checkup-email">
               <form id="road-checkup-email-form">
                 <label for="road-result-email">Seu e-mail</label>
@@ -82,7 +82,7 @@ import "../styles/patrimonio.css";
                 <input id="road-result-phone" name="phone" type="tel" autocomplete="tel" maxlength="28" placeholder="(00) 00000-0000" />
                 <label class="road-checkup-consent" for="road-result-consent">
                   <input id="road-result-consent" name="consent" type="checkbox" required />
-                  <span>Autorizo a ROAD a enviar o resultado deste Check-up para o e-mail informado.</span>
+                  <span>Solicito o envio do meu Check-up por e-mail e estou ciente de que a ROAD também receberá uma cópia do diagnóstico para análise interna.</span>
                 </label>
                 <label class="road-checkup-consent" for="road-result-contact">
                   <input id="road-result-contact" name="contactConsent" type="checkbox" />
@@ -92,7 +92,7 @@ import "../styles/patrimonio.css";
                   <input id="road-result-marketing" name="marketingConsent" type="checkbox" />
                   <span>Quero receber comunicações da ROAD sobre investimentos e planejamento patrimonial. (Opcional)</span>
                 </label>
-                <p class="checkup-note">O e-mail e os dados opcionais serão usados no envio e registro desta solicitação. O contato sobre seu resultado e as comunicações gerais dependem de autorizações independentes. Consulte nossa <a href="/privacidade/">Política de Privacidade</a>.</p>
+                <p class="checkup-note">A ROAD receberá o mesmo diagnóstico em PDF, vinculado ao seu e-mail e aos dados opcionais informados. Isso não autoriza contato posterior ou comunicações comerciais, que dependem das opções separadas acima. Consulte nossa <a href="/privacidade/">Política de Privacidade</a>.</p>
                 <div id="road-checkup-turnstile" aria-label="Verificação de segurança"></div>
                 <button id="road-checkup-email-submit" class="btn btn--primary" type="submit">Receber minha análise</button>
                 <p id="road-checkup-email-feedback" class="road-checkup-email-feedback" role="status" aria-live="polite"></p>
