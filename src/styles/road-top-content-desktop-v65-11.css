@@ -31,8 +31,8 @@
     position: relative;
   }
 
-  .market-ticker-row--desktop > .market-ticker-label,
-  .road-highlights__inner > .road-highlights__label {
+  :is(.market-ticker-row--desktop > .market-ticker-label,
+      .road-highlights__inner > .road-highlights__label) {
     border-right-color: transparent !important;
   }
 
