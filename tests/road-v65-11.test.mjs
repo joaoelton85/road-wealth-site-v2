@@ -14,7 +14,8 @@ test("V65.11 desloca apenas conteúdo, não rótulos, no Desktop >1000",()=>{
   assert.match(css,/68px \+ 14px/);
   assert.match(css,/\.market-ticker-row--desktop \.market-ticker-track/);
   assert.match(css,/\.road-highlights__stage > \.road-highlights__slide/);
-  assert.doesNotMatch(css,/\.road-highlights__label\s*\{|\.market-ticker-label\s*\{|\.market-ticker-viewport\s*\{|iframe|tradingview-widget-container\s*\{/);
+  const rules=css.replace(/\/\*[\s\S]*?\*\//g,""); // Ignorar comentários, analisar apenas regras CSS.
+  assert.doesNotMatch(rules,/\.road-highlights__label\s*\{|\.market-ticker-label\s*\{|\.market-ticker-viewport\s*\{|iframe|tradingview-widget-container\s*\{/);
   assert(layout.includes('import "../styles/road-top-content-desktop-v65-11.css";'));
   assert(layout.indexOf("road-top-content-desktop-v65-11.css")>layout.indexOf("road-footer-desktop-v65-8.css"));
   assert(ticker.includes('BMFBOVESPA:IBOV'));
