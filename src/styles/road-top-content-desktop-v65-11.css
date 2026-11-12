@@ -1,12 +1,4 @@
-/* ROAD V65.11 — eixo de conteúdo dos indicadores e Destaques no Desktop.
-   Os rótulos ficam exatamente onde estão; apenas o conteúdo se inicia após
-   a borda direita do logo Rede Meu Patrimônio, com 14px de respiro.
-
-   Medidas do cabeçalho Desktop já aprovado:
-   margem lateral max(26px, (100vw - --max)/2),
-   símbolo ROAD 48px + intervalo 10px + logo MP 68px.
-   Não altera o componente nem os elementos internos do TradingView.
-   Tablet/Mobile (<=1000px) não são afetados. */
+/* Cabeçalho desktop: a borda direita da marca MP define o divisor das duas faixas. */
 @media (min-width:1001px) {
   :root {
     --road-content-desktop-start: calc(max(26px, (100vw - var(--max)) / 2) + 48px + 10px + 68px + 14px);
@@ -24,8 +16,7 @@
     padding-left: var(--road-content-desktop-indent) !important;
   }
 
-  /* O divisor acompanha a extremidade da marca. A coluna que centraliza
-     cada rótulo continua com a largura original. */
+  /* O divisor usa a mesma referência horizontal nas duas faixas. */
   .market-ticker-row--desktop,
   .road-highlights__inner {
     position: relative;
@@ -33,6 +24,10 @@
 
   :is(.market-ticker-row--desktop > .market-ticker-label,
       .road-highlights__inner > .road-highlights__label) {
+    /* Desloca o centro da caixa original até o centro da coluna visível. */
+    translate: calc((var(--road-content-desktop-start) - 14px - var(--road-top-label-w)) / 2) 0;
+    justify-content: center !important;
+    text-align: center;
     border-right-color: transparent !important;
   }
 
