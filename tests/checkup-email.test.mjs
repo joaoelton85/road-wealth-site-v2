@@ -56,7 +56,7 @@ test("ROAD recebe o mesmo diagnóstico completo, com o PDF e identificação",as
   const [customer, internal]=out.sent;
   assert.equal(customer.to,"teste@example.com");
   assert.equal(internal.to,"contato@roadwealth.com.br");
-  assert.match(internal.subject,/Diagnóstico completo.*Patrimonial \\/ Familiar.*teste@example.com/);
+  assert.match(internal.subject,/Diagnóstico completo.*Patrimonial \/ Familiar.*teste@example.com/);
   assert.match(internal.text,/Ana Ribeiro/);
   assert.match(internal.text,/\(42\) 99999-9999/);
   assert.match(internal.text,/Contato sobre o resultado: NÃO/);
@@ -88,7 +88,7 @@ test("Sem aceite de contato ou marketing, o diagnóstico ainda chega à ROAD",as
   const out=await exercise({...validPayload("empresarial"),contactConsent:false,marketingConsent:false});
   assert.equal(out.status,202);
   assert.equal(out.sent[1].to,"contato@roadwealth.com.br");
-  assert.match(out.sent[1].subject,/Empresarial \\/ Agro/);
+  assert.match(out.sent[1].subject,/Empresarial \/ Agro/);
   assert.match(out.sent[1].text,/Comunicações gerais: NÃO/);
 });
 test("Política e formulário informam claramente que ROAD recebe cópia",()=>{

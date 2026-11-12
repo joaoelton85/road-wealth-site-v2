@@ -164,7 +164,7 @@ function buildCheckupInternalCopy(report, contact, customerMessage, attachments)
     'contato comercial ou comunicações sem a permissão correspondente.</p>' +
     '</td></tr></table>';
   // Insere identificação no começo do corpo, preservando TODO o relatório HTML.
-  const internalHtml = customerMessage.html.replace(/(<body\\b[^>]*>)/i,
+  const internalHtml = customerMessage.html.replace(/(<body\b[^>]*>)/i,
     (_, openTag) => openTag + infoHtml);
   if (internalHtml === customerMessage.html) throw new Error("ROAD_INTERNAL_EMAIL_HTML_INVALID");
   return {
